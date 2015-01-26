@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Soap on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/soap/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Fri, 17 Jun 2011 08:48:17 &#43;0000</updated>
+    
+    <item>
+      <title>SOAPUI测试WebService</title>
+      <link>http://www.daniex.tk/blog/2011/soapui-test-webservice/</link>
+      <pubDate>Fri, 17 Jun 2011 08:48:17 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/soapui-test-webservice/</guid>
+      <description>&lt;p&gt;最近要测试web service找到个不错的软件SOAPUI。推荐一下。&lt;/p&gt;
+
+&lt;p&gt;由于Web服务是被程序调用的，一般不会提供界面让最终用户或测试人员直接使用。SOAPUI是针对这个情况特别开发的一个工具，用户可以在SOAPUI中通过简单的操作完成复杂的测试。当然SOAPUI还不仅仅是这点作用就，需要大家发掘发掘下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;SOAPUI&#34; src=&#34;http://www.soapui.org/images/stories/Getting_Started/Import_sample_soapUI_project.png&#34; alt=&#34;&#34; width=&#34;374&#34; height=&#34;398&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;地址：&lt;a href=&#34;http://www.soapui.org/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.soapui.org/&#34;&gt;http://www.soapui.org/&lt;/a&gt;&lt;/a&gt;
+文档：&lt;a href=&#34;http://www.soapui.org/Getting-Started/installing-on-windows.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.soapui.org/Getting-Started/installing-on-windows.html&#34;&gt;http://www.soapui.org/Getting-Started/installing-on-windows.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

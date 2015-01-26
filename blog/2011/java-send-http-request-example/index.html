@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>java发送http请求例子 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="java,TCP,WebService">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>java发送http请求例子</h1>
+    <span class="post-date">Jul 27, 2011 &middot; 3 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/java">java</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/java">java</a><a class="label" href="http://www.daniex.tk/tags/TCP">TCP</a><a class="label" href="http://www.daniex.tk/tags/WebService">WebService</a>
+    </span>
+    <p><code> </code></p>
+
+<p>折腾java的restful webservice，另外写程序发送http请求时进行性能方面测试。当向一个地址连续发送http请求不设置timeout参数时，会在一个http连接中发送多次数据。</p>
+
+<p>用sniffer抓包是发现在一次SYN建立tcp链接后，有两次发送请求数据。第二次发送的数据一直在等待响应程序阻塞。问题尚未解决，折腾ing。</p>
+
+<p>一下是http请求发送的代码。单个请求发送是成功的。</p>
+
+<p>&nbsp;</p>
+
+<p>import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;</p>
+
+<p>public class HTTPRequestPoster
+{
+/**
+* Sends an HTTP GET request to a url
+*
+* @param endpoint - The URL of the server. (Example: &ldquo; <a href="http://www.yahoo.com/search&quot;">http://www.yahoo.com/search&quot;</a>)
+* @param requestParameters - all the request parameters (Example:  &ldquo;param1=val1&amp;param2=val2&rdquo;). Note: This method will add the question  mark (?) to the request - DO NOT add it yourself
+* @return - The response from the end point
+*/
+public static String sendGetRequest(String endpoint, String requestParameters)
+{
+String result = null;
+if (endpoint.startsWith(&ldquo;http://&ldquo;))
+{
+// Send a GET request to the servlet
+try
+{</p>
+
+<p>// Send data
+String urlStr = endpoint;
+if (requestParameters != null &amp;&amp; requestParameters.length () &gt; 0)
+{
+urlStr += &ldquo;?&rdquo; + requestParameters;
+}
+URL url = new URL(urlStr);
+URLConnection conn = url.openConnection ();</p>
+
+<p>// Get the response
+BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+StringBuffer sb = new StringBuffer();
+String line;
+while ((line = rd.readLine()) != null)
+{
+sb.append(line);
+}
+rd.close();
+result = sb.toString();
+} catch (Exception e)
+{
+e.printStackTrace();
+}
+}
+return result;
+}</p>
+
+<p>/**
+* Reads data from the data reader and posts it to a server via POST request.
+* data - The data you want to send
+* endpoint - The server&rsquo;s address
+* output - writes the server&rsquo;s response to output
+* @throws Exception
+*/
+public static void postData(Reader data, URL endpoint, Writer output) throws Exception
+{
+HttpURLConnection urlc = null;
+try
+{
+urlc = (HttpURLConnection) endpoint.openConnection();
+try
+{
+urlc.setRequestMethod(&ldquo;POST&rdquo;);
+} catch (ProtocolException e)
+{
+throw new Exception(&ldquo;Shouldn&rsquo;t happen: HttpURLConnection doesn&rsquo;t support POST??&ldquo;, e);
+}
+urlc.setDoOutput(true);
+urlc.setDoInput(true);
+urlc.setUseCaches(false);
+urlc.setAllowUserInteraction(false);
+urlc.setRequestProperty(&ldquo;Content-type&rdquo;, &ldquo;text/xml; charset=&rdquo; + &ldquo;UTF-8&rdquo;);</p>
+
+<p>OutputStream out = urlc.getOutputStream();</p>
+
+<p>try
+{
+Writer writer = new OutputStreamWriter(out, &ldquo;UTF-8&rdquo;);
+pipe(data, writer);
+writer.close();
+} catch (IOException e)
+{
+throw new Exception(&ldquo;IOException while posting data&rdquo;, e);
+} finally
+{
+if (out != null)
+out.close();
+}</p>
+
+<p>InputStream in = urlc.getInputStream();
+try
+{
+Reader reader = new InputStreamReader(in);
+pipe(reader, output);
+reader.close();
+} catch (IOException e)
+{
+throw new Exception(&ldquo;IOException while reading response&rdquo;, e);
+} finally
+{
+if (in != null)
+in.close();
+}</p>
+
+<p>} catch (IOException e)
+{
+throw new Exception(&ldquo;Connection error (is server running at &rdquo; + endpoint + &ldquo; ?): &ldquo; + e);
+} finally
+{
+if (urlc != null)
+urlc.disconnect();
+}
+}</p>
+
+<p>/**
+* Pipes everything from the reader to the writer via a buffer
+*/
+private static void pipe(Reader reader, Writer writer) throws IOException
+{
+char[] buf = new char[1024];
+int read = 0;
+while ((read = reader.read(buf)) &gt;= 0)
+{
+writer.write(buf, 0, read);
+}
+writer.flush();
+}</p>
+
+<p><code>}</code></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

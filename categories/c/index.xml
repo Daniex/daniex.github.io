@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>C on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/categories/c/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 29 Sep 2011 07:44:39 &#43;0000</updated>
+    
+    <item>
+      <title>C#线程开始/暂停/终止</title>
+      <link>http://www.daniex.tk/blog/2011/csharp-thread-start-stop-pause/</link>
+      <pubDate>Thu, 29 Sep 2011 07:44:39 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/csharp-thread-start-stop-pause/</guid>
+      <description>&lt;p&gt;写测试工具需要多线程的暂停终止。用C#的 Thread.about()  join() resume() suspend()又提示函数过时了，不建议使用。于是四处找方法，信号量、互斥锁什么的方法也不少，找到下面这个方法，倒是很实用，转载如下：&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h1&gt;C#关于AutoResetEvent的使用介绍（转）&lt;/h1&gt;
+&lt;strong&gt;AutoResetEvent&lt;/strong&gt; 允许线程通过发信号互相通信。通常，此通信涉及线程需要独占访问的资源。&lt;/p&gt;
+
+&lt;p&gt;线程通过调用 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 上的 &lt;span style=&#34;color: #1d58d1;&#34;&gt;WaitOne&lt;/span&gt; 来等待信号。如果 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 处于非终止状态，则该线程阻塞，并等待当前控制资源的线程
+通过调用 &lt;span style=&#34;color: #1d58d1;&#34;&gt;Set&lt;/span&gt; 发出资源可用的信号。&lt;/p&gt;
+
+&lt;p&gt;调用 &lt;strong&gt;Set&lt;/strong&gt; 向 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 发信号以释放等待线程。&lt;strong&gt;AutoResetEvent&lt;/strong&gt; 将保持终止状态，直到一个正在等待的线程被释放，然后自动返回非终止状态。如果没有任何线程在等待，则状态将无限期地保持为终止状态。&lt;/p&gt;
+
+&lt;p&gt;可以通过将一个布尔值传递给构造函数来控制 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 的初始状态，如果初始状态为终止状态，则为 &lt;strong&gt;true&lt;/strong&gt;；否则为 &lt;strong&gt;false&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;通俗的来讲只有等myResetEven.Set()成功运行后,myResetEven.WaitOne()才能够获得运行机会;Set是发信号，WaitOne是等待信号，只有发了信号，
+等待的才会执行。如果不发的话，WaitOne后面的程序就永远不会执行。下面我们来举一个例子：我去书店买书，当我选中一本书后我会去收费处付钱，
+付好钱后再去仓库取书。这个顺序不能颠倒，我作为主线程，收费处和仓库做两个辅助线程，代码如下：
+&lt;pre&gt;using System;
+using System.Linq;
+using System.Activities;
+using System.Activities.Statements;
+using System.Threading;&lt;/p&gt;
+
+&lt;p&gt;namespace CaryAREDemo
+{
+    class Me
+    {
+        const int numIterations = 550;
+        static AutoResetEvent myResetEvent = new AutoResetEvent(false);
+        static AutoResetEvent ChangeEvent = new AutoResetEvent(false);
+        //static ManualResetEvent myResetEvent = new ManualResetEvent(false);
+        //static ManualResetEvent ChangeEvent = new ManualResetEvent(false);
+        static int number; //这是关键资源&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    static void Main()
+    {
+        Thread payMoneyThread = new Thread(new ThreadStart(PayMoneyProc));
+        payMoneyThread.Name = &amp;quot;付钱线程&amp;quot;;
+        Thread getBookThread = new Thread(new ThreadStart(GetBookProc));
+        getBookThread.Name = &amp;quot;取书线程&amp;quot;;
+        payMoneyThread.Start();
+        getBookThread.Start();
+
+        for (int i = 1; i &amp;amp;lt;= numIterations; i++)
+        {
+            Console.WriteLine(&amp;quot;买书线程：数量{0}&amp;quot;, i);
+            number = i;
+            //Signal that a value has been written.
+            myResetEvent.Set();
+            ChangeEvent.Set();
+            Thread.Sleep(0);
+        }
+        payMoneyThread.Abort();
+        getBookThread.Abort();
+    }
+
+    static void PayMoneyProc()
+    {
+        while (true)
+        {
+            myResetEvent.WaitOne();
+            //myResetEvent.Reset();
+            Console.WriteLine(&amp;quot;{0}：数量{1}&amp;quot;, Thread.CurrentThread.Name, number);
+        }
+    }
+    static void GetBookProc()
+    {
+        while (true)
+        {
+            ChangeEvent.WaitOne();
+            // ChangeEvent.Reset();               
+            Console.WriteLine(&amp;quot;{0}：数量{1}&amp;quot;, Thread.CurrentThread.Name, number);
+            Console.WriteLine(&amp;quot;------------------------------------------&amp;quot;);
+            Thread.Sleep(0);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+运行结果如下：&lt;/pre&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter&#34; style=&#34;border: 0pt none;&#34; src=&#34;http://www.csharpwin.com/upload/003250JL-0.png&#34; alt=&#34;image&#34; width=&#34;242&#34; height=&#34;229&#34; border=&#34;0&#34; /&gt;&lt;/p&gt;
+AutoResetEvent与ManualResetEvent的区别&lt;/p&gt;
+
+&lt;p&gt;他们的用法\声明都很类似，Set方法将信号置为发送状态 Reset方法将信号置为不发送状态WaitOne等待信号的发送。其实,从名字就可以看出一个手动,
+一个自动，这个手动和自动实际指的是在Reset方法的处理上,如下面例子：&lt;/p&gt;
+
+&lt;p&gt;public AutoResetEvent autoevent=new AutoResetEvent(true);
+public ManualResetEvent manualevent=new ManualResetEvent(true);&lt;/p&gt;
+
+&lt;p&gt;默认信号都处于发送状态,&lt;/p&gt;
+
+&lt;p&gt;autoevent.WaitOne();
+manualevent.WaitOne();&lt;/p&gt;
+
+&lt;p&gt;如果 某个线程调用上面该方法,则当信号处于发送状态时,该线程会得到信号,得以继续执行。差别就在调用后,autoevent.WaitOne()每次只允许一个线程
+进入,当某个线程得到信号(也就是有其他线程调用了autoevent.Set()方法后)后,autoevent会自动又将信号置为不发送状态,则其他调用WaitOne的线程只
+有继续等待.也就是说,autoevent一次只唤醒一个线程。而manualevent则可以唤醒多个线程,因为当某个线程调用了set方法后,其他调用waitone的线程
+获得信号得以继续执行,而manualevent不会自动将信号置为不发送.也就是说,除非手工调用了manualevent.Reset().方法,则 manualevent将一直保持有信号状态,manualevent也就可以同时唤醒多个线程继续执行。如果上面的程序换成 ManualResetEvent的话，就需要在waitone后面做下reset。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WPF数据绑定UI显示同步变更例子</title>
+      <link>http://www.daniex.tk/blog/2011/wpf-data-binding-ui-shows-examples-of-simultaneous-changes/</link>
+      <pubDate>Mon, 26 Sep 2011 08:04:35 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wpf-data-binding-ui-shows-examples-of-simultaneous-changes/</guid>
+      <description>&lt;p&gt;WPF数据绑定功能很好，很强大。只需要写一点代码就可以做到数据的绑定，数据变更后UI的数据同步显示。UI和主程序多线程间的数据交互问题可以通过这个轻松解决。对“由于其他线程拥有此对象，因此调用线程无法对其进行访问”这样的问题，wpf 的dispatcher 是一个可能的解决方法，数据绑定也是一个方式。&lt;/p&gt;
+
+&lt;p&gt;定义类
+&lt;pre class=&#34;brush:csharp&#34;&gt;using System;
+using System.ComponentModel;&lt;/p&gt;
+
+&lt;p&gt;namespace Demo.View
+{
+    public class DemoBinding: INotifyPropertyChanged
+    {
+        private double fail;
+        public double Fail
+        {
+            get { return fail; }
+            set
+            {
+                fail= value;
+                NotifyPropertyChanged(&amp;ldquo;Fail&amp;rdquo;);
+            }
+        }&lt;/p&gt;
+
+&lt;p&gt;        private String pass = Properties.Resources.statusPass + &amp;ldquo;0&amp;rdquo;;
+        public String Pass
+        {
+            get { return pass; }
+            set
+            {
+                pass = value;
+                NotifyPropertyChanged(&amp;ldquo;Pass&amp;rdquo;);
+            }
+        }&lt;/p&gt;
+
+&lt;p&gt;        public event PropertyChangedEventHandler PropertyChanged;&lt;/p&gt;
+
+&lt;p&gt;        public void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}&lt;/pre&gt;
+xaml 文件内容：
+&lt;pre class=&#34;brush:xml&#34;&gt; &amp;lt;ProgressBar Name=&amp;ldquo;progressBar&amp;rdquo; Value=&amp;ldquo;{Binding Fail}&amp;rdquo; Height=&amp;ldquo;30&amp;rdquo; Margin=&amp;ldquo;4&amp;rdquo; /&amp;gt;
+&amp;lt;Label Name=&amp;ldquo;label_pass&amp;rdquo;  Foreground=&amp;ldquo;Green&amp;rdquo; FontSize=&amp;ldquo;14&amp;rdquo; Content=&amp;ldquo;{Binding Pass}&amp;rdquo; /&amp;gt;&lt;/pre&gt;
+当数据需要改变时，只要使数据对象DemoBinding data的属性值赋值，数据和UI都会随之改变，如:data.fail = 50;&lt;/p&gt;
+
+&lt;p&gt;当然，可以把类对象定义为static的静态对象，这样就不需要保证对象唯一性的代码了。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Versatile TreeView for WPF</title>
+      <link>http://www.daniex.tk/blog/2011/a-versatile-treeview-for-wpf/</link>
+      <pubDate>Thu, 22 Sep 2011 08:58:58 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/a-versatile-treeview-for-wpf/</guid>
+      <description>&lt;p&gt;写自动化测试工具的时候要用到tree view，于是上网各种找。C#的Infragistics NetAdvantage，DevExpress之类框架。都太大了，小工具用不着这么大的。用自带的tree view又觉得土了点，WPF又是在边学边做。终于折腾着找个到一个，看着挺好，用着也还合适。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a title=&#34;A Versatile TreeView for WPF&#34; href=&#34;http://www.codeproject.com/KB/WPF/versatile_treeview.aspx&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;A Versatile TreeView for WPF&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; 来自&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;a title=&#34;codeproject&#34; href=&#34;http://www.codeproject.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;codeproject  &lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;他是个DLL，加到工程就好，还提供例子程序，对于我这种WPF未入门的来说正好。在他代码上边学边改，学着不少。例程如下图：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;wpf tree view ui&#34; src=&#34;http://www.codeproject.com/KB/WPF/versatile_treeview/sampleapp.png&#34; alt=&#34;&#34; width=&#34;571&#34; height=&#34;420&#34; /&gt;&lt;/p&gt;
+树的展开，折叠，选中，状态变更更换图片，增加删除节点，排序，筛选等等功能都支持。&lt;/p&gt;
+
+&lt;p&gt;但是也发现了问题，比如，根节点不好删除，重新加载/更换树也不方便。需要继续努力学习wpf去改代码了。任重道远哦～&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;另外还用了wpf toolkit 这个插件花datagrid，由于用的是.net3.5 平台，居然都没有datagrid！搜下下载安装就好，也挺好用的一个工具。详见&lt;a href=&#34;../wpf-datagrid.html&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;WPF DataGrid 绑定数据 &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;#######################################&lt;/p&gt;
+
+&lt;p&gt;总结下删除树更换节点的问题，之前提到的都不是问题。方法如下：&lt;/p&gt;
+
+&lt;p&gt;继承的TreeViewBase&amp;lt;T&amp;gt;类没有提供相应的接口去删除根节点，但是，由于整个树都是绑定于可自己定义的数据结构上。例如，例程中将树形结构绑定到ShopUtil中的一个列表中，对该列表直接进行操作，删除，更换节点，甚至更换整个树形结构。其后刷新树就可以得到新的结构了。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wpf在xaml文件中调用resx资源文件</title>
+      <link>http://www.daniex.tk/blog/2011/use-resx-in-xaml/</link>
+      <pubDate>Fri, 16 Sep 2011 02:49:17 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/use-resx-in-xaml/</guid>
+      <description>&lt;p&gt;找了不少方法，有些都比较麻烦。列举如下：&lt;/p&gt;
+
+&lt;p&gt;1、最简单的 ：&lt;/p&gt;
+
+&lt;p&gt;xmlns:resx=&amp;ldquo;clr-namespace:wpfapplicationname.Properties&amp;rdquo;
+Title=&amp;ldquo;{x:Static resx:Resources.name}&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;2、&lt;/p&gt;
+
+&lt;p&gt;用第三方工具 例如&lt;a title=&#34;WPF_Resx_Localization&#34; href=&#34;http://www.codeproject.com/KB/WPF/WPF_Resx_Localization.aspx&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.codeproject.com/KB/WPF/WPF_Resx_Localization.aspx&#34;&gt;http://www.codeproject.com/KB/WPF/WPF_Resx_Localization.aspx&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;3、&lt;/p&gt;
+
+&lt;p&gt;// Get all properties from resx resource object
+Type resType = typeof( Xyz.Xyz.Properties.Resources );
+PropertyInfo[] properties = resType.GetProperties( BindingFlags.Static | BindingFlags.NonPublic );&lt;/p&gt;
+
+&lt;p&gt;then do&lt;/p&gt;
+
+&lt;p&gt;// Add properties to XAML Application.Resources
+foreach( PropertyInfo property in properties )
+{
+//
+if( property.PropertyType == typeof( string ) )
+Resources.Add( property.Name, property.GetValue( null, null ) );
+}&lt;/p&gt;
+
+&lt;p&gt;Then in your XAML code simply do:&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;TextBlock&amp;gt;&amp;lt;StaticResource ResourceKey=&amp;ldquo;theResNameFromYourResX&amp;rdquo; /&amp;gt;&amp;lt;/TextBlock&amp;gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WPF DataGrid 绑定数据</title>
+      <link>http://www.daniex.tk/blog/2011/wpf-datagrid/</link>
+      <pubDate>Thu, 01 Sep 2011 03:07:33 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wpf-datagrid/</guid>
+      <description>&lt;p&gt;写WPF程序，需要表格。用的是.net3.5，于是找了个WPF Toolkit工具用着。&lt;/p&gt;
+
+&lt;p&gt;地址：wpf toolkit &lt;a title=&#34;wpf toolkit website&#34; href=&#34;http://wpf.codeplex.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://wpf.codeplex.com/&#34;&gt;http://wpf.codeplex.com/&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在绑定数据的时候遇到点麻烦，当然绑定数据的方法有很多中，这里转一个。在最后绑定数据的时候方法不止一种，在下面的代码中我稍作添加。&lt;/p&gt;
+
+&lt;p&gt;地址：&lt;a title=&#34;WPFToolkit DataGrid 使用介绍&#34; href=&#34;http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html&#34;&gt;http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;pre class=&#34;brush: xml&#34;&gt;
+xaml文件如下：
+&lt;div&gt;
+&lt;div&gt;&amp;lt;Window x:Class=&amp;ldquo;WpfAppTest.WPFDataGrid&amp;rdquo;
+xmlns=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;&#34;&gt;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;&lt;/a&gt;
+xmlns:x=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;&#34;&gt;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;&lt;/a&gt;
+xmlns:sys=&amp;ldquo;clr-namespace:System;assembly=mscorlib&amp;rdquo;
+xmlns:toolkit=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/wpf/2008/toolkit&amp;quot;&#34;&gt;http://schemas.microsoft.com/wpf/2008/toolkit&amp;quot;&lt;/a&gt;
+xmlns:myWPFDataGrid=&amp;ldquo;clr-namespace:WpfAppTest;assembly=WpfAppTest&amp;rdquo;
+Title=&amp;ldquo;WPFDataGrid&amp;rdquo; Height=&amp;ldquo;351&amp;rdquo; Width=&amp;ldquo;647&amp;rdquo; Loaded=&amp;ldquo;Window_Loaded&amp;rdquo;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;Window.Resources&amp;gt;
+&amp;lt;ObjectDataProvider x:Key=&amp;ldquo;myEnum&amp;rdquo; MethodName=&amp;ldquo;GetValues&amp;rdquo; ObjectType=&amp;ldquo;{x:Type sys:Enum}&amp;rdquo;&amp;gt;
+&amp;lt;ObjectDataProvider.MethodParameters&amp;gt;
+&amp;lt;x:Type TypeName=&amp;ldquo;myWPFDataGrid:sampleType&amp;rdquo;/&amp;gt;
+&amp;lt;/ObjectDataProvider.MethodParameters&amp;gt;
+&amp;lt;/ObjectDataProvider&amp;gt;
+&amp;lt;/Window.Resources&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;Grid&amp;gt;
+&amp;lt;toolkit:DataGrid Name=&amp;ldquo;SampleDataGrid&amp;rdquo; AutoGenerateColumns=&amp;ldquo;False&amp;rdquo; ItemsSource=&amp;ldquo;{Binding}&amp;rdquo;&amp;gt;
+&amp;lt;toolkit:DataGrid.Columns&amp;gt;
+&amp;lt;toolkit:DataGridTextColumn Header=&amp;ldquo;ID&amp;rdquo;  Binding=&amp;ldquo;{Binding ID}&amp;rdquo;/&amp;gt;
+&amp;lt;toolkit:DataGridTextColumn Header=&amp;ldquo;Name&amp;rdquo; Binding=&amp;ldquo;{Binding Name}&amp;ldquo; /&amp;gt;
+&amp;lt;toolkit:DataGridHyperlinkColumn Header=&amp;ldquo;Link&amp;rdquo; Binding=&amp;ldquo;{Binding Link}&amp;ldquo;  ContentBinding=&amp;rdquo;{Binding Link}&amp;ldquo; /&amp;gt;
+&amp;lt;toolkit:DataGridCheckBoxColumn Header=&amp;ldquo;IsBool&amp;rdquo; Binding=&amp;ldquo;{Binding IsBool}&amp;ldquo; /&amp;gt;
+&amp;lt;toolkit:DataGridComboBoxColumn Header=&amp;ldquo;MyType&amp;rdquo; SelectedItemBinding=&amp;ldquo;{Binding MyType}&amp;ldquo; ItemsSource=&amp;rdquo;{Binding Source={StaticResource myEnum}}&amp;ldquo; TextBinding=&amp;rdquo;{Binding MyType}&amp;ldquo; /&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/toolkit:DataGrid.Columns&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/toolkit:DataGrid&amp;gt;
+&amp;lt;/Grid&amp;gt;
+&amp;lt;/Window&amp;gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/pre&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;c#文件如下：
+&lt;pre class=&#34;brush: csharp&#34;&gt;
+&lt;div&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Data;&lt;/p&gt;
+
+&lt;p&gt;namespace WpfAppTest
+{
+/// &amp;lt;summary&amp;gt;
+/// Interaction logic for WPFDataGrid.xaml
+/// &amp;lt;/summary&amp;gt;
+public partial class WPFDataGrid : Window
+{
+public WPFDataGrid()
+{
+InitializeComponent();
+}&lt;/p&gt;
+
+&lt;p&gt;private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+DataTable dt = new DataTable();
+DataColumn dc = new DataColumn(&amp;ldquo;ID&amp;rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;Name&amp;rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;Link&amp;rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;IsBool&amp;rdquo;, typeof(System.Boolean));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;MyType&amp;rdquo;, typeof(sampleType));
+dt.Columns.Add(dc);
+for (int i = 0; i &amp;lt; 10; i++)
+{
+dt.Rows.Add(new object[] { i.ToString(), &amp;rdquo;Name&amp;rdquo; + i.ToString(), &amp;rdquo;Link&amp;rdquo; + i.ToString(), true, sampleType.C });
+}&lt;/div&gt;
+&lt;h3&gt;&lt;span style=&#34;color: #800000;&#34;&gt;//可以使用下面注释的一行代码替换其后的三行，数据也能绑定成功&lt;/span&gt;
+&lt;span style=&#34;color: #800000;&#34;&gt;//SampleDataGrid.ItemsSource = dt.DefaultView;&lt;/span&gt;&lt;/h3&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;DataSet ds = new DataSet();
+ds.Tables.Add(dt);&lt;/p&gt;
+
+&lt;p&gt;SampleDataGrid.DataContext = ds.Tables[0];&lt;/div&gt;
+&lt;div&gt;}
+}&lt;/p&gt;
+
+&lt;p&gt;public enum sampleType
+{ A, B, C, D, E };
+}&lt;/div&gt;
+&lt;/pre&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WPF中使用USERCONTROL</title>
+      <link>http://www.daniex.tk/blog/2011/wpf-using-usercontrol/</link>
+      <pubDate>Wed, 17 Aug 2011 07:58:11 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wpf-using-usercontrol/</guid>
+      <description>&lt;p&gt;想着怎么在wpf的xaml文件中嵌入另一个xaml文件，找了会发现可以通过usercontrol控件实现。&lt;/p&gt;
+
+&lt;p&gt;右键项目添加用户控件，生成一个xaml文件。注意其namespase和类属性：
+&lt;pre id=&#34;pre0&#34; lang=&#34;xml&#34;&gt;&amp;lt;UserControl
+    Name=&amp;ldquo;UserControlToolTip&amp;rdquo;
+   &lt;span style=&#34;color: #ff6600;&#34;&gt; x:Class=&amp;ldquo;CustomToolTip.UserControl1&amp;rdquo;&lt;/span&gt;
+    xmlns=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;&#34;&gt;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;&lt;/a&gt;
+    xmlns:x=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;&#34;&gt;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;&lt;/a&gt;
+    xmlns:d=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/expression/blend/2008&amp;quot;&#34;&gt;http://schemas.microsoft.com/expression/blend/2008&amp;quot;&lt;/a&gt;
+    xmlns:mc=&amp;ldquo;&lt;a href=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&amp;quot;&#34;&gt;http://schemas.openxmlformats.org/markup-compatibility/2006&amp;quot;&lt;/a&gt;
+    mc:Ignorable=&amp;ldquo;d&amp;rdquo; RenderTransformOrigin=&amp;ldquo;0,0&amp;rdquo; HorizontalAlignment=&amp;ldquo;Left&amp;rdquo;
+    VerticalAlignment=&amp;ldquo;Top&amp;rdquo; &amp;gt;
+&amp;lt;/UserControl&amp;gt;
+&lt;/pre&gt;
+在window中调用的时候需要这样：&lt;/p&gt;
+
+&lt;pre id=&#34;pre2&#34; lang=&#34;xml&#34;&gt;&amp;lt;Window x:Class=&#34;WpfApplication1.Window1&#34;
+    xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;
+    xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;
+    &lt;span style=&#34;color: #ff6600;&#34;&gt;xmlns:myToolTip=&#34;clr-namespace:CustomToolTip;assembly=CustomToolTip&#34;&lt;/span&gt;
+    Title=&#34;Window1&#34; Height=&#34;600&#34; Width=&#34;800&#34;&amp;gt;
+&amp;lt;/Window&amp;gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>C#调用C&#43;&#43;DLL--委托</title>
+      <link>http://www.daniex.tk/blog/2011/c-calling-c-dll-commissioned/</link>
+      <pubDate>Tue, 21 Jun 2011 09:01:38 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/c-calling-c-dll-commissioned/</guid>
+      <description>&lt;p&gt;直接上代码，ref类型参数传递也是可以的。和之前一篇用反射调用可以互相参考。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;em&gt;&lt;a title=&#34;C#调用C++写的DLL--反射&#34; href=&#34;http://daniex.info/c-call-dll-written-in-c.html&#34; target=&#34;_blank&#34;&gt;C#调用C++DLL&amp;ndash;反射&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;
+&lt;pre class=&#34;brush: csharp&#34;&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;&lt;/p&gt;
+
+&lt;p&gt;using System.Runtime.InteropServices;&lt;/p&gt;
+
+&lt;p&gt;namespace Test
+{
+    class DLLLoader
+    {
+            [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;)]
+            public extern static IntPtr LoadLibrary(string path);&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+        public extern static IntPtr GetProcAddress(IntPtr lib, string funcName);
+
+        [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+        public extern static bool FreeLibrary(IntPtr lib);
+
+        [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+        public static extern IntPtr GetStdHandle(int nStdHandle);
+
+        [DllImport(&amp;quot;user32&amp;quot;, EntryPoint = &amp;quot;CallWindowProc&amp;quot;)]
+        public static extern int CallWindowProc(IntPtr lpPrevWndFunc, int hwnd, int MSG, int wParam, int lParam);
+
+        IntPtr DllLib;//DLL文件名柄     
+        #region 构造函数
+        public DLLLoader()
+        { }
+        public DLLLoader(string dllpath)
+        {
+            DllLib = LoadLibrary(dllpath);
+        }
+        #endregion
+        ///      
+        /// 析构函数     
+        ///      
+        ~DLLLoader()
+        {
+            FreeLibrary(DllLib);//释放名柄     
+        }
+        public void initPath(string dllpath)
+        {
+            if (DllLib == IntPtr.Zero)
+            {
+                DllLib = LoadLibrary(dllpath);
+            }
+        }
+        ///      
+        /// 获取ＤＬＬ中一个方法的委托     
+        ///      
+        /// &amp;lt;param name=&amp;quot;methodname&amp;quot; /&amp;gt;     
+        /// &amp;lt;param name=&amp;quot;methodtype&amp;quot; /&amp;gt;     
+        ///      
+        public Delegate InvokeMethod(string methodname, Type methodtype)
+        {
+            IntPtr MethodPtr = GetProcAddress(DllLib, methodname);
+
+            return (Delegate)Marshal.GetDelegateForFunctionPointer(MethodPtr, methodtype);
+        }      
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;*********&lt;strong&gt;&lt;em&gt;调用&lt;/em&gt;&lt;/strong&gt;************
+        DLLLoader loaddll = new DLLLoader(&amp;ldquo;E:\workspaces\WpfApplication1\Debug\DLL.dll&amp;rdquo;);//实例化加载ＤＬＬ文件的类，，如上&lt;br /&gt;
+        public delegate int delegateadd(ref int a);//声明此方法的一个委托&lt;/p&gt;
+
+&lt;p&gt;public void testMethod()
+{
+        int a = 1;
+        delegateadd m = (delegateadd)loaddll.InvokeMethod(&amp;ldquo;add&amp;rdquo;, typeof(delegateadd));//获取其中方法的委托&lt;br /&gt;
+        int re = m(ref a);//得到ＲＥ，成功&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;***********&lt;strong&gt;&lt;em&gt;DLL&lt;/em&gt;&lt;/strong&gt;***********
+extern &amp;ldquo;C&amp;rdquo; __declspec(dllexport) int add(int &amp;amp; a);&lt;/p&gt;
+
+&lt;p&gt;int add(int &amp;amp; a)
+{
+    a = 10;
+    return 20;
+}
+&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>C#调用C&#43;&#43;写的DLL</title>
+      <link>http://www.daniex.tk/blog/2011/c-call-dll-written-in-c/</link>
+      <pubDate>Thu, 12 May 2011 06:48:53 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/c-call-dll-written-in-c/</guid>
+      <description>&lt;p&gt;方法有不少，这里记录其中的一个方法。编译、调用通过了的。期间遇到的问题是C#调用时传递string类型的参数和返回值会报错。TargetInvocationException异常，值不在范围内，内存不可访问等等。&lt;/p&gt;
+
+&lt;p&gt;解决方法是；在c++的DLL中将string类型的参数返回值改为LPTSTR类型。在C#程序中使用StringBuilder类型来传入参数和接受返回值。&lt;/p&gt;
+
+&lt;p&gt;下面是代码：
+&lt;pre class=&#34;brush: csharp&#34;&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;&lt;/p&gt;
+
+&lt;p&gt;//1.       打开项目“Tzb”，打开类视图，右击“Tzb”，选择“添加”&amp;ndash;&amp;gt;“类”，类名设置为“dld”，
+//即dynamic loading dll 的每个单词的开头字母。
+//2.       添加所需的命名空间及声明参数传递方式枚举：
+using System.Runtime.InteropServices; // 用 DllImport 需用此 命名空间
+using System.Reflection; // 使用 Assembly 类需用此 命名空间
+using System.Reflection.Emit; // 使用 ILGenerator 需用此 命名空间&lt;/p&gt;
+
+&lt;p&gt;namespace WpfApplication1
+{
+    //在“public class dld”上面添加如下代码声明参数传递方式枚举：
+    ///
+    /// 参数传递方式枚举 ,ByValue 表示值传递 ,ByRef 表示址传递
+    ///&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public enum ModePass
+{
+    ByValue = 0x0001,
+    ByRef = 0x0002
+}
+public class DLD
+{      
+
+    //3.       声明LoadLibrary、GetProcAddress、FreeLibrary及私有变量hModule和farProc：        
+    /// 
+    /// 原型是 :HMODULE LoadLibrary(LPCTSTR lpFileName);
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt;DLL 文件名 
+    ///  函数库模块的句柄 
+    [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+    static extern IntPtr LoadLibrary(string lpFileName);
+
+    /// 
+    /// 原型是 : FARPROC GetProcAddress(HMODULE hModule, LPCWSTR lpProcName);
+    /// 
+    /// &amp;lt; param name=&amp;quot;hModule&amp;quot; / &amp;gt; 包含需调用函数的函数库模块的句柄 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+    ///  函数指针 
+
+    [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+    static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+
+    /// 
+    /// 原型是 : BOOL FreeLibrary(HMODULE hModule);
+    /// 
+    /// &amp;lt; param name=&amp;quot;hModule&amp;quot; / &amp;gt; 需释放的函数库模块的句柄 
+    ///  是否已释放指定的 Dll
+
+    [DllImport(&amp;quot;kernel32&amp;quot;, EntryPoint = &amp;quot;FreeLibrary&amp;quot;, SetLastError = true)]
+    static extern bool FreeLibrary(IntPtr hModule);
+
+    /// 
+    /// Loadlibrary 返回的函数库模块的句柄
+    /// 
+
+    private IntPtr hModule = IntPtr.Zero;
+
+    /// 
+    /// GetProcAddress 返回的函数指针
+    /// 
+
+    public IntPtr farProc = IntPtr.Zero;
+
+
+    //4.       添加LoadDll方法，并为了调用时方便，重载了这个方法：
+    /// 
+    /// 装载 Dll
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt;DLL 文件名 
+
+    public void LoadDll(string lpFileName)
+    {
+
+        hModule = LoadLibrary(lpFileName);
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpFileName + &amp;quot;.&amp;quot;));
+    }
+
+
+    //         若已有已装载Dll的句柄，可以使用LoadDll方法的第二个版本：
+    public void LoadDll(IntPtr HMODULE)
+    {
+        if (HMODULE == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 所传入的函数库模块的句柄 HMODULE 为空 .&amp;quot;));
+        hModule = HMODULE;
+    }
+
+
+    //5.       添加LoadFun方法，并为了调用时方便，也重载了这个方法，方法的具体代码及注释如下：
+    /// 
+    /// 获得函数指针
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+
+    public void LoadFun(string lpProcName)
+    { // 若函数库模块的句柄为空，则抛出异常
+
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        // 取得函数指针
+        farProc = GetProcAddress(hModule, lpProcName);
+
+        // 若函数指针，则抛出异常
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 : &amp;quot; + lpProcName + &amp;quot; 这个函数的入口点 &amp;quot;));
+
+    }
+
+    /// 
+    /// 获得函数指针
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt; 包含需调用函数的 DLL 文件名 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+
+    public void LoadFun(string lpFileName, string lpProcName)
+    { // 取得函数库模块的句柄
+        hModule = LoadLibrary(lpFileName);
+
+        // 若函数库模块的句柄为空，则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpFileName + &amp;quot;.&amp;quot;));
+
+        // 取得函数指针
+        farProc = GetProcAddress(hModule, lpProcName);
+
+        // 若函数指针，则抛出异常
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpProcName + &amp;quot; 这个函数的入口点 &amp;quot;));
+
+    }
+
+
+    //6.  添加UnLoadDll及Invoke方法，Invoke方法也进行了重载：
+    /// 
+    /// 卸载 Dll
+    /// 
+
+    public void UnLoadDll()
+    {
+        FreeLibrary(hModule);
+        hModule = IntPtr.Zero;
+        farProc = IntPtr.Zero;
+    }
+
+    /// 
+    /// 调用所设定的函数
+    /// 
+    /// &amp;lt; param name=&amp;quot;ObjArray_Parameter&amp;quot; / &amp;gt; 实参 
+    /// &amp;lt; param name=&amp;quot;TypeArray_ParameterType&amp;quot; / &amp;gt; 实参类型 
+    /// &amp;lt; param name=&amp;quot;ModePassArray_Parameter&amp;quot; / &amp;gt; 实参传送方式 
+    /// &amp;lt; param name=&amp;quot;Type_Return&amp;quot; / &amp;gt; 返回类型 
+    ///  返回所调用函数的 object
+
+    public object Invoke(object[] ObjArray_Parameter, Type[] TypeArray_ParameterType, 
+                             ModePass[] ModePassArray_Parameter, Type Type_Return)
+    {
+
+        // 下面 3 个 if 是进行安全检查 , 若不能通过 , 则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数指针为空 , 请确保已进行 LoadFun 操作 !&amp;quot;));
+        if (ObjArray_Parameter.Length != ModePassArray_Parameter.Length)
+            throw (new Exception(&amp;quot; 参数个数及其传递方式的个数不匹配 .&amp;quot;));
+
+        // 下面是创建 MyAssemblyName 对象并设置其 Name 属性
+        AssemblyName MyAssemblyName = new AssemblyName();
+        MyAssemblyName.Name = &amp;quot;InvokeFun&amp;quot;;
+
+        // 生成单模块配件
+        AssemblyBuilder MyAssemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(
+                                                   MyAssemblyName, AssemblyBuilderAccess.Run);
+        ModuleBuilder MyModuleBuilder = MyAssemblyBuilder.DefineDynamicModule(&amp;quot;InvokeDll&amp;quot;);
+
+        // 定义要调用的方法 , 方法名为“ MyFun ”，返回类型是“ Type_Return ”
+        //参数类型是“ TypeArray_ParameterType ”
+        MethodBuilder MyMethodBuilder = MyModuleBuilder.DefineGlobalMethod(
+                                      &amp;quot;Init&amp;quot;, MethodAttributes.Public | MethodAttributes.Static, 
+                                      Type_Return, TypeArray_ParameterType);
+
+        // 获取一个 ILGenerator ，用于发送所需的 IL
+        ILGenerator IL = MyMethodBuilder.GetILGenerator();
+
+        int i;
+        for (i = 0; i &amp;amp;lt; ObjArray_Parameter.Length; i++)
+        {// 用循环将参数依次压入堆栈
+            switch (ModePassArray_Parameter[i])
+            {
+                case ModePass.ByValue:
+                    IL.Emit(OpCodes.Ldarg, i);
+                    break;
+                case ModePass.ByRef:
+                    IL.Emit(OpCodes.Ldarga, i);
+                    break;
+                default:
+                    throw (new Exception(&amp;quot; 第 &amp;quot; + (i + 1).ToString() + &amp;quot; 个参数没有给定正确的传递方式 .&amp;quot;));
+            }
+        }
+
+        if (IntPtr.Size == 4)
+        {// 判断处理器类型
+            IL.Emit(OpCodes.Ldc_I4, farProc.ToInt32());
+        }
+        else if (IntPtr.Size == 8 )
+        {
+            IL.Emit(OpCodes.Ldc_I8, farProc.ToInt64());
+        }
+        else
+        {
+            throw new PlatformNotSupportedException();
+        }
+
+        IL.EmitCalli(OpCodes.Calli, CallingConvention.StdCall, Type_Return, TypeArray_ParameterType);
+        IL.Emit(OpCodes.Ret); // 返回值
+        MyModuleBuilder.CreateGlobalFunctions();
+
+        // 取得方法信息
+        MethodInfo MyMethodInfo = MyModuleBuilder.GetMethod(&amp;quot;Init&amp;quot;);
+        return MyMethodInfo.Invoke(null, ObjArray_Parameter);// 调用方法，并返回其值
+    }
+
+
+
+    //Invoke方法的第二个版本，它是调用了第一个版本的：
+    /// 
+    /// 调用所设定的函数
+    /// 
+    /// &amp;lt; param name=&amp;quot;IntPtr_Function&amp;quot; / &amp;gt; 函数指针 
+    /// &amp;lt; param name=&amp;quot;ObjArray_Parameter&amp;quot; / &amp;gt; 实参 
+    /// &amp;lt; param name=&amp;quot;TypeArray_ParameterType&amp;quot; / &amp;gt; 实参类型 
+    /// &amp;lt; param name=&amp;quot;ModePassArray_Parameter&amp;quot; / &amp;gt; 实参传送方式 
+    /// &amp;lt; param name=&amp;quot;Type_Return&amp;quot; / &amp;gt; 返回类型 
+    ///  返回所调用函数的 object
+
+    public object Invoke(IntPtr IntPtr_Function, object[] ObjArray_Parameter, 
+                           Type[] TypeArray_ParameterType, ModePass[] ModePassArray_Parameter, 
+                           Type Type_Return)
+    {
+
+        // 下面 2 个 if 是进行安全检查 , 若不能通过 , 则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        if (IntPtr_Function == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数指针 IntPtr_Function 为空 !&amp;quot;));
+        farProc = IntPtr_Function;
+        return Invoke(ObjArray_Parameter, TypeArray_ParameterType, ModePassArray_Parameter, Type_Return);
+    }            
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+&lt;/pre&gt;
+&lt;pre class=&#34;brush: csharp&#34;&gt;/****&lt;strong&gt;&lt;em&gt;调用方法&lt;/em&gt;&lt;/strong&gt;***/
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        DLD newDLL = new DLD();
+        newDLL.LoadFun(&amp;quot;E:\\workspaces\\WpfApplication1\\Debug\\DLL.dll&amp;quot;, &amp;quot;Init&amp;quot;);
+        StringBuilder MyStringBuilder = new StringBuilder(&amp;quot;Hello World!&amp;quot;);
+        object[] obj = new object[] { MyStringBuilder };
+        Type[] ty = new Type[] { typeof(StringBuilder) };
+        ModePass[] mode = new ModePass[] { ModePass.ByValue };
+        Type Type_Return = typeof(StringBuilder);
+        StringBuilder j = (StringBuilder)newDLL.Invoke(obj, ty, mode, Type_Return);
+
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;/*****&lt;strong&gt;&lt;em&gt;c++DLL中的函数&lt;/em&gt;&lt;/strong&gt;****/&lt;/p&gt;
+
+&lt;p&gt;extern &amp;ldquo;C&amp;rdquo; __declspec(dllexport) LPTSTR Init(LPTSTR a);&lt;/p&gt;
+
+&lt;p&gt;LPTSTR Init(LPTSTR a)
+{
+    strcat((char *)a, &amp;ldquo;added&amp;rdquo;);
+    return a;
+}
+&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

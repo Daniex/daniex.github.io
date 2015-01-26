@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>WordPress Cannot modify header information错误 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="seo,WordPress,同步,解决方案,问题">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>WordPress Cannot modify header information错误</h1>
+    <span class="post-date">Jul 12, 2010 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/seo">seo</a><a class="label" href="http://www.daniex.tk/tags/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/tags/%E5%90%8C%E6%AD%A5">同步</a><a class="label" href="http://www.daniex.tk/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a><a class="label" href="http://www.daniex.tk/tags/%E9%97%AE%E9%A2%98">问题</a>
+    </span>
+    <p>今天在改网页固定链接的时候，总是跳 Cannot modify header information&hellip;.的错误。然而WordPress虽然报错，但是我改的固定链接确实改了。</p>
+
+<p>插几句固定连接的话：之前本站的链接都是WordPress的默认方式，没好好做seo，至此时此刻（2010年7月12日完21点03分）百度都不肯收录这块方塘。不得不叨咕下，百度你口味也太奇怪了，其他搜索引擎可都收录了啊！</p>
+
+<p>回归话题，关于这个错误，我这边最后的解决方案是删掉多余的空行。就是说，导致出现这个问题的罪魁祸首，就是某个文件中多了几个回车。看到一个写的比较清晰地<a href="http://abgne.tw/wordpress/wordpress-3-0-warning-cannot-modify-header-information.html" target="_blank">blog</a>，把他的截图借过来用用。</p>
+
+<p>报错的图，他这个报错的比较厉害，我的可没这么多：
+<p style="text-align: center;"><img class="aligncenter size-full wp-image-289" title="wordpress_warning_cannot_modify_header_information_0" src="http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_0.jpg" alt="" width="500" height="341" />然后找到warning：后面括号里面提到的php文件：</p>
+<p style="text-align: center;"><img class="aligncenter size-full wp-image-290" title="wordpress_warning_cannot_modify_header_information_1" src="http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_1.jpg" alt="" width="491" height="69" />最后是删掉该文件中的多余空行，就是 <span style="color: #ff0000;">&lt;?</span> 和 <span style="color: #ff0000;">?&gt;</span> 符号前后多出的空行。</p>
+<p style="text-align: center;"><img class="aligncenter size-full wp-image-291" title="wordpress_warning_cannot_modify_header_information_2" src="http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_2.jpg" alt="" width="386" height="95" /></p>
+删掉之后就大功告成。一切回归正常了。修改的时候发现，是我自己在添加<a href="http://fairyfish.net/2010/01/12/wp-follow5/" target="_blank">我爱水煮鱼</a>版本同步WordPress到follow5代码的时候，为了看得清楚，在functions.php里面多加了几个回车导致的。自作孽啊！</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

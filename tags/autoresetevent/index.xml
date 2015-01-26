@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Autoresetevent on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/autoresetevent/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 29 Sep 2011 07:44:39 &#43;0000</updated>
+    
+    <item>
+      <title>C#线程开始/暂停/终止</title>
+      <link>http://www.daniex.tk/blog/2011/csharp-thread-start-stop-pause/</link>
+      <pubDate>Thu, 29 Sep 2011 07:44:39 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/csharp-thread-start-stop-pause/</guid>
+      <description>&lt;p&gt;写测试工具需要多线程的暂停终止。用C#的 Thread.about()  join() resume() suspend()又提示函数过时了，不建议使用。于是四处找方法，信号量、互斥锁什么的方法也不少，找到下面这个方法，倒是很实用，转载如下：&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h1&gt;C#关于AutoResetEvent的使用介绍（转）&lt;/h1&gt;
+&lt;strong&gt;AutoResetEvent&lt;/strong&gt; 允许线程通过发信号互相通信。通常，此通信涉及线程需要独占访问的资源。&lt;/p&gt;
+
+&lt;p&gt;线程通过调用 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 上的 &lt;span style=&#34;color: #1d58d1;&#34;&gt;WaitOne&lt;/span&gt; 来等待信号。如果 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 处于非终止状态，则该线程阻塞，并等待当前控制资源的线程
+通过调用 &lt;span style=&#34;color: #1d58d1;&#34;&gt;Set&lt;/span&gt; 发出资源可用的信号。&lt;/p&gt;
+
+&lt;p&gt;调用 &lt;strong&gt;Set&lt;/strong&gt; 向 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 发信号以释放等待线程。&lt;strong&gt;AutoResetEvent&lt;/strong&gt; 将保持终止状态，直到一个正在等待的线程被释放，然后自动返回非终止状态。如果没有任何线程在等待，则状态将无限期地保持为终止状态。&lt;/p&gt;
+
+&lt;p&gt;可以通过将一个布尔值传递给构造函数来控制 &lt;strong&gt;AutoResetEvent&lt;/strong&gt; 的初始状态，如果初始状态为终止状态，则为 &lt;strong&gt;true&lt;/strong&gt;；否则为 &lt;strong&gt;false&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;通俗的来讲只有等myResetEven.Set()成功运行后,myResetEven.WaitOne()才能够获得运行机会;Set是发信号，WaitOne是等待信号，只有发了信号，
+等待的才会执行。如果不发的话，WaitOne后面的程序就永远不会执行。下面我们来举一个例子：我去书店买书，当我选中一本书后我会去收费处付钱，
+付好钱后再去仓库取书。这个顺序不能颠倒，我作为主线程，收费处和仓库做两个辅助线程，代码如下：
+&lt;pre&gt;using System;
+using System.Linq;
+using System.Activities;
+using System.Activities.Statements;
+using System.Threading;&lt;/p&gt;
+
+&lt;p&gt;namespace CaryAREDemo
+{
+    class Me
+    {
+        const int numIterations = 550;
+        static AutoResetEvent myResetEvent = new AutoResetEvent(false);
+        static AutoResetEvent ChangeEvent = new AutoResetEvent(false);
+        //static ManualResetEvent myResetEvent = new ManualResetEvent(false);
+        //static ManualResetEvent ChangeEvent = new ManualResetEvent(false);
+        static int number; //这是关键资源&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    static void Main()
+    {
+        Thread payMoneyThread = new Thread(new ThreadStart(PayMoneyProc));
+        payMoneyThread.Name = &amp;quot;付钱线程&amp;quot;;
+        Thread getBookThread = new Thread(new ThreadStart(GetBookProc));
+        getBookThread.Name = &amp;quot;取书线程&amp;quot;;
+        payMoneyThread.Start();
+        getBookThread.Start();
+
+        for (int i = 1; i &amp;amp;lt;= numIterations; i++)
+        {
+            Console.WriteLine(&amp;quot;买书线程：数量{0}&amp;quot;, i);
+            number = i;
+            //Signal that a value has been written.
+            myResetEvent.Set();
+            ChangeEvent.Set();
+            Thread.Sleep(0);
+        }
+        payMoneyThread.Abort();
+        getBookThread.Abort();
+    }
+
+    static void PayMoneyProc()
+    {
+        while (true)
+        {
+            myResetEvent.WaitOne();
+            //myResetEvent.Reset();
+            Console.WriteLine(&amp;quot;{0}：数量{1}&amp;quot;, Thread.CurrentThread.Name, number);
+        }
+    }
+    static void GetBookProc()
+    {
+        while (true)
+        {
+            ChangeEvent.WaitOne();
+            // ChangeEvent.Reset();               
+            Console.WriteLine(&amp;quot;{0}：数量{1}&amp;quot;, Thread.CurrentThread.Name, number);
+            Console.WriteLine(&amp;quot;------------------------------------------&amp;quot;);
+            Thread.Sleep(0);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+运行结果如下：&lt;/pre&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter&#34; style=&#34;border: 0pt none;&#34; src=&#34;http://www.csharpwin.com/upload/003250JL-0.png&#34; alt=&#34;image&#34; width=&#34;242&#34; height=&#34;229&#34; border=&#34;0&#34; /&gt;&lt;/p&gt;
+AutoResetEvent与ManualResetEvent的区别&lt;/p&gt;
+
+&lt;p&gt;他们的用法\声明都很类似，Set方法将信号置为发送状态 Reset方法将信号置为不发送状态WaitOne等待信号的发送。其实,从名字就可以看出一个手动,
+一个自动，这个手动和自动实际指的是在Reset方法的处理上,如下面例子：&lt;/p&gt;
+
+&lt;p&gt;public AutoResetEvent autoevent=new AutoResetEvent(true);
+public ManualResetEvent manualevent=new ManualResetEvent(true);&lt;/p&gt;
+
+&lt;p&gt;默认信号都处于发送状态,&lt;/p&gt;
+
+&lt;p&gt;autoevent.WaitOne();
+manualevent.WaitOne();&lt;/p&gt;
+
+&lt;p&gt;如果 某个线程调用上面该方法,则当信号处于发送状态时,该线程会得到信号,得以继续执行。差别就在调用后,autoevent.WaitOne()每次只允许一个线程
+进入,当某个线程得到信号(也就是有其他线程调用了autoevent.Set()方法后)后,autoevent会自动又将信号置为不发送状态,则其他调用WaitOne的线程只
+有继续等待.也就是说,autoevent一次只唤醒一个线程。而manualevent则可以唤醒多个线程,因为当某个线程调用了set方法后,其他调用waitone的线程
+获得信号得以继续执行,而manualevent不会自动将信号置为不发送.也就是说,除非手工调用了manualevent.Reset().方法,则 manualevent将一直保持有信号状态,manualevent也就可以同时唤醒多个线程继续执行。如果上面的程序换成 ManualResetEvent的话，就需要在waitone后面做下reset。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

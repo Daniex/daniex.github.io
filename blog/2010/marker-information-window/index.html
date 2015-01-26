@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>谷歌地图多个标记（marker）和信息窗口（information window）显示 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="各种库,解决方案,问题">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>谷歌地图多个标记（marker）和信息窗口（information window）显示</h1>
+    <span class="post-date">Jun 16, 2010 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a><a class="label" href="http://www.daniex.tk/tags/%E9%97%AE%E9%A2%98">问题</a>
+    </span>
+    <p>当谷歌地图上有多个标记（marker）和信息窗口（information window）需要显示的时候，使用基本的增加监听click的事件响应的方法，信息窗口的显示会出现问题。即在任意标记上点击，需要显示信息窗口时，窗口会固定的显示在最后画上的标记上面。</p>
+
+<p>添加click事件监听方法的代码：
+<div id="_mcePaste">GEvent.addListener(marker, &ldquo;click&rdquo;, function() {</div>
+<div id="_mcePaste">marker.openInfoWindowHtml(&rsquo;&lt;b&gt;info:&lt;/b&gt; &lsquo;+ info);</div>
+<div id="_mcePaste">});</div>
+<div id="_mcePaste">map.addOverlay(marker);</div>
+查阅网上资料后，发现一个解决方案，即使用<span style="font-family: 'Andale Mono', 'Lucida Console', Monaco, fixed, monospace; line-height: 18px; font-size: 12px; white-space: pre;">bindInfoWindowHtml方法。<span style="font-family: Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; line-height: 19px; white-space: normal; font-size: 13px;">以上的信息显示只需修改一小部分即可：</span></span></p>
+
+<p>marker = new GMarker(point);</p>
+
+<p>marker.bindInfoWindowHtml(&rsquo;&lt;b&gt;info:&lt;/b&gt; &lsquo;+info)</p>
+
+<p>map.addOverlay(marker);</p>
+
+<p><span style="font-family: 'Andale Mono', 'Lucida Console', Monaco, fixed, monospace; line-height: 18px; font-size: 12px; white-space: pre;">在两个网址有很详细的代码示例：</span></p>
+
+<p><span style="font-family: 'Andale Mono', 'Lucida Console', Monaco, fixed, monospace; line-height: 18px; font-size: 12px; white-space: pre;"><a href="http://www.cnblogs.com/yuzhongwusan/archive/2009/01/09/1372275.html" target="_blank">雨中无伞</a> 和 <a href="http://www.ibm.com/developerworks/cn/web/0910_chengfu_mashup/" target="_blank">IBM</a><span style="font-family: verdana, nsimsun, sans-serif; line-height: 19px; white-space: normal;"><a href="http://www.ibm.com/developerworks/cn/web/0910_chengfu_mashup/" target="_blank">使用开放 API 和工具快速开发情景式 mashup 应用</a>。</span></span></p>
+
+<p><span style="font-family: verdana, nsimsun, sans-serif; font-size: small;"><span>
+</span></span></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

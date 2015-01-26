@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Gae on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/gae/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 13 Jul 2010 12:05:59 &#43;0000</updated>
+    
+    <item>
+      <title>twitter、微博、WordPress的同步</title>
+      <link>http://www.daniex.tk/blog/2010/twittertoall/</link>
+      <pubDate>Tue, 13 Jul 2010 12:05:59 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/twittertoall/</guid>
+      <description>&lt;p&gt;今天折腾了阵子twitter同步的小东西，先是同步WordPress到twitter，然后twitter到其他各地。WordPress到twitter有插件，写代码也是几段就ok的，略过不提。简单的说下关于twitter、国内各个微博、部分SNS网站同步的情况。教程大家自己去找，很多，按着步骤做也挺简单的。&lt;/p&gt;
+
+&lt;p&gt;1、  Gae同步twitter&lt;/p&gt;
+
+&lt;p&gt;就&lt;a href=&#34;http://www.williamlong.info/archives/2049.html&#34; target=&#34;_blank&#34;&gt;月光博客&lt;/a&gt;那个版本，同步都是微薄，要同步人人、豆瓣之类的就得自己写代码了。基本步骤是申请gae账号，下几个包，改下自己的账号密码，按步骤上传文件，这就搞定。&lt;/p&gt;
+
+&lt;p&gt;2、  php空间同步twitter&lt;/p&gt;
+
+&lt;p&gt;这个方法的前提是有php空间，空间性能还有点关系，之后会提到。步骤的话也是下个包，改下账号密码，上传。一样简单。&lt;/p&gt;
+
+&lt;p&gt;这个方法用的是Tw2other的包，和PHP空间的cron功能的有点关系。&lt;a href=&#34;http://www.qiankun.org.ru/2010/04/using-php-space-cron-synchronize-twitter-sina-163-microblog.html&#34;&gt;推荐个教程&lt;/a&gt;。空间支持cron那很ok，注意下更新时间。默认是每间隔50秒一次更新的，如果需要修改更新间隔，可以修改config.php中的INTERVAL参数。提示：程序中 config.php中有个时间参数设置，个时间参数最好要小于所设置的Cron间隔，比如Cron设置的为1分钟，那么程序中设置为50-58秒比较好。 这个提示的前提是你的服务器够强劲。如果是免费空间，这么设置就有可能因太占资源被禁止。&lt;/p&gt;
+
+&lt;p&gt;如果空间不支持cron呢？这里有个取巧的办法，就是放段代码在自己的网站里面，有人访问，就能同步twitter了。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;iframe frameborder=0 width=0 height=0 name= &amp;ldquo;cron-twitter&amp;rdquo; src=&amp;ldquo;&lt;a href=&#34;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &#34;&gt;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &lt;/a&gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;3、  follow5类似&lt;/p&gt;
+
+&lt;p&gt;就是注册个能够同步很多微博的微博或者其他网站账号，设置一下就能同步了。&lt;/p&gt;
+
+&lt;p&gt;4、  Gtalk&lt;/p&gt;
+
+&lt;p&gt;这个方法没研究过，嘿嘿，有兴趣的自己看去。&lt;/p&gt;
+
+&lt;p&gt;最后还要提醒下的是，设置多个微薄同步的时候，这几个微薄之间不要再设置同步了，这样会重复同步，不断刷屏。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

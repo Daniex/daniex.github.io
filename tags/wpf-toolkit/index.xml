@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Wpf-Toolkit on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/wpf-toolkit/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sat, 22 Oct 2011 03:43:32 &#43;0000</updated>
+    
+    <item>
+      <title>wpf toolkit datagrid 添加图片</title>
+      <link>http://www.daniex.tk/blog/2011/wpf-toolkit-datagrid-add-a-picture/</link>
+      <pubDate>Sat, 22 Oct 2011 03:43:32 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wpf-toolkit-datagrid-add-a-picture/</guid>
+      <description>&lt;p&gt;&lt;del&gt;找了半天，不幸地发现，wpf toolkit datagrid 要添加图片列，没有普遍的方法。除非加另外的库或者写很复杂的代码。&lt;/del&gt;
+&lt;h2&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;该句删除，因为，下午刚发现这是有办法的！！！&lt;/span&gt;&lt;/h2&gt;
+网上大多加图片的例子都是基于.net 4.0自带的datagrid控件，不要折腾wpf toolkit了，直接升4.0或者更高吧。。。&lt;/p&gt;
+
+&lt;p&gt;列几个参考地址：&lt;a href=&#34;http://www.cnblogs.com/wainiwann/archive/2011/05/27/WPF_DataGrid.html&#34; target=&#34;_blank&#34;&gt;wpf中自定义DataGrid控件&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/nickli/archive/2010/10/07/1845175.html&#34; target=&#34;_blank&#34;&gt;wpf datagrid数据绑定&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&#34;ctl02_TitleUrl&#34; href=&#34;http://www.cnblogs.com/mr0512/archive/2011/04/12/2014118.html&#34; target=&#34;_blank&#34;&gt;Datagrid动态绑定的数据作为图片列添加&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;比较方便的方法还是篇中的方法：
+&lt;pre&gt;28 &amp;lt;DataGridTemplateColumn.CellTemplate&amp;gt;
+29 &amp;lt;DataTemplate &amp;gt;
+30 &amp;lt;Grid Height=&amp;ldquo;75&amp;rdquo; Background=&amp;ldquo;Transparent&amp;rdquo; &amp;gt;
+31 &amp;lt;Grid.ColumnDefinitions&amp;gt;
+32 &amp;lt;ColumnDefinition Width=&amp;rdquo;&lt;em&gt;&amp;rdquo;/&amp;gt;
+33 &amp;lt;ColumnDefinition Width=&amp;ldquo;6&lt;/em&gt;&amp;rdquo;/&amp;gt;
+34 &amp;lt;/Grid.ColumnDefinitions&amp;gt;
+35 &amp;lt;Grid Margin=&amp;ldquo;10,0,0,0&amp;rdquo; Grid.Column=&amp;ldquo;1&amp;rdquo; &amp;gt;
+36 &amp;lt;Grid.RowDefinitions&amp;gt;
+37 &amp;lt;RowDefinition Height=&amp;rdquo;&lt;em&gt;&amp;rdquo;/&amp;gt;
+38 &amp;lt;RowDefinition Height=&amp;ldquo;2&lt;/em&gt;&amp;rdquo;/&amp;gt;
+39 &amp;lt;/Grid.RowDefinitions&amp;gt;
+40 &amp;lt;TextBlock Grid.Row=&amp;ldquo;0&amp;rdquo; Margin=&amp;ldquo;0,5,0,0&amp;rdquo; Height=&amp;ldquo;24&amp;rdquo; Foreground=&amp;ldquo;Red&amp;rdquo; FontSize=&amp;ldquo;20&amp;rdquo; FontFamily=&amp;ldquo;方正舒体&amp;rdquo; TextWrapping=&amp;ldquo;Wrap&amp;rdquo; Text=&amp;ldquo;{Binding Sex}&amp;rdquo;/&amp;gt;
+41 &amp;lt;TextBlock Margin=&amp;ldquo;1.429,15,0,0&amp;rdquo; Foreground=&amp;ldquo;Blue&amp;rdquo; Grid.Row=&amp;ldquo;1&amp;rdquo; FontFamily=&amp;ldquo;微软雅黑&amp;rdquo; TextWrapping=&amp;ldquo;Wrap&amp;rdquo; Text=&amp;ldquo;{Binding Name}&amp;rdquo;/&amp;gt;
+42 &amp;lt;/Grid&amp;gt;
+43 &amp;lt;Image Margin=&amp;ldquo;7,9,8,8&amp;rdquo; Source=&amp;ldquo;{Binding Pic}&amp;rdquo;/&amp;gt;
+44
+45 &amp;lt;/Grid&amp;gt;
+46 &amp;lt;/DataTemplate&amp;gt;
+47 &amp;lt;/DataGridTemplateColumn.CellTemplate&amp;gt;&lt;/pre&gt;
+&lt;span style=&#34;color: #ff6600;&#34;&gt; ##################################################&lt;/span&gt;
+&lt;h2&gt;&lt;span style=&#34;color: #ff6600;&#34;&gt;我承认我二！极其地特别的！！wpf toolkit datagrid有添加图片有方法！！！超简单！！！！&lt;/span&gt;&lt;/h2&gt;
+&lt;pre&gt;&amp;lt;my:DataGridTemplateColumn Header=&amp;ldquo;{x:Static resx:Resources.tcDetailStatus}&amp;rdquo;&amp;gt;
+&amp;lt;my:DataGridTemplateColumn.CellTemplate&amp;gt;
+&amp;lt;DataTemplate&amp;gt;
+&amp;lt;Image Source=&amp;ldquo;Images/Untested.png&amp;rdquo; /&amp;gt;
+&amp;lt;/DataTemplate&amp;gt;
+&amp;lt;/my:DataGridTemplateColumn.CellTemplate&amp;gt;
+&amp;lt;/my:DataGridTemplateColumn&amp;gt;&lt;/pre&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;羞愧！掩面。。。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Versatile TreeView for WPF</title>
+      <link>http://www.daniex.tk/blog/2011/a-versatile-treeview-for-wpf/</link>
+      <pubDate>Thu, 22 Sep 2011 08:58:58 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/a-versatile-treeview-for-wpf/</guid>
+      <description>&lt;p&gt;写自动化测试工具的时候要用到tree view，于是上网各种找。C#的Infragistics NetAdvantage，DevExpress之类框架。都太大了，小工具用不着这么大的。用自带的tree view又觉得土了点，WPF又是在边学边做。终于折腾着找个到一个，看着挺好，用着也还合适。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a title=&#34;A Versatile TreeView for WPF&#34; href=&#34;http://www.codeproject.com/KB/WPF/versatile_treeview.aspx&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;A Versatile TreeView for WPF&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; 来自&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;a title=&#34;codeproject&#34; href=&#34;http://www.codeproject.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;codeproject  &lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;他是个DLL，加到工程就好，还提供例子程序，对于我这种WPF未入门的来说正好。在他代码上边学边改，学着不少。例程如下图：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;wpf tree view ui&#34; src=&#34;http://www.codeproject.com/KB/WPF/versatile_treeview/sampleapp.png&#34; alt=&#34;&#34; width=&#34;571&#34; height=&#34;420&#34; /&gt;&lt;/p&gt;
+树的展开，折叠，选中，状态变更更换图片，增加删除节点，排序，筛选等等功能都支持。&lt;/p&gt;
+
+&lt;p&gt;但是也发现了问题，比如，根节点不好删除，重新加载/更换树也不方便。需要继续努力学习wpf去改代码了。任重道远哦～&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;另外还用了wpf toolkit 这个插件花datagrid，由于用的是.net3.5 平台，居然都没有datagrid！搜下下载安装就好，也挺好用的一个工具。详见&lt;a href=&#34;../wpf-datagrid.html&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;WPF DataGrid 绑定数据 &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;#######################################&lt;/p&gt;
+
+&lt;p&gt;总结下删除树更换节点的问题，之前提到的都不是问题。方法如下：&lt;/p&gt;
+
+&lt;p&gt;继承的TreeViewBase&amp;lt;T&amp;gt;类没有提供相应的接口去删除根节点，但是，由于整个树都是绑定于可自己定义的数据结构上。例如，例程中将树形结构绑定到ShopUtil中的一个列表中，对该列表直接进行操作，删除，更换节点，甚至更换整个树形结构。其后刷新树就可以得到新的结构了。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WPF DataGrid 绑定数据</title>
+      <link>http://www.daniex.tk/blog/2011/wpf-datagrid/</link>
+      <pubDate>Thu, 01 Sep 2011 03:07:33 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wpf-datagrid/</guid>
+      <description>&lt;p&gt;写WPF程序，需要表格。用的是.net3.5，于是找了个WPF Toolkit工具用着。&lt;/p&gt;
+
+&lt;p&gt;地址：wpf toolkit &lt;a title=&#34;wpf toolkit website&#34; href=&#34;http://wpf.codeplex.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://wpf.codeplex.com/&#34;&gt;http://wpf.codeplex.com/&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在绑定数据的时候遇到点麻烦，当然绑定数据的方法有很多中，这里转一个。在最后绑定数据的时候方法不止一种，在下面的代码中我稍作添加。&lt;/p&gt;
+
+&lt;p&gt;地址：&lt;a title=&#34;WPFToolkit DataGrid 使用介绍&#34; href=&#34;http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html&#34;&gt;http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;pre class=&#34;brush: xml&#34;&gt;
+xaml文件如下：
+&lt;div&gt;
+&lt;div&gt;&amp;lt;Window x:Class=&amp;ldquo;WpfAppTest.WPFDataGrid&amp;rdquo;
+xmlns=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;&#34;&gt;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;&lt;/a&gt;
+xmlns:x=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;&#34;&gt;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;&lt;/a&gt;
+xmlns:sys=&amp;ldquo;clr-namespace:System;assembly=mscorlib&amp;rdquo;
+xmlns:toolkit=&amp;ldquo;&lt;a href=&#34;http://schemas.microsoft.com/wpf/2008/toolkit&amp;quot;&#34;&gt;http://schemas.microsoft.com/wpf/2008/toolkit&amp;quot;&lt;/a&gt;
+xmlns:myWPFDataGrid=&amp;ldquo;clr-namespace:WpfAppTest;assembly=WpfAppTest&amp;rdquo;
+Title=&amp;ldquo;WPFDataGrid&amp;rdquo; Height=&amp;ldquo;351&amp;rdquo; Width=&amp;ldquo;647&amp;rdquo; Loaded=&amp;ldquo;Window_Loaded&amp;rdquo;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;Window.Resources&amp;gt;
+&amp;lt;ObjectDataProvider x:Key=&amp;ldquo;myEnum&amp;rdquo; MethodName=&amp;ldquo;GetValues&amp;rdquo; ObjectType=&amp;ldquo;{x:Type sys:Enum}&amp;rdquo;&amp;gt;
+&amp;lt;ObjectDataProvider.MethodParameters&amp;gt;
+&amp;lt;x:Type TypeName=&amp;ldquo;myWPFDataGrid:sampleType&amp;rdquo;/&amp;gt;
+&amp;lt;/ObjectDataProvider.MethodParameters&amp;gt;
+&amp;lt;/ObjectDataProvider&amp;gt;
+&amp;lt;/Window.Resources&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;Grid&amp;gt;
+&amp;lt;toolkit:DataGrid Name=&amp;ldquo;SampleDataGrid&amp;rdquo; AutoGenerateColumns=&amp;ldquo;False&amp;rdquo; ItemsSource=&amp;ldquo;{Binding}&amp;rdquo;&amp;gt;
+&amp;lt;toolkit:DataGrid.Columns&amp;gt;
+&amp;lt;toolkit:DataGridTextColumn Header=&amp;ldquo;ID&amp;rdquo;  Binding=&amp;ldquo;{Binding ID}&amp;rdquo;/&amp;gt;
+&amp;lt;toolkit:DataGridTextColumn Header=&amp;ldquo;Name&amp;rdquo; Binding=&amp;ldquo;{Binding Name}&amp;ldquo; /&amp;gt;
+&amp;lt;toolkit:DataGridHyperlinkColumn Header=&amp;ldquo;Link&amp;rdquo; Binding=&amp;ldquo;{Binding Link}&amp;ldquo;  ContentBinding=&amp;rdquo;{Binding Link}&amp;ldquo; /&amp;gt;
+&amp;lt;toolkit:DataGridCheckBoxColumn Header=&amp;ldquo;IsBool&amp;rdquo; Binding=&amp;ldquo;{Binding IsBool}&amp;ldquo; /&amp;gt;
+&amp;lt;toolkit:DataGridComboBoxColumn Header=&amp;ldquo;MyType&amp;rdquo; SelectedItemBinding=&amp;ldquo;{Binding MyType}&amp;ldquo; ItemsSource=&amp;rdquo;{Binding Source={StaticResource myEnum}}&amp;ldquo; TextBinding=&amp;rdquo;{Binding MyType}&amp;ldquo; /&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/toolkit:DataGrid.Columns&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/toolkit:DataGrid&amp;gt;
+&amp;lt;/Grid&amp;gt;
+&amp;lt;/Window&amp;gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/pre&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;c#文件如下：
+&lt;pre class=&#34;brush: csharp&#34;&gt;
+&lt;div&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Data;&lt;/p&gt;
+
+&lt;p&gt;namespace WpfAppTest
+{
+/// &amp;lt;summary&amp;gt;
+/// Interaction logic for WPFDataGrid.xaml
+/// &amp;lt;/summary&amp;gt;
+public partial class WPFDataGrid : Window
+{
+public WPFDataGrid()
+{
+InitializeComponent();
+}&lt;/p&gt;
+
+&lt;p&gt;private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+DataTable dt = new DataTable();
+DataColumn dc = new DataColumn(&amp;ldquo;ID&amp;rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;Name&amp;rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;Link&amp;rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;IsBool&amp;rdquo;, typeof(System.Boolean));
+dt.Columns.Add(dc);
+dc = new DataColumn(&amp;ldquo;MyType&amp;rdquo;, typeof(sampleType));
+dt.Columns.Add(dc);
+for (int i = 0; i &amp;lt; 10; i++)
+{
+dt.Rows.Add(new object[] { i.ToString(), &amp;rdquo;Name&amp;rdquo; + i.ToString(), &amp;rdquo;Link&amp;rdquo; + i.ToString(), true, sampleType.C });
+}&lt;/div&gt;
+&lt;h3&gt;&lt;span style=&#34;color: #800000;&#34;&gt;//可以使用下面注释的一行代码替换其后的三行，数据也能绑定成功&lt;/span&gt;
+&lt;span style=&#34;color: #800000;&#34;&gt;//SampleDataGrid.ItemsSource = dt.DefaultView;&lt;/span&gt;&lt;/h3&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;DataSet ds = new DataSet();
+ds.Tables.Add(dt);&lt;/p&gt;
+
+&lt;p&gt;SampleDataGrid.DataContext = ds.Tables[0];&lt;/div&gt;
+&lt;div&gt;}
+}&lt;/p&gt;
+
+&lt;p&gt;public enum sampleType
+{ A, B, C, D, E };
+}&lt;/div&gt;
+&lt;/pre&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

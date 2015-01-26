@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Amazon on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/amazon/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Wed, 11 Jan 2012 01:15:51 &#43;0000</updated>
+    
+    <item>
+      <title>kindle 4 体验及亚马逊买书推送kindle问题</title>
+      <link>http://www.daniex.tk/blog/2012/kindle-4-experience/</link>
+      <pubDate>Wed, 11 Jan 2012 01:15:51 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/kindle-4-experience/</guid>
+      <description>&lt;p&gt;2012年1月1日到手的kindle 4，也是新年新气象，2012多看书的好兆头。&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;2011看的书电影电视还有玩的&#34; href=&#34;http://daniex.info/2011-look-book-film-and-television-as-well-play.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;2011记录&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;里只记下屈指可数的几本看过的书，这叫人情何以堪。&lt;/p&gt;
+
+&lt;p&gt;还是先说问题:
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;Kindle无法购买Amazon书籍问题&lt;/h2&gt;
+入手kindle总是先折腾一遍功能。看完用户指导，自己翻腾着按几遍按钮，基本功能就用的比较熟了。但是每次按shop in kindle store 总是显示 no item found.。不管是找book、magazine还是其他，通通没有内容。检查wifi又是正常连接的。这到底是为什么呢？&lt;/p&gt;
+
+&lt;p&gt;然后再上Amazon官网，用注册时的账户登录，发现在网上也无法购买书籍，更不要说买书后推送到kindle上了！&lt;/p&gt;
+
+&lt;p&gt;怎么办？于是四处找解决方案，各中论坛百度知道之类的网站找。没找到明确的方案，但是，看到说亚马逊买书不支持中国大陆！于是就猜能不能假装在国外。而且也确实看到一些教程在注册的时候填入的不是本国地址。&lt;/p&gt;
+
+&lt;p&gt;接着，解决办法就要出来了。我试着改变帐号信息，提交一个美国的地址，kindle 和 amazon网站的账户就能买书了！成功买了本免费的ebook推送到kindle上！其实账号信息在一开始注册amazon账号的时候就会填写，如果那时没填或者填写了国内的地址，那就会导致没法买书。
+&lt;h3 style=&#34;background-color: #e3e3e3;&#34;&gt;解决办法具体步骤&lt;/h3&gt;
+登陆amazon.com，点击右上角的your account。没登陆的会跳转到登陆页面，输入邮箱密码，成功跳转。新页面中找到setting 项，点击manage address book. 如下图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;manageaddressbook&#34; src=&#34;http://farm8.staticflickr.com/7173/6673122467_565dbf782d_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;167&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;跳转出如下页，点击edit。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;edit&#34; src=&#34;http://farm8.staticflickr.com/7024/6673122649_a13065ee14_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;453&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在这个页面输入地址。找个美国的地址输入就可以了，比如某某公司地址。。。大概正确就行，点击save后amazon会很人性化的给你提示说哪里写的不合适，让你选择是否使用amazon提示修正的地址。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;chooseedit&#34; src=&#34;http://farm8.staticflickr.com/7156/6673122529_0231f72421_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;453&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;统一保存，然后大功告成。就可以买书了！！！&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;choosebook&#34; src=&#34;http://farm8.staticflickr.com/7155/6673153647_fba0ce1afb_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;342&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;购买，然后your account -&amp;gt; manage your kindle -&amp;gt; books&lt;/p&gt;
+
+&lt;p&gt;右方action点击后有菜单，选择推送到kindle。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;sendtokindle&#34; src=&#34;http://farm8.staticflickr.com/7147/6673153733_73423dba60_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;380&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;Kindle 4体验感受&lt;/h2&gt;
+纯粹一看书的工具，用来看书足够了，也只能用来看书。要想玩其他请买kindle fire 或者ipad。&lt;/p&gt;
+
+&lt;p&gt;贴膜确实会影响阅读效果，反光挺讨厌的。&lt;/p&gt;
+
+&lt;p&gt;经历过一次死机，白屏毫无反应。于是长按关机键重启搞定。&lt;/p&gt;
+
+&lt;p&gt;邮箱推送书籍，不用改free.kindle.com的邮箱，直接使用默认的邮箱就行了。&lt;/p&gt;
+
+&lt;p&gt;关了灯就不能看kindle有点麻烦，习惯了窝床上熄灯用手机看书一时改不过来。&lt;/p&gt;
+
+&lt;p&gt;看中了超长待机和点纸书买的，挺好，还督促我多看书！&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

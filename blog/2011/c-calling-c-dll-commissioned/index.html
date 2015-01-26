@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>C#调用C&#43;&#43;DLL--委托 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C#,C/C&#43;&#43;,编码">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>C#调用C&#43;&#43;DLL--委托</h1>
+    <span class="post-date">Jun 21, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/C">C#</a><a class="label" href="http://www.daniex.tk/categories/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C">C#</a><a class="label" href="http://www.daniex.tk/tags/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a>
+    </span>
+    <p>直接上代码，ref类型参数传递也是可以的。和之前一篇用反射调用可以互相参考。<span style="text-decoration: underline;"><em><a title="C#调用C++写的DLL--反射" href="http://daniex.info/c-call-dll-written-in-c.html" target="_blank">C#调用C++DLL&ndash;反射</a></em></span>
+<pre class="brush: csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;</p>
+
+<p>using System.Runtime.InteropServices;</p>
+
+<p>namespace Test
+{
+    class DLLLoader
+    {
+            [DllImport(&ldquo;kernel32.dll&rdquo;)]
+            public extern static IntPtr LoadLibrary(string path);</p>
+
+<pre><code>        [DllImport(&quot;kernel32.dll&quot;)]
+        public extern static IntPtr GetProcAddress(IntPtr lib, string funcName);
+
+        [DllImport(&quot;kernel32.dll&quot;)]
+        public extern static bool FreeLibrary(IntPtr lib);
+
+        [DllImport(&quot;kernel32.dll&quot;)]
+        public static extern IntPtr GetStdHandle(int nStdHandle);
+
+        [DllImport(&quot;user32&quot;, EntryPoint = &quot;CallWindowProc&quot;)]
+        public static extern int CallWindowProc(IntPtr lpPrevWndFunc, int hwnd, int MSG, int wParam, int lParam);
+
+        IntPtr DllLib;//DLL文件名柄     
+        #region 构造函数
+        public DLLLoader()
+        { }
+        public DLLLoader(string dllpath)
+        {
+            DllLib = LoadLibrary(dllpath);
+        }
+        #endregion
+        ///      
+        /// 析构函数     
+        ///      
+        ~DLLLoader()
+        {
+            FreeLibrary(DllLib);//释放名柄     
+        }
+        public void initPath(string dllpath)
+        {
+            if (DllLib == IntPtr.Zero)
+            {
+                DllLib = LoadLibrary(dllpath);
+            }
+        }
+        ///      
+        /// 获取ＤＬＬ中一个方法的委托     
+        ///      
+        /// &lt;param name=&quot;methodname&quot; /&gt;     
+        /// &lt;param name=&quot;methodtype&quot; /&gt;     
+        ///      
+        public Delegate InvokeMethod(string methodname, Type methodtype)
+        {
+            IntPtr MethodPtr = GetProcAddress(DllLib, methodname);
+
+            return (Delegate)Marshal.GetDelegateForFunctionPointer(MethodPtr, methodtype);
+        }      
+
+}
+</code></pre>
+
+<p>}</p>
+
+<p>*********<strong><em>调用</em></strong>************
+        DLLLoader loaddll = new DLLLoader(&ldquo;E:\workspaces\WpfApplication1\Debug\DLL.dll&rdquo;);//实例化加载ＤＬＬ文件的类，，如上<br />
+        public delegate int delegateadd(ref int a);//声明此方法的一个委托</p>
+
+<p>public void testMethod()
+{
+        int a = 1;
+        delegateadd m = (delegateadd)loaddll.InvokeMethod(&ldquo;add&rdquo;, typeof(delegateadd));//获取其中方法的委托<br />
+        int re = m(ref a);//得到ＲＥ，成功<br />
+}</p>
+
+<p>***********<strong><em>DLL</em></strong>***********
+extern &ldquo;C&rdquo; __declspec(dllexport) int add(int &amp; a);</p>
+
+<p>int add(int &amp; a)
+{
+    a = 10;
+    return 20;
+}
+</pre></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

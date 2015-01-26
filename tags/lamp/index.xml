@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Lamp on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/lamp/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Mon, 28 Feb 2011 13:38:00 &#43;0000</updated>
+    
+    <item>
+      <title>wp搬家血泪史</title>
+      <link>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</link>
+      <pubDate>Mon, 28 Feb 2011 13:38:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</guid>
+      <description>&lt;p&gt;之前blog先是无法访问，后来是显示空白页或者it works！这样的非正常状态持续有三个多月。我也是一直忙这忙那的没把心思花这上面。就让它这么一直流血流血流血流血地濒临天堂。&lt;/p&gt;
+
+&lt;p&gt;一开始无法访问的原因，是，当时的共享ip空间的ip被墙，悲剧的无法访问。之后断断续续的找找有没有地方安置blog。不巧接着俺又辞职换工作，奔波找工作折腾得我就没打理它。再往后工作有着落后，弄了个vps玩玩，结果CentOS+LAMP弄了一半，没有完全按着攻略做，折腾出一些问题。访问很不稳定，时不时的变成It works等等问题。指导最近，重新弄了个共享空间，搬家，才算告一段落。罗列下遇到的问题和一些解决问题的方向作参考，由于时间过得久了，具体的方法还需另外百度谷歌去。&lt;/p&gt;
+
+&lt;p&gt;1、 LAMP（CentOS） 相关&lt;/p&gt;
+
+&lt;p&gt;要弄技术那就好好折腾，找个教程看看，然后看下各个参数设置要设置成什么样，有什么关联。我就是没设置好，弄的时不时的来个“It works！”的提示。真打击，回头继续折腾！&lt;/p&gt;
+
+&lt;p&gt;折腾的那个vps是独立128M内存，共享最大到256M。我装上LAMP后，启动程序，内存涨到220M+，收到邮件警告内存使用过高。原因是没有好好设置好Mysql的参数。在网上找了数据库配置的文章后重新设置参数，启动php、Mysql后内存用了80M左右。当然还有更省内存的配置。&lt;/p&gt;
+
+&lt;p&gt;2、 乱码&lt;/p&gt;
+
+&lt;p&gt;这个是一般是编码问题，mysql4.0 会用latin编码存数据，我们一般用的是utf8，GBK等，所以会有乱码。&lt;/p&gt;
+
+&lt;p&gt;解决方案有几个：1）用数据库指令导出抓换编码导入。&lt;/p&gt;
+
+&lt;p&gt;2）phpmyadmin导入导出。&lt;/p&gt;
+
+&lt;p&gt;3、 wp显示空白页&lt;/p&gt;
+
+&lt;p&gt;这个症状比较多，有的个别页显示正常有的任何页不能显示。诱因不少，说几个方法：&lt;/p&gt;
+
+&lt;p&gt;1）重新配置wp-config.php。&lt;/p&gt;
+
+&lt;p&gt;2）重新配主题。&lt;/p&gt;
+
+&lt;p&gt;3）插件冲突，修改删除插件。&lt;/p&gt;
+
+&lt;p&gt;4、无法post或comment&lt;/p&gt;
+
+&lt;p&gt;这个问题我也不知道为什么，估计是LAMP配置哪出问题了，网上也没有搜到解决方案。&lt;/p&gt;
+
+&lt;p&gt;就记得这么些问题了，记起来再添。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

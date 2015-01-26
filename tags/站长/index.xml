@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>站长 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E7AB99E995BF/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Wed, 26 Oct 2011 03:07:57 &#43;0000</updated>
+    
+    <item>
+      <title>利用wp_dorpdown_categories做worldpress文章分类下拉框『转』</title>
+      <link>http://www.daniex.tk/blog/2011/wp_dorpdown_categories/</link>
+      <pubDate>Wed, 26 Oct 2011 03:07:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp_dorpdown_categories/</guid>
+      <description>&lt;p&gt;昨天折腾wp侧边栏，主题默认的是一栏，但是放分类列表和友情链接的时候空了很多，太浪费。于是折腾了下分栏，找wp写好的一些函数调用来展示内容。以下是参考的文章。相关请看&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;利用wp_list_categories做worldpress文章分类列表&#34; href=&#34;http://daniex.info/wp_list_categories.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;wp_list_categories&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;一文。
+&lt;h3&gt;————————————————————————————————&lt;/h3&gt;
+&lt;h3&gt;说明&lt;/h3&gt;
+该标签在一个没有提交按钮的选择框（如下拉式选框）中展示分类目录列表。
+&lt;h3&gt;用法&lt;/h3&gt;
+&amp;lt;?php wp_dropdown_categories( $args ); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;默认用法&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php $args = array(
+&amp;lsquo;show_option_all&amp;rsquo; =&amp;gt; ,
+&amp;lsquo;show_option_none&amp;rsquo; =&amp;gt; ,
+&amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;ID&amp;rsquo;,
+&amp;lsquo;order&amp;rsquo; =&amp;gt; &amp;lsquo;ASC&amp;rsquo;,
+&amp;lsquo;show_last_update&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;show_count&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;hide_empty&amp;rsquo; =&amp;gt; 1,
+&amp;lsquo;child_of&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;exclude&amp;rsquo; =&amp;gt; ,
+&amp;lsquo;echo&amp;rsquo; =&amp;gt; 1,
+&amp;lsquo;selected&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;hierarchical&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;name&amp;rsquo; =&amp;gt; &amp;lsquo;cat&amp;rsquo;,
+&amp;lsquo;class&amp;rsquo; =&amp;gt; &amp;lsquo;postform&amp;rsquo;,
+&amp;lsquo;depth&amp;rsquo; =&amp;gt; 0 ); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;默认情况下的显示状态：
+&lt;ul&gt;
+    &lt;li&gt;升序排列分类目录ID&lt;/li&gt;
+    &lt;li&gt;不显示最新更新&lt;/li&gt;
+    &lt;li&gt;不显示分类目录下的文章总数&lt;/li&gt;
+    &lt;li&gt;不显示“空”分类&lt;/li&gt;
+    &lt;li&gt;不排除任何分类&lt;/li&gt;
+    &lt;li&gt;显示（回应）分类目录&lt;/li&gt;
+    &lt;li&gt;选项框中不选中任何分类&lt;/li&gt;
+    &lt;li&gt;不以分层结构显示分类目录&lt;/li&gt;
+    &lt;li&gt;为列表命名为“cat”&lt;/li&gt;
+    &lt;li&gt;将列表赋值给&amp;rsquo;postform&amp;rsquo;类&lt;/li&gt;
+    &lt;li&gt;无层数限制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;参数&lt;/h3&gt;
+&lt;strong&gt;show_option_all&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）生成下拉式选项框的HTML，从而允许你选定所有分类目录。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;show_option_none&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）生成下拉式选项框的HTML，从而允许你不选定任何分类目录。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;orderby&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）按某种标准为分类目录排序。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;&amp;lsquo;ID&amp;rsquo; ——默认值&lt;/li&gt;
+    &lt;li&gt;&amp;lsquo;name&amp;rsquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;order&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）为分类目录排序（升序或降序）有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;&amp;lsquo;ASC&amp;rsquo;（升序） ——默认值&lt;/li&gt;
+    &lt;li&gt;&amp;lsquo;DESC&amp;rsquo;（降序）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;show_last_updated&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）是（TRUE）否（FALSE）显示分类目录下最新更新日志的日期。默认值为FALSE。&lt;/p&gt;
+
+&lt;p&gt;有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （true）&lt;/li&gt;
+    &lt;li&gt;0（false）——默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;show_count&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）是否显示每个分类目录下现有的日志总数。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （true）&lt;/li&gt;
+    &lt;li&gt;0（false）——默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;hide_empty&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）是否隐藏（不显示）不含有文章的分类目录。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （true）——默认值&lt;/li&gt;
+    &lt;li&gt;0（false）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;child_of（整数）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;只显示某一个分类的子分类；用该分类的ID作为参数值。无默认值。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;exclude&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）将要排除的分类目录的ID列表，各ID用逗号隔开。例如， &amp;lsquo;exclude=4,12&amp;rsquo; 表示不显示或返回ID为4和12的分类。默认值为不排除任何分类。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;exclude_tree&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）定义需要排除的父分类ID列表，各ID用逗号隔开。用该参数排除某个父分类目录及其所有子分类目录。因此 &amp;lsquo;exclude_tree=5&amp;rsquo; 可排除ID为5的父分类及其所有子分类。该参数引入于WP &lt;a title=&#34;Version 2.7.1&#34; href=&#34;http://codex.wordpress.org/Version_2.7.1&#34;&gt;2.7.1&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;echo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）显示结果（TRUE），或返回结果以供PHP使用（FALSE）。默认值为TRUE。
+&lt;ul&gt;
+    &lt;li&gt;1 （true）——默认值&lt;/li&gt;
+    &lt;li&gt;0（false）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;selected&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（整数）在显示框中选中/显示的分类目录的ID。默认为不选中任何分类目录。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;hierarchical&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）以分层形式显示分类目录（子分类目录内嵌于其父分类目录下）。默认值为FALSE。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （True）—— 默认值&lt;/li&gt;
+    &lt;li&gt;0 （False）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;name&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）下拉式选框被赋予的名称。默认为cat&amp;rsquo;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;class&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）被赋给下拉式选项框的类，默认为&amp;rsquo;postform&amp;rsquo;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;depth（整数）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;该参数决定wp_list_pages所生成的分类目录列表中所允许的分类层级的层数。默认值为0（显示包括子分类目录在内的所有分类目录）。该参数引入于WP &lt;a title=&#34;Version 2.5&#34; href=&#34;http://codex.wordpress.org/Version_2.5&#34;&gt;2.5&lt;/a&gt;。
+&lt;ul&gt;
+    &lt;li&gt;0 —— 显示所有分类目录和他们的子分类目录（默认）&lt;/li&gt;
+    &lt;li&gt;-1 —— 以平面（不缩进）方式显示所有分类目录和他们的子分类目录&lt;/li&gt;
+    &lt;li&gt;1 —— 只显示顶级分类目录&lt;/li&gt;
+    &lt;li&gt;n —— 该值表示可以缩进显示的分类目录层数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;strong&gt;带有提交按钮的下拉式选项框&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在WordPress侧边栏的无序列表中，以HTML格式显示带有层级的分类目录下拉式列表，有提交按钮，给出各分类目录下的文章总数。
+&lt;pre&gt;&amp;lt;li id=&amp;ldquo;categories&amp;rdquo;&amp;gt;
+ &amp;lt;h2&amp;gt;&amp;lt;?php _e(&amp;lsquo;Categories:&amp;lsquo;); ?&amp;gt;&amp;lt;/h2&amp;gt;
+   &amp;lt;form action=&amp;rdquo;&amp;lt;?php bloginfo(&amp;lsquo;url&amp;rsquo;); ?&amp;gt;&amp;rdquo; method=&amp;ldquo;get&amp;rdquo;&amp;gt;
+   &amp;lt;?php wp_dropdown_categories(&amp;lsquo;show_count=1&amp;amp;hierarchical=1&amp;rsquo;); ?&amp;gt;
+   &amp;lt;input type=&amp;ldquo;submit&amp;rdquo; name=&amp;ldquo;submit&amp;rdquo; value=&amp;ldquo;view&amp;rdquo; /&amp;gt;
+   &amp;lt;/form&amp;gt;
+&amp;lt;/li&amp;gt;&lt;/pre&gt;
+&lt;strong&gt;用JavaScript显示一个没有提交按钮的下拉式选项框&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;下面这个示例摘自&lt;a href=&#34;http://wordpress.org/support/topic/145489?replies=13#post-657759&#34;&gt;WordPress论坛上的一个帖子&lt;/a&gt;，该示例借用了show_option_none参数。
+&lt;blockquote&gt;&amp;lt;li id=&amp;ldquo;categories&amp;rdquo;&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;?php _e(&amp;lsquo;Posts by Category&amp;rsquo;); ?&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;?php wp_dropdown_categories(&amp;lsquo;show_option_none=Select category&amp;rsquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;script type=&amp;ldquo;text/javascript&amp;rdquo;&amp;gt;&amp;lt;!&amp;ndash;
+var dropdown = document.getElementById(&amp;ldquo;cat&amp;rdquo;);
+function onCatChange() {
+if ( dropdown.options[dropdown.selectedIndex].value &amp;gt; 0 ) {
+location.href = &amp;ldquo;&amp;lt;?php echo get_option(&amp;lsquo;home&amp;rsquo;);
+?&amp;gt;/?cat=&amp;ldquo;+dropdown.options[dropdown.selectedIndex].value;
+}
+}
+dropdown.onchange = onCatChange;
+&amp;ndash;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/li&amp;gt;&lt;/blockquote&gt;
+&lt;strong&gt;用JavaScript显示一个没有提交按钮的下拉式选项框（2）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;下面这段代码使用了echo参数（echo=0）。在JavaScript代码中插入一个简单的 &lt;em&gt;preg_replace&lt;/em&gt;。即使没有JavaScript，代码也可正常运行（提交按钮被noscript标签包裹）。
+&lt;blockquote&gt;&amp;lt;li id=&amp;ldquo;categories&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;?php _e(&amp;lsquo;Posts by Category&amp;rsquo;); ?&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;form action=&amp;rdquo;&amp;lt;?php bloginfo(&amp;lsquo;url&amp;rsquo;); ?&amp;gt;/&amp;rdquo; method=&amp;ldquo;get&amp;rdquo;&amp;gt;
+&amp;lt;?php
+$select = wp_dropdown_categories(&amp;lsquo;show_option_none=Select category&amp;amp;show_count=1&amp;amp;orderby=name&amp;amp;echo=0&amp;rsquo;);
+$select = preg_replace(&amp;ldquo;#&amp;lt;select([^&amp;gt;]*)&amp;gt;#&amp;ldquo;, &amp;ldquo;&amp;lt;select$1 onchange=&amp;lsquo;return this.form.submit()&amp;rsquo;&amp;gt;&amp;rdquo;, $select);
+echo $select;
+?&amp;gt;
+&amp;lt;noscript&amp;gt;&amp;lt;input type=&amp;ldquo;submit&amp;rdquo; value=&amp;ldquo;View&amp;rdquo; /&amp;gt;&amp;lt;/noscript&amp;gt;
+&amp;lt;/form&amp;gt;
+&amp;lt;/li&amp;gt;&lt;/blockquote&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>利用wp_list_categories做worldpress文章分类列表</title>
+      <link>http://www.daniex.tk/blog/2011/wp_list_categories/</link>
+      <pubDate>Tue, 25 Oct 2011 06:12:04 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp_list_categories/</guid>
+      <description>&lt;p&gt;折腾wp侧边栏，主题默认的是一栏，但是放分类列表和友情链接的时候空了很多，太浪费。于是折腾了下分栏，找wp写好的一些函数调用来展示内容。以下是参考的文章。相关请看&lt;a title=&#34;利用wp_dorpdown_categories做worldpress文章分类下拉框『转』&#34; href=&#34;http://daniex.info/wp_dorpdown_categories.html&#34; target=&#34;_blank&#34;&gt;wp_dropdown_categories&lt;/a&gt;一文。
+&lt;h3&gt;————————————————————————————————&lt;/h3&gt;
+&lt;strong&gt;分类标签 wp_list_categories&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;wp_list_categories标签负责的是分类的调用，在模板archive.php文件中添加wp_list_categories标签可以调用wp程序的存档。&lt;/p&gt;
+
+&lt;p&gt;用法如下：
+wp_list_categories标签的所有数值：
+show_option_all
+值：任意填。
+如果你写&amp;lt;?php wp_list_categories(’show_option_all=*’); ?&amp;gt;，那么在列表第一个分类就显示“*”两字，不过连接是连接到blog首页的，正好可以利用此参数加个“首页”。&lt;/p&gt;
+
+&lt;p&gt;orderby
+值：ID、name（默认值）、count。
+作用是按这3个值来排序。
+order
+值：ASC（默认值）、DESC。
+ASC为升序，DESC为降序。&lt;/p&gt;
+
+&lt;p&gt;show_last_updated
+值：0（默认值）、1。
+0无作用，1为最近更新的分类显示在前面。&lt;/p&gt;
+
+&lt;p&gt;style
+值：list（默认值）、none。
+例6中已经举例了。none无作用。&lt;/p&gt;
+
+&lt;p&gt;show_count
+值：0、1（默认值）
+1在每个分类后面显示日志数量，0不显示。&lt;/p&gt;
+
+&lt;p&gt;hide_empty
+值：0、1（默认值）
+1是隐藏没有发表日志的分类，0是显示所有。&lt;/p&gt;
+
+&lt;p&gt;use_desc_for_title
+值：0、1（默认值）
+0为关闭说明，1为显示说明。上面有例子。&lt;/p&gt;
+
+&lt;p&gt;child_of
+值：数字
+显示指定ID（也就是所填的这个数字）下的子分类。&lt;/p&gt;
+
+&lt;p&gt;feed
+值：任意
+假如你填“啊!”，那么在你每个分类后面都会出现“(啊!)”，连接地址是RSS地址。&lt;/p&gt;
+
+&lt;p&gt;feed_image
+值：任意。虽然任意，但是是个图片的地址才对。
+用来在分类后面显示个RSS Feed图标，上面有例子。&lt;/p&gt;
+
+&lt;p&gt;exclude
+值：任意。但是要填分类名称或者分类ID才有效。
+用来过滤（或者说隐藏）某个分类在列表中的出现。&lt;/p&gt;
+
+&lt;p&gt;include
+值：任意。但是要填分类名称或者分类ID才有效。
+作用是只显示所填的这个分类名或ID。&lt;/p&gt;
+
+&lt;p&gt;hierarchical
+值：0、1（默认值）
+说是按分类文章数目排列的，但测试无效果。&lt;/p&gt;
+
+&lt;p&gt;title_li
+值：任意
+用来改变列表标题的。&lt;/p&gt;
+
+&lt;p&gt;number
+值：整数
+设置一个显示上限。&lt;/p&gt;
+
+&lt;p&gt;数值应用举例：&lt;/p&gt;
+
+&lt;p&gt;1.包含或排除某分类：
+意思就是把分类ID为3，5，9，16的分类按名称顺序来排序：
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;include=3,5,9,16′); ?&amp;gt;&lt;/blockquote&gt;
+按名称排列，并显示每个分类的日志总数，并不显示ID为10的分类：
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;show_count=1&amp;amp;exclude=10′); ?&amp;gt;&lt;/blockquote&gt;
+2.显示或隐藏列表标题：
+过滤ID为4和7的分类，并且列表标题设置为“哈哈”：
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’exclude=4,7&amp;amp;title_li=哈哈’); ?&amp;gt;&lt;/blockquote&gt;
+列表中只显示ID为5、9、23的分类，并把列表标题改为Poetry（下面的格式是为了把“要显示的数据”和“标签参数区分开来”）
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’include=5,9,23&amp;amp;title_li=&amp;lt;h2&amp;gt;’ . __(’Poetry’) . ‘&amp;lt;/h2&amp;gt;’ ); ?&amp;gt;&lt;/blockquote&gt;
+3.这个参数的意思是：按ID排序，关闭分类说明（就是鼠标移动到连接上就不显示你在后台填的分类说明了，只显示“察看XX分类下的所有文章”），并且只显示ID为8的分类下的子分类，如果没有，则参数无效，会按默认来显示。
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=id&amp;amp;show_count=1&amp;amp;use_desc_for_title=0&amp;amp;child_of=8′); ?&amp;gt;&lt;/blockquote&gt;
+4.外观是分类后面显示个（RSS），作用就不用我说了吧？
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;show_count=1&amp;amp;feed=RSS’); ?&amp;gt;&lt;/blockquote&gt;
+5.这个比较酷，相信大家都喜欢：
+分类名称后面显示一个自己制定的小图标，作用是RSS。
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;show_count=1&amp;amp;feed_image=/images/rss.gif’); ?&amp;gt;&lt;/blockquote&gt;
+6.花式列表：
+改变当前正在浏览的分类名字的样式。’style=list’的作用是给输出的html代码&lt;/p&gt;
+
+&lt;p&gt;中加一个class=”current-cat”， 然后你在CSS里添一个.current-cat {color:red;}那么我浏览分类AAA时，列表中的“AAA”3个字就是红色的，浏览BBB，“BBB”就是红色的。
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’style=list’ ); ?&amp;gt;&lt;/blockquote&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Linux 指令篇：文件传输--ftp  转载</title>
+      <link>http://www.daniex.tk/blog/2010/linux-commands-articles-file-transfer-ftp-reserved/</link>
+      <pubDate>Wed, 10 Nov 2010 13:49:18 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/linux-commands-articles-file-transfer-ftp-reserved/</guid>
+      <description>&lt;p&gt;ftp(file transfer protocol)
+功能说明：设置文件系统相关功能。&lt;/p&gt;
+
+&lt;p&gt;语　　法：ftp [-dignv][主机名称或IP地址]&lt;/p&gt;
+
+&lt;p&gt;补充说明：FTP是ARPANet的标准文件传输协议，该网络就是现今Internet的前身。&lt;/p&gt;
+
+&lt;p&gt;参　　数：
+-d   详细显示指令执行过程，便于排错或分析程序执行的情形。
+-i   关闭互动模式，不询问任何问题。
+-g   关闭本地主机文件名称支持特殊字符的扩充特性。
+-n   不使用自动登陆。
+-v   显示指令执行过程。&lt;/p&gt;
+
+&lt;p&gt;FTP命令是Internet用户使用最频繁的命令之一，不论是在DOS还是UNIX操作系统下使用FTP，都会遇到大量的FTP内部命令。熟悉并灵活应用FTP的内部命令，可以大大方便使用者，并收到事半功倍之效。&lt;/p&gt;
+
+&lt;p&gt;FTP的命令行格式为：ftp -v -d -i -n -g [主机名]，其中&lt;/p&gt;
+
+&lt;p&gt;-v显示远程服务器的所有响应信息；&lt;/p&gt;
+
+&lt;p&gt;-n限制ftp的自动登录，即不使用；&lt;/p&gt;
+
+&lt;p&gt;.n etrc文件；&lt;/p&gt;
+
+&lt;p&gt;-d使用调试方式；&lt;/p&gt;
+
+&lt;p&gt;-g取消全局文件名。&lt;/p&gt;
+
+&lt;p&gt;ftp使用的内部命令如下(中括号表示可选项):&lt;/p&gt;
+
+&lt;p&gt;1.![cmd[args]]：在本地机中执行交互shell，exit回到ftp环境，如：!ls*.zip.&lt;/p&gt;
+
+&lt;p&gt;2.$ macro-ame[args]：执行宏定义macro-name.&lt;/p&gt;
+
+&lt;p&gt;3.account[password]：提供登录远程系统成功后访问系统资源所需的补充口令。&lt;/p&gt;
+
+&lt;p&gt;4.append local-file[remote-file]：将本地文件追加到远程系统主机，若未指定远程系统文件名，则使用本地文件名。&lt;/p&gt;
+
+&lt;p&gt;5.ascii：使用ascii类型传输方式。&lt;/p&gt;
+
+&lt;p&gt;6.bell：每个命令执行完毕后计算机响铃一次。&lt;/p&gt;
+
+&lt;p&gt;7.bin：使用二进制文件传输方式。&lt;/p&gt;
+
+&lt;p&gt;8.bye：退出ftp会话过程。&lt;/p&gt;
+
+&lt;p&gt;9.case：在使用mget时，将远程主机文件名中的大写转为小写字母。&lt;/p&gt;
+
+&lt;p&gt;10.cd remote-dir：进入远程主机目录。&lt;/p&gt;
+
+&lt;p&gt;11.cdup：进入远程主机目录的父目录。&lt;/p&gt;
+
+&lt;p&gt;12.chmod mode file-name：将远程主机文件file-name的存取方式设置为mode，如：chmod 777 a.out。&lt;/p&gt;
+
+&lt;p&gt;13.close：中断与远程服务器的ftp会话(与open对应)。&lt;/p&gt;
+
+&lt;p&gt;14.cr：使用asscii方式传输文件时，将回车换行转换为回行。&lt;/p&gt;
+
+&lt;p&gt;15.delete remote-file：删除远程主机文件。&lt;/p&gt;
+
+&lt;p&gt;16.debug[debug-value]：设置调试方式，显示发送至远程主机的每条命令，如：deb up 3，若设为0，表示取消debug。&lt;/p&gt;
+
+&lt;p&gt;17.dir[remote-dir][local-file]：显示远程主机目录，并将结果存入本地文件local-file。&lt;/p&gt;
+
+&lt;p&gt;18.disconnection：同close。&lt;/p&gt;
+
+&lt;p&gt;19.form format：将文件传输方式设置为format，缺省为file方式。&lt;/p&gt;
+
+&lt;p&gt;20.get remote-file[local-file]：将远程主机的文件remote-file传至本地硬盘的local-file。&lt;/p&gt;
+
+&lt;p&gt;21.glob：设置mdelete，mget，mput的文件名扩展，缺省时不扩展文件名，同命令行的-g参数。&lt;/p&gt;
+
+&lt;p&gt;22.hash：每传输1024字节，显示一个hash符号(#)。&lt;/p&gt;
+
+&lt;p&gt;23.help[cmd]：显示ftp内部命令cmd的帮助信息，如：help get。&lt;/p&gt;
+
+&lt;p&gt;24.idle[seconds]：将远程服务器的休眠计时器设为[seconds]秒。&lt;/p&gt;
+
+&lt;p&gt;25.image：设置二进制传输方式(同binary)。&lt;/p&gt;
+
+&lt;p&gt;26.lcd[dir]：将本地工作目录切换至dir。&lt;/p&gt;
+
+&lt;p&gt;27.ls[remote-dir][local-file]：显示远程目录remote-dir，并存入本地文件local-file。&lt;/p&gt;
+
+&lt;p&gt;28.macdef macro-name：定义一个宏，遇到macdef下的空行时，宏定义结束。&lt;/p&gt;
+
+&lt;p&gt;29.mdelete[remote-file]：删除远程主机文件。&lt;/p&gt;
+
+&lt;p&gt;30.mdir remote-files local-file：与dir类似，但可指定多个远程文件，如：mdir &lt;em&gt;.o.&lt;/em&gt;.zipoutfile&lt;/p&gt;
+
+&lt;p&gt;31.mget remote-files：传输多个远程文件。&lt;/p&gt;
+
+&lt;p&gt;32.mkdir dir-name：在远程主机中建一目录。&lt;/p&gt;
+
+&lt;p&gt;33.mls remote-file local-file：同nlist，但可指定多个文件名。&lt;/p&gt;
+
+&lt;p&gt;34.mode[modename]：将文件传输方式设置为modename，缺省为stream方式。&lt;/p&gt;
+
+&lt;p&gt;35.modtime file-name：显示远程主机文件的最后修改时间。&lt;/p&gt;
+
+&lt;p&gt;36.mput local-file：将多个文件传输至远程主机。&lt;/p&gt;
+
+&lt;p&gt;37.newer file-name：如果远程机中file-name的修改时间比本地硬盘同名文件的时间更近，则重传该文件。&lt;/p&gt;
+
+&lt;p&gt;38.nlist[remote-dir][local-file]：显示远程主机目录的文件清单，并存入本地硬盘的local-file。&lt;/p&gt;
+
+&lt;p&gt;39.nmap[inpattern outpattern]：设置文件名映射机制，使得文件传输时，文件中的某些字符相互转换，如：nmap $1.$2.$3[$1，$2].[$2，$3]，则传输文件a1.a2.a3时，文件名变为a1，a2。该命令特别适用于远程主机为非UNIX机的情况。&lt;/p&gt;
+
+&lt;p&gt;40.ntrans[inchars[outchars]]：设置文件名字符的翻译机制，如ntrans 1R，则文件名LLL将变为RRR。&lt;/p&gt;
+
+&lt;p&gt;41.open host[port]：建立指定ftp服务器连接，可指定连接端口。&lt;/p&gt;
+
+&lt;p&gt;42.passive：进入被动传输方式。&lt;/p&gt;
+
+&lt;p&gt;43.prompt：设置多个文件传输时的交互提示。&lt;/p&gt;
+
+&lt;p&gt;44.proxy ftp-cmd：在次要控制连接中，执行一条ftp命令，该命令允许连接两个ftp服务器，以在两个服务器间传输文件。第一条ftp命令必须为open，以首先建立两个服务器间的连接。&lt;/p&gt;
+
+&lt;p&gt;45.put local-file[remote-file]：将本地文件local-file传送至远程主机。&lt;/p&gt;
+
+&lt;p&gt;46.pwd：显示远程主机的当前工作目录。&lt;/p&gt;
+
+&lt;p&gt;47.quit：同bye，退出ftp会话。&lt;/p&gt;
+
+&lt;p&gt;48.quote arg1，arg2&amp;hellip;：将参数逐字发至远程ftp服务器，如：quote syst.&lt;/p&gt;
+
+&lt;p&gt;49.recv remote-file[local-file]：同get。&lt;/p&gt;
+
+&lt;p&gt;50.reget remote-file[local-file]：类似于get，但若local-file存在，则从上次传输中断处续传。&lt;/p&gt;
+
+&lt;p&gt;51.rhelp[cmd-name]：请求获得远程主机的帮助。&lt;/p&gt;
+
+&lt;p&gt;52.rstatus[file-name]：若未指定文件名，则显示远程主机的状态，否则显示文件状态。&lt;/p&gt;
+
+&lt;p&gt;53.rename[from][to]：更改远程主机文件名。&lt;/p&gt;
+
+&lt;p&gt;54.reset：清除回答队列。&lt;/p&gt;
+
+&lt;p&gt;55.restart marker：从指定的标志marker处，重新开始get或put，如：restart 130。&lt;/p&gt;
+
+&lt;p&gt;56.rmdir dir-name：删除远程主机目录。&lt;/p&gt;
+
+&lt;p&gt;57.runique：设置文件名唯一性存储，若文件存在，则在原文件后加后缀..1，.2等。&lt;/p&gt;
+
+&lt;p&gt;58.send local-file[remote-file]：同put。&lt;/p&gt;
+
+&lt;p&gt;59.sendport：设置PORT命令的使用。&lt;/p&gt;
+
+&lt;p&gt;60.site arg1，arg2&amp;hellip;：将参数作为SITE命令逐字发送至远程ftp主机。&lt;/p&gt;
+
+&lt;p&gt;61.size file-name：显示远程主机文件大小，如：site idle 7200。&lt;/p&gt;
+
+&lt;p&gt;62.status：显示当前ftp状态。&lt;/p&gt;
+
+&lt;p&gt;63.struct[struct-name]：将文件传输结构设置为struct-name，缺省时使用stream结构。&lt;/p&gt;
+
+&lt;p&gt;64.sunique：将远程主机文件名存储设置为唯一(与runique对应)。&lt;/p&gt;
+
+&lt;p&gt;65.system：显示远程主机的操作系统类型。&lt;/p&gt;
+
+&lt;p&gt;66.tenex：将文件传输类型设置为TENEX机的所需的类型。&lt;/p&gt;
+
+&lt;p&gt;67.tick：设置传输时的字节计数器。&lt;/p&gt;
+
+&lt;p&gt;68.trace：设置包跟踪。&lt;/p&gt;
+
+&lt;p&gt;69.type[type-name]：设置文件传输类型为type-name，缺省为ascii，如：type binary，设置二进制传输方式。&lt;/p&gt;
+
+&lt;p&gt;70.umask[newmask]：将远程服务器的缺省umask设置为newmask，如：umask 3。&lt;/p&gt;
+
+&lt;p&gt;71.user user-name[password][account]：向远程主机表明自己的身份，需要口令时，必须输入口令，如：user anonymous my@email。&lt;/p&gt;
+
+&lt;p&gt;72.verbose：同命令行的-v参数，即设置详尽报告方式，ftp服务器的所有响应都将显示给用户，缺省为on.&lt;/p&gt;
+
+&lt;p&gt;73.?[cmd]：同help。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Google Analytics分析的跟踪代码在哪？！！</title>
+      <link>http://www.daniex.tk/blog/2010/where-is-google-analytics-codes/</link>
+      <pubDate>Thu, 01 Jul 2010 14:45:43 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/where-is-google-analytics-codes/</guid>
+      <description>&lt;p&gt;换了个主题想起统计工具代码没加，上Google Analytics悲剧地发现又找不到分析代码了！！！ :twisted:&lt;/p&gt;
+
+&lt;p&gt;Google Analytics分析的跟踪代码在哪？在哪？在哪？&lt;/p&gt;
+
+&lt;p&gt;通过账户登录进去的首页，选择相应名称右边的“修改”，进入“网站配置页面”，点击右上方“检查状态”。&lt;/p&gt;
+
+&lt;p&gt;如果你正在“控制台”页面，请点击本页左上方“Analytics 设置”回到后台首页，然后按以上操作。
+&lt;a href=&#34;http://daniex.info/2010/07/where-is-google-analytics-codes/attachment/20100701223933312/&#34; rel=&#34;attachment wp-att-156&#34;&gt;&lt;img src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/20100701223933312.png&#34; alt=&#34;&#34; title=&#34;20100701223933312&#34; width=&#34;417&#34; height=&#34;247&#34; class=&#34;aligncenter size-full wp-image-156&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;http://daniex.info/2010/07/where-is-google-analytics-codes/attachment/20100701223914437/&#34; rel=&#34;attachment wp-att-155&#34;&gt;&lt;img src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/20100701223914437.png&#34; alt=&#34;&#34; title=&#34;20100701223914437&#34; width=&#34;417&#34; height=&#34;247&#34; class=&#34;aligncenter size-full wp-image-155&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

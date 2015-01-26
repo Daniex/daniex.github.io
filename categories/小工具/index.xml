@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>小工具 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/categories/E5B08FE5B7A5E585B7/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 15 Nov 2011 02:22:56 &#43;0000</updated>
+    
+    <item>
+      <title>tomcat添加sybase数据库支持配置方法</title>
+      <link>http://www.daniex.tk/blog/2011/add-sybase-database-support-tomcat-configuration/</link>
+      <pubDate>Tue, 15 Nov 2011 02:22:56 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/add-sybase-database-support-tomcat-configuration/</guid>
+      <description>&lt;p&gt;说起来其实很简单。&lt;/p&gt;
+
+&lt;p&gt;1、安装sybase后到安装目录拷贝文件jconn2.jar，比如C:\sybase\jConnect-5_5\classes\jconn2.jar。&lt;/p&gt;
+
+&lt;p&gt;2、将该文件拷贝的tomcat的lib文件夹下&lt;/p&gt;
+
+&lt;p&gt;3、配置tomcat的conf文件夹下server.xml文件
+&lt;blockquote&gt;&amp;lt;ResourceParams name=&amp;ldquo;jdbc/AutoTest&amp;rdquo;&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;url&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;jdbc:sybase:Tds:142.100.2.132:5001/AutoTest&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxIdle&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;2&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxActive&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;4&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;driverClassName&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;com.sybase.jdbc2.jdbc.SybDriver&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxWait&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;5000&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;username&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;saforfw&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;password&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;saforfw&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;/ResourceParams&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/blockquote&gt;
+搞定OK，大功告成。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>google产品界面更新</title>
+      <link>http://www.daniex.tk/blog/2011/google-product-interface-updates/</link>
+      <pubDate>Thu, 03 Nov 2011 04:38:50 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/google-product-interface-updates/</guid>
+      <description>&lt;p&gt;继Google Reader Google doc等产品启用新界面后，Gmail于昨天也切换到新界面了。&lt;/p&gt;
+
+&lt;p&gt;所有新界面的右方都有个齿轮状配置按钮。里面首先是显示密度的选项，有comfortable cozy compact三种，对应普通/舒适/紧凑。其中紧凑模式类似老板的Gmail布局密度。
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter&#34; src=&#34;data:image/png;base64,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&#34; alt=&#34;&#34; width=&#34;259&#34; height=&#34;285&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;Gmail新界面中，对话模式有较大变化，更加人性化。左侧的标签导航栏目，设计使用起来也更加舒适。弱化Buzz这个几乎无人问津的产品。&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;Gmial新界面总体感觉还不错，当然，刚开始使用会有些不适应。有个不大满意的地方是新界面的主题设计让人不怎么满意。尤其在comfortable模式下空白太多。默认提供的单色主题颜色看着很不协调。试用几个后感觉换成白色反而稍顺眼些。&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;而Google Reader的界面变化却让很多用户产生抵触。最大的地方就是Share功能的取消。对于上G+不定期无法访问的用户来说，这样的分享实在鸡肋。这样捆绑Google Plus的做法让人高兴不起来。&lt;/p&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>win7使用virtualbox安装xp虚拟机窗口化玩游戏英雄无敌3</title>
+      <link>http://www.daniex.tk/blog/2011/win7-install-xp-virtualbox-heroes3/</link>
+      <pubDate>Sat, 24 Sep 2011 11:38:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/win7-install-xp-virtualbox-heroes3/</guid>
+      <description>&lt;p&gt;想到好久没玩游戏了，最近拿《英雄无敌3》出来耍耍。╮(╯▽╰)╭ 好吧，我比较老土，还玩这么老的游戏。想当初还特意装了个DOS box去玩初中时候玩的《三国英杰传》，整个游戏就2M。《英雄无敌3》好歹200M+，算高级货了。&lt;img class=&#34;alignnone&#34; src=&#34;http://daniex.info/wp-includes/images/smilies/icon_idea.gif&#34; alt=&#34;&#34; width=&#34;20&#34; height=&#34;20&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;win7玩heroes3会突然报错，而且不能窗口化。某人是想边玩游戏边看看美剧顺便干点其他的，所以。。。折腾下吧，弄个虚拟机，之前弄过阵子virtualbox，反正也不麻烦。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;简述步骤：&lt;/p&gt;
+
+&lt;p&gt;1、下载virtualbox。安装。&lt;/p&gt;
+
+&lt;p&gt;2、下载windows xp iso镜像。不要别人做好的一键安装盘，virtualbox不认的，下个xp的原始安装镜像一步一步装过去。玩游戏的，装系统是小菜啦~&lt;/p&gt;
+
+&lt;p&gt;3、virtualbox装虚拟机的步骤就不多说了，选机器类型，选择内存/显存，建个新磁盘文件，加载iso镜像，安装。&lt;/p&gt;
+
+&lt;p&gt;4、某人是用virtual box的共享文件夹将xp上的文件夹共享到虚拟机里面的。网上有说可以用系统的文件共享，没试过不知道。这里说下用virtual box的共享将win 7 机器上的文件夹共享到xp虚拟机里面。&lt;/p&gt;
+
+&lt;p&gt;1）启动虚拟机，在virtual box 的设备（device）菜单下有个Install Guest Additions的选项，呃，我用的英文的，不晓得中文是什么了。点击安装，重启虚拟机。&lt;/p&gt;
+
+&lt;p&gt;2）Device-&amp;gt;share folders-&amp;gt;add share folders(右边带加号的图标)。 选择要共享的win 7 文件夹，命名改文件夹在virtualbox中的名字，选择auto mount。重启下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-medium wp-image-770&#34; title=&#34;virtualbox共享文件设置&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/09/20110924191850343-300x287.png&#34; alt=&#34;&#34; width=&#34;300&#34; height=&#34;287&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3）打开XP的我的电脑，里面就有你共享的文件夹。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;终于，我可以在win7下边看美剧边游戏，哇哈哈哈哈哈哈的爽~&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-large wp-image-771&#34; title=&#34;窗口化游戏heroes3&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/09/20110924192147450-1024x640.png&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SOAPUI测试WebService</title>
+      <link>http://www.daniex.tk/blog/2011/soapui-test-webservice/</link>
+      <pubDate>Fri, 17 Jun 2011 08:48:17 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/soapui-test-webservice/</guid>
+      <description>&lt;p&gt;最近要测试web service找到个不错的软件SOAPUI。推荐一下。&lt;/p&gt;
+
+&lt;p&gt;由于Web服务是被程序调用的，一般不会提供界面让最终用户或测试人员直接使用。SOAPUI是针对这个情况特别开发的一个工具，用户可以在SOAPUI中通过简单的操作完成复杂的测试。当然SOAPUI还不仅仅是这点作用就，需要大家发掘发掘下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;SOAPUI&#34; src=&#34;http://www.soapui.org/images/stories/Getting_Started/Import_sample_soapUI_project.png&#34; alt=&#34;&#34; width=&#34;374&#34; height=&#34;398&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;地址：&lt;a href=&#34;http://www.soapui.org/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.soapui.org/&#34;&gt;http://www.soapui.org/&lt;/a&gt;&lt;/a&gt;
+文档：&lt;a href=&#34;http://www.soapui.org/Getting-Started/installing-on-windows.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.soapui.org/Getting-Started/installing-on-windows.html&#34;&gt;http://www.soapui.org/Getting-Started/installing-on-windows.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>比B2 Gmail Notifier更厉害Spiffy – 多 Gmail 邮箱通知工具，支持 Apps</title>
+      <link>http://www.daniex.tk/blog/2010/spiffy/</link>
+      <pubDate>Mon, 16 Aug 2010 06:05:48 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/spiffy/</guid>
+      <description>&lt;p&gt;上一篇才讲gmail邮件通知的问题，今天一看&lt;a href=&#34;http://www.appinn.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;小众&lt;/span&gt;&lt;/a&gt;，来了个更厉害的Spiffy。&lt;a href=&#34;http://www.appinn.com/spiffy/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;看小众软件的介绍&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.appinn.com/spiffy/&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;Spiffy&lt;/span&gt;&lt;/a&gt; 是款 Gmail 邮箱通知工具，支持最多 5 个 Gmail 邮箱或 Google Apps 邮箱。解决了B2 Gmail Notifier的不支持多账号问题。&lt;/p&gt;
+
+&lt;p&gt;Gmail 本身变相提供同时管理多个邮箱的功能，你只需将其他邮箱的邮件转发至主 Gmail 邮箱，并设置主邮箱可以通过其他邮箱地址发邮件即可。另外 Gmail 最近也开始提供多邮箱管理功能了。但转发的操作将造成主邮箱的混乱及空间的不足，虽然可以通过 label 和购买额外空间（$5=20G/年）解决。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>跨平台的gmail桌面通知工具 B2 Gmail Notifier</title>
+      <link>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</link>
+      <pubDate>Fri, 13 Aug 2010 01:32:55 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</guid>
+      <description>&lt;p&gt;浏览器里开了个Gmail，离开浏览器做其他事的时候，时常忘了去查看邮箱。又不想将Gmail放到ThunderBird，OutLook之类的软件里。于是想到找找有没有Gmail的桌面提示工具。发现有两种方式，一是Google Desktop工具，功能很强劲，有很多小工具。还有一个方法就是B2 Gmail Notifier。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://home.b2labs.com/b2-gmail-notifier-freeware-animated-gmail-notifier&#34; target=&#34;_blank&#34;&gt;B2 Labs制作的Gmail Notifier &lt;/a&gt;是一款跨平台（Windows/Mac/Linux）的Gmail邮件提示小工具，因为它基于Adobe的AIR技术。它可以在你的桌面提示收到的新邮件，可以直接看到发信人、标题、正文和发送时间，而且有多种动态效果可选，还可以在线安装更多效果。不支持多帐号。&lt;/p&gt;
+
+&lt;p&gt;安装文件很小，不到2M，就算加上12M的Adobe Air安装文件还是很小。Google Desktop数百M，多装些小工具有可能就几G了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-445&#34; title=&#34;20100813092206461&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/08/20100813092206461.png&#34; alt=&#34;&#34; width=&#34;268&#34; height=&#34;266&#34; /&gt;提示框后面有个txt文件，它偷偷地露了个头。 - -！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

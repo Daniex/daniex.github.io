@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>wp搬家血泪史 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="centos,IP,LAMP,mysql编码,WordPress,主题,插件,数据库,编码,解决方案,问题">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>wp搬家血泪史</h1>
+    <span class="post-date">Feb 28, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/centos">centos</a><a class="label" href="http://www.daniex.tk/tags/IP">IP</a><a class="label" href="http://www.daniex.tk/tags/LAMP">LAMP</a><a class="label" href="http://www.daniex.tk/tags/mysql%E7%BC%96%E7%A0%81">mysql编码</a><a class="label" href="http://www.daniex.tk/tags/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/tags/%E4%B8%BB%E9%A2%98">主题</a><a class="label" href="http://www.daniex.tk/tags/%E6%8F%92%E4%BB%B6">插件</a><a class="label" href="http://www.daniex.tk/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a><a class="label" href="http://www.daniex.tk/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a><a class="label" href="http://www.daniex.tk/tags/%E9%97%AE%E9%A2%98">问题</a>
+    </span>
+    <p>之前blog先是无法访问，后来是显示空白页或者it works！这样的非正常状态持续有三个多月。我也是一直忙这忙那的没把心思花这上面。就让它这么一直流血流血流血流血地濒临天堂。</p>
+
+<p>一开始无法访问的原因，是，当时的共享ip空间的ip被墙，悲剧的无法访问。之后断断续续的找找有没有地方安置blog。不巧接着俺又辞职换工作，奔波找工作折腾得我就没打理它。再往后工作有着落后，弄了个vps玩玩，结果CentOS+LAMP弄了一半，没有完全按着攻略做，折腾出一些问题。访问很不稳定，时不时的变成It works等等问题。指导最近，重新弄了个共享空间，搬家，才算告一段落。罗列下遇到的问题和一些解决问题的方向作参考，由于时间过得久了，具体的方法还需另外百度谷歌去。</p>
+
+<p>1、 LAMP（CentOS） 相关</p>
+
+<p>要弄技术那就好好折腾，找个教程看看，然后看下各个参数设置要设置成什么样，有什么关联。我就是没设置好，弄的时不时的来个“It works！”的提示。真打击，回头继续折腾！</p>
+
+<p>折腾的那个vps是独立128M内存，共享最大到256M。我装上LAMP后，启动程序，内存涨到220M+，收到邮件警告内存使用过高。原因是没有好好设置好Mysql的参数。在网上找了数据库配置的文章后重新设置参数，启动php、Mysql后内存用了80M左右。当然还有更省内存的配置。</p>
+
+<p>2、 乱码</p>
+
+<p>这个是一般是编码问题，mysql4.0 会用latin编码存数据，我们一般用的是utf8，GBK等，所以会有乱码。</p>
+
+<p>解决方案有几个：1）用数据库指令导出抓换编码导入。</p>
+
+<p>2）phpmyadmin导入导出。</p>
+
+<p>3、 wp显示空白页</p>
+
+<p>这个症状比较多，有的个别页显示正常有的任何页不能显示。诱因不少，说几个方法：</p>
+
+<p>1）重新配置wp-config.php。</p>
+
+<p>2）重新配主题。</p>
+
+<p>3）插件冲突，修改删除插件。</p>
+
+<p>4、无法post或comment</p>
+
+<p>这个问题我也不知道为什么，估计是LAMP配置哪出问题了，网上也没有搜到解决方案。</p>
+
+<p>就记得这么些问题了，记起来再添。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

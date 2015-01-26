@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>SYBASE数据库日志详解(转) &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C#,windows,各种库,数据库">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>SYBASE数据库日志详解(转)</h1>
+    <span class="post-date">Oct 9, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/Windows">Windows</a><a class="label" href="http://www.daniex.tk/categories/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C">C#</a><a class="label" href="http://www.daniex.tk/tags/windows">windows</a><a class="label" href="http://www.daniex.tk/tags/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
+    </span>
+    <p>写了点sybase相关的代码，发现数据库配置的时候少做了点配置，导致日志很快就满，无法进行下一步操作。查了下资料，转载过来。</p>
+
+<p>弄sybase遇到一个比较诡异的事情，就是ABC三人弄了三个sybase数据库，A连AB没问题连C有问题，B连B没问题连C有问题，C连A没问题，连BC有问题。数据库连接的代码都是一样的，闹腾啊。</p>
+
+<p>&nbsp;
+<h1>SYBASE数据库日志详解</h1>
+<div></p>
+
+<p>每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs），日志对于数据库的数据安全性、完整性至关重要，本文详解SYBASE数据库日志。</p>
+
+<p>&nbsp;</p>
+
+<p></div>
+我们知道，SYBASE　SQL Server用事务（Transaction）来跟踪所有数据库的变化。事务是SQL　Server的工作单元。一个事务包含一条或多条作为整体执行的 T-SQL语句。每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs）。事务日志自动记录每个用户发出的每个事 务。日志对于数据库的数据安全性、完整性至关重要，我们进行数据库开发和维护必须熟知日志的相关知识。</p>
+
+<p><strong>一、SYBASE　SQL Server 如何记录和读取日志信息</strong></p>
+
+<p>SYBASE　SQL Server是先记Log的机制。每当用户执行将修改数据库的语句时，SQL　Server就会自动地把变化写入日志。一条语句所产生的所有变化都被记录 到日志后，它们就被写到数据页在缓冲区的拷贝里。该数据页保存在缓冲区中，直到别的数据页需要该内存时，该数据页才被写到磁盘上。若事务中的某条语句没能 完成，SQL　Server将回滚事务产生的所有变化。这样就保证了整个数据库系统的一致性和完整性。</p>
+
+<p><strong>二、日志设备</strong>
+Log和数据库的Data一样，需要存放在数据库设备上，可以将Log和Data存放在同一设备上，也可以分开 存放。一般来说，应该将一个数据库的Data和Log存放在不同的数据库设备上。这样做有如下好处：一是可以单独地备份Backup　事务日志；二是防 止数据库溢满；三是可以看到Log的空间使用情况。
+所建Log设备的大小，没有十分精确的方法来确定。一般来说，对于新建的数据库，Log的大小 应为数据库大小的30%左右。Log的大小还取决于数据库修改的频繁程度。如果数据库修改频繁，则Log的增长十分迅速。所以说Log空间大小依赖于用户 是如何使用数据库的。此外，还有其它因素影响Log大小，我们应该根据实际操作情况估计Log大小，并间隔一段时间就对Log进行备份和清除。
+<strong>三、日志的清除</strong>
+随着数据库的使用，数据库的Log是不断增长的，必须在它占满空间之前将它们清除掉。清除Log有两种方法：
+<strong>1.自动清除法
+</strong>
+开放数据库选项 Trunc Log on Chkpt，使数据库系统每隔一段时间自动清除Log。此方法的优点是无须人工干预，由SQL　Server自动执行，并且一般不会出现Log溢满的情况；缺点是只清除Log而不做备份。
+<strong>2.手动清除法</strong>
+执行命令“dump transaction”来清除Log。以下两条命令都可以清除日志：
+<table width="400" border="1" cellspacing="0" cellpadding="2" align="center">
+<tbody>
+<tr>
+<td bgcolor="#e6e6e6">
+dump transaction with truncate_only
+dump transaction with no_log
+</td>
+</tr>
+</tbody>
+</table>
+通常删除事务日志中不活跃的部分可使用“dump transaction with trancate_only”命令，这条命令写进事务日志时，还要做必要的并发性检查。SYBASE提供“dump transaction with no_log”来处理某些非常紧迫的情况，使用这条命令有很大的危险性，SQL　Server会弹出一条警告信息。为了尽量确保数据库的一致性，你应将它 作为“最后一招”。
+以上两种方法只是清除日志，而不做日志备份，若想备份日志，应执行“dump transaction database_name to dumpdevice”命令。
+<strong>四、管理庞大的事务</strong>
+有些操作会大批量地修改数据，如大量数据的修改（Update）、删除一个表的所有数据（Delete）、大量数据的插入（Insert），这样会使Log增长速度很快，有溢满的危险。下面笔者给大家介绍一下如何拆分大事务，以避免日志的溢满。
+例 如执行“update tab_a set col_a=0”命令时，若表tab_a很大，则此Update动作在未完成之前就可能使Log溢满，引起1105错误（Log Full），而且执行这种大的事务所产生的独占锁（Exclusive Table Lock），会阻止其他用户在执行Update操作期间修改这个表，这就有可能引起死锁。为避免这些情况发生，我们可以把这个大的事务分成几个小的事务， 并执行“dump transaction”动作。
+上例中的情况就可以分成两个或多个小的事务：
+<table width="400" border="1" cellspacing="0" cellpadding="2" align="center">
+<tbody>
+<tr>
+<td bgcolor="#e6e6e6">
+update tab_a set col_a=0 where col_b&gt;x
+go
+dump transaction database_name with truncate_only
+go
+update tab_a set col_a=0 where col_b &lt;=x
+go
+dump transaction database_name with truncate_only
+go
+</td>
+</tr>
+</tbody>
+</table>
+这样，一个大的事务就被分成两个较小的事务。
+按照上述方法可以根据需要任意拆分大的事务。若这个事务需要备份到介质上，则不用“with truncate_only”选项。若执行“dump transaction with truncate_only”命令，应该先执行“dump database”。以此类推，我们可以对表删除、表插入等大事务做相应的拆分。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

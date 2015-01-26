@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>C/C on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/c/c/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sat, 19 Nov 2011 09:33:37 &#43;0000</updated>
+    
+    <item>
+      <title>wordpress自定义个性化首页</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</link>
+      <pubDate>Sat, 19 Nov 2011 09:33:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</guid>
+      <description>&lt;p&gt;自己好不容易折腾了个wordpress博客，发现所有人的首页样式都大同小异，是不是很没创意，很扫兴？下面就来说说如何制作一个wordpress个性化首页，让你随心所欲的改变首页的样式，让你有个不一样的主页。最后效果如我的&lt;a title=&#34;澄清的半亩方糖&#34; href=&#34;http://danie.info&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;首页&lt;/strong&gt;&lt;/a&gt;，截图如下：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-974&#34; title=&#34;ss&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/ss.jpg&#34; alt=&#34;&#34; width=&#34;590&#34; height=&#34;482&#34; /&gt;&lt;/p&gt;
+&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;一、 设置wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+wordpress有设置page页作为默认首页的功能，下面的方法就是自定义一个page也模板，然后添加一个用这个模板制作的page页，最后将这个page页设为首页。&lt;/p&gt;
+
+&lt;p&gt;1) ftp或者cpanel到部署wordpress空间或其他。复制wordpress主题目录下的page.php文件，重名名。比如，找到文件（wp目录）/wp-content/themes/zbench/page.php 重命名为 myhomepage.php&lt;/p&gt;
+
+&lt;p&gt;2) 用文本编辑器打开myhomepage.php，例如用记事本打开，在文件首位添加以下代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;&lt;/blockquote&gt;
+“Template Name : ” 后的文字可以是任意的。这样我们就添加了一个新的page页模板。自定义的首页内容其实就是这个myhomepage.php的内容。如何设计修改这个文件，建立自己的个性化首页，会在后面提到。我们先将它设为首页。&lt;/p&gt;
+
+&lt;p&gt;3) 添加一个新的page页：浏览器登录wordpress后台控制面板，dashboard -&amp;gt;pages -&amp;gt; add new。 输入标题，在右方page attributes 面板中会有parent 和 template 的下拉框，在模板下拉框中选择刚刚添加的模板。如图，我添加的模板名字叫“首页”，我就选择它。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-961&#34; title=&#34;selecttemplate&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/selecttemplate.jpg&#34; alt=&#34;&#34; width=&#34;281&#34; height=&#34;253&#34; /&gt;选择好后，给这个page也命名，我是在title那输入的“首页”。然后就可以发表了，其他的内容什么可以都不用写。&lt;/p&gt;
+
+&lt;p&gt;4) 设置首页的最后一步，点击后台的reading设置项：dashboard -&amp;gt; settings -&amp;gt; reading。在第一个设置项目里选择第二项 a static page ，然后再它下方的第一个下拉选项框里选则刚刚给page页设置的名字。比如我的“首页”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-962&#34; title=&#34;setreading&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/setreading.png&#34; alt=&#34;&#34; width=&#34;552&#34; height=&#34;506&#34; /&gt;点击 save changes 保存配置。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这样，我们把首页重新设置好了。这个时候访问首页的时候我们会发现，我们的首页除了头上的标题名称、侧边栏、底部栏之外就什么都没有。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;二、 设计自己的wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+我们已经把wordpress的首页换掉，但是这个首页现在是一片空白，我们要怎么去填充这片空白呢？如果你有html、css、js功底，那就是你一展身手的时候。如果水平一般，那也没关系，能看懂一点点代码，那就有办法去使用一些好的模板，好的插件，设计出一个自己满意的首页还是可以的。我就只是能看懂代码的那种，根本不熟悉网页前端开发。
+&lt;h4&gt;&lt;strong&gt;方法一&lt;/strong&gt;&lt;/h4&gt;
+怎么给这个首页填充内容，最简单的方法就是，编辑我们之前添加的page页。之前我们并没有在文章内容里添加任何东西。只要你有好内容，好方案，就可以像写一个新的文章一样这里出一个你自己的主页。
+&lt;h4&gt;&lt;strong&gt;方法二&lt;/strong&gt;&lt;/h4&gt;
+这个方法就需要去修改我们的myhomepage.php文件。前端开发的牛人大有人在，我也不多说。就把我的一些代码贴出来，有心思看到朋友可以参考下。主要用到的几个函数我罗列一下：
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;&lt;/blockquote&gt;
+这是我使用的wp-thumbnail插件提供的函数，用于显示分类中的文章和缩略图。在wp-thumbnail插件设置中设置好分类文章的相关数据，如图片大小、标题位置。然后再这里调用。id=7表示文章分类id为7的分类下的文章，num=1表示显示一篇。文章分类ID是几可以参考&lt;a title=&#34;wordpress查看分类category的id&#34; href=&#34;http://daniex.info/view-category-id-wordpress.html&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;这篇文章&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;嵌入的探讨tt1 tt2 的css代码是控制左侧栏目的背景。另外有block1和block2的代码是用来控制左右两部分的布局。
+&lt;blockquote&gt;.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}&lt;/p&gt;
+
+&lt;p&gt;.block2 { float:left; width:250px; height:700px}
+.block3 { float:right; width:350px; height:700px}&lt;/blockquote&gt;
+中间栏的随机文章和标题评论控制是用这些函数：
+&lt;blockquote&gt;$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;。。。&lt;/blockquote&gt;
+&amp;nbsp;
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&lt;/blockquote&gt;
+这段代码是用了postviews+的插件，用于统计文章浏览次数。&lt;/p&gt;
+
+&lt;p&gt;更多代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;
+&amp;lt;?php get_header() ?&amp;gt;
+&amp;lt;div id=&amp;ldquo;content&amp;rdquo;&amp;gt;
+&amp;lt;?php the_post(); ?&amp;gt;
+&amp;lt;div &amp;lt;?php post_class(&amp;lsquo;post post-page&amp;rsquo;); ?&amp;gt; id=&amp;ldquo;post-&amp;lt;?php the_ID(); ?&amp;gt;&amp;ldquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;block2&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;a href=&amp;ldquo;&lt;a href=&#34;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&#34;&gt;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&lt;/a&gt; java C# wpf php&amp;hellip;&amp;lt;/span&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;amp;order=recent&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;style&amp;gt;
+.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}
+&amp;lt;/style&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;block3&amp;rdquo;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php
+$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;
+&amp;lt;h3&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink(); ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php the_title(); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;
+&amp;lt;?php if (&amp;lsquo;open&amp;rsquo; == $post-&amp;gt;comment_status) { ?&amp;gt;
+&amp;lt;div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;span&amp;gt;&amp;lt;?php the_time(get_option( &amp;lsquo;date_format&amp;rsquo; )); ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;ldquo;gotocomments&amp;rdquo;&amp;gt;&amp;lt;?php comments_popup_link(&lt;strong&gt;(&amp;lsquo;0 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), __(&amp;lsquo;1 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), &amp;lsquo;% &amp;lsquo;.&lt;/strong&gt;(&amp;rsquo; 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;)); ?&amp;gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;!&amp;ndash;&amp;lt;div&amp;gt;
+&amp;lt;?php if ( $options[&amp;lsquo;excerpt_check&amp;rsquo;]==&amp;lsquo;true&amp;rsquo; ) { the_excerpt(&lt;strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } else { the_content(&lt;/strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } ?&amp;gt;
+&amp;lt;/div&amp;gt; END entry &amp;ndash;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php if(is_sticky()) { ?&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;&amp;lt;?php _e(&amp;lsquo;This is a sticky post!&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt; &amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink() ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php _e(&amp;lsquo;continue reading?&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;
+&amp;lt;?php } else { ?&amp;gt;
+&amp;lt;div style=&amp;ldquo;height:1px;&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php echo mb_strimwidth(strip_tags(apply_filters(‘the_content’, $post-&amp;gt;post_content)), 0, 100,&amp;ldquo;&amp;hellip;&amp;rdquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
+&amp;lt;?php endforeach; ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash; END post &amp;ndash;&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash;content&amp;ndash;&amp;gt;
+&amp;lt;?php get_sidebar() ?&amp;gt;
+&amp;lt;?php get_footer() ?&amp;gt;&lt;/blockquote&gt;
+&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>C#调用C&#43;&#43;DLL--委托</title>
+      <link>http://www.daniex.tk/blog/2011/c-calling-c-dll-commissioned/</link>
+      <pubDate>Tue, 21 Jun 2011 09:01:38 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/c-calling-c-dll-commissioned/</guid>
+      <description>&lt;p&gt;直接上代码，ref类型参数传递也是可以的。和之前一篇用反射调用可以互相参考。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;em&gt;&lt;a title=&#34;C#调用C++写的DLL--反射&#34; href=&#34;http://daniex.info/c-call-dll-written-in-c.html&#34; target=&#34;_blank&#34;&gt;C#调用C++DLL&amp;ndash;反射&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;
+&lt;pre class=&#34;brush: csharp&#34;&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;&lt;/p&gt;
+
+&lt;p&gt;using System.Runtime.InteropServices;&lt;/p&gt;
+
+&lt;p&gt;namespace Test
+{
+    class DLLLoader
+    {
+            [DllImport(&amp;ldquo;kernel32.dll&amp;rdquo;)]
+            public extern static IntPtr LoadLibrary(string path);&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+        public extern static IntPtr GetProcAddress(IntPtr lib, string funcName);
+
+        [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+        public extern static bool FreeLibrary(IntPtr lib);
+
+        [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+        public static extern IntPtr GetStdHandle(int nStdHandle);
+
+        [DllImport(&amp;quot;user32&amp;quot;, EntryPoint = &amp;quot;CallWindowProc&amp;quot;)]
+        public static extern int CallWindowProc(IntPtr lpPrevWndFunc, int hwnd, int MSG, int wParam, int lParam);
+
+        IntPtr DllLib;//DLL文件名柄     
+        #region 构造函数
+        public DLLLoader()
+        { }
+        public DLLLoader(string dllpath)
+        {
+            DllLib = LoadLibrary(dllpath);
+        }
+        #endregion
+        ///      
+        /// 析构函数     
+        ///      
+        ~DLLLoader()
+        {
+            FreeLibrary(DllLib);//释放名柄     
+        }
+        public void initPath(string dllpath)
+        {
+            if (DllLib == IntPtr.Zero)
+            {
+                DllLib = LoadLibrary(dllpath);
+            }
+        }
+        ///      
+        /// 获取ＤＬＬ中一个方法的委托     
+        ///      
+        /// &amp;lt;param name=&amp;quot;methodname&amp;quot; /&amp;gt;     
+        /// &amp;lt;param name=&amp;quot;methodtype&amp;quot; /&amp;gt;     
+        ///      
+        public Delegate InvokeMethod(string methodname, Type methodtype)
+        {
+            IntPtr MethodPtr = GetProcAddress(DllLib, methodname);
+
+            return (Delegate)Marshal.GetDelegateForFunctionPointer(MethodPtr, methodtype);
+        }      
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;*********&lt;strong&gt;&lt;em&gt;调用&lt;/em&gt;&lt;/strong&gt;************
+        DLLLoader loaddll = new DLLLoader(&amp;ldquo;E:\workspaces\WpfApplication1\Debug\DLL.dll&amp;rdquo;);//实例化加载ＤＬＬ文件的类，，如上&lt;br /&gt;
+        public delegate int delegateadd(ref int a);//声明此方法的一个委托&lt;/p&gt;
+
+&lt;p&gt;public void testMethod()
+{
+        int a = 1;
+        delegateadd m = (delegateadd)loaddll.InvokeMethod(&amp;ldquo;add&amp;rdquo;, typeof(delegateadd));//获取其中方法的委托&lt;br /&gt;
+        int re = m(ref a);//得到ＲＥ，成功&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;***********&lt;strong&gt;&lt;em&gt;DLL&lt;/em&gt;&lt;/strong&gt;***********
+extern &amp;ldquo;C&amp;rdquo; __declspec(dllexport) int add(int &amp;amp; a);&lt;/p&gt;
+
+&lt;p&gt;int add(int &amp;amp; a)
+{
+    a = 10;
+    return 20;
+}
+&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>RESTful WebService 搭建</title>
+      <link>http://www.daniex.tk/blog/2011/restful-webservice-build/</link>
+      <pubDate>Mon, 30 May 2011 02:36:51 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/restful-webservice-build/</guid>
+      <description>&lt;p&gt;最近了解了些关于WebService搭建方面的知识，这里稍稍做下整理。看的内容不少，但不够深入，如有不对的请指证。&lt;/p&gt;
+
+&lt;p&gt;WSDL+SOAP搭建web Service的文档不少，就不多做介绍了。尝试在Jdeveloper下用ADF框架搭建着类WebService确实是方便快捷，轻松上手。这里主要罗列下RESTful框架的webservice搭建。&lt;/p&gt;
+
+&lt;p&gt;在C/C++下开发RESTful服务需要第三方的库。核心是建立HTTP服务器和HTTP客户端的问题，其实就是在socket连接时使用TCP，再在上边加一层HTTP协议。如果需要的话中间可以加入SSL协议，使支持HTTPS。推荐使用的库是和mongoose和BOOST下的pion库。使用boost库非常方便，了解原理参照例子程序能很快搭建出来。mongoose是个轻量级的http server。核心代码就一个.c和一个.h文件。代码5000行。使用它的话需要稍稍阅读下源代码。&lt;/p&gt;
+
+&lt;p&gt;在java上构建RESTful服务方法也很多。比如RESTlet库jersey库等等。RESTlet的资料相对jersey容易找一些。使用方法各有不同。RESTlet需要另外的http连接器库，比如GRIZZLY或者SimpleHTTP来建立HTTP服务器和客户端，然后再用RESTlet做更好的支持。JAX-RS: Java API for RESTful Web Services, SSL, JAXB, JSON, WADL等等。jersey可以用web服务器，比如glassfish，weblogic等通过annotation进行较快速的RESTful开发。也可以通过Grizzly等建通服务器。构建http请求除了使用内嵌接口之外，也可以使用java.net中的接口来建立连接发送请求。&lt;/p&gt;
+
+&lt;p&gt;mongoose： &lt;a title=&#34;mongoose&#34; href=&#34;http://code.google.com/p/mongoose/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://code.google.com/p/mongoose/&#34;&gt;http://code.google.com/p/mongoose/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;boost pion: &lt;a title=&#34;pion&#34; href=&#34;http://www.pion.org/projects/pion-network-library&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.pion.org/projects/pion-network-library&#34;&gt;http://www.pion.org/projects/pion-network-library&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;TESTlet： &lt;a title=&#34;restlet&#34; href=&#34;http://www.restlet.org/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.restlet.org/&#34;&gt;http://www.restlet.org/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;jersey： &lt;a title=&#34;jersey&#34; href=&#34;http://jersey.java.net/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://jersey.java.net/&#34;&gt;http://jersey.java.net/&lt;/a&gt;&lt;/a&gt;
+&lt;pre class=&#34;brush:java&#34;&gt;******&lt;strong&gt;&lt;em&gt;jersey web服务器上RESTful服务例程&lt;/em&gt;&lt;/strong&gt;****&lt;/p&gt;
+
+&lt;p&gt;package com.sun.jersey.samples.helloworld.resources;&lt;/p&gt;
+
+&lt;p&gt;import javax.ws.rs.GET;&lt;/p&gt;
+
+&lt;p&gt;import javax.ws.rs.Produces;&lt;/p&gt;
+
+&lt;p&gt;import javax.ws.rs.Path;&lt;/p&gt;
+
+&lt;p&gt;// The Java class will be hosted at the URI path &amp;ldquo;/helloworld&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;@Path(&amp;ldquo;/helloworld&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;public class HelloWorldResource {&lt;/p&gt;
+
+&lt;p&gt;// The Java method will process HTTP GET requests&lt;/p&gt;
+
+&lt;p&gt;@GET&lt;/p&gt;
+
+&lt;p&gt;// The Java method will produce content identified by the MIME Media&lt;/p&gt;
+
+&lt;p&gt;// type &amp;ldquo;text/plain&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;@Produces(&amp;ldquo;text/plain&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;public String getClichedMessage() {&lt;/p&gt;
+
+&lt;p&gt;// Return some cliched textual content&lt;/p&gt;
+
+&lt;p&gt;return &amp;ldquo;Hello World&amp;rdquo;;&lt;/p&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;}
+&lt;/pre&gt;
+&lt;pre class=&#34;brush:xml&#34;&gt;
+****&lt;strong&gt;&lt;em&gt;web.xml文件&lt;/em&gt;&lt;/strong&gt;*****&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?xml version=&amp;ldquo;1.0&amp;rdquo; encoding=&amp;ldquo;UTF-8&amp;rdquo;?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;web-app version=&amp;ldquo;2.4&amp;rdquo; xmlns=&amp;ldquo;&lt;a href=&#34;http://java.sun.com/xml/ns/j2ee&amp;quot;&#34;&gt;http://java.sun.com/xml/ns/j2ee&amp;quot;&lt;/a&gt; xmlns:xsi=&amp;ldquo;&lt;a href=&#34;http://www.w3.org/2001/XMLSchema-instance&amp;quot;&#34;&gt;http://www.w3.org/2001/XMLSchema-instance&amp;quot;&lt;/a&gt; xsi:schemaLocation=&amp;ldquo;&lt;a href=&#34;http://java.sun.com/xml/ns/j2ee&#34;&gt;http://java.sun.com/xml/ns/j2ee&lt;/a&gt; &lt;a href=&#34;http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&amp;quot;&amp;gt;&#34;&gt;http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&amp;quot;&amp;gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-name&amp;gt;Jersey Web Application&amp;lt;/servlet-name&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-class&amp;gt;com.sun.jersey.spi.container.servlet.ServletContainer&amp;lt;/servlet-class&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;init-param&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;param-name&amp;gt;com.sun.jersey.config.property.packages&amp;lt;/param-name&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;param-value&amp;gt;com.sun.jersey.samples.helloworld.resources&amp;lt;/param-value&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/init-param&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/servlet&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-mapping&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-name&amp;gt;Jersey Web Application&amp;lt;/servlet-name&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/servlet-mapping&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/web-app&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>C#调用C&#43;&#43;写的DLL</title>
+      <link>http://www.daniex.tk/blog/2011/c-call-dll-written-in-c/</link>
+      <pubDate>Thu, 12 May 2011 06:48:53 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/c-call-dll-written-in-c/</guid>
+      <description>&lt;p&gt;方法有不少，这里记录其中的一个方法。编译、调用通过了的。期间遇到的问题是C#调用时传递string类型的参数和返回值会报错。TargetInvocationException异常，值不在范围内，内存不可访问等等。&lt;/p&gt;
+
+&lt;p&gt;解决方法是；在c++的DLL中将string类型的参数返回值改为LPTSTR类型。在C#程序中使用StringBuilder类型来传入参数和接受返回值。&lt;/p&gt;
+
+&lt;p&gt;下面是代码：
+&lt;pre class=&#34;brush: csharp&#34;&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;&lt;/p&gt;
+
+&lt;p&gt;//1.       打开项目“Tzb”，打开类视图，右击“Tzb”，选择“添加”&amp;ndash;&amp;gt;“类”，类名设置为“dld”，
+//即dynamic loading dll 的每个单词的开头字母。
+//2.       添加所需的命名空间及声明参数传递方式枚举：
+using System.Runtime.InteropServices; // 用 DllImport 需用此 命名空间
+using System.Reflection; // 使用 Assembly 类需用此 命名空间
+using System.Reflection.Emit; // 使用 ILGenerator 需用此 命名空间&lt;/p&gt;
+
+&lt;p&gt;namespace WpfApplication1
+{
+    //在“public class dld”上面添加如下代码声明参数传递方式枚举：
+    ///
+    /// 参数传递方式枚举 ,ByValue 表示值传递 ,ByRef 表示址传递
+    ///&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public enum ModePass
+{
+    ByValue = 0x0001,
+    ByRef = 0x0002
+}
+public class DLD
+{      
+
+    //3.       声明LoadLibrary、GetProcAddress、FreeLibrary及私有变量hModule和farProc：        
+    /// 
+    /// 原型是 :HMODULE LoadLibrary(LPCTSTR lpFileName);
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt;DLL 文件名 
+    ///  函数库模块的句柄 
+    [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+    static extern IntPtr LoadLibrary(string lpFileName);
+
+    /// 
+    /// 原型是 : FARPROC GetProcAddress(HMODULE hModule, LPCWSTR lpProcName);
+    /// 
+    /// &amp;lt; param name=&amp;quot;hModule&amp;quot; / &amp;gt; 包含需调用函数的函数库模块的句柄 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+    ///  函数指针 
+
+    [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+    static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+
+    /// 
+    /// 原型是 : BOOL FreeLibrary(HMODULE hModule);
+    /// 
+    /// &amp;lt; param name=&amp;quot;hModule&amp;quot; / &amp;gt; 需释放的函数库模块的句柄 
+    ///  是否已释放指定的 Dll
+
+    [DllImport(&amp;quot;kernel32&amp;quot;, EntryPoint = &amp;quot;FreeLibrary&amp;quot;, SetLastError = true)]
+    static extern bool FreeLibrary(IntPtr hModule);
+
+    /// 
+    /// Loadlibrary 返回的函数库模块的句柄
+    /// 
+
+    private IntPtr hModule = IntPtr.Zero;
+
+    /// 
+    /// GetProcAddress 返回的函数指针
+    /// 
+
+    public IntPtr farProc = IntPtr.Zero;
+
+
+    //4.       添加LoadDll方法，并为了调用时方便，重载了这个方法：
+    /// 
+    /// 装载 Dll
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt;DLL 文件名 
+
+    public void LoadDll(string lpFileName)
+    {
+
+        hModule = LoadLibrary(lpFileName);
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpFileName + &amp;quot;.&amp;quot;));
+    }
+
+
+    //         若已有已装载Dll的句柄，可以使用LoadDll方法的第二个版本：
+    public void LoadDll(IntPtr HMODULE)
+    {
+        if (HMODULE == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 所传入的函数库模块的句柄 HMODULE 为空 .&amp;quot;));
+        hModule = HMODULE;
+    }
+
+
+    //5.       添加LoadFun方法，并为了调用时方便，也重载了这个方法，方法的具体代码及注释如下：
+    /// 
+    /// 获得函数指针
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+
+    public void LoadFun(string lpProcName)
+    { // 若函数库模块的句柄为空，则抛出异常
+
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        // 取得函数指针
+        farProc = GetProcAddress(hModule, lpProcName);
+
+        // 若函数指针，则抛出异常
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 : &amp;quot; + lpProcName + &amp;quot; 这个函数的入口点 &amp;quot;));
+
+    }
+
+    /// 
+    /// 获得函数指针
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt; 包含需调用函数的 DLL 文件名 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+
+    public void LoadFun(string lpFileName, string lpProcName)
+    { // 取得函数库模块的句柄
+        hModule = LoadLibrary(lpFileName);
+
+        // 若函数库模块的句柄为空，则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpFileName + &amp;quot;.&amp;quot;));
+
+        // 取得函数指针
+        farProc = GetProcAddress(hModule, lpProcName);
+
+        // 若函数指针，则抛出异常
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpProcName + &amp;quot; 这个函数的入口点 &amp;quot;));
+
+    }
+
+
+    //6.  添加UnLoadDll及Invoke方法，Invoke方法也进行了重载：
+    /// 
+    /// 卸载 Dll
+    /// 
+
+    public void UnLoadDll()
+    {
+        FreeLibrary(hModule);
+        hModule = IntPtr.Zero;
+        farProc = IntPtr.Zero;
+    }
+
+    /// 
+    /// 调用所设定的函数
+    /// 
+    /// &amp;lt; param name=&amp;quot;ObjArray_Parameter&amp;quot; / &amp;gt; 实参 
+    /// &amp;lt; param name=&amp;quot;TypeArray_ParameterType&amp;quot; / &amp;gt; 实参类型 
+    /// &amp;lt; param name=&amp;quot;ModePassArray_Parameter&amp;quot; / &amp;gt; 实参传送方式 
+    /// &amp;lt; param name=&amp;quot;Type_Return&amp;quot; / &amp;gt; 返回类型 
+    ///  返回所调用函数的 object
+
+    public object Invoke(object[] ObjArray_Parameter, Type[] TypeArray_ParameterType, 
+                             ModePass[] ModePassArray_Parameter, Type Type_Return)
+    {
+
+        // 下面 3 个 if 是进行安全检查 , 若不能通过 , 则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数指针为空 , 请确保已进行 LoadFun 操作 !&amp;quot;));
+        if (ObjArray_Parameter.Length != ModePassArray_Parameter.Length)
+            throw (new Exception(&amp;quot; 参数个数及其传递方式的个数不匹配 .&amp;quot;));
+
+        // 下面是创建 MyAssemblyName 对象并设置其 Name 属性
+        AssemblyName MyAssemblyName = new AssemblyName();
+        MyAssemblyName.Name = &amp;quot;InvokeFun&amp;quot;;
+
+        // 生成单模块配件
+        AssemblyBuilder MyAssemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(
+                                                   MyAssemblyName, AssemblyBuilderAccess.Run);
+        ModuleBuilder MyModuleBuilder = MyAssemblyBuilder.DefineDynamicModule(&amp;quot;InvokeDll&amp;quot;);
+
+        // 定义要调用的方法 , 方法名为“ MyFun ”，返回类型是“ Type_Return ”
+        //参数类型是“ TypeArray_ParameterType ”
+        MethodBuilder MyMethodBuilder = MyModuleBuilder.DefineGlobalMethod(
+                                      &amp;quot;Init&amp;quot;, MethodAttributes.Public | MethodAttributes.Static, 
+                                      Type_Return, TypeArray_ParameterType);
+
+        // 获取一个 ILGenerator ，用于发送所需的 IL
+        ILGenerator IL = MyMethodBuilder.GetILGenerator();
+
+        int i;
+        for (i = 0; i &amp;amp;lt; ObjArray_Parameter.Length; i++)
+        {// 用循环将参数依次压入堆栈
+            switch (ModePassArray_Parameter[i])
+            {
+                case ModePass.ByValue:
+                    IL.Emit(OpCodes.Ldarg, i);
+                    break;
+                case ModePass.ByRef:
+                    IL.Emit(OpCodes.Ldarga, i);
+                    break;
+                default:
+                    throw (new Exception(&amp;quot; 第 &amp;quot; + (i + 1).ToString() + &amp;quot; 个参数没有给定正确的传递方式 .&amp;quot;));
+            }
+        }
+
+        if (IntPtr.Size == 4)
+        {// 判断处理器类型
+            IL.Emit(OpCodes.Ldc_I4, farProc.ToInt32());
+        }
+        else if (IntPtr.Size == 8 )
+        {
+            IL.Emit(OpCodes.Ldc_I8, farProc.ToInt64());
+        }
+        else
+        {
+            throw new PlatformNotSupportedException();
+        }
+
+        IL.EmitCalli(OpCodes.Calli, CallingConvention.StdCall, Type_Return, TypeArray_ParameterType);
+        IL.Emit(OpCodes.Ret); // 返回值
+        MyModuleBuilder.CreateGlobalFunctions();
+
+        // 取得方法信息
+        MethodInfo MyMethodInfo = MyModuleBuilder.GetMethod(&amp;quot;Init&amp;quot;);
+        return MyMethodInfo.Invoke(null, ObjArray_Parameter);// 调用方法，并返回其值
+    }
+
+
+
+    //Invoke方法的第二个版本，它是调用了第一个版本的：
+    /// 
+    /// 调用所设定的函数
+    /// 
+    /// &amp;lt; param name=&amp;quot;IntPtr_Function&amp;quot; / &amp;gt; 函数指针 
+    /// &amp;lt; param name=&amp;quot;ObjArray_Parameter&amp;quot; / &amp;gt; 实参 
+    /// &amp;lt; param name=&amp;quot;TypeArray_ParameterType&amp;quot; / &amp;gt; 实参类型 
+    /// &amp;lt; param name=&amp;quot;ModePassArray_Parameter&amp;quot; / &amp;gt; 实参传送方式 
+    /// &amp;lt; param name=&amp;quot;Type_Return&amp;quot; / &amp;gt; 返回类型 
+    ///  返回所调用函数的 object
+
+    public object Invoke(IntPtr IntPtr_Function, object[] ObjArray_Parameter, 
+                           Type[] TypeArray_ParameterType, ModePass[] ModePassArray_Parameter, 
+                           Type Type_Return)
+    {
+
+        // 下面 2 个 if 是进行安全检查 , 若不能通过 , 则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        if (IntPtr_Function == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数指针 IntPtr_Function 为空 !&amp;quot;));
+        farProc = IntPtr_Function;
+        return Invoke(ObjArray_Parameter, TypeArray_ParameterType, ModePassArray_Parameter, Type_Return);
+    }            
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+&lt;/pre&gt;
+&lt;pre class=&#34;brush: csharp&#34;&gt;/****&lt;strong&gt;&lt;em&gt;调用方法&lt;/em&gt;&lt;/strong&gt;***/
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        DLD newDLL = new DLD();
+        newDLL.LoadFun(&amp;quot;E:\\workspaces\\WpfApplication1\\Debug\\DLL.dll&amp;quot;, &amp;quot;Init&amp;quot;);
+        StringBuilder MyStringBuilder = new StringBuilder(&amp;quot;Hello World!&amp;quot;);
+        object[] obj = new object[] { MyStringBuilder };
+        Type[] ty = new Type[] { typeof(StringBuilder) };
+        ModePass[] mode = new ModePass[] { ModePass.ByValue };
+        Type Type_Return = typeof(StringBuilder);
+        StringBuilder j = (StringBuilder)newDLL.Invoke(obj, ty, mode, Type_Return);
+
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;/*****&lt;strong&gt;&lt;em&gt;c++DLL中的函数&lt;/em&gt;&lt;/strong&gt;****/&lt;/p&gt;
+
+&lt;p&gt;extern &amp;ldquo;C&amp;rdquo; __declspec(dllexport) LPTSTR Init(LPTSTR a);&lt;/p&gt;
+
+&lt;p&gt;LPTSTR Init(LPTSTR a)
+{
+    strcat((char *)a, &amp;ldquo;added&amp;rdquo;);
+    return a;
+}
+&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

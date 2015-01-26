@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Webservice on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/webservice/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Wed, 27 Jul 2011 10:23:43 &#43;0000</updated>
+    
+    <item>
+      <title>java发送http请求例子</title>
+      <link>http://www.daniex.tk/blog/2011/java-send-http-request-example/</link>
+      <pubDate>Wed, 27 Jul 2011 10:23:43 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/java-send-http-request-example/</guid>
+      <description>&lt;p&gt;&lt;code&gt; &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;折腾java的restful webservice，另外写程序发送http请求时进行性能方面测试。当向一个地址连续发送http请求不设置timeout参数时，会在一个http连接中发送多次数据。&lt;/p&gt;
+
+&lt;p&gt;用sniffer抓包是发现在一次SYN建立tcp链接后，有两次发送请求数据。第二次发送的数据一直在等待响应程序阻塞。问题尚未解决，折腾ing。&lt;/p&gt;
+
+&lt;p&gt;一下是http请求发送的代码。单个请求发送是成功的。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;&lt;/p&gt;
+
+&lt;p&gt;public class HTTPRequestPoster
+{
+/**
+* Sends an HTTP GET request to a url
+*
+* @param endpoint - The URL of the server. (Example: &amp;ldquo; &lt;a href=&#34;http://www.yahoo.com/search&amp;quot;&#34;&gt;http://www.yahoo.com/search&amp;quot;&lt;/a&gt;)
+* @param requestParameters - all the request parameters (Example:  &amp;ldquo;param1=val1&amp;amp;param2=val2&amp;rdquo;). Note: This method will add the question  mark (?) to the request - DO NOT add it yourself
+* @return - The response from the end point
+*/
+public static String sendGetRequest(String endpoint, String requestParameters)
+{
+String result = null;
+if (endpoint.startsWith(&amp;ldquo;http://&amp;ldquo;))
+{
+// Send a GET request to the servlet
+try
+{&lt;/p&gt;
+
+&lt;p&gt;// Send data
+String urlStr = endpoint;
+if (requestParameters != null &amp;amp;&amp;amp; requestParameters.length () &amp;gt; 0)
+{
+urlStr += &amp;ldquo;?&amp;rdquo; + requestParameters;
+}
+URL url = new URL(urlStr);
+URLConnection conn = url.openConnection ();&lt;/p&gt;
+
+&lt;p&gt;// Get the response
+BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+StringBuffer sb = new StringBuffer();
+String line;
+while ((line = rd.readLine()) != null)
+{
+sb.append(line);
+}
+rd.close();
+result = sb.toString();
+} catch (Exception e)
+{
+e.printStackTrace();
+}
+}
+return result;
+}&lt;/p&gt;
+
+&lt;p&gt;/**
+* Reads data from the data reader and posts it to a server via POST request.
+* data - The data you want to send
+* endpoint - The server&amp;rsquo;s address
+* output - writes the server&amp;rsquo;s response to output
+* @throws Exception
+*/
+public static void postData(Reader data, URL endpoint, Writer output) throws Exception
+{
+HttpURLConnection urlc = null;
+try
+{
+urlc = (HttpURLConnection) endpoint.openConnection();
+try
+{
+urlc.setRequestMethod(&amp;ldquo;POST&amp;rdquo;);
+} catch (ProtocolException e)
+{
+throw new Exception(&amp;ldquo;Shouldn&amp;rsquo;t happen: HttpURLConnection doesn&amp;rsquo;t support POST??&amp;ldquo;, e);
+}
+urlc.setDoOutput(true);
+urlc.setDoInput(true);
+urlc.setUseCaches(false);
+urlc.setAllowUserInteraction(false);
+urlc.setRequestProperty(&amp;ldquo;Content-type&amp;rdquo;, &amp;ldquo;text/xml; charset=&amp;rdquo; + &amp;ldquo;UTF-8&amp;rdquo;);&lt;/p&gt;
+
+&lt;p&gt;OutputStream out = urlc.getOutputStream();&lt;/p&gt;
+
+&lt;p&gt;try
+{
+Writer writer = new OutputStreamWriter(out, &amp;ldquo;UTF-8&amp;rdquo;);
+pipe(data, writer);
+writer.close();
+} catch (IOException e)
+{
+throw new Exception(&amp;ldquo;IOException while posting data&amp;rdquo;, e);
+} finally
+{
+if (out != null)
+out.close();
+}&lt;/p&gt;
+
+&lt;p&gt;InputStream in = urlc.getInputStream();
+try
+{
+Reader reader = new InputStreamReader(in);
+pipe(reader, output);
+reader.close();
+} catch (IOException e)
+{
+throw new Exception(&amp;ldquo;IOException while reading response&amp;rdquo;, e);
+} finally
+{
+if (in != null)
+in.close();
+}&lt;/p&gt;
+
+&lt;p&gt;} catch (IOException e)
+{
+throw new Exception(&amp;ldquo;Connection error (is server running at &amp;rdquo; + endpoint + &amp;ldquo; ?): &amp;ldquo; + e);
+} finally
+{
+if (urlc != null)
+urlc.disconnect();
+}
+}&lt;/p&gt;
+
+&lt;p&gt;/**
+* Pipes everything from the reader to the writer via a buffer
+*/
+private static void pipe(Reader reader, Writer writer) throws IOException
+{
+char[] buf = new char[1024];
+int read = 0;
+while ((read = reader.read(buf)) &amp;gt;= 0)
+{
+writer.write(buf, 0, read);
+}
+writer.flush();
+}&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;}&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>用jersey和JSF开发应用，部署在weblogic上。</title>
+      <link>http://www.daniex.tk/blog/2011/jersey-jsf-weblogic-development/</link>
+      <pubDate>Wed, 29 Jun 2011 12:24:54 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/jersey-jsf-weblogic-development/</guid>
+      <description>&lt;p&gt;项目中尝试开发小工具，在构建RESTful服务的同时提供web页面。想可以用jersey和JSF在weblogic上部署工程。由于对两者都不是很熟。所以开发过程中磕磕绊绊比较不顺畅。&lt;/p&gt;
+
+&lt;p&gt;单个功能的应用开发都挺顺利的，但当集成两者的时候发现，要么RESTful服务工作不正常要们web页面不正常。查了半天发现是web.xml中定义servlet有冲突。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet&amp;gt;
+&amp;lt;servlet-name&amp;gt;Faces Servlet&amp;lt;/servlet-name&amp;gt;
+&amp;lt;servlet-class&amp;gt;javax.faces.webapp.FacesServlet&amp;lt;/servlet-class&amp;gt;
+&amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt;
+&amp;lt;/servlet&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+&amp;lt;servlet-name&amp;gt;Faces Servlet&amp;lt;/servlet-name&amp;gt;
+&amp;lt;url-pattern&amp;gt;/faces/&lt;em&gt;&amp;lt;/url-pattern&amp;gt;
+&amp;lt;/servlet-mapping&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;JSF自己生成的部分
+&amp;lt;servlet&amp;gt;
+&amp;lt;servlet-name&amp;gt;My Jersey Appliaction&amp;lt;/servlet-name&amp;gt;
+&amp;lt;servlet-class&amp;gt;com.sun.jersey.spi.container.servlet.ServletContainer&amp;lt;/servlet-class&amp;gt;
+&amp;lt;/servlet&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+&amp;lt;servlet-name&amp;gt;My Jersey Appliaction&amp;lt;/servlet-name&amp;gt;
+&amp;lt;url-pattern&amp;gt;/&lt;/em&gt;&amp;lt;/url-pattern&amp;gt;
+&amp;lt;/servlet-mapping&amp;gt;
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-jersey的一种部署方式&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;要注意的是,他们的url-pattern是冲突的&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;1 三种写法&lt;/p&gt;
+
+&lt;p&gt;①　完全匹配&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;/test/list.do&amp;lt;/url-pattern&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;② 目录匹配&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;/test/*&amp;lt;/url-pattern&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;③ 扩展名匹配&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;*.do&amp;lt;/url-pattern&amp;gt;
+2 注意事项&lt;/p&gt;
+
+&lt;p&gt;☆ 容器会首先查找完全匹配，如果找不到，再查找目录匹配，如果也找不到，就查找扩展名匹配。&lt;/p&gt;
+
+&lt;p&gt;☆ 如果一个请求匹配多个“目录匹配”，容器会选择最长的匹配。&lt;/p&gt;
+
+&lt;p&gt;☆ 定义”/*.action”这样一个看起来很正常的匹配会报错？因为这个匹配即属于路径映射，也属于扩展映射，导致容器无法判断。
+☆ “/” 是用来定义default servlet映射的。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;servlet+jsr311就能实现简单的RESTful服务端。项目需要的时候再用jersey或者RESTlet，EasyREST之类的包吧。
+&lt;h3&gt;————————————————————————————————————&lt;/h3&gt;
+&lt;h3&gt;RESTful Web 服务简介&lt;/h3&gt;
+REST 在 2000 年由 Roy Fielding 在博士论文中提出，他是 HTTP 规范 1.0 和 1.1 版的首席作者之一。&lt;/p&gt;
+
+&lt;p&gt;REST 中最重要的概念是资源（resources），使用全球 ID（通常使用 URI）标识。客户端应用程序使用 HTTP 方法（GET/ POST/ PUT/ DELETE）操作资源或资源集。RESTful Web 服务是使用 HTTP 和 REST 原理实现的 Web 服务。通常，RESTful Web 服务应该定义以下方面：&lt;/p&gt;
+
+&lt;p&gt;Web 服务的基/根 URI，比如 &lt;a href=&#34;http://host//resources。&#34;&gt;http://host//resources。&lt;/a&gt;
+支持 MIME 类型的响应数据，包括 JSON/XML/ATOM 等等。
+服务支持的操作集合（例如 POST、GET、PUT 或 DELETE）。
+&lt;h3&gt;&lt;strong&gt;JSR 311 (JAX-RS) 和 Jersey&lt;/strong&gt;&lt;/h3&gt;
+JSR 311 或 JAX-RS（用于 RESTful Web Services 的 Java API）的提议开始于 2007 年，1.0 版本到 2008 年 10 月定稿。目前，JSR 311 版本 1.1 还处于草案阶段。该 JSR 的目的是提供一组 API 以简化 REST 样式的 Web 服务的开发。&lt;/p&gt;
+
+&lt;p&gt;在 JAX-RS 规范之前，已经有 Restlet 和 RestEasy 之类的框架，可以帮助您实现 RESTful Web 服务，但是它们不够直观。Jersey 是 JAX-RS 的参考实现，它包含三个主要部分。&lt;/p&gt;
+
+&lt;p&gt;核心服务器（Core Server）：通过提供 JSR 311 中标准化的注释和 API 标准化，您可以用直观的方式开发 RESTful Web 服务。
+核心客户端（Core Client）：Jersey 客户端 API 帮助您与 REST 服务轻松通信。
+集成（Integration）：Jersey 还提供可以轻松集成 Spring、Guice、Apache Abdera 的库。&lt;/p&gt;
+
+&lt;p&gt;以上取自：&lt;a title=&#34;使用 Jersey 和 Apache Tomcat 构建 RESTful Web 服务&#34; href=&#34;http://www.ibm.com/developerworks/cn/web/wa-aj-tomcat/&#34; target=&#34;_blank&#34;&gt;IBM&amp;ndash;使用 Jersey 和 Apache Tomcat 构建 RESTful Web 服务&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h3&gt;Java Server Faces (JSF)&lt;/h3&gt;
+JSF是一种用于构建Java Web 应用程序的标准框架(是Java Community Process  规定的JSR-127标准)。它提供了一种以组件为中心的用户界面(UI)构建方法，从而简化了Java服务器端应用程序的开发。由于由Java  Community Process (JCP) 推动，属于Java EE 5中的技术规范，而受到了厂商的广泛支持。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SOAPUI测试WebService</title>
+      <link>http://www.daniex.tk/blog/2011/soapui-test-webservice/</link>
+      <pubDate>Fri, 17 Jun 2011 08:48:17 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/soapui-test-webservice/</guid>
+      <description>&lt;p&gt;最近要测试web service找到个不错的软件SOAPUI。推荐一下。&lt;/p&gt;
+
+&lt;p&gt;由于Web服务是被程序调用的，一般不会提供界面让最终用户或测试人员直接使用。SOAPUI是针对这个情况特别开发的一个工具，用户可以在SOAPUI中通过简单的操作完成复杂的测试。当然SOAPUI还不仅仅是这点作用就，需要大家发掘发掘下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;SOAPUI&#34; src=&#34;http://www.soapui.org/images/stories/Getting_Started/Import_sample_soapUI_project.png&#34; alt=&#34;&#34; width=&#34;374&#34; height=&#34;398&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;地址：&lt;a href=&#34;http://www.soapui.org/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.soapui.org/&#34;&gt;http://www.soapui.org/&lt;/a&gt;&lt;/a&gt;
+文档：&lt;a href=&#34;http://www.soapui.org/Getting-Started/installing-on-windows.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.soapui.org/Getting-Started/installing-on-windows.html&#34;&gt;http://www.soapui.org/Getting-Started/installing-on-windows.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>RESTful WebService 搭建</title>
+      <link>http://www.daniex.tk/blog/2011/restful-webservice-build/</link>
+      <pubDate>Mon, 30 May 2011 02:36:51 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/restful-webservice-build/</guid>
+      <description>&lt;p&gt;最近了解了些关于WebService搭建方面的知识，这里稍稍做下整理。看的内容不少，但不够深入，如有不对的请指证。&lt;/p&gt;
+
+&lt;p&gt;WSDL+SOAP搭建web Service的文档不少，就不多做介绍了。尝试在Jdeveloper下用ADF框架搭建着类WebService确实是方便快捷，轻松上手。这里主要罗列下RESTful框架的webservice搭建。&lt;/p&gt;
+
+&lt;p&gt;在C/C++下开发RESTful服务需要第三方的库。核心是建立HTTP服务器和HTTP客户端的问题，其实就是在socket连接时使用TCP，再在上边加一层HTTP协议。如果需要的话中间可以加入SSL协议，使支持HTTPS。推荐使用的库是和mongoose和BOOST下的pion库。使用boost库非常方便，了解原理参照例子程序能很快搭建出来。mongoose是个轻量级的http server。核心代码就一个.c和一个.h文件。代码5000行。使用它的话需要稍稍阅读下源代码。&lt;/p&gt;
+
+&lt;p&gt;在java上构建RESTful服务方法也很多。比如RESTlet库jersey库等等。RESTlet的资料相对jersey容易找一些。使用方法各有不同。RESTlet需要另外的http连接器库，比如GRIZZLY或者SimpleHTTP来建立HTTP服务器和客户端，然后再用RESTlet做更好的支持。JAX-RS: Java API for RESTful Web Services, SSL, JAXB, JSON, WADL等等。jersey可以用web服务器，比如glassfish，weblogic等通过annotation进行较快速的RESTful开发。也可以通过Grizzly等建通服务器。构建http请求除了使用内嵌接口之外，也可以使用java.net中的接口来建立连接发送请求。&lt;/p&gt;
+
+&lt;p&gt;mongoose： &lt;a title=&#34;mongoose&#34; href=&#34;http://code.google.com/p/mongoose/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://code.google.com/p/mongoose/&#34;&gt;http://code.google.com/p/mongoose/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;boost pion: &lt;a title=&#34;pion&#34; href=&#34;http://www.pion.org/projects/pion-network-library&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.pion.org/projects/pion-network-library&#34;&gt;http://www.pion.org/projects/pion-network-library&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;TESTlet： &lt;a title=&#34;restlet&#34; href=&#34;http://www.restlet.org/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.restlet.org/&#34;&gt;http://www.restlet.org/&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;jersey： &lt;a title=&#34;jersey&#34; href=&#34;http://jersey.java.net/&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://jersey.java.net/&#34;&gt;http://jersey.java.net/&lt;/a&gt;&lt;/a&gt;
+&lt;pre class=&#34;brush:java&#34;&gt;******&lt;strong&gt;&lt;em&gt;jersey web服务器上RESTful服务例程&lt;/em&gt;&lt;/strong&gt;****&lt;/p&gt;
+
+&lt;p&gt;package com.sun.jersey.samples.helloworld.resources;&lt;/p&gt;
+
+&lt;p&gt;import javax.ws.rs.GET;&lt;/p&gt;
+
+&lt;p&gt;import javax.ws.rs.Produces;&lt;/p&gt;
+
+&lt;p&gt;import javax.ws.rs.Path;&lt;/p&gt;
+
+&lt;p&gt;// The Java class will be hosted at the URI path &amp;ldquo;/helloworld&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;@Path(&amp;ldquo;/helloworld&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;public class HelloWorldResource {&lt;/p&gt;
+
+&lt;p&gt;// The Java method will process HTTP GET requests&lt;/p&gt;
+
+&lt;p&gt;@GET&lt;/p&gt;
+
+&lt;p&gt;// The Java method will produce content identified by the MIME Media&lt;/p&gt;
+
+&lt;p&gt;// type &amp;ldquo;text/plain&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;@Produces(&amp;ldquo;text/plain&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;public String getClichedMessage() {&lt;/p&gt;
+
+&lt;p&gt;// Return some cliched textual content&lt;/p&gt;
+
+&lt;p&gt;return &amp;ldquo;Hello World&amp;rdquo;;&lt;/p&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;p&gt;}
+&lt;/pre&gt;
+&lt;pre class=&#34;brush:xml&#34;&gt;
+****&lt;strong&gt;&lt;em&gt;web.xml文件&lt;/em&gt;&lt;/strong&gt;*****&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?xml version=&amp;ldquo;1.0&amp;rdquo; encoding=&amp;ldquo;UTF-8&amp;rdquo;?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;web-app version=&amp;ldquo;2.4&amp;rdquo; xmlns=&amp;ldquo;&lt;a href=&#34;http://java.sun.com/xml/ns/j2ee&amp;quot;&#34;&gt;http://java.sun.com/xml/ns/j2ee&amp;quot;&lt;/a&gt; xmlns:xsi=&amp;ldquo;&lt;a href=&#34;http://www.w3.org/2001/XMLSchema-instance&amp;quot;&#34;&gt;http://www.w3.org/2001/XMLSchema-instance&amp;quot;&lt;/a&gt; xsi:schemaLocation=&amp;ldquo;&lt;a href=&#34;http://java.sun.com/xml/ns/j2ee&#34;&gt;http://java.sun.com/xml/ns/j2ee&lt;/a&gt; &lt;a href=&#34;http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&amp;quot;&amp;gt;&#34;&gt;http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&amp;quot;&amp;gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-name&amp;gt;Jersey Web Application&amp;lt;/servlet-name&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-class&amp;gt;com.sun.jersey.spi.container.servlet.ServletContainer&amp;lt;/servlet-class&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;init-param&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;param-name&amp;gt;com.sun.jersey.config.property.packages&amp;lt;/param-name&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;param-value&amp;gt;com.sun.jersey.samples.helloworld.resources&amp;lt;/param-value&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/init-param&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/servlet&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-mapping&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet-name&amp;gt;Jersey Web Application&amp;lt;/servlet-name&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/servlet-mapping&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/web-app&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

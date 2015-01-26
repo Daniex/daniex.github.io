@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Tomcat on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/tomcat/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 15 Nov 2011 02:22:56 &#43;0000</updated>
+    
+    <item>
+      <title>tomcat添加sybase数据库支持配置方法</title>
+      <link>http://www.daniex.tk/blog/2011/add-sybase-database-support-tomcat-configuration/</link>
+      <pubDate>Tue, 15 Nov 2011 02:22:56 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/add-sybase-database-support-tomcat-configuration/</guid>
+      <description>&lt;p&gt;说起来其实很简单。&lt;/p&gt;
+
+&lt;p&gt;1、安装sybase后到安装目录拷贝文件jconn2.jar，比如C:\sybase\jConnect-5_5\classes\jconn2.jar。&lt;/p&gt;
+
+&lt;p&gt;2、将该文件拷贝的tomcat的lib文件夹下&lt;/p&gt;
+
+&lt;p&gt;3、配置tomcat的conf文件夹下server.xml文件
+&lt;blockquote&gt;&amp;lt;ResourceParams name=&amp;ldquo;jdbc/AutoTest&amp;rdquo;&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;url&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;jdbc:sybase:Tds:142.100.2.132:5001/AutoTest&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxIdle&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;2&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxActive&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;4&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;driverClassName&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;com.sybase.jdbc2.jdbc.SybDriver&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxWait&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;5000&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;username&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;saforfw&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;password&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;saforfw&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;/ResourceParams&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/blockquote&gt;
+搞定OK，大功告成。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

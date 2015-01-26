@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>数据库 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E695B0E68DAEE5BA93/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 15 Nov 2011 02:22:56 &#43;0000</updated>
+    
+    <item>
+      <title>tomcat添加sybase数据库支持配置方法</title>
+      <link>http://www.daniex.tk/blog/2011/add-sybase-database-support-tomcat-configuration/</link>
+      <pubDate>Tue, 15 Nov 2011 02:22:56 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/add-sybase-database-support-tomcat-configuration/</guid>
+      <description>&lt;p&gt;说起来其实很简单。&lt;/p&gt;
+
+&lt;p&gt;1、安装sybase后到安装目录拷贝文件jconn2.jar，比如C:\sybase\jConnect-5_5\classes\jconn2.jar。&lt;/p&gt;
+
+&lt;p&gt;2、将该文件拷贝的tomcat的lib文件夹下&lt;/p&gt;
+
+&lt;p&gt;3、配置tomcat的conf文件夹下server.xml文件
+&lt;blockquote&gt;&amp;lt;ResourceParams name=&amp;ldquo;jdbc/AutoTest&amp;rdquo;&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;url&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;jdbc:sybase:Tds:142.100.2.132:5001/AutoTest&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxIdle&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;2&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxActive&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;4&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;driverClassName&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;com.sybase.jdbc2.jdbc.SybDriver&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;maxWait&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;5000&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;username&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;saforfw&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;parameter&amp;gt;
+&amp;lt;name&amp;gt;password&amp;lt;/name&amp;gt;
+&amp;lt;value&amp;gt;saforfw&amp;lt;/value&amp;gt;
+&amp;lt;/parameter&amp;gt;
+&amp;lt;/ResourceParams&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/blockquote&gt;
+搞定OK，大功告成。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SYBASE数据库日志详解(转)</title>
+      <link>http://www.daniex.tk/blog/2011/sybase-database-log-r/</link>
+      <pubDate>Sun, 09 Oct 2011 02:18:46 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/sybase-database-log-r/</guid>
+      <description>&lt;p&gt;写了点sybase相关的代码，发现数据库配置的时候少做了点配置，导致日志很快就满，无法进行下一步操作。查了下资料，转载过来。&lt;/p&gt;
+
+&lt;p&gt;弄sybase遇到一个比较诡异的事情，就是ABC三人弄了三个sybase数据库，A连AB没问题连C有问题，B连B没问题连C有问题，C连A没问题，连BC有问题。数据库连接的代码都是一样的，闹腾啊。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h1&gt;SYBASE数据库日志详解&lt;/h1&gt;
+&lt;div&gt;&lt;/p&gt;
+
+&lt;p&gt;每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs），日志对于数据库的数据安全性、完整性至关重要，本文详解SYBASE数据库日志。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+我们知道，SYBASE　SQL Server用事务（Transaction）来跟踪所有数据库的变化。事务是SQL　Server的工作单元。一个事务包含一条或多条作为整体执行的 T-SQL语句。每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs）。事务日志自动记录每个用户发出的每个事 务。日志对于数据库的数据安全性、完整性至关重要，我们进行数据库开发和维护必须熟知日志的相关知识。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;一、SYBASE　SQL Server 如何记录和读取日志信息&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;SYBASE　SQL Server是先记Log的机制。每当用户执行将修改数据库的语句时，SQL　Server就会自动地把变化写入日志。一条语句所产生的所有变化都被记录 到日志后，它们就被写到数据页在缓冲区的拷贝里。该数据页保存在缓冲区中，直到别的数据页需要该内存时，该数据页才被写到磁盘上。若事务中的某条语句没能 完成，SQL　Server将回滚事务产生的所有变化。这样就保证了整个数据库系统的一致性和完整性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;二、日志设备&lt;/strong&gt;
+Log和数据库的Data一样，需要存放在数据库设备上，可以将Log和Data存放在同一设备上，也可以分开 存放。一般来说，应该将一个数据库的Data和Log存放在不同的数据库设备上。这样做有如下好处：一是可以单独地备份Backup　事务日志；二是防 止数据库溢满；三是可以看到Log的空间使用情况。
+所建Log设备的大小，没有十分精确的方法来确定。一般来说，对于新建的数据库，Log的大小 应为数据库大小的30%左右。Log的大小还取决于数据库修改的频繁程度。如果数据库修改频繁，则Log的增长十分迅速。所以说Log空间大小依赖于用户 是如何使用数据库的。此外，还有其它因素影响Log大小，我们应该根据实际操作情况估计Log大小，并间隔一段时间就对Log进行备份和清除。
+&lt;strong&gt;三、日志的清除&lt;/strong&gt;
+随着数据库的使用，数据库的Log是不断增长的，必须在它占满空间之前将它们清除掉。清除Log有两种方法：
+&lt;strong&gt;1.自动清除法
+&lt;/strong&gt;
+开放数据库选项 Trunc Log on Chkpt，使数据库系统每隔一段时间自动清除Log。此方法的优点是无须人工干预，由SQL　Server自动执行，并且一般不会出现Log溢满的情况；缺点是只清除Log而不做备份。
+&lt;strong&gt;2.手动清除法&lt;/strong&gt;
+执行命令“dump transaction”来清除Log。以下两条命令都可以清除日志：
+&lt;table width=&#34;400&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&#34;#e6e6e6&#34;&gt;
+dump transaction with truncate_only
+dump transaction with no_log
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+通常删除事务日志中不活跃的部分可使用“dump transaction with trancate_only”命令，这条命令写进事务日志时，还要做必要的并发性检查。SYBASE提供“dump transaction with no_log”来处理某些非常紧迫的情况，使用这条命令有很大的危险性，SQL　Server会弹出一条警告信息。为了尽量确保数据库的一致性，你应将它 作为“最后一招”。
+以上两种方法只是清除日志，而不做日志备份，若想备份日志，应执行“dump transaction database_name to dumpdevice”命令。
+&lt;strong&gt;四、管理庞大的事务&lt;/strong&gt;
+有些操作会大批量地修改数据，如大量数据的修改（Update）、删除一个表的所有数据（Delete）、大量数据的插入（Insert），这样会使Log增长速度很快，有溢满的危险。下面笔者给大家介绍一下如何拆分大事务，以避免日志的溢满。
+例 如执行“update tab_a set col_a=0”命令时，若表tab_a很大，则此Update动作在未完成之前就可能使Log溢满，引起1105错误（Log Full），而且执行这种大的事务所产生的独占锁（Exclusive Table Lock），会阻止其他用户在执行Update操作期间修改这个表，这就有可能引起死锁。为避免这些情况发生，我们可以把这个大的事务分成几个小的事务， 并执行“dump transaction”动作。
+上例中的情况就可以分成两个或多个小的事务：
+&lt;table width=&#34;400&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&#34;#e6e6e6&#34;&gt;
+update tab_a set col_a=0 where col_b&amp;gt;x
+go
+dump transaction database_name with truncate_only
+go
+update tab_a set col_a=0 where col_b &amp;lt;=x
+go
+dump transaction database_name with truncate_only
+go
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+这样，一个大的事务就被分成两个较小的事务。
+按照上述方法可以根据需要任意拆分大的事务。若这个事务需要备份到介质上，则不用“with truncate_only”选项。若执行“dump transaction with truncate_only”命令，应该先执行“dump database”。以此类推，我们可以对表删除、表插入等大事务做相应的拆分。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wp搬家血泪史</title>
+      <link>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</link>
+      <pubDate>Mon, 28 Feb 2011 13:38:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</guid>
+      <description>&lt;p&gt;之前blog先是无法访问，后来是显示空白页或者it works！这样的非正常状态持续有三个多月。我也是一直忙这忙那的没把心思花这上面。就让它这么一直流血流血流血流血地濒临天堂。&lt;/p&gt;
+
+&lt;p&gt;一开始无法访问的原因，是，当时的共享ip空间的ip被墙，悲剧的无法访问。之后断断续续的找找有没有地方安置blog。不巧接着俺又辞职换工作，奔波找工作折腾得我就没打理它。再往后工作有着落后，弄了个vps玩玩，结果CentOS+LAMP弄了一半，没有完全按着攻略做，折腾出一些问题。访问很不稳定，时不时的变成It works等等问题。指导最近，重新弄了个共享空间，搬家，才算告一段落。罗列下遇到的问题和一些解决问题的方向作参考，由于时间过得久了，具体的方法还需另外百度谷歌去。&lt;/p&gt;
+
+&lt;p&gt;1、 LAMP（CentOS） 相关&lt;/p&gt;
+
+&lt;p&gt;要弄技术那就好好折腾，找个教程看看，然后看下各个参数设置要设置成什么样，有什么关联。我就是没设置好，弄的时不时的来个“It works！”的提示。真打击，回头继续折腾！&lt;/p&gt;
+
+&lt;p&gt;折腾的那个vps是独立128M内存，共享最大到256M。我装上LAMP后，启动程序，内存涨到220M+，收到邮件警告内存使用过高。原因是没有好好设置好Mysql的参数。在网上找了数据库配置的文章后重新设置参数，启动php、Mysql后内存用了80M左右。当然还有更省内存的配置。&lt;/p&gt;
+
+&lt;p&gt;2、 乱码&lt;/p&gt;
+
+&lt;p&gt;这个是一般是编码问题，mysql4.0 会用latin编码存数据，我们一般用的是utf8，GBK等，所以会有乱码。&lt;/p&gt;
+
+&lt;p&gt;解决方案有几个：1）用数据库指令导出抓换编码导入。&lt;/p&gt;
+
+&lt;p&gt;2）phpmyadmin导入导出。&lt;/p&gt;
+
+&lt;p&gt;3、 wp显示空白页&lt;/p&gt;
+
+&lt;p&gt;这个症状比较多，有的个别页显示正常有的任何页不能显示。诱因不少，说几个方法：&lt;/p&gt;
+
+&lt;p&gt;1）重新配置wp-config.php。&lt;/p&gt;
+
+&lt;p&gt;2）重新配主题。&lt;/p&gt;
+
+&lt;p&gt;3）插件冲突，修改删除插件。&lt;/p&gt;
+
+&lt;p&gt;4、无法post或comment&lt;/p&gt;
+
+&lt;p&gt;这个问题我也不知道为什么，估计是LAMP配置哪出问题了，网上也没有搜到解决方案。&lt;/p&gt;
+
+&lt;p&gt;就记得这么些问题了，记起来再添。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SNMP简单网络管理协议（Simple Network Management Protocol）</title>
+      <link>http://www.daniex.tk/blog/2010/simple-network-management-protocol-snmp-simple-network-management-protocol/</link>
+      <pubDate>Wed, 03 Nov 2010 13:40:52 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/simple-network-management-protocol-snmp-simple-network-management-protocol/</guid>
+      <description>&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;SNMP历史&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;随着网络数目与网络内主机数目的日益增多，单纯依靠一些网络专业进行网络管理已经不可能了，必须有一种通行的网络管理标准以及相应的管理工具使普通人也能够管理网络。第一个相关的协议是SGMP，它提供了一种直接监视网关的方法，也因此成了一种通用的网络管理工具。下来，有三种可供选择的管理工具：HEMS，SNMP和建立在TCP/IP基础上的CMIP（CMOT），因为需要使用ISO/OSI模型进行网络管理，SNMP首选CMOT作为管理工具。基本的SNMP已经被广泛使用了，所有的网络产品都提供对SNMP的支持，新开发的具有远程管理能力的SNMP是RMON，它使管理人员可以将整个子网进行管理，而不是对整个子网内的设备进行管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;一些定义&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SNMP&lt;/strong&gt;，Simple Network Management Protocol：简单网络管理协议  它是一个标准的用于管理IP网络上结点的协议。此协议包括了监视和控制变量集以及用于监视设备的两个数据格式：SMI和MIB。
+&lt;strong&gt;MIB&lt;/strong&gt;，Management Information Base：管理信息库  由网络管理协议访问的管理对象数据库，它包括SNMP可以通过网络设备的SNMP管理代理进行设置的变量。
+&lt;strong&gt;SMI&lt;/strong&gt;，Structure of Management Information：管理信息结构  用于定义通过网络管理协议可访问的对象的规则。SMI定义在MIB中使用的数据类型及网络资源在MIB中的名称或表示。
+&lt;strong&gt;ASN.1&lt;/strong&gt;，Abstract Syntax Notation One：抽象语法定义  用于定义语法的正式语言，在SNMP中它用于定义SNMP协议数据单元和对象的格式。
+&lt;strong&gt;PDU&lt;/strong&gt;，Protocol Data Unit：协议数据单元  在网络中传送的数据包。
+&lt;strong&gt;BER&lt;/strong&gt;，basic encoding rules：基本编码规则  由CCITT (X.209)和ISO (ISO 8825)指定的编码规则，它描述了如何将ASN.1类型表示为字符串。
+&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;简介&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;随着网络技术的飞速发展，网络的数量也越来越多。而网络中的设备来自各个不同的厂家，如何管理这些设备就变得十分重要。本章的内容就是介绍管理这些设备的标准。基于T C P / I P的网络管理包含两个部分：网络管理站（也叫管理进程， m a n a g e r）和被管的网络单元（也叫被管设备） 。被管设备种类繁多，例如：路由器、 X 终端、终端服务器和打印机等。这些被管设备的共同点就是都运行 T C P / I P协议。被管设备端和管理相关的软件叫做代理程序( a g e n t )或代理进程。管理站一般都是带有彩色监视器的工作站，可以显示所有被管设备的状态(例如连接是否掉线、各种连接上的流量状况等 )。&lt;/p&gt;
+
+&lt;p&gt;管理进程和代理进程之间的通信可以有两种方式。一种是管理进程向代理进程发出请求，询问一个具体的参数值（例如：你产生了多少个不可达的 I C M P端口？） 。另外一种方式是代理进程主动向管理进程报告有某些重要的事件发生（例如：一个连接口掉线了） 。当然，管理进程除了可以向代理进程询问某些参数值以外，它还可以按要求改变代理进程的参数值（例
+如：把默认的IP TTL值改为6 4） 。&lt;/p&gt;
+
+&lt;p&gt;基于T C P / I P的网络管理包含3个组成部分：&lt;/p&gt;
+
+&lt;p&gt;1) 一个管理信息库M I B（Management Information Base） 。管理信息库包含所有代理进程的所有可被查询和修改的参数。RFC 1213 [McCloghrie and Rose 1991]定义了第二版的M I B，叫做M I B - I I。&lt;/p&gt;
+
+&lt;p&gt;2)  关于M I B的一套公用的结构和表示符号。叫做管理信息结构 S M I（Structure of Management Information） 。这个在RFC 1155 [Rose and McCloghrie 1990] 中定义。例如：S M I定义计数器是一个非负整数，它的计数范围是 0~4 294 967 295，当达到最大值时，又从0开始计数。&lt;/p&gt;
+
+&lt;p&gt;3) 管理进程和代理进程之间的通信协议，叫做简单网络管理协议 S N M P（Simple Network Management Protocol） 。在RFC 1157 [Case et al. 1990]中定义。S N M P包括数据报交换的格式等。尽管可以在运输层采用各种各样的协议，但是在 S N M P中，用得最多的协议还是U D P。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;协议&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;关于管理进程和代理进程之间的交互信息， S N M P定义了5种报文：&lt;/p&gt;
+
+&lt;p&gt;1)  g e t - r e q u e s t操作：从代理进程处提取一个或多个参数值。&lt;/p&gt;
+
+&lt;p&gt;2)  g e t - n e x t - r e q u e s t操作：从代理进程处提取一个或多个参数的下一个参数值（关于“下一个（n e x t） ”的含义将在后面的章节中介绍） 。&lt;/p&gt;
+
+&lt;p&gt;3)  s e t - r e q u e s t操作：设置代理进程的一个或多个参数值。&lt;/p&gt;
+
+&lt;p&gt;4)  g e t - r e s p o n s e操作：返回的一个或多个参数值。这个操作是由代理进程发出的。它是前面3中操作的响应操作。&lt;/p&gt;
+
+&lt;p&gt;5) t r a p操作：代理进程主动发出的报文，通知管理进程有某些事情发生。前面的3个操作是由管理进程向代理进程发出的。后面两个是代理进程发给管理进程的。&lt;/p&gt;
+
+&lt;p&gt;简单介绍一下用法&lt;/p&gt;
+
+&lt;p&gt;snmputil，就是程序名拉，呵呵。&lt;/p&gt;
+
+&lt;p&gt;get，就理解成获取一个信息。&lt;/p&gt;
+
+&lt;p&gt;getnext，就理解成获取下一个信息。&lt;/p&gt;
+
+&lt;p&gt;walk，就理解成获取一堆信息（嗯，应该说所有数据库子树/子目录的信息）&lt;/p&gt;
+
+&lt;p&gt;agent，具体某台机器拉。&lt;/p&gt;
+
+&lt;p&gt;community，嗯就是那个“community strings”“查询密码”拉。&lt;/p&gt;
+
+&lt;p&gt;oid，这个要多说一下，这个呢，就是物件识别代码（Object Identifier）。&lt;/p&gt;
+
+&lt;p&gt;可以把oid理解成MIB管理信息库中各种信息分类存放树资源的一个数字标识。&lt;/p&gt;
+
+&lt;p&gt;好了，具体的资料可以查阅相关文章。&lt;/p&gt;
+
+&lt;p&gt;开始刺探信息：&lt;/p&gt;
+
+&lt;p&gt;尝试获得对方机器当前进程列表&lt;/p&gt;
+
+&lt;p&gt;snmputil.exe walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;SNMP的三大版本 &lt;/span&gt;&lt;/strong&gt;
+SNMP的常用版本有三个：SNMPv1、SNMPv2、SNMPv3
+Three different version of SNMP exist: SNMPv1 (RFC’s 1155, 1157, and 1212), SNMPv2c (RFC’s 1901 through 1908), and SNMPv3 (RFC’s 3411 though 3418). The co-existence of all three versions are detailed in RFC 3584.&lt;/p&gt;
+
+&lt;p&gt;SNMP有三个不同的版本：SNMPv1(RFC 1155、RFC 1157、RFC 1212),SNMPv2c (RFC 1901、1908）以及 SNMPv3 (RFC 3411 - 3418). RFC 3584中详细说明了这三种版本同时共存方面的信息。&lt;/p&gt;
+
+&lt;p&gt;SNMPv1 is the original standard for community based management. SNMPv2 was derived from the SNMPv1 framework but had no message definition, which was later revamped aa SNMPv2c, a community based version of SNMPv2 with a message format similar to SNMPv1. SNMPv2 added several new datatypes (Counter32, Counter64, Gauge32, UInteger32, NsapAdress, and BIT STRING), as well as enhancements to OID tables and the setting of OID values. SNMPv3 is an extensable SNMPv2 framework with a new message format, ACL and security abilities, and remote configuration of SNMP parameters.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #808080;&#34;&gt;SNMPv1是为基于公共管理的初始标准。SNMPv2是SNMPv1框架下衍生出来的，但是没有定义信息，其后修订为SNMPv2c,一个带有于SNMPv1类似信息格式的给予公共管理的版本。SNMPv2添加了几个新的数据类型（Counter32、Counter64、Gauge32、UInteger32、NsapAdress 以及BIT STRING),以及对OID表和OID值的设置的增强。SNMPv3是一个带有新的信息格式、ACL、安全功能和远处SNMP参数配置的、扩展了SNMPv2框架的版本。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;SNMP is based on several other standards including the Abstract Syntax Notation 1 Basic Encoding Rules (ASN.1 BER) which defines the SNMP used Datatypes and the Structure of Management Information (SMI) which details the grammar used by SNMP MIBs. SMI comes in two varieties: SMIv1 (RFC 1155) and SMIv2 (RFC 2578). SMIv1 is now obsolete and should not be used. If you choose to modify MIBs at some point you’ll need to learn SMIv2 and ASN.1 syntax, but otherwise they are interesting but unnecessary to learn.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: blue;&#34;&gt;&lt;span style=&#34;color: #808080;&#34;&gt;SNMP是基于几个其他规范的，包括定义给予SNMP的数据类型的ASN.1 BER(Abstract Syntax Notation 1 Basic Encoding Rules), 以及详细描述有SNMP MIB使用的语法的管理信息结构（SMI）。SMIv1目前被独立出来，不应当再被使用。如果你选择修改MIB的某些东西，你需要学习SMIv2和ASN.1语法，不过其他情况下你只需要在兴趣时看看他，而不&lt;span style=&#34;color: #808080;&#34;&gt;必学习他&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;color: #808080;&#34;&gt;。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;To this day, SNMPv1 and SNMPv2c are the most commonly used, however due to the insecurity inherent to these protocols read-only access is typical. In general, don’t bother with SNMPv3 unless you really need the added security features.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #808080;&#34;&gt;现在，SNMPv1和SNMPv2被广泛应用，但是由于这些协议的不安全特性，通常只使用只读访问。通常，除非你确实需要附加安全特性，否则你不需要过多地关注SNMPv3。SNMPv3是具有安全性的通信协议。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;简单介绍一下用法&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;以WIN2K来说，一旦安装并启动了简单网络管理协议，系统将打开&lt;/p&gt;
+
+&lt;p&gt;UDP 161 snmp&lt;/p&gt;
+
+&lt;p&gt;UDP 162 snmptrap&lt;/p&gt;
+
+&lt;p&gt;两个端口。&lt;/p&gt;
+
+&lt;p&gt;具体做什么我们不去细究。需要注意的是，这里使用的是UDP端口，而不是TCP端口。同时，WIN2K系统支持初始的“查询密码”community strings 为：public 我们只要通过一款Resource Kit里面的工具snmputil，就可以方便的获得非常多的信息。&lt;/p&gt;
+
+&lt;p&gt;在这里可以下载：&lt;a href=&#34;http://www.patching.net/abu/tools/win/snmputil.exe&#34;&gt;http://www.patching.net/abu/tools/win/snmputil.exe&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;snmputil，程序名。&lt;/p&gt;
+
+&lt;p&gt;get，就理解成获取一个信息。&lt;/p&gt;
+
+&lt;p&gt;getnext，就理解成获取下一个信息。&lt;/p&gt;
+
+&lt;p&gt;walk，就理解成获取一堆信息（应该说所有数据库子树/子目录的信息）&lt;/p&gt;
+
+&lt;p&gt;agent，具体某台机器拉。&lt;/p&gt;
+
+&lt;p&gt;community，嗯就是那个“community strings”“查询密码”。&lt;/p&gt;
+
+&lt;p&gt;oid，物件识别代码（Object Identifier）。&lt;/p&gt;
+
+&lt;p&gt;可以把oid理解成MIB管理信息库中各种信息分类存放树资源的一个数字标识。&lt;/p&gt;
+
+&lt;p&gt;具体的资料可以查阅相关文章。&lt;/p&gt;
+
+&lt;p&gt;开始刺探信息：&lt;/p&gt;
+
+&lt;p&gt;尝试获得对方机器当前进程列表&lt;/p&gt;
+
+&lt;p&gt;snmputil.exe walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2&lt;/p&gt;
+
+&lt;p&gt;尝试获得对方机器系统用户列表&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.4.1.77.1.2.25.1.1&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2 列出系统进程&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.4.1.77.1.2.25.1.1 列系统用户列表&lt;/p&gt;
+
+&lt;p&gt;snmputil get 对方ip public .1.3.6.1.4.1.77.1.4.1.0 列出域名&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.2.1.25.6.3.1.2 列出安装的软件&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.2.1.1 列出系统信息&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;来源：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/scottckt/archive/2007/07/30/836309.html&#34;&gt;http://www.cnblogs.com/scottckt/archive/2007/07/30/836309.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.longen.org/s-z/details-z/snmpintro.htm&#34;&gt;http://www.longen.org/s-z/details-z/snmpintro.htm&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bbs.cunzone.com/thread-32414-1-1.html&#34;&gt;http://bbs.cunzone.com/thread-32414-1-1.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以及TCP/IP详解&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

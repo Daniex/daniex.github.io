@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>excel中删除回车和换行符 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="windows,便笺,编码,问题">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>excel中删除回车和换行符</h1>
+    <span class="post-date">Apr 10, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/Windows">Windows</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/windows">windows</a><a class="label" href="http://www.daniex.tk/tags/%E4%BE%BF%E7%AC%BA">便笺</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a><a class="label" href="http://www.daniex.tk/tags/%E9%97%AE%E9%A2%98">问题</a>
+    </span>
+    <p>遇到个问题：在excel保存的csv文件里面有换行符，但是读取文件的时候是按行读取的，所以要把换行符去掉。在网上找了几个方法，都没成功，不过最后还是被我解决了。</p>
+
+<p>网上有好几种方法，要们只是去除的文件中的换行符，而没有去除回车符。要不然就是繁琐。</p>
+
+<pre><code>13; (ASCII码回车)
+10; (ASCII码换行)
+</code></pre>
+
+<p>方法一
+可以使用Excel的宏来将excel的换行符替换掉，方法如下：
+在工作表标签处单击鼠标右键，点“查看代码”，在代码窗口中输入如下内容：</p>
+
+<p>Sub 去掉所有换行符()
+    Cells.Replace What:=Chr(10), _
+                  Replacement:=&ldquo;&rdquo;, _
+                  LookAt:=xlPart, _
+                  SearchOrder:=xlByRows, _
+                  MatchCase:=False, _
+                  SearchFormat:=False, _
+                  ReplaceFormat:=False
+End Sub</p>
+
+<p>然后按F5执行，或者点击菜单上的运行。这个代码是指去掉了换行符，将第二行的10换成13，再执行一次就大功告成。</p>
+
+<p>方法二
+另存为txt文件的话，换行符会变为回车符，这样在记事本替换的话会比较麻烦。你可以将EXCEL的内容复制到word中，然后使用word的替换功能，将^l替换为空白就行了。(^l)就是换行符。</p>
+
+<p>1、把所需修改的整个表格复制到Word中；
+2、再从Word中把所有内容复制到记事本中；
+3、最后把记事本中的所有内容复制到excel中。DONE!</p>
+
+<p>方法三
+网上流最广的方法是这样的：
+1、CTRL+F调出查找替换对话框，选择替换
+2、查找中输入：按住ALT，小键盘输入10 ,松开ALT
+3、按替换
+我尝试着按住ALT+13，查找替换，没有成功。只能放弃这种方法。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

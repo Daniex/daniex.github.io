@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>wordpress自定义个性化首页 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C#,C/C&#43;&#43;,FTP,Http,IP,java,permalink,WordPress,wpf,主题,博客,插件">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>wordpress自定义个性化首页</h1>
+    <span class="post-date">Nov 19, 2011 &middot; 2 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C">C#</a><a class="label" href="http://www.daniex.tk/tags/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/tags/FTP">FTP</a><a class="label" href="http://www.daniex.tk/tags/Http">Http</a><a class="label" href="http://www.daniex.tk/tags/IP">IP</a><a class="label" href="http://www.daniex.tk/tags/java">java</a><a class="label" href="http://www.daniex.tk/tags/permalink">permalink</a><a class="label" href="http://www.daniex.tk/tags/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/tags/wpf">wpf</a><a class="label" href="http://www.daniex.tk/tags/%E4%B8%BB%E9%A2%98">主题</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%9A%E5%AE%A2">博客</a><a class="label" href="http://www.daniex.tk/tags/%E6%8F%92%E4%BB%B6">插件</a>
+    </span>
+    <p>自己好不容易折腾了个wordpress博客，发现所有人的首页样式都大同小异，是不是很没创意，很扫兴？下面就来说说如何制作一个wordpress个性化首页，让你随心所欲的改变首页的样式，让你有个不一样的主页。最后效果如我的<a title="澄清的半亩方糖" href="http://danie.info" target="_blank"><strong>首页</strong></a>，截图如下：
+<p style="text-align: center;"><img class="aligncenter size-full wp-image-974" title="ss" src="http://daniex.info/wp-content/uploads/2011/11/ss.jpg" alt="" width="590" height="482" /></p>
+&nbsp;
+<div style="background-color: #e3e3e3;">
+<h2>一、 设置wordpress首页</h2>
+</div>
+wordpress有设置page页作为默认首页的功能，下面的方法就是自定义一个page也模板，然后添加一个用这个模板制作的page页，最后将这个page页设为首页。</p>
+
+<p>1) ftp或者cpanel到部署wordpress空间或其他。复制wordpress主题目录下的page.php文件，重名名。比如，找到文件（wp目录）/wp-content/themes/zbench/page.php 重命名为 myhomepage.php</p>
+
+<p>2) 用文本编辑器打开myhomepage.php，例如用记事本打开，在文件首位添加以下代码：
+<blockquote>&lt;?php
+/*
+Template Name: 首页
+*/
+?&gt;</blockquote>
+“Template Name : ” 后的文字可以是任意的。这样我们就添加了一个新的page页模板。自定义的首页内容其实就是这个myhomepage.php的内容。如何设计修改这个文件，建立自己的个性化首页，会在后面提到。我们先将它设为首页。</p>
+
+<p>3) 添加一个新的page页：浏览器登录wordpress后台控制面板，dashboard -&gt;pages -&gt; add new。 输入标题，在右方page attributes 面板中会有parent 和 template 的下拉框，在模板下拉框中选择刚刚添加的模板。如图，我添加的模板名字叫“首页”，我就选择它。</p>
+
+<p><img class="aligncenter size-full wp-image-961" title="selecttemplate" src="http://daniex.info/wp-content/uploads/2011/11/selecttemplate.jpg" alt="" width="281" height="253" />选择好后，给这个page也命名，我是在title那输入的“首页”。然后就可以发表了，其他的内容什么可以都不用写。</p>
+
+<p>4) 设置首页的最后一步，点击后台的reading设置项：dashboard -&gt; settings -&gt; reading。在第一个设置项目里选择第二项 a static page ，然后再它下方的第一个下拉选项框里选则刚刚给page页设置的名字。比如我的“首页”。</p>
+
+<p><img class="aligncenter size-full wp-image-962" title="setreading" src="http://daniex.info/wp-content/uploads/2011/11/setreading.png" alt="" width="552" height="506" />点击 save changes 保存配置。</p>
+
+<p>&nbsp;</p>
+
+<p>这样，我们把首页重新设置好了。这个时候访问首页的时候我们会发现，我们的首页除了头上的标题名称、侧边栏、底部栏之外就什么都没有。</p>
+
+<p>&nbsp;
+<div style="background-color: #e3e3e3;">
+<h2>二、 设计自己的wordpress首页</h2>
+</div>
+我们已经把wordpress的首页换掉，但是这个首页现在是一片空白，我们要怎么去填充这片空白呢？如果你有html、css、js功底，那就是你一展身手的时候。如果水平一般，那也没关系，能看懂一点点代码，那就有办法去使用一些好的模板，好的插件，设计出一个自己满意的首页还是可以的。我就只是能看懂代码的那种，根本不熟悉网页前端开发。
+<h4><strong>方法一</strong></h4>
+怎么给这个首页填充内容，最简单的方法就是，编辑我们之前添加的page页。之前我们并没有在文章内容里添加任何东西。只要你有好内容，好方案，就可以像写一个新的文章一样这里出一个你自己的主页。
+<h4><strong>方法二</strong></h4>
+这个方法就需要去修改我们的myhomepage.php文件。前端开发的牛人大有人在，我也不多说。就把我的一些代码贴出来，有心思看到朋友可以参考下。主要用到的几个函数我罗列一下：
+<blockquote>&lt;?php if(function_exists(&lsquo;wp_thumbnails_for_category&rsquo;)) { wp_thumbnails_for_category(&lsquo;id=7&amp;num=1&rsquo;); } ?&gt;</blockquote>
+这是我使用的wp-thumbnail插件提供的函数，用于显示分类中的文章和缩略图。在wp-thumbnail插件设置中设置好分类文章的相关数据，如图片大小、标题位置。然后再这里调用。id=7表示文章分类id为7的分类下的文章，num=1表示显示一篇。文章分类ID是几可以参考<a title="wordpress查看分类category的id" href="http://daniex.info/view-category-id-wordpress.html" target="_blank"><strong>这篇文章</strong></a>。</p>
+
+<p>嵌入的探讨tt1 tt2 的css代码是控制左侧栏目的背景。另外有block1和block2的代码是用来控制左右两部分的布局。
+<blockquote>.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}</p>
+
+<p>.block2 { float:left; width:250px; height:700px}
+.block3 { float:right; width:350px; height:700px}</blockquote>
+中间栏的随机文章和标题评论控制是用这些函数：
+<blockquote>$args = array( &lsquo;numberposts&rsquo; =&gt; 5, &lsquo;orderby&rsquo; =&gt; &lsquo;rand&rsquo;, &lsquo;category&rsquo; =&gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&gt;</p>
+
+<p>。。。</blockquote>
+&nbsp;
+<blockquote>&lt;?php if(function_exists(&lsquo;the_views&rsquo;)) { echo &ldquo; | &ldquo;;the_views(); } ?&gt;</blockquote>
+这段代码是用了postviews+的插件，用于统计文章浏览次数。</p>
+
+<p>更多代码：
+<blockquote>&lt;?php
+/*
+Template Name: 首页
+*/
+?&gt;
+&lt;?php get_header() ?&gt;
+&lt;div id=&ldquo;content&rdquo;&gt;
+&lt;?php the_post(); ?&gt;
+&lt;div &lt;?php post_class(&lsquo;post post-page&rsquo;); ?&gt; id=&ldquo;post-&lt;?php the_ID(); ?&gt;&ldquo;&gt;
+&lt;div class=&ldquo;block2&rdquo;&gt;
+&lt;h2&gt;&lt;a href=&ldquo;<a href="http://daniex.info/category/coding&quot;&gt;编程开发&lt;/a&gt;&lt;/h2&gt;&lt;span&gt;C/C++">http://daniex.info/category/coding&quot;&gt;编程开发&lt;/a&gt;&lt;/h2&gt;&lt;span&gt;C/C++</a> java C# wpf php&hellip;&lt;/span&gt;
+&lt;div class=&ldquo;tt1&rdquo;&gt;
+&lt;div class=&ldquo;tt2&rdquo;&gt;
+&lt;?php if(function_exists(&lsquo;wp_thumbnails_for_category&rsquo;)) { wp_thumbnails_for_category(&lsquo;id=7&amp;num=1&rsquo;); } ?&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&ldquo;tt1&rdquo;&gt;
+&lt;div class=&ldquo;tt2&rdquo;&gt;
+&lt;?php if(function_exists(&lsquo;wp_thumbnails_for_category&rsquo;)) { wp_thumbnails_for_category(&lsquo;id=7&amp;num=1&amp;order=recent&rsquo;); } ?&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}
+&lt;/style&gt;
+&lt;/div&gt;
+&lt;div class=&ldquo;block3&rdquo;&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</p>
+
+<p>&lt;?php
+$args = array( &lsquo;numberposts&rsquo; =&gt; 5, &lsquo;orderby&rsquo; =&gt; &lsquo;rand&rsquo;, &lsquo;category&rsquo; =&gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&gt;
+&lt;h3&gt;&lt;a href=&rdquo;&lt;?php the_permalink(); ?&gt;&ldquo;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;?php if (&lsquo;open&rsquo; == $post-&gt;comment_status) { ?&gt;
+&lt;div&gt;</p>
+
+<p>&lt;span&gt;&lt;?php the_time(get_option( &lsquo;date_format&rsquo; )); ?&gt;&lt;/span&gt;
+&lt;span id=&ldquo;gotocomments&rdquo;&gt;&lt;?php comments_popup_link(<strong>(&lsquo;0 评论&rsquo;, &lsquo;zbench&rsquo;), __(&lsquo;1 评论&rsquo;, &lsquo;zbench&rsquo;), &lsquo;% &lsquo;.</strong>(&rsquo; 评论&rsquo;, &lsquo;zbench&rsquo;)); ?&gt;&lt;?php if(function_exists(&lsquo;the_views&rsquo;)) { echo &ldquo; | &ldquo;;the_views(); } ?&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;!&ndash;&lt;div&gt;
+&lt;?php if ( $options[&lsquo;excerpt_check&rsquo;]==&lsquo;true&rsquo; ) { the_excerpt(<strong>(&rsquo;&amp;raquo; Read more&hellip;&lsquo;,&lsquo;zbench&rsquo;)); } else { the_content(</strong>(&rsquo;&amp;raquo; Read more&hellip;&lsquo;,&lsquo;zbench&rsquo;)); } ?&gt;
+&lt;/div&gt; END entry &ndash;&gt;</p>
+
+<p>&lt;?php if(is_sticky()) { ?&gt;
+&lt;div&gt;&lt;p&gt;&lt;?php _e(&lsquo;This is a sticky post!&rsquo;, &lsquo;zbench&rsquo;); ?&gt; &lt;a href=&rdquo;&lt;?php the_permalink() ?&gt;&ldquo;&gt;&lt;?php _e(&lsquo;continue reading?&rsquo;, &lsquo;zbench&rsquo;); ?&gt;&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;?php } ?&gt;
+&lt;?php } else { ?&gt;
+&lt;div style=&ldquo;height:1px;&rdquo;&gt;&lt;/div&gt;
+&lt;?php } ?&gt;</p>
+
+<p>&lt;?php echo mb_strimwidth(strip_tags(apply_filters(‘the_content’, $post-&gt;post_content)), 0, 100,&ldquo;&hellip;&rdquo;); ?&gt;</p>
+
+<p>&lt;br&gt;&lt;br&gt;
+&lt;?php endforeach; ?&gt;</p>
+
+<p>&lt;/div&gt;</p>
+
+<p>&lt;/div&gt;&lt;!&ndash; END post &ndash;&gt;
+&lt;/div&gt;&lt;!&ndash;content&ndash;&gt;
+&lt;?php get_sidebar() ?&gt;
+&lt;?php get_footer() ?&gt;</blockquote>
+&nbsp;</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

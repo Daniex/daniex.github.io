@@ -1,0 +1,1595 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Http on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/http/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Fri, 21 Feb 2014 05:51:31 &#43;0000</updated>
+    
+    <item>
+      <title>玩剧--你的美剧播出时间表</title>
+      <link>http://www.daniex.tk/blog/2014/wanju/</link>
+      <pubDate>Fri, 21 Feb 2014 05:51:31 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2014/wanju/</guid>
+      <description>&lt;p&gt;&lt;h1 style=&#34;text-align: center;&#34;&gt;下载地址：&lt;/h1&gt;
+&lt;h1 style=&#34;text-align: center;&#34;&gt;&lt;a title=&#34;http://pan.baidu.com/s/1c0nDo2G&#34; href=&#34;http://pan.baidu.com/s/1c0nDo2G&#34;&gt; &lt;a href=&#34;http://pan.baidu.com/s/1c0nDo2G&#34;&gt;http://pan.baidu.com/s/1c0nDo2G&lt;/a&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 style=&#34;text-align: center;&#34;&gt;&lt;a href=&#34;http://as.baidu.com/a/item?docid=5868302&#34;&gt;http://as.baidu.com/a/item?docid=5868302&lt;/a&gt;&lt;/h1&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; style=&#34;line-height: 1.5em;&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7392/12669796653_74851c20f4_o.png&#34; width=&#34;120&#34; height=&#34;120&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm6.staticflickr.com/5507/12672056584_436738d496_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7290/12671579615_8272393068_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7357/12671579075_ab2ce41c91_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7302/12671707023_28643e6f49_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>px、dip、sp区别及apk的drawable资源包关系</title>
+      <link>http://www.daniex.tk/blog/2013/px-dip-sp-difference-and-apk-drawable-resource-bundles-relationship/</link>
+      <pubDate>Mon, 13 May 2013 02:05:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/px-dip-sp-difference-and-apk-drawable-resource-bundles-relationship/</guid>
+      <description>
+
+&lt;p&gt;感谢Neak同学提出下面引用文章的分歧点，文章中存在这样的两个说法，下文中已分别标红和标蓝。【在每英寸160点的显示器上，1dp = 1px。】【density=240时 屏幕实际分辨率为480px*800px （一个点对于一个分辨率）】&lt;/p&gt;
+
+&lt;p&gt;查阅 androd api guides发现有入下描述：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://developer.android.com/guide/practices/screens_support.html&#34;&gt;http://developer.android.com/guide/practices/screens_support.html&lt;/a&gt;
+&lt;blockquote&gt;&lt;em&gt;Density-independent pixel (dp)&lt;/em&gt;A virtual pixel unit that you should use when defining UI layout, to express layout dimensions or position in a density-independent way.&lt;/p&gt;
+
+&lt;p&gt;The density-independent pixel is equivalent to one physical pixel on a 160 dpi screen, which is the baseline density assumed by the system for a &amp;ldquo;medium&amp;rdquo; density screen. At runtime, the system transparently handles any scaling of the dp units, as necessary, based on the actual density of the screen in use. The conversion of dp units to screen pixels is simple: &lt;code&gt;px = dp * (dpi / 160)&lt;/code&gt;. For example, on a 240 dpi screen, 1 dp equals 1.5 physical pixels. You should always use dp units when defining your application&amp;rsquo;s UI, to ensure proper display of your UI on screens with different densities.&lt;/blockquote&gt;
+即android定义density=160的屏幕定位一个基准（basline），在这个基准下1px=1dp。下文标红文字是根据官方baseline转述的。标蓝色的字体中有一段描述【不同density下屏幕分辨率信息，以480dip*800dip的WVGA(density=240)为例。】假设density=240为baseline，则px及dp对应关系正如原文作者罗列表述。&lt;/p&gt;
+
+&lt;p&gt;由此看来，转240为baseline，可以看出原作者对px和dp的理解到位，描述出来时其实无必要转换baseline，以免混淆视听。&lt;/p&gt;
+
+&lt;p&gt;=======================================================================================&lt;/p&gt;
+
+&lt;p&gt;下文来自 &lt;a title=&#34;px、dip、sp区别和使用方法&#34; href=&#34;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&#34;&gt;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;px、dip、sp区别和使用方法&lt;/p&gt;
+
+&lt;p&gt;一、 概述&lt;/p&gt;
+
+&lt;p&gt;我们在页面布局的时候，经常会设置容器的长度，但是到底该使用哪个作为长度的单位而懊恼。&lt;/p&gt;
+
+&lt;p&gt;在Android中支持的描述大小区域的类型有以下几种。&lt;/p&gt;
+
+&lt;p&gt;px(pixels)——像素：不同的设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。&lt;/p&gt;
+
+&lt;p&gt;dip(device independent pixels)——设备独立像素：这个和设备硬件有关，一般哦我们为了支持WCGA、HVGA和QVGA推荐使用这个，不依赖于像素。等同于dp。&lt;/p&gt;
+
+&lt;p&gt;sp(scaled pixels—best for text size)——带比例的像素。&lt;/p&gt;
+
+&lt;p&gt;pt(points)——磅：1pt = 1/72英寸&lt;/p&gt;
+
+&lt;p&gt;in(inches)——英寸&lt;/p&gt;
+
+&lt;p&gt;mm(millimeters)——毫米&lt;/p&gt;
+
+&lt;p&gt;二、 详解&lt;/p&gt;
+
+&lt;p&gt;sp由于是放大像素，主要是用于字体显示，由此根据google的建议，TextView的字体大小最好用sp做单位，而且查看TextView的源码可知Android默认使用水平作为字号单位。&lt;/p&gt;
+
+&lt;p&gt;在Android中最常用到的还是px和dip。但是这两个之间到底有什么区别呢？&lt;/p&gt;
+
+&lt;p&gt;在HVGA屏density=160；QVGA屏density=120；WVGA屏density=240；WQVGA屏density=120 density值表示每英寸有多少个显示点，与分辨率是两个概念。&lt;span style=&#34;color: #0000ff;&#34;&gt;不同density下屏幕分辨率信息，以480dip*800dip的WVGA(density=240)为例。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;density=120时 屏幕实际分辨率为240px*400px （两个点对应一个分辨率）
+状态栏和标题栏高各19px或者25dip
+横屏是屏幕宽度400px 或者800dip,工作区域高度211px或者480dip
+竖屏时屏幕宽度240px或者480dip,工作区域高度381px或者775dip&lt;/p&gt;
+
+&lt;p&gt;density=160时 屏幕实际分辨率为320px*533px （3个点对应两个分辨率）
+状态栏和标题栏高个25px或者25dip
+横屏是屏幕宽度533px 或者800dip,工作区域高度295px或者480dip
+竖屏时屏幕宽度320px或者480dip,工作区域高度508px或者775dip&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;density=240时 屏幕实际分辨率为480px*800px （一个点对于一个分辨率）&lt;/span&gt;
+状态栏和标题栏高个38px或者25dip
+横屏是屏幕宽度800px 或者800dip,工作区域高度442px或者480dip
+竖屏时屏幕宽度480px或者480dip,工作区域高度762px或者775dip&lt;/p&gt;
+
+&lt;p&gt;apk的资源包中，当屏幕density=240时使用hdpi 标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+不加任何标签的资源是各种分辨率情况下共用的。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;引用 Android上dip、dp、px、sp等单位说明&lt;/p&gt;
+
+&lt;p&gt;本文引用自shixin20051108《Android上dip、dp、px、sp等单位说明》&lt;/p&gt;
+
+&lt;p&gt;[ dip: device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。
+px: pixels(像素). 不同设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用；&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。&lt;/h1&gt;
+
+&lt;p&gt;关于换算（以 sp 和 pt 为例）
+查看 TextView 等类的源码，可知：
+case COMPLEX_UNIT_PX:
+return value;
+case COMPLEX_UNIT_SP:
+return value * metrics.scaledDensity;
+case COMPLEX_UNIT_PT:
+return value * metrics.xdpi * (1.0f/72);
+－－－－－－－－－－－－－－－－－－－－－－－－－－
+scaledDensity = DENSITY_DEVICE / (float) DENSITY_DEFAULT;
+xdpi = DENSITY_DEVICE;
+－－－－－－－－－－－－－－－－－－－－－－－－－－&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;DENSITY_DEFAULT = DENSITY_MEDIUM = 160;&lt;/h1&gt;
+
+&lt;p&gt;所以： 假设 pt 和 sp 取相同的值 1，则可设 1pt 和 1sp 之间系数为 x，
+1 * DENSITY_DEVICE / 72 = x * 1 * DENSITY_DEVICE / 160 =&amp;amp;gt;
+x = 160 / 72 = 2.2222&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;也就是说在 Android 中， 1pt 大概等于 2.22sp&lt;/h1&gt;
+
+&lt;p&gt;什么是Dip和Sp
+过去，程序员通常以像素为单位设计计算机用户界面。例如，定义一个宽度为300像素的表单字段，列之间的间距为5个像素，图标大小为16×16像素等。这样处理的问题在于，如果在一个每英寸点数（dpi）更高的新显示器上运行该程序，则用户界面会显得很小。在有些情况下，用户界面可能会小到难以看清内容。
+与分辨率无关的度量单位可以解决这一问题。Android支持下列所有单位。
+px（像素）：屏幕上的点。
+in（英寸）：长度单位。
+mm（毫米）：长度单位。
+pt（磅）：1/72英寸。
+&lt;span style=&#34;color: #ff0000;&#34;&gt;dp（与密度无关的像素）：一种基于屏幕密度的抽象单位。在每英寸160点的显示器上，1dp = 1px。&lt;/span&gt;
+dip：与dp相同，多用于android/ophone示例中。
+sp（与刻度无关的像素）：与dp类似，但是可以根据用户的字体大小首选项进行缩放。
+为了使用户界面能够在现在和将来的显示器类型上正常显示，建议大家始终使用sp作为文字大小的单位，将dip作为其他元素的单位。当然，也可以考虑使用矢量图形，而不是用位图&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;dip: device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。
+px: pixels(像素). 不同设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用；
+sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。由此，根据 google 的建议，TextView 的
+字号最好使用 sp 做单位，而且查看TextView的源码可知 Android 默认使用 sp 作为字号单位。
+在 Android 中， 1pt 大概等于 2.22sp以上供参考，如果 UI 能够以 sp 为单位提供设计是最好的，如果设计中没有 sp的概念，则开发人员也可以通过适当的换算取近似值。
+过去，程序员通常以像素为单位设计计算机用户界面。例如，定义一个宽度为300像素的表单字段，列之间的间距为5个像素，图标大小为16×16像素等。这样处理的问题在于，如果在一个每英寸点数（dpi）更高的新显示器上运行该程序，则用户界面会显得很小。在有些情况下，用户界面可能会小到难以看清内容。
+与分辨率无关的度量单位可以解决这一问题。Android支持下列所有单位。
+px（像素）：屏幕上的点。
+in（英寸）：长度单位。
+mm（毫米）：长度单位。
+pt（磅）：1/72英寸。
+dp（与密度无关的像素）：一种基于屏幕密度的抽象单位。&lt;span style=&#34;color: #ff0000;&#34;&gt;在每英寸160点的显示器上，1dp = 1px。&lt;/span&gt;
+dip：与dp相同，多用于android/ophone示例中。
+sp（与刻度无关的像素）：与dp类似，但是可以根据用户的字体大小首选项进行缩放。
+分辨率:整个屏是多少点，比如800x480，它是对于软件来说的显示单位，以px为单位的点。 density(密度)值表示每英寸有多少个显示点，与分辨率是两个概念。apk的资源包中，
+当屏幕density=240时使用hdpi标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+一般android设置长度和宽度多用dip,设置字体大小多用sp. 在屏幕密度为160，1dp=1px=1dip, 1pt = &lt;sup&gt;160&lt;/sup&gt;&amp;frasl;&lt;sub&gt;72&lt;/sub&gt; sp 1pt = &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;72&lt;/sub&gt; 英寸.当屏幕密度为240时，1dp=1dip=1.5px.
+为了使用户界面能够在现在和将来的显示器类型上正常显示，建议大家始终使用sp作为文字大小的单位，将dip作为其他元素的单位。当然，也可以考虑使用矢量图形，而不是用位图。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CAN简介</title>
+      <link>http://www.daniex.tk/blog/2013/can-introduction/</link>
+      <pubDate>Sun, 17 Mar 2013 08:22:51 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/can-introduction/</guid>
+      <description>&lt;p&gt;CAN全称为Controller Area Network，即控制器局域网，由德国Bosch公司最先提出，是国际上应用最广泛的现场总线之一。最初CAN 被设计作为汽车环境中的通讯，在汽车电子控制装置之间交换信息形成汽车电子控制网络。由于其卓越的性能、极高的可靠性和低廉的价格现已广泛应用于工业现场控制、医疗仪器等众多领域。&lt;/p&gt;
+
+&lt;p&gt;CAN协议是建立在OSI 7层开放互连参考模型基础之上的。但CAN协议只定义了模型的最下面两层:数据链路层和物理层，仅保证了节点间无差错的数据传输。CAN的应用层协议必须由CAN 用户自行定义，或采用一些国际组织制订的标准协议。应用最为广泛的是DeviceNet和CANopen，分别广泛应用于过程控制和机电控制领域。但此类协议一般结构比较复杂，更适合复杂大型系统的应用。
+&lt;div&gt;
+&lt;div id=&#34;pageNo-1&#34; data-page-no=&#34;1&#34; data-scale=&#34;0.70709782964164&#34; data-render=&#34;1&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt; CAN的技术规范&lt;/p&gt;
+
+&lt;p&gt;(1) 帧类型&lt;/p&gt;
+
+&lt;p&gt;在CAN总线中，有四种不同的帧类型:&lt;/p&gt;
+
+&lt;p&gt;数据帧(Data Frame) 数据帧带有应用数据;&lt;/p&gt;
+
+&lt;p&gt;远程帧(Remote Frame) 通过发送远程帧可以向网络请求数据，启动其他资源节点传送他们各自的数据，远程帧包含6个不同的位域:帧起始、仲裁域、控制域、CRC域、应答域、帧结尾。仲裁域中的RTR位的隐极性表示为远程帧;&lt;/p&gt;
+
+&lt;p&gt;错误帧(Error Frame)错误帧能够报告每个节点的出错，由两个不同的域组成，第一个域是不同站提供的错误标志的叠加，第二个域是错误界定符;&lt;/p&gt;
+
+&lt;p&gt;过载帧(Overload Frame)如果节点的接收尚未准备好就会传送过载帧，由两个不同的域组成，第一个域是过载标志，第二个域是过载界定符。&lt;/p&gt;
+
+&lt;p&gt;(2) 数据帧结构&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-1215&#34; alt=&#34;20130317161704028&#34; src=&#34;http://daniex.info/wp-content/uploads/2013/03/20130317161704028.png&#34; width=&#34;548&#34; height=&#34;331&#34; /&gt;数据帧由以下7个不同的位域(Bit Field)组成:帧起始、仲裁域、控制域、数据域、CRC域、应答域、帧结尾。&lt;/p&gt;
+
+&lt;p&gt;帧起始:标志帧的开始，它由单个显性位构成，在总线空闲时发送，在总线上产生同步作用。&lt;/p&gt;
+
+&lt;p&gt;仲裁域:由11位标识符(ID10-ID0)和远程发送请求位(RTR)组成，RTR位为显性表示该帧为数据帧，隐性表示该帧为远程帧;标识符由高至低按次序发送，且前7位 (ID10-ID4)不能全为显性位。标识符ID用来描述数据的含义而不用于通信寻址，CAN总线的帧是没有寻址功能的。标识符还用于决定报文的优先权，ID值越低优先权越高，在竞争总线时，优先权高的报文优先发送，优先权低报文退出总线竞争。CAN总线竞争的算法效率很高，是一种非破坏性竞争。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;div id=&#34;pageNo-2&#34; data-page-no=&#34;2&#34; data-scale=&#34;0.70709782964164&#34; data-render=&#34;1&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;控制域:为数据长度码 (DLC3-DLC0)，表示数据域中数据的字节数，不得超过8。&lt;/p&gt;
+
+&lt;p&gt;数据域:由被发送数据组成，数目与控制域中设定的字节数相等，第一个字节的最高位首先被发送。其长度在标准帧中不超过8个字节。&lt;/p&gt;
+
+&lt;p&gt;CRC域:包括CRC(循环冗余码校验)序列(15位)和CRC界定符(1个隐性位)，用于帧校验。&lt;/p&gt;
+
+&lt;p&gt;应答域:由应答间隙和应答界定符组成，共两位;发送站发送两个隐性位，接收站在应答间隙中发送显性位。应答界定符必须是隐性位。&lt;/p&gt;
+
+&lt;p&gt;帧结束:由7位隐性位组成。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2012磨房深圳百公里</title>
+      <link>http://www.daniex.tk/blog/2012/2012-mill-shenzhen-the-one-hundred-kilometers/</link>
+      <pubDate>Wed, 21 Mar 2012 10:37:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/2012-mill-shenzhen-the-one-hundred-kilometers/</guid>
+      <description>&lt;p&gt;2012年3月17日18：20～2012年3月18日17：20，徒步走完从深圳湾体育馆至大鹏总计99.97公里。&lt;/p&gt;
+
+&lt;p&gt;深圳百公里已经有12届了，现在由磨房冠名组织，红牛鼎力赞助。其实深圳还有很多其他的团体在组织类似的活动，百里徒步，登山溯溪的活动周周不断。&lt;/p&gt;
+
+&lt;p&gt;百公里有很多故事，求婚的，忽悠人的，全家出动的，半夜在路边给人唱歌的，每个人都有自己的故事。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;一路有你&#34; src=&#34;http://imgsrc.baidu.com/baike/pic/item/908fa0ec08fa513d916123663d6d55fbb3fbd9bb.jpg&#34; alt=&#34;&#34; width=&#34;484&#34; height=&#34;523&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;===========引用====================&lt;/p&gt;
+
+&lt;p&gt;引用——ID:大草帽&lt;/p&gt;
+
+&lt;p&gt;组织者：一群好事忽悠者，非法组织，工商部门登记查不到，民政部门登记也查不到。贴时间、贴电话费、贴精神、贴金钱，在家不管家，出去瞎张罗。忽悠上万人出家犯傻，自己坐在那里叫他们去走路吧，这种倒贴的事估计国内目前找不到。
+义工：一群好事者，有些人可能在家都不干活，干这种事比谁都勤快，贴钱、贴功夫又贴心，服务比谁都客气周到，这百公里我经没有走错一步路，有必要吗？还有贴车贴油的。
+摄影、摄像：几万元的机器都用上了，完全不看C家或N家的使用说明书，机器、镜头是不能在阳光下长时间暴晒的，各种拍摄姿势都用上了，累不累啊，见MM狂拍，好像见到A级超模了一样；见了雷人的狂采访，完全忘了是百公里。
+参与者：都是吃饱饭撑得，为了喝不要钱的红牛，为了参加不缴报名费的活动，争先恐后买保险报名，报不上的乱发疯话，目的就是在别人面前显摆，黑灯瞎火爬山，白天也不怕烈日当头照，搞了一身臭汗，双脚起满水泡，花费金钱买装备，搞笑的是还有反串来盖章的，搭飞的赶来的。
+警察：给非法聚集者提供服务，超范围经营，不务正业，现在我才知道警察还能提供其它特殊服务的。
+红牛公司：国际化的公司给非法组织联合，贴红牛饮料又贴红牛MM，叫几万人再次认识了红牛。
+大鹏政府：上万人到你哪里去做客，这么好的机会你就不会宣传介绍一下自己，你真的长的就那么好吗？&lt;/p&gt;
+
+&lt;p&gt;我估计明年这帮人再战&lt;/p&gt;
+
+&lt;p&gt;===========引用====================&lt;/p&gt;
+
+&lt;p&gt;今年对义工忽悠这个事谈的这么热闹。。。。。
+估计新加入百公里，新加入户外的人比较多。。。。
+这种HY出了百公里，有不少地方也有。
+如果哪位想HY下人，可以去梧桐山泰山涧中间路段，或者好汉坡中间路上，
+你可以尽情的体验HY。。。&lt;/p&gt;
+
+&lt;p&gt;梧桐山最常见的对话：&lt;/p&gt;
+
+&lt;p&gt;A：            帅哥，美女，还有多久到顶啊？
+B：            快了，差不多XX分钟。
+A:                    骗人，问了3个了，都是XX分钟。。
+B:                    真的，不骗你。&lt;img src=&#34;http://static.doyouhike.net/images/smiles/smile_big.gif&#34; alt=&#34;big smile&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;===========引用====================&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;她没有听他的演唱会——百公里风景之老虎鱼乐队&lt;/strong&gt;   滑铁卢之桥&lt;/p&gt;
+
+&lt;p&gt;四十多岁，矮、胖、丑，这就是吉他手游鱼
+唱的很难听，弹得很差劲。以至于每年百公里组委会都会拒绝他的场地申请
+不能怪组委会，他的歌声在惠州60的时候被人投诉过扰民
+于是每年百公里，他都只能在荒山野岭独自歌唱，还要时刻躲避山地救援队的驱逐
+驱逐到最后，连救援队都不好意思了，于是今年游鱼居然在淘金山救援队驻地旁开唱了，口干了，还能蹭上一杯热茶
+即没有实力，长得也不偶像，自然也就没有女粉丝&lt;/p&gt;
+
+&lt;p&gt;那些年，他也有过女朋友&lt;/p&gt;
+
+&lt;p&gt;和大多数户外爱情一样，他们在一次徒步中认识
+初入户外的她和所有新驴一样，到户外店打包了一堆装备，再装上胭脂水粉就无知者无畏的报名了她看到的第一个活动，两天一夜三水线。
+他接过了她的背包，顺便还要提供一条背包带给她拉拽
+第二天中午，大家午休吃饭的时候，他一个人躲得远远地挑脚上的血泡
+她看到了，于是后面的事情你们都懂了&lt;/p&gt;
+
+&lt;p&gt;有她的日子，游鱼觉得天是那么蓝，海是那么绿&lt;/p&gt;
+
+&lt;p&gt;游鱼，给我唱首歌吧
+我五音不全的，你还是听磁带吧&lt;/p&gt;
+
+&lt;p&gt;游鱼，你是个好人
+嘿嘿傻笑
+我们分手吧
+哦，啊？为什么？
+他会玩吉他
+说吧转身上车，只留下一个决绝的身影
+游鱼傻傻的站在那里，只觉得蓝天白云的车尾标有点炫眼
+“要是我会唱歌，她也许就不会离开我了！”&lt;/p&gt;
+
+&lt;p&gt;以后的百公里路上，就多了一条用心唱歌的鱼&lt;/p&gt;
+
+&lt;p&gt;我只是想为她唱，至于她来不来已经不重要了&lt;/p&gt;
+
+&lt;p&gt;“你知不知道，你知不知道，我等到花儿也谢了……”&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;===========流水帐起====================&lt;/p&gt;
+
+&lt;p&gt;去年的时候已经参加过百公里的体验组了，当时走38.6公里觉得脚底板难受。再往后没事爬山溯溪的，走了&lt;a title=&#34;山友八周年——走进马峦山50公里徒步&#34; href=&#34;http://daniex.info/shanyou8zhounian-50km.html&#34; target=&#34;_blank&#34;&gt;山友马峦山50公&lt;/a&gt;里，&lt;a title=&#34;第四届徒步穿越丹霞山活动&#34; href=&#34;http://daniex.info/on-foot-through-the-danxiashan.html&#34; target=&#34;_blank&#34;&gt;丹霞山50公里&lt;/a&gt;，&lt;a title=&#34;2011山友山野百里石牛肚-猫耳石-公婆石-十二灶顶&#34; href=&#34;http://daniex.info/2011shanyou-shanyebaili.html&#34; target=&#34;_blank&#34;&gt;山野百里&lt;/a&gt;等等。发现，脚有点酸太正常了，脚底气泡，小腿酸，大腿疼，脚后跟不能着地也很正常。。。&lt;/p&gt;
+
+&lt;p&gt;下决定去走百公里是在周二，也不管报名了，就去走走吧。这么一项轰动热门的活动不走下全程，总觉得是个遗憾。于是开始准备鞋，包等等。没有合适长距离徒步的鞋子，之前走50km都是休闲鞋，这些走百公里太伤脚。买个双跑步鞋备用，结果发现确实弹性十足，轻巧方便。但是底太薄，前脚掌着力太重。到最后穿两双袜子还垫了两双，才将将走完。&lt;/p&gt;
+
+&lt;p&gt;新鞋不能做剧烈运动，徒步对鞋子要求更高，更不能用新鞋。周三买鞋，周四去打羽毛球狠狠的糟蹋了下新鞋，周五再穿一天。勉强把这鞋磨开，但磨合时间还是太少，否则我会知道这双鞋走长距离要多带鞋垫！前40公里穿旧鞋子，底薄还偏硬，穿着走50公里估计就会把我脚磨坏。40公里处感觉不对果断换鞋。&lt;/p&gt;
+
+&lt;p&gt;长距离徒步我习惯先穿一丝袜，然后穿一双厚棉袜，再穿护脚踝，再带两双厚袜子。脚踝处有旧伤，一直小心保护。百公里下来没有气泡，这是我最庆幸的。不同人对脚保护措施不一样，有抹凡士林，贴膏药的，合适自己就好。&lt;/p&gt;
+
+&lt;p&gt;17号6：20出发，一起走的都是黑户，没有报上名。而且我们队友很不“团结”，有带两个mm过来体验的，结果半夜都没到就下撤了。有狂人一路飞奔18号早上8：30就跑到终点的。有要见客户，只能半路加入团队的。但是，只要有人能一起走就可以。一个人走太闷，两个人说说笑笑，三个人其乐无穷。&lt;/p&gt;
+
+&lt;p&gt;前30公里一路人很多，大家都是刚出发，够体力，速度差不多。10：10分到第一个签到点22公里处，大家都还斗志昂扬。在往下10公里就出现第一大批支持不住的。洪湖公园门口四仰八叉地躺了很多休息的人。到45公里处第二个签到点梧桐山村，下撤的人就更多了。尽管路上有弹吉他唱歌给人打气的老虎游鱼乐队，尽管当时还有零星小店正在营业，尽管有炸甘蔗汁，鸡汤鸭粥供应。&lt;/p&gt;
+
+&lt;p&gt;和依然两人从深圳湾到梧桐山下二线关，汇合中途拦截的智英姐，于凌晨三点到达第二签到点梧桐山村。领了红牛继续向前。遇到从广州过来的大哥，放着音乐大步向前，遇到不小心把队友甩在身后的小哥，结伴通行。有壮士背着姑娘扬言背到终点，有女生cosplay一身女巫套装拿登山杖当扫把飞。&lt;/p&gt;
+
+&lt;p&gt;从梧桐山村到大梅沙这一段22公里，是超越过去的一段。以前都是走的50公里以下，而在这一段，就要突破五十。从3点到7点30，我们用了四个半小时。从这一段开始，大家身体上都有些不适。依然的左大腿，我的左膝盖。走累了就小跑一段，似乎跑的时候更容易让人忘了脚伤。5点，看着天有些蒙蒙亮，大家准备看日出，可是前面有座山，于是翻山！还没到山脚，开始祈祷，太阳不要出来了吧，白天会很晒。在半山腰的时候，天已经亮了。日出是没有看到，但是看到了雾，看到了“海市蜃楼”！从山上往下看，一片雾霭，像云，风吹了云动！山下是个码头，有很多很高的吊臂竖着，还有个别高楼。风一吹，露出个楼顶，真像蜃楼。那吊臂就像天梯，上接天，下穿云。&lt;/p&gt;
+
+&lt;p&gt;七点半到大梅沙，没有见着本来说好18号早上从大梅沙出发接力的人。和一群刚睡晚一觉谨慎抖擞的人一起出发走接下来的34公里。依然左脚底疼的厉害，我右脚前脚掌吃不消。走着走着智英姐就跑了，说，在这么走下去他脚也受不了的。于是一跑，就在体验组第一个签到点（终点前第二个签到点）等了我们一小时，我们到了只后又休息了一小时。在12点左右，我们才继续上路。&lt;/p&gt;
+
+&lt;p&gt;最后20多公里，就是一步一步挪过去的了，脚底一直在疼，麻木了，反真都是走，疼一下继续走呗。在义工们忽悠还有7公里还有5公里还有1公里实际还有10公里7公里3公里的声音中。走到终点。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;走麻木了，字也敲麻木了。over。。。。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;2012百公里&#34; src=&#34;http://imgsrc.baidu.com/baike/pic/item/ae51f3deb48f8c548d058a973a292df5e1fe7fb7.jpg&#34; alt=&#34;&#34; width=&#34;484&#34; height=&#34;335&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;给几个磨房链接大家看照片&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;评选&#34; href=&#34;http://www.doyouhike.net/forum/sz100km/1/823156,0,0,0.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;照片评选 &lt;a href=&#34;http://www.doyouhike.net/forum/sz100km/1/823156,0,0,0.html&#34;&gt;http://www.doyouhike.net/forum/sz100km/1/823156,0,0,0.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;终点前200米&#34; href=&#34;http://www.doyouhike.net/forum/sz100km/813792,0,0,0.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;终点前200米 &lt;a href=&#34;http://www.doyouhike.net/forum/sz100km/813792,0,0,0.html&#34;&gt;http://www.doyouhike.net/forum/sz100km/813792,0,0,0.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;沿途风景&#34; href=&#34;http://www.doyouhike.net/forum/sz100km/4/748388,0,0,0.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;百公里沿途 &lt;a href=&#34;http://www.doyouhike.net/forum/sz100km/4/748388,0,0,0.html&#34;&gt;http://www.doyouhike.net/forum/sz100km/4/748388,0,0,0.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;求婚&#34; href=&#34;http://www.doyouhike.net/forum/sz100km/2/729361,0,0,0.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;求婚 &lt;a href=&#34;http://www.doyouhike.net/forum/sz100km/2/729361,0,0,0.html&#34;&gt;http://www.doyouhike.net/forum/sz100km/2/729361,0,0,0.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;老虎鱼&#34; href=&#34;http://www.doyouhike.net/forum/sz100km/4/812732,0,0,0.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;老虎鱼乐队 &lt;a href=&#34;http://www.doyouhike.net/forum/sz100km/4/812732,0,0,0.html&#34;&gt;http://www.doyouhike.net/forum/sz100km/4/812732,0,0,0.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;人像合集&#34; href=&#34;http://www.doyouhike.net/forum/sz100km/3/813693,0,0,0.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;混合照片 &lt;a href=&#34;http://www.doyouhike.net/forum/sz100km/3/813693,0,0,0.html&#34;&gt;http://www.doyouhike.net/forum/sz100km/3/813693,0,0,0.html&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>javax.mail.internet API 学习</title>
+      <link>http://www.daniex.tk/blog/2012/javax-mail-internet-api/</link>
+      <pubDate>Fri, 20 Jan 2012 14:34:58 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/javax-mail-internet-api/</guid>
+      <description>&lt;p&gt;前些天编程，用了个这样的数据传输方式，在http POST消息中传MIME数据包。于是找到javax.mail.internet的包用。在Java EE 1.5的库里包含这个包。现在有的MIME包不仅仅这一个，还有很多，更有千秋。比如这个包的Countent-Type 的 boundary字段是自动生成的，还不太方便取出来。有些包是能够自己设置boundary字段。&lt;/p&gt;
+
+&lt;p&gt;下面转载了这个包的基本使用方法，供学习参考。&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;MIME详细介绍&#34; href=&#34;http://daniex.info/mime-details.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;MIME学习请参考这里&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;++++++++++++++++++++++++++++++++++++++++++++&lt;/p&gt;
+
+&lt;p&gt;打开JavaMail.jar文件，我们将发现在javax.mail的包下面存在着一些核心类：Session、Message、Address、Authenticator、Transport、Store、Folder。而且在 javax.mail.internet包中还有一些常用的子类。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A．Session&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Session类定义了基本的邮件会话。就像Http会话那样，我们进行收发邮件的工作都是基于这个会话的。Session对象利用了java.util.Properties对象获得了邮件服务器、用户名、密码信息和整个应用程序都要使用到的共享信息。&lt;/p&gt;
+
+&lt;p&gt;Session类的构造方法是私有的，所以我们可以使用Session类提供的getDefaultInstance()这个静态工厂方法获得一个默认的Session对象：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Properties props = new Properties();// fill props with any information
+2  Session session = Session.getDefaultInstance(props, null);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+或者使用getInstance()这个静态工厂方法获得自定义的Session:
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Properties props = new Properties();// fill props with any information
+2  Session session = Session.getInstance(props, null);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+从上面的两个例子中不难发现，getDefaultInstance()和getInstance()方法的第二个参数都是null，这是因为在上面的例子中并没有使用到邮件授权，下文中将对授权进行详细介绍。
+从很多的实例看，在对mail server进行访问的过程中使用共享的Session是足够的，即使是工作在多个用户邮箱的模式下也不例外。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;B．&lt;/strong&gt;&lt;strong&gt;Message&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;当我们建立了Session对象后，便可以构造被 发送的信息体了。在这里SUN提供了Message类型来帮助开发者完成这项工作。由于Message是一个抽象类，大多数情况下，我们使用 javax.mail.internet.MimeMessage这个子类，该类是使用MIME类型、MIME信息头的邮箱信息。信息头只能使用US- ASCII字符，而非ASCII字符将通过编码转换为ASCII的方式使用。&lt;/p&gt;
+
+&lt;p&gt;为了建立一个MimeMessage对象，我们必须将Session对象作为MimeMessage构造方法的参数传入：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 MimeMessage message = new MimeMessage(session);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+注意：对于MimeMessage类来讲存在着多种构造方法，比如使用输入流作为参数的构造方法。&lt;/p&gt;
+
+&lt;p&gt;在建立了MimeMessage对象后，我们需要设置它的各个part，对于MimeMessage类来说，这些part就是MimePart接口。最基本的设置信息内容的方法就是通过表示信息内容和米么类型的参数调用setContent()方法：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 message.setContent(&amp;ldquo;Hello&amp;rdquo;, &amp;ldquo;text/plain&amp;rdquo;);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+然而，如果我们所使用的MimeMessage中信息内容是文本的话，我们便可以直接使用setText()方法来方便的设置文本内容：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 message.setText(&amp;ldquo;Hello&amp;rdquo;);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+前面所讲的两种方法，对于文本信息，后者更为合适。而对于其它的一些信息类型，比如HTML信息，则要使用前者。
+别忘记了，使用setSubject()方法对邮件设置邮件主题：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 message.setSubject(&amp;ldquo;First&amp;rdquo;);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;strong&gt;C．Address&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;到这里，我们已经建立了Session和Message，下面将介绍如何使用邮件地址类：Address。像Message一样，Address类也是一个抽象类，所以我们将使用javax.mail.internet.InternetAddress这个子类。&lt;/p&gt;
+
+&lt;p&gt;通过传入代表邮件地址的字符串，我们可以建立一个邮件地址类：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Address address = new InternetAddress(&amp;ldquo;president@whitehouse.gov&amp;rdquo;);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+如果要在邮件地址后面增加名字的话，可以通过传递两个参数：代表邮件地址和名字的字符串来建立一个具有邮件地址和名字的邮件地址类：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Address address = new InternetAddress(&amp;ldquo;president@whitehouse.gov&amp;rdquo;, &amp;ldquo;George Bush&amp;rdquo;);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+本文在这里所讲的邮件地址类是为了设置邮件信息的发信人和收信人而准备的，在建立了邮件地址类后，我们通过message的setFrom()和setReplyTo()两种方法设置邮件的发信人：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 message.setFrom(address);message.setReplyTo(address);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+若在邮件中存在多个发信人地址，我们可用addForm()方法增加发信人：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Address address[] = &amp;hellip;;
+2 message.addFrom(address);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+为了设置收信人，我们使用addRecipient()方法增加收信人，此方法需要使用Message.RecipientType的常量来区分收信人的类型：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 message.addRecipient(type, address)&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+下面是Message.RecipientType的三个常量：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Message.RecipientType.TO
+2 Message.RecipientType.CC
+3 Message.RecipientType.BCC&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+因此，如果我们要发送邮件给总统，并发用一个副本给第一夫人的话，下面的方法将被用到：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Address toAddress = new InternetAddress(&amp;ldquo;vice.president@whitehouse.gov&amp;rdquo;);
+2 Address ccAddress = new InternetAddress(&amp;ldquo;first.lady@whitehouse.gov&amp;rdquo;);
+3 message.addRecipient(Message.RecipientType.TO, toAddress);
+4 message.addRecipient(Message.RecipientType.CC, ccAddress);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+JavaMail API并没有提供检查邮件地址有效性的机制。当然我们可以自己完成这个功能：验证邮件地址的字符是否按照RFC822规定的格式书写或者通过DNS服务器上的MX记录验证等。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;D．Authenticator&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;像java.net类那样，JavaMail API通过使用授权者类 （Authenticator）以用户名、密码的方式访问那些受到保护的资源，在这里“资源”就是指邮件服务器。在javax.mail包中可以找到这个 JavaMail的授权者类（Authenticator）。&lt;/p&gt;
+
+&lt;p&gt;在使用Authenticator这个抽象类时，我们必须采用继承该抽象类的方式，并且该继 承类必须具有返回PasswordAuthentication对象（用于存储认证时要用到的用户名、密 码）getPasswordAuthentication()方法。并且要在Session中进行注册，使Session能够了解在认证时该使用哪个类。&lt;/p&gt;
+
+&lt;p&gt;下面代码片断中的MyAuthenticator就是一个Authenticator的子类：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Properties props = new Properties();// fill props with any information
+2  Authenticator auth = new MyAuthenticator();
+3 Session session = Session.getDefaultInstance(props, auth);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;strong&gt;E．Transport&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在发送信息时，Transport类将被用到。这个类实现了发送信息的协议（通称为SMTP），此类是一个抽象类，我们可以使用这个类的静态方法send()来发送消息：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Transport.send(message);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+当然，方法是多样的。我们也可由Session获得相应协议对应的Transport实例。并通过传递用户名、密码、邮件服务器主机名等参数建立与邮件服务器的连接，并使用sendMessage()方法将信息发送，最后关闭连接：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 message.saveChanges(); // implicit with send()
+2  Transport transport = session.getTransport(&amp;ldquo;smtp&amp;rdquo;);
+3 transport.connect(host, username, password);
+4 transport.sendMessage(message, message.getAllRecipients());
+5 transport.close();&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+评论：上面的方法是一个很好的方法，尤其是在我们在同一个邮件服务器上发送多个邮件时。因为 这时我们将在连接邮件服务器后连续发送邮件，然后再关闭掉连接。send()这个基本的方法是在每次调用时进行与邮件服务器的连接的，对于在同一个邮件服 务器上发送多个邮件来讲可谓低效的方式。&lt;/p&gt;
+
+&lt;p&gt;注意：如果需要在发送邮件过程中监控mail命令的话，可以在发送前设置debug标志：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 session.setDebug(true)；&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;strong&gt;F．Store和Folder&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;接 收邮件和发送邮件很类似都要用到Session。但是在获得Session后，我们需要从Session中获取特定类型的Store，然后连接到 Store，这里的Store代表了存储邮件的邮件服务器。在连接Store的过程中，极有可能需要用到用户名、密码或者Authenticator。
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Store store = session.getStore(&amp;ldquo;pop3&amp;rdquo;);
+2 store.connect(host, username, password);&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+在连接到Store后，一个Folder对象即目录对象将通过Store的getFolder()方法被返回，我们可从这个Folder中读取邮件信息：
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 Folder folder = store.getFolder(&amp;ldquo;INBOX&amp;rdquo;);
+2 folder.open(Folder.READ_ONLY);
+3 Message message[] = folder.getMessages();&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+上面的例子首先从Store中获得INBOX这个Folder（对于POP3协议只有一个名为INBOX的Folder有效），然后以只读（Folder.READ_ONLY）的方式打开Folder，最后调用Folder的 getMessages()方法得到目录中所有Message的数组。&lt;/p&gt;
+
+&lt;p&gt;注意：对于POP3协议只 有一个名为INBOX的Folder有效，而对于IMAP协议，我们可以访问多个Folder（想想前面讲的IMAP协议）。而且SUN在设计 Folder的getMessages()方法时采取了很智能的方式：首先接收新邮件列表，然后再需要的时候（比如读取邮件内容）才从邮件服务器读取邮件 内容。&lt;/p&gt;
+
+&lt;p&gt;在读取邮件时，我们可以用Message类的getContent()方法接收邮件或是writeTo()方法将邮件保存，getContent()方法只接收邮件内容（不包含邮件头），而writeTo()方法将包括邮件头。
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 System.out.println(((MimeMessage)message).getContent());&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+在读取邮件内容后，别忘记了关闭Folder和Store。
+&lt;div&gt;
+&lt;blockquote&gt;
+&lt;div&gt;1 folder.close(aBoolean);
+2 store.close();&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+传递给Folder.close()方法的boolean类型参数表示是否在删除操作邮件后更新Folder。&lt;/p&gt;
+
+&lt;p&gt;转自：&lt;a href=&#34;http://tech.ccidnet.com/art/3741/20060531/567247_1.html&#34;&gt;http://tech.ccidnet.com/art/3741/20060531/567247_1.html&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MIME详细介绍</title>
+      <link>http://www.daniex.tk/blog/2012/mime-details/</link>
+      <pubDate>Thu, 19 Jan 2012 01:11:28 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/mime-details/</guid>
+      <description>&lt;div id=&#34;cnblogs_post_body&#34;&gt;
+（注：本文转自CSDN，因本人学习，只是做一笔记，以防遗忘。）
+
+&lt;strong&gt;Q&lt;/strong&gt; 什么是MIME？什么是MIME邮件？
+
+&lt;strong&gt;A&lt;/strong&gt; MIME, 全称为“Multipurpose Internet Mail Extensions”, 比较确切的中文名称为“多用途互联网邮件扩展”。它是当前广泛应用的一种电子邮件技术规范，基本内容定义于RFC 2045-2049。
+
+自然，MIME邮件就是符合MIME规范的电子邮件，或者说根据MIME规范编码而成的电子邮件。
+
+在MIME出台之前，使用RFC 822只能发送基本的ASCII码文本信息，邮件内容如果要包括二进制文件、声音和动画等，实现起来非常困难。MIME提供了一种可以在邮件中附加多种不 同编码文件的方法，弥补了原来的信息格式的不足。实际上不仅仅是邮件编码，现在MIME经成为HTTP协议标准的一个部分。
+
+下面举几个MIME邮件的例子，让我们先对MIME编码的格式有个直观的印象。例1是最简单的，只带纯文本正 文，基本上就是RFC 822格式；例2复杂一些，包含纯文本和超文本正文；例3是最复杂的，包含纯文本正文、超文本正文、内嵌资源和文件附件。其中，行号和行号后的空格是为了 分析方便而另外加的，“... ... ... ...”表示此处省略了大段编码。
+
+例1
+&lt;blockquote&gt;1 Date: Thu, 18 Apr 2002 09:32:45 +0800
+2 From: &amp;lt;bhw98@sina.com&amp;gt;
+3 To: &amp;lt;bhwang@jlonline.com&amp;gt;
+4 Subject: Test
+5 Mime-Version: 1.0
+6 Content-Type: text/plain; charset=&#34;iso-8859-1&#34;
+7
+8 This is a simple mail.
+9&lt;/blockquote&gt;
+例2
+&lt;blockquote&gt;1 From: &#34;bhw98&#34; &amp;lt;bhw98@sina.com&amp;gt;
+2 Reply-To: bhw98@sina.com
+3 To: &amp;lt;bluesky7810@163.com&amp;gt;
+4 Subject: Re: help
+5 X-Mailer: Foxmail 4.2 [cn]
+6 Mime-Version: 1.0
+7 Content-Type: multipart/alternative;
+8 boundary=&#34;=====002_Dragon307572345230_=====&#34;
+9
+10
+11 This is a multi-part message in MIME format.
+12
+13 --=====002_Dragon307572345230_=====
+14 Content-Type: text/plain; charset=&#34;GB2312&#34;
+15 Content-Transfer-Encoding: quoted-printable
+16
+17 bluesky7810=A3=AC=C4=FA=BA=C3=A3=A1
+18
+19 =A1=A1=A1=A1=D4=DA=CF=C2=C6=AA=D7=EE=BA=F3=BF=C9=D2=D4=CF=C2=D4=D8=B0=A1=A3=AC=C4=E3
+... ... ... ...
+30 =A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A12003-04-07
+31
+32 --=====002_Dragon307572345230_=====
+33 Content-Type: text/html; charset=&#34;GB2312&#34;
+34 Content-Transfer-Encoding: quoted-printable
+35
+36 &amp;lt;!DOCTYPE HTML PUBLIC &#34;-//W3C//DTD HTML 4.0 Transitional//EN&#34;&amp;gt;
+37 &amp;lt;HTML&amp;gt;&amp;lt;HEAD&amp;gt;
+38 &amp;lt;META content=3D&#34;text/html; charset=3Dgb2312&#34;=
+39 http-equiv=3DContent-Type&amp;gt;
+40 &amp;lt;META content=3D&#34;MSHTML 5.00.2920.0&#34; name=3DGENERATOR&amp;gt;
+... ... ... ...
+79 &amp;lt;/HTML&amp;gt;
+80
+81 --=====002_Dragon307572345230_=====--
+82&lt;/blockquote&gt;
+例3
+&lt;blockquote&gt;1 Return-Path: &amp;lt;bluesky7810@163.com&amp;gt;
+2 Delivered-To: bhw98@sina.com
+3 Received: (qmail 75513 invoked by alias); 20 May 2002 02:19:53 -0000
+4 Received: from unknown (HELO bluesky) (61.155.118.135)
+5 by 202.106.187.143 with SMTP; 20 May 2002 02:19:53 -0000
+6 Message-ID: &amp;lt;007f01c3111c$742fec00$0100007f@bluesky&amp;gt;
+7 From: &#34;=?gb2312?B?wLbAtrXEzOwNCg==?=&#34; &amp;lt;bluesky7810@163.com&amp;gt;
+8 To: &#34;bhw98&#34; &amp;lt;bhw98@sina.com&amp;gt;
+9 Cc: &amp;lt;bhwang@jlonline.com&amp;gt;
+10 Subject: =?gb2312?B?ztK1xLbgtK6/2rPM0PI=?=
+11 Date: Sat, 20 May 2002 10:03:36 +0800
+12 MIME-Version: 1.0
+13 Content-Type: multipart/mixed;
+14 boundary=&#34;----=_NextPart_000_007A_01C3115F.80DFC5E0&#34;
+15 X-Priority: 3
+16 X-MSMail-Priority: Normal
+17 X-Mailer: Microsoft Outlook Express 5.00.2919.6700
+18 X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2919.6700
+19
+20 This is a multi-part message in MIME format.
+21
+22 ------=_NextPart_000_007A_01C3115F.80DFC5E0
+23 Content-Type: multipart/related; type=&#34;multipart/alternative&#34;;
+24 boundary=&#34;----=_NextPart_001_007B_01C3115F.80DFC5E0&#34;
+25
+26
+27 ------=_NextPart_001_007B_01C3115F.80DFC5E0
+28 Content-Type: multipart/alternative;
+29 boundary=&#34;----=_NextPart_002_007C_01C3115F.80DFC5E0&#34;
+30
+31 ------=_NextPart_002_007C_01C3115F.80DFC5E0
+32 Content-Type: text/plain; charset=&#34;gb2312&#34;
+33 Content-Transfer-Encoding: quoted-printable
+34
+35 bhw98, =C4=E3=BA=C3!
+36 =D5=E2=CA=C7=CE=D2=D0=B4=B5=C4=B6=E0=B4=AE=BF=DA=CD=A8=D0=C5=B5=C4=B3=CC=D0=
+37 =F2, =C7=EB=D6=B8=BD=CC!
+38
+39
+40 ------=_NextPart_002_007C_01C3115F.80DFC5E0
+41 Content-Type: text/html; charset=&#34;gb2312&#34;
+42 Content-Transfer-Encoding: quoted-printable
+43
+44 &amp;lt;!DOCTYPE HTML PUBLIC &#34;-//W3C//DTD HTML 4.0 Transitional//EN&#34;&amp;gt;
+45 &amp;lt;HTML&amp;gt;&amp;lt;HEAD&amp;gt;&amp;lt;TITLE&amp;gt;=C7=E7=C0=CA&amp;lt;/TITLE&amp;gt;
+46 &amp;lt;META content=3D&#34;text/html; charset=3Dgb2312&#34; http-equiv=3DContent-Type&amp;gt;
+47 &amp;lt;STYLE&amp;gt;BODY {
+48 COLOR: #0033cc; FONT-FAMILY: =CB=CE=CC=E5, Arial, Helvetica; FONT-SIZE: =
+49 9pt; MARGIN-LEFT: 10px; MARGIN-TOP: 25px
+50 }
+51 &amp;lt;/STYLE&amp;gt;
+52 &amp;lt;META content=3D&#34;MSHTML 5.00.2920.0&#34; name=3DGENERATOR&amp;gt;&amp;lt;/HEAD&amp;gt;
+53 &amp;lt;BODY background=3Dcid:007901c3111c$72b978a0$0100007f@bluesky =
+54 bgColor=3D#ffffff&amp;gt;
+55 &amp;lt;DIV&amp;gt;
+56 &amp;lt;DIV&amp;gt;bhw98, =C4=E3=BA=C3!&amp;lt;/DIV&amp;gt;
+57 &amp;lt;P&amp;gt;=D5=E2=CA=C7=CE=D2=D0=B4=B5=C4=B6=E0=B4=AE=BF=DA=CD=A8=D0=C5=B5=C4=B3=CC=
+58 =D0=F2, =C7=EB=D6=B8=BD=CC!&amp;lt;/P&amp;gt;&amp;lt;/DIV&amp;gt;
+59 &amp;lt;P&amp;gt; &amp;lt;/P&amp;gt;&amp;lt;/BODY&amp;gt;&amp;lt;/HTML&amp;gt;
+60
+61 ------=_NextPart_002_007C_01C3115F.80DFC5E0--
+62
+63 ------=_NextPart_001_007B_01C3115F.80DFC5E0
+64 Content-Type: image/jpeg; name=&#34;=?gb2312?B?x+fAyrGzvrAuSlBH?=&#34;
+65 Content-Transfer-Encoding: base64 66 Content-ID: &amp;lt;007901c3111c$72b978a0$0100007f@bluesky&amp;gt;
+67
+68 /9j/4AAQSkZJRgABAgEASABIAAD/7QVoUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+69 AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNBAoAAAAAAAEAADhCSU0nEAAAAAAACgAB
+70 AAAAAAAAAAI4QklNA/UAAAAAAEgAL2ZmAAEAbGZmAAYAAAAAAAEAL2ZmAAEAoZmaAAYAAAAAAAEA
+... ... ... ...
+169 RxVw98Vawq12xQ44q0cKtHFDWKGsKt4EtiuKt4q//9k=
+170
+171 ------=_NextPart_001_007B_01C3115F.80DFC5E0--
+172
+173 ------=_NextPart_000_007A_01C3115F.80DFC5E0
+174 Content-Type: application/msword; name=&#34;readme.doc&#34;
+175 Content-Transfer-Encoding: base64
+176 Content-Disposition: attachment; filename=&#34;readme.doc&#34;
+177
+178 0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAJgAAAAAAAAAA
+179 EAAAKAAAAAEAAAD+////AAAAACUAAAD/////////////////////////////////////////////
+180 ////////////////////////////////////////////////////////////////////////////
+... ... ... ...
+1688 AAAAAAAAAAAAAAAAAAA=
+1689
+1690 ------=_NextPart_000_007A_01C3115F.80DFC5E0
+1691 Content-Type: application/x-zip-compressed;
+1692 name=&#34;=?gb2312?B?tuC0rr/azajQxbXE1LTC6y56aXA=?=&#34;
+1693 Content-Transfer-Encoding: base64
+1694 Content-Disposition: attachment;
+1695 filename=&#34;=?gb2312?B?tuC0rr/azajQxbXE1LTC6y56aXA=?=&#34;
+1696
+1697 UEsDBBQAAAAIAFKAoi7qOMOvLw0AAABWAAAUAAAAtuC0rr/azajQxbXE1LTC6y5kb2PtXHtwVNUZ
+1698 /+4+kk3IQoAkBkRYQkSgbrKb7IYNEMwmm6ckG0jCI0boZneTbJJ9sNlAEsdOtFqd8Z846tQ6PhB1
+1699 hrZTJoK0Vhgf1aGt4rMy6D8tdugfTjuOpcBIR9j+vvsIy4YkRNTRen87v/ud53cee+6557vn7L73
+... ... ... ...
+3125 zajQxbXE1LTC6y5kb2NQSwUGAAAAAAEAAQBCAAAAYQ0AAA==
+3126
+3127 ------=_NextPart_000_007A_01C3115F.80DFC5E0--
+3128&lt;/blockquote&gt;
+&lt;strong&gt;Q&lt;/strong&gt; 在开始研究MIME邮件的时候，如何得到这样的源码？
+
+&lt;strong&gt;A&lt;/strong&gt; 一些功能比较完善的邮件客户端软件，如微软的Outlook Express，国产的Foxmail等，都提供了查看和保存邮件源码(原始信息)的功能。在Foxmail中，选择邮件列表右键菜单的“原始信息”进行 查看，主菜单的“文件-导出”进行保存。在Outlook Express中，对应的操作分别是“属性”和“另存为”。所保存的.eml文件，可以调用这些程序打开。
+
+&lt;strong&gt;Q&lt;/strong&gt; 请介绍一下MIME邮件的组成？
+
+&lt;strong&gt;A&lt;/strong&gt; 总体来说，MIME消息由消息头和消息体两大部分组成。现在我们关注的是MIME邮件，因此在以下的讨论中姑且称“消息”为“邮件”。在上面的例子中，例 1的1-6行，例2的1—8行，例3的1-18行，是邮件头；例1的8—9行，例2的10—82行，例3的20—3128行，是邮件体。邮件头与邮件体之 间以空行进行分隔，如例1的第7行，例2的第9行，例3的第19行。邮件头中不允许出现空行。有一些邮件不能被邮件客户端软件识别，显示的是原始码，就是 因为首行是空行。
+
+邮件头包含了发件人、收件人、主题、时间、MIME版本、邮件内容的类型等重要信息。每条信息称为一个域，由 域名后加“: ”和信息内容构成，可以是一行，较长的也可以占用多行。域的首行必须“顶头”写，即左边不能有空白字符（空格和制表符）；续行则必须以空白字符打头，且第 一个空白字符不是信息本身固有的，解码时要过滤掉。如例2的7-8行，例3的4-5行，13-14行，分别属于一个域。
+
+邮件体包含邮件的内容，它的类型由邮件头的“Content-Type”域指出。常见的简单类型有text/plain(纯文本)和text/html(超文本)。
+
+例2和例3中出现的multipart类型，是MIME邮件的精髓。邮件体被分为多个段，每个段又包含段头和 段体两部分，这两部分之间也以空行分隔。常见的multipart类型有三种：multipart/mixed, multipart/related和multipart/alternative。从它们的名称，不难推知这些类型各自的含义和用处。它们之间的层次关 系可归纳为下图所示：
+&lt;pre&gt;+------------------------- multipart/mixed ----------------------------+
+|                                                                      |
+|  +----------------- multipart/related ------------------+            |
+|  |                                                      |            |
+|  |  +----- multipart/alternative ------+  +----------+  |  +------+  |
+|  |  |                                  |  | 内嵌资源 |  |  | 附件 |  |
+|  |  |  +------------+  +------------+  |  +----------+  |  +------+  |
+|  |  |  | 纯文本正文 |  | 超文本正文 |  |                |            |
+|  |  |  +------------+  +------------+  |  +----------+  |  +------+  |
+|  |  |                                  |  | 内嵌资源 |  |  | 附件 |  |
+|  |  +----------------------------------+  +----------+  |  +------+  |
+|  |                                                      |            |
+|  +------------------------------------------------------+            |
+|                                                                      |
++----------------------------------------------------------------------+&lt;/pre&gt;
+可以看出，如果在邮件中要添加附件，必须定义multipart/mixed段；如果存在内嵌资源，至少要定义 multipart/related段；如果纯文本与超文本共存，至少要定义multipart/alternative段。什么是“至少”？举个例子 说，如果只有纯文本与超文本正文，那么在邮件头中将类型扩大化，定义为multipart/related，甚至multipart/mixed，都是允 许的。
+
+multipart诸类型的共同特征是，在段头指定“boundary”参数字符串，段体内的每个子段以此串 定界。所有的子段都以“--”+boundary行开始，父段则以“--”+boundary+“--”行结束。段与段之间也以空行分隔。在邮件体是 multipart类型的情况下，邮件体的开始部分(第一个“--”+boundary行之前)可以有一些附加的文本行，相当于注释，解码时应忽略。段间 也可以有一些附加的文本行，不会显示出来，如果有兴趣，不妨验证一下。
+
+结合boundary定界和multipart层次关系图，我们分析一下例2和例3的邮件体层次与段嵌套关系。
+
+在例2中，10-12行是附加文本行，13-82行是multipart/alternative型的段，包含两个子段：13-30行是纯文本正文，32-79行是超文本正文。
+
+在例3中，20-21行是附加文本行，22-3127行是multipart/mixed型的段，包含3个子 段：22-171行是multipart/related段，173-1688行与1690-3125行是两个附件。multipart/related 段又包含两个子段：27-61行是multipart/alternative段，63-169行是一个内嵌资源(图片)。multipart /alternative段又包含两个子段：31-48行是纯文本正文，40-59行是超文本正文。
+
+例1只有纯文本正文，实际上属于multipart层次关系图中的一个特殊情况。如果非要避简就繁，写成下面的形式，也是完全符合MIME精神的。
+&lt;blockquote&gt;Date: Thu, 18 Apr 2002 09:32:45 +0800
+From: &amp;lt;bhw98@sina.com&amp;gt;
+To: &amp;lt;bhwang@jlonline.com&amp;gt;
+Subject: Test
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary=&#34;{[(^_^)]}&#34; --{[(^_^)]}
+Content-Type: text/plain; charset=&#34;iso-8859-1&#34;
+Content-Transfer-Encoding: 7bit This is a simple mail. --{[(^_^)]}--&lt;/blockquote&gt;
+&lt;strong&gt;Q&lt;/strong&gt; 在邮件头和段头中，有哪一些常见的域？
+
+&lt;strong&gt;A&lt;/strong&gt; 在邮件头中，有很多从RFC 822沿用的域名，MIME也增加了一些。常见的标准域名和含义如下
+&lt;table align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;域名&lt;/td&gt;
+&lt;td&gt;含义&lt;/td&gt;
+&lt;td&gt;添加者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Received&lt;/td&gt;
+&lt;td&gt;传输路径&lt;/td&gt;
+&lt;td&gt;各级邮件服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Return-Path&lt;/td&gt;
+&lt;td&gt;回复地址&lt;/td&gt;
+&lt;td&gt;目标邮件服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Delivered-To&lt;/td&gt;
+&lt;td&gt;发送地址&lt;/td&gt;
+&lt;td&gt;目标邮件服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Reply-To&lt;/td&gt;
+&lt;td&gt;回复地址&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;From&lt;/td&gt;
+&lt;td&gt;发件人地址&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;To&lt;/td&gt;
+&lt;td&gt;收件人地址&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Cc&lt;/td&gt;
+&lt;td&gt;抄送地址&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Bcc&lt;/td&gt;
+&lt;td&gt;暗送地址&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Date&lt;/td&gt;
+&lt;td&gt;日期和时间&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Subject&lt;/td&gt;
+&lt;td&gt;主题&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Message-ID&lt;/td&gt;
+&lt;td&gt;消息ID&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MIME-Version&lt;/td&gt;
+&lt;td&gt;MIME版本&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Type&lt;/td&gt;
+&lt;td&gt;内容的类型&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Transfer-Encoding&lt;/td&gt;
+&lt;td&gt;内容的传输编码方式&lt;/td&gt;
+&lt;td&gt;邮件的创建者&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+非标准的、自定义域名都以X-开头，例如X-Mailer, X-MSMail-Priority等，通常在接收和发送邮件的是同一程序时才能理解它们的意义。
+
+在段头中，大致有如下一些域
+&lt;table align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;域名&lt;/td&gt;
+&lt;td&gt;含义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Type&lt;/td&gt;
+&lt;td&gt;段体的类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Transfer-Encoding&lt;/td&gt;
+&lt;td&gt;段体的传输编码方式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Disposition&lt;/td&gt;
+&lt;td&gt;段体的安排方式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-ID&lt;/td&gt;
+&lt;td&gt;段体的ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Location&lt;/td&gt;
+&lt;td&gt;段体的位置(路径)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content-Base&lt;/td&gt;
+&lt;td&gt;段体的基位置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+有 的域除了值之外，还带有参数。值与参数、参数与参数之间以“;”分隔。参数名与参数值之间以“=”分隔。如例3的28-29行，Content-Type 域的值为“multipart/alternative”，此外有一个参数boundary，值 为&#34;----=_NextPart_002_007C_01C3115F.80DFC5E0&#34;。又如例3的第176行，Content- Disposition域的值为“attachment”，此外有一个参数filename，值为“readme.doc”。
+
+&lt;strong&gt;Q&lt;/strong&gt; Content-Type以及它们的参数有哪些形式？
+
+&lt;strong&gt;A&lt;/strong&gt; Content-Type都是“主类型/子类型”的形式。主类型有text, image, audio, video, application, multipart, message等，分别表示文本、图片、音频、视频、应用、分段、消息等。每个主类型都可能有多个子类型，如text类型就包含plain, html, xml, css等子类型。以X-开头的主类型和子类型，同样表示自定义的类型，未向IANA正式注册，但大多已经约定成俗了。如application/x- zip-compressed是ZIP文件类型。在Windows中，注册表的“HKEY_CLASSES_ROOT\MIME\Database \Content Type”内列举了除multipart之外大部分已知的Content-Type。
+
+关于参数的形式，RFC里有很多补充规定，有的允许带几个参数，较为常见的有
+&lt;table align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;主类型&lt;/td&gt;
+&lt;td&gt;参数名&lt;/td&gt;
+&lt;td&gt;含义&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;text&lt;/td&gt;
+&lt;td&gt;charset&lt;/td&gt;
+&lt;td&gt;字符集&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;image&lt;/td&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;名称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;application&lt;/td&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;名称&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;multipart&lt;/td&gt;
+&lt;td&gt;boundary&lt;/td&gt;
+&lt;td&gt;边界&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+其中字符集也能在Windows注册表的“HKEY_CLASSES_ROOT\MIME\Database\Charset”内见到。
+
+&lt;strong&gt;Q&lt;/strong&gt; Content-Transfer-Encoding有哪些？有什么特点？
+
+&lt;strong&gt;A&lt;/strong&gt; Content-Transfer-Encoding共有Base64, Quoted-printable, 7bit, 8bit, Binary等几种。其中7bit是缺省的编码方式。电子邮件源码最初设计为全部是可打印的ASCII码的形式。非ASCII码的文本或数据要编码成要求 的格式，如上面的三个例子。Base64, Quoted-Printable是在非英语国家使用最广使的编码方式。Binary方式只具有象征意义，而没有任何实用价值。
+
+Base64将输入的字符串或一段数据编码成只含有 {&#39;A&#39;-&#39;Z&#39;, &#39;a&#39;-&#39;z&#39;, &#39;0&#39;-&#39;9&#39;, &#39;+&#39;, &#39;/&#39;}这64个字符的串，&#39;=&#39;用于填充。其编码的方法是，将输入数据流每次取6 bit，用此6 bit的值(0-63)作为索引去查表，输出相应字符。这样，每3个字节将编码为4个字符(3×8 → 4×6)；不满4个字符的以&#39;=&#39;填充。有的场合，以“=?charset?B?xxxxxxxx?=”表示xxxxxxxx是Base64编码，且原文 的字符集是charset。如例3第7行&#34;=?gb2312?B?wLbAtrXEzOwNCg==?=&#34;是由简体中文“蓝蓝的天”编码而成的。在段体内 则直接编码，适当时机换行，MIME建议每行最多76个字符。如例3的1697-3125行，是一个ZIP文件的Base64编码。
+
+Quoted-printable根据输入的字符串或字节 范围进行编码，若是不需编码的字符，直接输出；若需要编码，则先输出&#39;=&#39;，后面跟着以2个字符表示的十六进制字节值。有的场合，以 “=?charset?Q?xxxxxxxx?=”表示xxxxxxxx是Quoted-printable编码，且原文的字符集是charset。在段 体内则直接编码，适当时机换行，换行前额外输出一个&#39;=&#39;。如例3的44-59行，是HTML文本的Quoted-printable编码。其中第45行 “=C7=E7=C0=CA”原文是“晴朗”，因为“晴”的GB2312码是C7E7，“朗”的GB2312码是C0CA。第48、53、57行末尾只有 孤零零的&#39;=&#39;，表示这是由编码造成的软回车，而非原文固有的。
+
+近年来，国内多数邮件服务器已经支持8bit方式，因此只在国内传输的邮件，特别是在邮件头中，可直接使用8bit编码，对汉字不做处理。如果邮件要出国，还是老老实实地按Base64或Quoted-printable编码才行。
+
+&lt;strong&gt;Q&lt;/strong&gt; 什么是内嵌资源？它有哪些形式？
+
+&lt;strong&gt;A&lt;/strong&gt; 内嵌资源也是MIME的一个发光点，它能使邮件内容变得生动活泼、丰富多彩。可在邮件的multipart/related框架内定义一些与正文关联的图 片、动画、声音甚至CSS样式和脚本的段。通常在HTML正文内，使用超级链接与内嵌资源相联系。如在例3中，HTML正文53-54行，解码后为
+&lt;blockquote&gt;&amp;lt;BODY background=cid:007901c3111c$72b978a0$0100007f@bluesky bgColor=#ffffff&amp;gt;&lt;/blockquote&gt;
+它指出用一个Content-ID为007901c3111c$72b978a0$0100007f@bluesky的图片作为背景(cid:xxxxxxxx也是一种超级链接)。而64-169行恰好就是这样一个内嵌资源。
+
+除了用Content-ID进行联系外，还有另外一种常用形式：用普通超级连接和Content-Location。例如：
+
+在HTML正文中，
+&lt;blockquote&gt;... ... ... ... &amp;lt;
+IMG SRC=&#34;http://www.dangdang.com/images/all/anti_joyo_dm_book.gif&#34;&amp;gt;
+... ... ... ... &amp;lt;
+IMG SRC=&#34;http://www.dangdang.com/dd2001/getimage_small.asp?id=486341&#34;&amp;gt;
+... ... ... ...&lt;/blockquote&gt;
+对应的内嵌资源为
+&lt;blockquote&gt;Content-Type: image/gif; name=&#34;anti_joyo_dm_book.gif&#34;
+Content-Transfer-Encoding: base64
+Content-Location: http://www.dangdang.com/images/all/anti_joyo_dm_book.gif
+... ... ... ...
+Content-Type: application/octet-stream; name=&#34;getimage_small.asp?id=486341&#34;
+Content-Transfer-Encoding: base64
+Content-Location: http://www.dangdang.com/dd2001/getimage_small.asp?id=486341
+... ... ... ...&lt;/blockquote&gt;
+另外，
+&lt;blockquote&gt;Content-Location: http://www.dangdang.com/images/all/anti_joyo_dm_book.gif&lt;/blockquote&gt;
+与
+&lt;blockquote&gt;Content-Location: anti_joyo_dm_book.gif Content-Base: http://www.dangdang.com/images/all/&lt;/blockquote&gt;
+是等效的。
+
+&lt;strong&gt;Q&lt;/strong&gt; 邮件病毒如何利用附件和内嵌资源传播？
+
+&lt;strong&gt;A&lt;/strong&gt; 有的邮件附件可能带有病毒，容易理解。附件毕竟是文件，也好预防，不轻易打开就是了。但内嵌资源是在浏览邮件内容时就要访问的，若其中藏有病毒或恶意代码，你在不知不觉中就中招了。如前两年曾经在全球范围内流行的Nimda病毒，功能性源码如下：
+&lt;blockquote&gt;MIME-Version: 1.0
+Content-Type: multipart/related; type=&#34;multipart/alternative&#34;; boundary=&#34;====_ABC1234567890DEF_====&#34;
+
+--====_ABC1234567890DEF_====
+Content-Type: multipart/alternative; boundary=&#34;====_ABC0987654321DEF_====&#34;
+
+--====_ABC0987654321DEF_====
+Content-Type: text/html; charset=&#34;iso-8859-1&#34;
+Content-Transfer-Encoding: 7bit &amp;lt;HTML&amp;gt;&amp;lt;HEAD&amp;gt;&amp;lt;/HEAD&amp;gt;&amp;lt;BODY bgColor=#ffffff&amp;gt; &amp;lt;iframe src=cid:EA4DMGBP9p height=0 width=0&amp;gt; &amp;lt;/iframe&amp;gt;&amp;lt;/BODY&amp;gt;&amp;lt;/HTML&amp;gt;
+
+--====_ABC0987654321DEF_====--
+
+--====_ABC1234567890DEF_====
+Content-Type: audio/x-wav; name=&#34;readme.exe&#34;
+Content-Transfer-Encoding: base64 Content-ID: &amp;lt;EA4DMGBP9p&amp;gt; TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAA2AAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v ZGUuDQ0KJAAAAAAAAAA11CFvcbVPPHG1TzxxtU88E6pcPHW1TzyZqkU8dbVPPJmqSzxytU88cbVO
+... ... ... ... ... ... ... ...
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
+--====_ABC1234567890DEF_====&lt;/blockquote&gt;
+它 将一个可执行文件作为资源嵌入了框架型页面，却声明这段可执行代码是波形声音类型。由于当时微软的IE(版本5.0及以下)存在重大安全漏洞，没有检查 Content-Type与name的扩展名是否匹配，于是就被轻易骗过了，致使点选或打开邮件时自动运行了这个“readme.exe”，机器就感染上 病毒。带毒的机器利用地址簿向别人发送带毒的邮件，一传十，十传百，Nimda蠕虫大行其道。
+
+纵观历史，病毒刚出来时是厉害，但没有任何一种能够持续肆虐下去。Nimda如此，SARS亦当如此。曰：“多难兴邦，众志成城”，又曰：“非典终将倒下，城市精神永存”，相信我们定能很快战胜“非典”!
+
+病毒库升级是跟在新病毒屁股后进行的，不要过分依赖杀毒软件。一个良好的习惯是关闭邮件预览功能，或者设定预览纯文本部分，先查看邮件源码，确信排除病毒嫌疑后再打开。对陌生人发来的带超文本正文的邮件，尤其要当心。永远不要在邮件客户端软件内直接打开附件。
+
+&lt;strong&gt;Q&lt;/strong&gt; 一些垃圾邮件采取隐藏发件人的方式，如何追查它们来自哪里？
+
+&lt;strong&gt;A&lt;/strong&gt; 从上面的邮件头域名表中可以看出，邮件的创建者可以掌握大部分的域的内容，但Received等域由各级服务器自动添加，发件人是鞭长莫及。垃圾邮件一般 采用了群发软件发送，邮件头的From域(发件人地址)可以任意伪造，甚至写成收件人地址(收到了自己并没有发过的垃圾邮件，气愤吧？)。查看 Received域(传输路径)链可以找到真正的出处。每个服务器添加的Received语句都在邮件首，故最下面一个Received就包含了发件人所 用的SMTP或HTTP服务器，及最初的网关外部IP地址。
+
+Receive语句的基本格式是：from A by B。A为发送方，B为接收方。例如：
+&lt;blockquote&gt;Received: (qmail 45304 invoked from network); 4 May 2003 17:05:47 -0000 Received: from unknown (HELO bjapp9.163.net) (202.108.255.197) by 202.106.182.244 with SMTP; 4 May 2003 17:05:47 -0000 Received: from localhost (localhost [127.0.0.1]) by bjapp9.163.net (Postfix) with SMTP id E1C761D84C631 for &amp;lt;bhw98@sina.com&amp;gt;; Mon, 5 May 2003 01:07:26 +0800 (CST) Received: from fanyingxxxx@tom.com (unknown [211.99.162.194]) by bjapp9.163.net (Coremail) with SMTP id OgEAAM1ItT7MNaLC.1 for &amp;lt;bhw98@sina.com&amp;gt;; Mon, 05 May 2003 01:07:26 +0800 (CST)&lt;/blockquote&gt;
+从 上面的例子中不难看出，该邮件的传输路径是：211.99.162.194 → bjapp9.163.net (Coremail 202.108.255.197?) → bjapp9.163.net (Postfix, 202.108.255.197?) → 202.106.182.244。恰好出现了发件人邮箱fanyingxxxx@tom.com，但多数情况不一定能列出来。
+
+此例的localhost [127.0.0.1]，意味着bjapp9.163.net上安装了邮件服务代理性质的软件。
+
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>win7下使用virtualbox制作mac虚拟机后root用户开启分辨率和输入法问题</title>
+      <link>http://www.daniex.tk/blog/2011/mac-virtual-machine-root-resolution/</link>
+      <pubDate>Thu, 29 Dec 2011 14:55:34 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/mac-virtual-machine-root-resolution/</guid>
+      <description>&lt;p&gt;闲来无事就折腾了下，其实很久之前就想玩下苹果操作系统了，由于自己的笔记本太老土不支持虚拟64位，放弃。最近又有了兴致，就继续折腾。&lt;/p&gt;
+
+&lt;p&gt;mac虚拟机制作已经是老生常谈的话题，我也不多废话，给个链接大家去参考参考，一步步照做就行了。用virtualbox虚拟机安装&lt;/p&gt;
+
+&lt;p&gt;Mac OS 10.6.x详细步骤-用vmware安装失败的可以看这里（不断更新） &lt;a href=&#34;http://bbs.weiphone.com/read-htm-tid-1702048.html&#34;&gt;http://bbs.weiphone.com/read-htm-tid-1702048.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这里说一下虚拟机装完后的两件事。
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;开启Mac OS X系统Root用户权限&lt;/h2&gt;
+&lt;a href=&#34;http://article.yeeyan.org/view/187683/151364&#34;&gt;http://article.yeeyan.org/view/187683/151364&lt;/a&gt;
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;怎样更改mac的分辨率&lt;/h2&gt;
+&lt;a href=&#34;http://jingyan.baidu.com/article/4e5b3e198d5bbb91901e24bd.html&#34;&gt;http://jingyan.baidu.com/article/4e5b3e198d5bbb91901e24bd.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;root 权限照着做很快就搞定了。但是分辨率的问题一直没有弄好。照着几个方法都做了还是未成功。最后无奈放弃，我也不弄ios开发，只是看看玩玩。&lt;/p&gt;
+
+&lt;p&gt;上图为证：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;mac&#34; src=&#34;http://farm8.staticflickr.com/7016/6594196203_a1ddc74ef5_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;463&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有个，是输入法的问题。我装的是英文的系统，但是语言包其实他都有了，只要设置下。在system preference 的language&amp;amp;text项目，input source 选项卡中中勾选你要的语言就ok了。当然也可以去下载第三方的输入法。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wordpress自定义个性化首页</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</link>
+      <pubDate>Sat, 19 Nov 2011 09:33:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</guid>
+      <description>&lt;p&gt;自己好不容易折腾了个wordpress博客，发现所有人的首页样式都大同小异，是不是很没创意，很扫兴？下面就来说说如何制作一个wordpress个性化首页，让你随心所欲的改变首页的样式，让你有个不一样的主页。最后效果如我的&lt;a title=&#34;澄清的半亩方糖&#34; href=&#34;http://danie.info&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;首页&lt;/strong&gt;&lt;/a&gt;，截图如下：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-974&#34; title=&#34;ss&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/ss.jpg&#34; alt=&#34;&#34; width=&#34;590&#34; height=&#34;482&#34; /&gt;&lt;/p&gt;
+&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;一、 设置wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+wordpress有设置page页作为默认首页的功能，下面的方法就是自定义一个page也模板，然后添加一个用这个模板制作的page页，最后将这个page页设为首页。&lt;/p&gt;
+
+&lt;p&gt;1) ftp或者cpanel到部署wordpress空间或其他。复制wordpress主题目录下的page.php文件，重名名。比如，找到文件（wp目录）/wp-content/themes/zbench/page.php 重命名为 myhomepage.php&lt;/p&gt;
+
+&lt;p&gt;2) 用文本编辑器打开myhomepage.php，例如用记事本打开，在文件首位添加以下代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;&lt;/blockquote&gt;
+“Template Name : ” 后的文字可以是任意的。这样我们就添加了一个新的page页模板。自定义的首页内容其实就是这个myhomepage.php的内容。如何设计修改这个文件，建立自己的个性化首页，会在后面提到。我们先将它设为首页。&lt;/p&gt;
+
+&lt;p&gt;3) 添加一个新的page页：浏览器登录wordpress后台控制面板，dashboard -&amp;gt;pages -&amp;gt; add new。 输入标题，在右方page attributes 面板中会有parent 和 template 的下拉框，在模板下拉框中选择刚刚添加的模板。如图，我添加的模板名字叫“首页”，我就选择它。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-961&#34; title=&#34;selecttemplate&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/selecttemplate.jpg&#34; alt=&#34;&#34; width=&#34;281&#34; height=&#34;253&#34; /&gt;选择好后，给这个page也命名，我是在title那输入的“首页”。然后就可以发表了，其他的内容什么可以都不用写。&lt;/p&gt;
+
+&lt;p&gt;4) 设置首页的最后一步，点击后台的reading设置项：dashboard -&amp;gt; settings -&amp;gt; reading。在第一个设置项目里选择第二项 a static page ，然后再它下方的第一个下拉选项框里选则刚刚给page页设置的名字。比如我的“首页”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-962&#34; title=&#34;setreading&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/setreading.png&#34; alt=&#34;&#34; width=&#34;552&#34; height=&#34;506&#34; /&gt;点击 save changes 保存配置。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这样，我们把首页重新设置好了。这个时候访问首页的时候我们会发现，我们的首页除了头上的标题名称、侧边栏、底部栏之外就什么都没有。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;二、 设计自己的wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+我们已经把wordpress的首页换掉，但是这个首页现在是一片空白，我们要怎么去填充这片空白呢？如果你有html、css、js功底，那就是你一展身手的时候。如果水平一般，那也没关系，能看懂一点点代码，那就有办法去使用一些好的模板，好的插件，设计出一个自己满意的首页还是可以的。我就只是能看懂代码的那种，根本不熟悉网页前端开发。
+&lt;h4&gt;&lt;strong&gt;方法一&lt;/strong&gt;&lt;/h4&gt;
+怎么给这个首页填充内容，最简单的方法就是，编辑我们之前添加的page页。之前我们并没有在文章内容里添加任何东西。只要你有好内容，好方案，就可以像写一个新的文章一样这里出一个你自己的主页。
+&lt;h4&gt;&lt;strong&gt;方法二&lt;/strong&gt;&lt;/h4&gt;
+这个方法就需要去修改我们的myhomepage.php文件。前端开发的牛人大有人在，我也不多说。就把我的一些代码贴出来，有心思看到朋友可以参考下。主要用到的几个函数我罗列一下：
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;&lt;/blockquote&gt;
+这是我使用的wp-thumbnail插件提供的函数，用于显示分类中的文章和缩略图。在wp-thumbnail插件设置中设置好分类文章的相关数据，如图片大小、标题位置。然后再这里调用。id=7表示文章分类id为7的分类下的文章，num=1表示显示一篇。文章分类ID是几可以参考&lt;a title=&#34;wordpress查看分类category的id&#34; href=&#34;http://daniex.info/view-category-id-wordpress.html&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;这篇文章&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;嵌入的探讨tt1 tt2 的css代码是控制左侧栏目的背景。另外有block1和block2的代码是用来控制左右两部分的布局。
+&lt;blockquote&gt;.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}&lt;/p&gt;
+
+&lt;p&gt;.block2 { float:left; width:250px; height:700px}
+.block3 { float:right; width:350px; height:700px}&lt;/blockquote&gt;
+中间栏的随机文章和标题评论控制是用这些函数：
+&lt;blockquote&gt;$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;。。。&lt;/blockquote&gt;
+&amp;nbsp;
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&lt;/blockquote&gt;
+这段代码是用了postviews+的插件，用于统计文章浏览次数。&lt;/p&gt;
+
+&lt;p&gt;更多代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;
+&amp;lt;?php get_header() ?&amp;gt;
+&amp;lt;div id=&amp;ldquo;content&amp;rdquo;&amp;gt;
+&amp;lt;?php the_post(); ?&amp;gt;
+&amp;lt;div &amp;lt;?php post_class(&amp;lsquo;post post-page&amp;rsquo;); ?&amp;gt; id=&amp;ldquo;post-&amp;lt;?php the_ID(); ?&amp;gt;&amp;ldquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;block2&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;a href=&amp;ldquo;&lt;a href=&#34;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&#34;&gt;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&lt;/a&gt; java C# wpf php&amp;hellip;&amp;lt;/span&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;amp;order=recent&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;style&amp;gt;
+.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}
+&amp;lt;/style&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;block3&amp;rdquo;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php
+$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;
+&amp;lt;h3&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink(); ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php the_title(); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;
+&amp;lt;?php if (&amp;lsquo;open&amp;rsquo; == $post-&amp;gt;comment_status) { ?&amp;gt;
+&amp;lt;div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;span&amp;gt;&amp;lt;?php the_time(get_option( &amp;lsquo;date_format&amp;rsquo; )); ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;ldquo;gotocomments&amp;rdquo;&amp;gt;&amp;lt;?php comments_popup_link(&lt;strong&gt;(&amp;lsquo;0 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), __(&amp;lsquo;1 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), &amp;lsquo;% &amp;lsquo;.&lt;/strong&gt;(&amp;rsquo; 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;)); ?&amp;gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;!&amp;ndash;&amp;lt;div&amp;gt;
+&amp;lt;?php if ( $options[&amp;lsquo;excerpt_check&amp;rsquo;]==&amp;lsquo;true&amp;rsquo; ) { the_excerpt(&lt;strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } else { the_content(&lt;/strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } ?&amp;gt;
+&amp;lt;/div&amp;gt; END entry &amp;ndash;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php if(is_sticky()) { ?&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;&amp;lt;?php _e(&amp;lsquo;This is a sticky post!&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt; &amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink() ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php _e(&amp;lsquo;continue reading?&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;
+&amp;lt;?php } else { ?&amp;gt;
+&amp;lt;div style=&amp;ldquo;height:1px;&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php echo mb_strimwidth(strip_tags(apply_filters(‘the_content’, $post-&amp;gt;post_content)), 0, 100,&amp;ldquo;&amp;hellip;&amp;rdquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
+&amp;lt;?php endforeach; ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash; END post &amp;ndash;&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash;content&amp;ndash;&amp;gt;
+&amp;lt;?php get_sidebar() ?&amp;gt;
+&amp;lt;?php get_footer() ?&amp;gt;&lt;/blockquote&gt;
+&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>http协议头部与keep-alive</title>
+      <link>http://www.daniex.tk/blog/2011/http-keep-alive/</link>
+      <pubDate>Thu, 28 Jul 2011 10:40:11 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/http-keep-alive/</guid>
+      <description>
+
+&lt;p&gt;上一篇讲&lt;a href=&#34;../java-send-http-request-example.html&#34;&gt;java发送http请求例子&lt;/a&gt;遇到的问题并不是java发送请求的代码问题。经检查是http server代码不完善导致，连接状态即http头中Connection参数设置有问题。&lt;/p&gt;
+
+&lt;p&gt;在网上看到一篇挺好的文章，找了半天才找到原文出处，这就是在网上码字的悲哀。我也转个：&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;-——————————————————————————————————&lt;/p&gt;
+
+&lt;p&gt;这样被判了死刑&amp;ndash;吴秦 &lt;a title=&#34;HTTP协议头部与Keep-Alive模式详解 &#34; href=&#34;http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html&#34;&gt;http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html&lt;/a&gt;&lt;/a&gt;
+&lt;div id=&#34;cnblogs_post_body&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;——献给那些向我这样对HTTP的“伪”熟悉者。&lt;/p&gt;
+
+&lt;p&gt;故事发生在10月份的一次面试经历中，本来我不想说出来丢人显眼，但是为了警醒自己和告诫后人，我决定写成博文发出来。因为在面试过程中，我讲在2009年写过QQ农场助手，在这期间深入学习了HTTP协议，而且在2010-05-18写了博文：&lt;a href=&#34;http://www.cnblogs.com/skynet/archive/2010/05/18/1738301.html&#34;&gt;HTTP协议及其POST与GET操作差异 &amp;amp; C#中如何使用POST、GET等&lt;/a&gt;。面试官说既然我熟悉HTTP协议，就问“当HTTP采用keepalive模式，当客户端向服务器发生请求之后，客户端如何判断服务器的数据已经发生完成？”&lt;/p&gt;
+
+&lt;p&gt;说实话，当时我懵了，一直没有关注过keepalive模式。我只知道：&lt;strong&gt;HTTP协议中客户端发送一个小请求，服务器响应以所期望的信息（例如一个html文件或一副gif图像）。服务器通常在发送回所请求的数据之后就关闭连接。这样客户端读数据时会返回EOF（-1），就知道数据已经接收完全了。&lt;/strong&gt;我就这样被面试官判了死刑！！！说我完全停留在表面，没有深入（当时真的很受打击，一直自认为技术还不错！）。我当时真的很想找各种借口：
+&lt;ul&gt;
+    &lt;li&gt;
+&lt;div&gt;之前没有用到HTTP的keepalive模式，所以没有深入&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;好久没有用HTTP协议，细节忘了&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;实习的东西跟HTTP协议没有关系，用得少了就忘了&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;。。。。。。&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+觉得各种解释都是那么苍白无力！我再次感叹书到用时方恨少，也感叹一个人的时间是多么的有限（曾一度想成为一个IT专业全才），根本没有精力面面俱 到，而且当没有真正使用一个东西的时候，往往会忽略掉很多细节。朋友如果你也答不上来，请认真细看下文，不要怀着浮躁了的心，说不定下次就有人问你这个问 题。
+&lt;h1&gt;1、什么是Keep-Alive模式？&lt;/h1&gt;
+我们知道HTTP协议采用“请求-应答”模式，当使用普通模式，即非KeepAlive模式时，每个请求/应答客户和服务器都要新建一个连接，完成 之后立即断开连接（HTTP协议为无连接的协议）；当使用Keep-Alive模式（又称持久连接、连接重用）时，Keep-Alive功能使客户端到服 务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive功能避免了建立或者重新建立连接。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Connection&#34; src=&#34;http://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/HTTP_persistent_connection.svg/450px-HTTP_persistent_connection.svg.png&#34; alt=&#34;&#34; width=&#34;450&#34; height=&#34;280&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;http 1.0中默认是关闭的，需要在http头加入&amp;rdquo;Connection: Keep-Alive&amp;rdquo;，才能启用Keep-Alive；http 1.1中默认启用Keep-Alive，如果加入&amp;rdquo;Connection: close &amp;ldquo;，才关闭。目前大部分浏览器都是用http1.1协议，也就是说默认都会发起Keep-Alive的连接请求了，所以是否能完成一个完整的Keep- Alive连接就看服务器设置情况。
+&lt;h1&gt;2、启用Keep-Alive的优点&lt;/h1&gt;
+从上面的分析来看，启用Keep-Alive模式肯定更高效，性能更高。因为避免了建立/释放连接的开销。下面是&lt;a href=&#34;http://tools.ietf.org/html/rfc2616&#34;&gt;RFC 2616&lt;/a&gt;上的总结：
+&lt;ol&gt;
+    &lt;li&gt;
+&lt;ol&gt;
+    &lt;li&gt;
+&lt;div&gt;By opening and closing fewer TCP connections, CPU time is saved in routers and hosts (clients, servers, proxies, gateways, tunnels, or caches), and memory used for TCP protocol control blocks can be saved in hosts.&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;HTTP requests and responses can be pipelined on a connection. Pipelining allows a client to make multiple requests without waiting for each response, allowing a single TCP connection to be used much more efficiently, with much lower elapsed time.&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;Network congestion is reduced by reducing the number of packets caused by TCP opens, and by allowing TCP sufficient time to determine the congestion state of the network.&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;Latency on subsequent requests is reduced since there is no time spent in TCP&amp;rsquo;s connection opening handshake.&lt;/div&gt;&lt;/li&gt;
+    &lt;li&gt;
+&lt;div&gt;HTTP can evolve more gracefully, since errors can be reported without the penalty of closing the TCP connection. Clients using     future versions of HTTP might optimistically try a new feature, but if communicating with an older server, retry with old   semantics after an error is reported.&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;a href=&#34;http://tools.ietf.org/html/rfc2616&#34;&gt;RFC 2616&lt;/a&gt;（P47）还指出：单用户客户端与任何服务器或代理之间的连接数不应该超过2个。一个代理与其它服务器或代码之间应该使用超过2 * N的活跃并发连接。这是为了提高HTTP响应时间，避免拥塞（冗余的连接并不能代码执行性能的提升）。
+&lt;h1&gt;3、回到我们的问题（即如何判断消息内容/长度的大小？）&lt;/h1&gt;
+Keep-Alive模式，客户端如何判断请求所得到的响应数据已经接收完成（或者说如何知道服务器已经发生完了数据）？我们已经知道 了，Keep-Alive模式发送玩数据HTTP服务器不会自动断开连接，所有不能再使用返回EOF（-1）来判断（当然你一定要这样使用也没有办法，可 以想象那效率是何等的低）！下面我介绍两种来判断方法。
+&lt;h2&gt;3.1、使用消息首部字段Conent-Length&lt;/h2&gt;
+故名思意，Conent-Length表示实体内容长度，客户端（服务器）可以根据这个值来判断数据是否接收完成。但是如果消息中没有Conent-Length，那该如何来判断呢？又在什么情况下会没有Conent-Length呢？请继续往下看……
+&lt;h2&gt;3.2、使用消息首部字段Transfer-Encoding&lt;/h2&gt;
+当客户端向服务器请求一个静态页面或者一张图片时，服务器可以很清楚的知道内容大小，然后通过Content-length消息首部字段告诉客户端 需要接收多少数据。但是如果是动态页面等时，服务器是不可能预先知道内容大小，这时就可以使用Transfer-Encoding：chunk模式来传输 数据了。即如果要一边产生数据，一边发给客户端，服务器就需要使用&amp;rdquo;Transfer-Encoding: chunked&amp;rdquo;这样的方式来代替Content-Length。&lt;/p&gt;
+
+&lt;p&gt;chunk编码将数据分成一块一块的发生。Chunked编码将使用若干个Chunk串连而成，由一个标明&lt;strong&gt;长度为0&lt;/strong&gt;的chunk标示结束。每个Chunk分为头部和正文两部分，头部内容指定正文的字符总数（&lt;strong&gt;十六进制的数字&lt;/strong&gt;）和数量单位（一般不写），正文部分就是指定长度的实际内容，两部分之间用&lt;strong&gt;回车换行(CRLF)&lt;/strong&gt;隔开。在最后一个长度为0的Chunk中的内容是称为footer的内容，是一些附加的Header信息（通常可以直接忽略）。
+&lt;blockquote&gt;Chunk编码的格式如下：&lt;/p&gt;
+
+&lt;p&gt;Chunked-Body = *&lt;strong&gt;chunk&lt;/strong&gt;
+&amp;ldquo;0&amp;rdquo; CRLF
+footer
+CRLF
+chunk = chunk-size [ chunk-ext ] CRLF
+chunk-data CRLF&lt;/p&gt;
+
+&lt;p&gt;hex-no-zero = &amp;lt;HEX excluding &amp;ldquo;0&amp;rdquo;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;chunk-size = hex-no-zero *HEX
+chunk-ext = *( &amp;ldquo;;&amp;rdquo; chunk-ext-name [ &amp;ldquo;=&amp;rdquo; chunk-ext-value ] )
+chunk-ext-name = token
+chunk-ext-val = token | quoted-string
+chunk-data = chunk-size(OCTET)&lt;/p&gt;
+
+&lt;p&gt;footer = *entity-header&lt;/p&gt;
+
+&lt;p&gt;即Chunk编码由四部分组成：1、&lt;strong&gt;0至多个chunk块&lt;/strong&gt;，2、&lt;strong&gt;&amp;ldquo;0&amp;rdquo; CRLF&lt;/strong&gt;，3、&lt;strong&gt;footer&lt;/strong&gt;，4、&lt;strong&gt;CRLF&lt;/strong&gt;&lt;strong&gt;.&lt;/strong&gt;而每个chunk块由：chunk-size、chunk-ext（可选）、CRLF、chunk-data、CRLF组成。&lt;/blockquote&gt;
+&lt;h1&gt;4、消息长度的总结&lt;/h1&gt;
+其实，上面2中方法都可以归纳为是如何判断http消息的大小、消息的数量。&lt;a href=&#34;http://tools.ietf.org/html/rfc2616&#34;&gt;RFC 2616&lt;/a&gt;对 消息的长度总结如下：一个消息的transfer-length（传输长度）是指消息中的message-body（消息体）的长度。当应用了 transfer-coding（传输编码），每个消息中的message-body（消息体）的长度（transfer-length）由以下几种情况 决定（优先级由高到低）：
+&lt;ul&gt;
+    &lt;li&gt;任何不含有消息体的消息（如1XXX、204、304等响应消息和任何头(HEAD，首部)请求的响应消息），总是由一个空行（CLRF）结束。&lt;/li&gt;
+    &lt;li&gt;如果出现了Transfer-Encoding头字段 并且值为非“identity”，那么transfer-length由“chunked” 传输编码定义，除非消息由于关闭连接而终止。&lt;/li&gt;
+    &lt;li&gt;如果出现了Content-Length头字段，它的值表示entity-length（实体长度）和transfer-length（传输长 度）。如果这两个长度的大小不一样（i.e.设置了Transfer-Encoding头字段），那么将不能发送Content-Length头字段。并 且如果同时收到了Transfer-Encoding字段和Content-Length头字段，那么必须忽略Content-Length字段。&lt;/li&gt;
+    &lt;li&gt;如果消息使用媒体类型“multipart/byteranges”，并且transfer-length 没有另外指定，那么这种自定界（self-delimiting）媒体类型定义transfer-length 。除非发送者知道接收者能够解析该类型，否则不能使用该类型。&lt;/li&gt;
+    &lt;li&gt;由服务器关闭连接确定消息长度。（注意：关闭连接不能用于确定请求消息的结束，因为服务器不能再发响应消息给客户端了。）&lt;/li&gt;
+&lt;/ul&gt;
+为了兼容HTTP/1.0应用程序，HTTP/1.1的请求消息体中必须包含一个合法的Content-Length头字段，除非知道服务器兼容 HTTP/1.1。一个请求包含消息体，并且Content-Length字段没有给定，如果不能判断消息的长度，服务器应该用用400 (bad request) 来响应；或者服务器坚持希望收到一个合法的Content-Length字段，用 411 (length required)来响应。&lt;/p&gt;
+
+&lt;p&gt;所有HTTP/1.1的接收者应用程序必须接受“chunked” transfer-coding (传输编码)，因此当不能事先知道消息的长度，允许使用这种机制来传输消息。消息不应该够同时包含 Content-Length头字段和non-identity transfer-coding。如果一个消息同时包含non-identity transfer-coding和Content-Length ，必须忽略Content-Length 。
+&lt;h1&gt;5、HTTP头字段总结&lt;/h1&gt;
+最后我总结下HTTP协议的头部字段。
+&lt;ul&gt;
+    &lt;li&gt;1、 Accept：告诉WEB服务器自己接受什么介质类型，&lt;em&gt;/&lt;/em&gt; 表示任何类型，type/* 表示该类型下的所有子类型，type/sub-type。&lt;/li&gt;
+    &lt;li&gt;2、 Accept-Charset： 浏览器申明自己接收的字符集
+Accept-Encoding： 浏览器申明自己接收的编码方法，通常指定压缩方法，是否支持压缩，支持什么压缩方法（gzip，deflate）
+Accept-Language：浏览器申明自己接收的语言
+语言跟字符集的区别：中文是语言，中文有多种字符集，比如big5，gb2312，gbk等等。&lt;/li&gt;
+    &lt;li&gt;3、 Accept-Ranges：WEB服务器表明自己是否接受获取其某个实体的一部分（比如文件的一部分）的请求。bytes：表示接受，none：表示不接受。&lt;/li&gt;
+    &lt;li&gt;4、 Age：当代理服务器用自己缓存的实体去响应请求时，用该头部表明该实体从产生到现在经过多长时间了。&lt;/li&gt;
+    &lt;li&gt;5、 Authorization：当客户端接收到来自WEB服务器的 WWW-Authenticate 响应时，用该头部来回应自己的身份验证信息给WEB服务器。&lt;/li&gt;
+    &lt;li&gt;6、 Cache-Control：请求：no-cache（不要缓存的实体，要求现在从WEB服务器去取）
+max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）
+max-stale：（可以接受过去的对象，但是过期时间必须小于 max-stale 值）
+min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象）
+响应：public(可以用 Cached 内容回应任何用户)
+private（只能用缓存内容回应先前请求该内容的那个用户）
+no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端）
+max-age：（本响应包含的对象的过期时间）
+ALL: no-store（不允许缓存）&lt;/li&gt;
+    &lt;li&gt;7、 Connection：请求：close（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，断开连接，不要等待本次连接的后续请求了）。
+keepalive（告诉WEB服务器或者代理服务器，在完成本次请求的响应后，保持连接，等待本次连接的后续请求）。
+响应：close（连接已经关闭）。
+keepalive（连接保持着，在等待本次连接的后续请求）。
+Keep-Alive：如果浏览器请求保持连接，则该头部表明希望 WEB 服务器保持连接多长时间（秒）。例如：Keep-Alive：300&lt;/li&gt;
+    &lt;li&gt;8、 Content-Encoding：WEB服务器表明自己使用了什么压缩方法（gzip，deflate）压缩响应中的对象。例如：Content-Encoding：gzip&lt;/li&gt;
+    &lt;li&gt;9、Content-Language：WEB 服务器告诉浏览器自己响应的对象的语言。&lt;/li&gt;
+    &lt;li&gt;10、Content-Length： WEB 服务器告诉浏览器自己响应的对象的长度。例如：Content-Length: 26012&lt;/li&gt;
+    &lt;li&gt;11、Content-Range： WEB 服务器表明该响应包含的部分对象为整个对象的哪个部分。例如：Content-Range: bytes 21010-&lt;sup&gt;47021&lt;/sup&gt;&amp;frasl;&lt;sub&gt;47022&lt;/sub&gt;&lt;/li&gt;
+    &lt;li&gt;12、Content-Type： WEB 服务器告诉浏览器自己响应的对象的类型。例如：Content-Type：application/xml&lt;/li&gt;
+    &lt;li&gt;13、ETag：就是一个对象（比如URL）的标志值，就一个对象而言，比如一个 html 文件，如果被修改了，其 Etag 也会别修改，所以ETag 的作用跟 Last-Modified 的作用差不多，主要供 WEB 服务器判断一个对象是否改变了。比如前一次请求某个 html 文件时，获得了其 ETag，当这次又请求这个文件时，浏览器就会把先前获得的 ETag 值发送给WEB 服务器，然后 WEB 服务器会把这个 ETag 跟该文件的当前 ETag 进行对比，然后就知道这个文件有没有改变了。&lt;/li&gt;
+    &lt;li&gt;14、 Expired：WEB服务器表明该实体将在什么时候过期，对于过期了的对象，只有在跟WEB服务器验证了其有效性后，才能用来响应客户请求。是 HTTP/1.0 的头部。例如：Expires：Sat, 23 May 2009 10:02:12 GMT&lt;/li&gt;
+    &lt;li&gt;15、 Host：客户端指定自己想访问的WEB服务器的域名/IP 地址和端口号。例如：Host：rss.sina.com.cn&lt;/li&gt;
+    &lt;li&gt;16、 If-Match：如果对象的 ETag 没有改变，其实也就意味著对象没有改变，才执行请求的动作。&lt;/li&gt;
+    &lt;li&gt;17、 If-None-Match：如果对象的 ETag 改变了，其实也就意味著对象也改变了，才执行请求的动作。&lt;/li&gt;
+    &lt;li&gt;18、 If-Modified-Since：如果请求的对象在该头部指定的时间之后修改了，才执行请求的动作（比如返回对象），否则返回代码304，告诉浏览器 该对象没有修改。例如：If-Modified-Since：Thu, 10 Apr 2008 09:14:42 GMT&lt;/li&gt;
+    &lt;li&gt;19、 If-Unmodified-Since：如果请求的对象在该头部指定的时间之后没修改过，才执行请求的动作（比如返回对象）。&lt;/li&gt;
+    &lt;li&gt;20、 If-Range：浏览器告诉 WEB 服务器，如果我请求的对象没有改变，就把我缺少的部分给我，如果对象改变了，就把整个对象给我。浏览器通过发送请求对象的 ETag 或者 自己所知道的最后修改时间给 WEB 服务器，让其判断对象是否改变了。总是跟 Range 头部一起使用。&lt;/li&gt;
+    &lt;li&gt;21、 Last-Modified：WEB 服务器认为对象的最后修改时间，比如文件的最后修改时间，动态页面的最后产生时间等等。例如：Last-Modified：Tue, 06 May 2008 02:42:43 GMT&lt;/li&gt;
+    &lt;li&gt;22、 Location：WEB 服务器告诉浏览器，试图访问的对象已经被移到别的位置了，到该头部指定的位置去取。例如：Location：&lt;a href=&#34;http://i0.sinaimg.cn/dy/deco/2008/0528/sinahome_0803_ws_005_text_0.gif&#34;&gt;http://i0.sinaimg.cn/dy/deco/2008/0528/sinahome_0803_ws_005_text_0.gif&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;23、 Pramga：主要使用 Pramga: no-cache，相当于 Cache-Control： no-cache。例如：Pragma：no-cache&lt;/li&gt;
+    &lt;li&gt;24、 Proxy-Authenticate： 代理服务器响应浏览器，要求其提供代理身份验证信息。Proxy-Authorization：浏览器响应代理服务器的身份验证请求，提供自己的身份信息。&lt;/li&gt;
+    &lt;li&gt;25、 Range：浏览器（比如 Flashget 多线程下载时）告诉 WEB 服务器自己想取对象的哪部分。例如：Range: bytes=1173546-&lt;/li&gt;
+    &lt;li&gt;26、 Referer：浏览器向 WEB 服务器表明自己是从哪个 网页/URL 获得/点击 当前请求中的网址/URL。例如：Referer：&lt;a href=&#34;http://www.sina.com/&#34;&gt;http://www.sina.com/&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;27、 Server: WEB 服务器表明自己是什么软件及版本等信息。例如：Server：Apache/2.0.61 (Unix)&lt;/li&gt;
+    &lt;li&gt;28、 User-Agent: 浏览器表明自己的身份（是哪种浏览器）。例如：User-Agent：Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.8.1.14) Gecko/20080404 Firefox/2、0、0、14&lt;/li&gt;
+    &lt;li&gt;29、 Transfer-Encoding: WEB 服务器表明自己对本响应消息体（不是消息体里面的对象）作了怎样的编码，比如是否分块（chunked）。例如：Transfer-Encoding: chunked&lt;/li&gt;
+    &lt;li&gt;30、 Vary: WEB服务器用该头部的内容告诉 Cache 服务器，在什么条件下才能用本响应所返回的对象响应后续的请求。假如源WEB服务器在接到第一个请求消息时，其响应消息的头部为：Content- Encoding: gzip; Vary: Content-Encoding那么 Cache 服务器会分析后续请求消息的头部，检查其 Accept-Encoding，是否跟先前响应的 Vary 头部值一致，即是否使用相同的内容编码方法，这样就可以防止 Cache 服务器用自己 Cache 里面压缩后的实体响应给不具备解压能力的浏览器。例如：Vary：Accept-Encoding&lt;/li&gt;
+    &lt;li&gt;31、 Via： 列出从客户端到 OCS 或者相反方向的响应经过了哪些代理服务器，他们用什么协议（和版本）发送的请求。当客户端请求到达第一个代理服务器时，该服务器会在自己发出的请求里面添 加 Via 头部，并填上自己的相关信息，当下一个代理服务器收到第一个代理服务器的请求时，会在自己发出的请求里面复制前一个代理服务器的请求的Via 头部，并把自己的相关信息加到后面，以此类推，当 OCS 收到最后一个代理服务器的请求时，检查 Via 头部，就知道该请求所经过的路由。例如：Via：1.0 236.D0707195.sina.com.cn:80 (squid/2.6.STABLE13)&lt;/li&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;&lt;/ul&gt;&lt;/h1&gt;
+
+&lt;p&gt;HTTP 请求消息头部实例：
+Host：rss.sina.com.cn
+User-Agent：Mozilla/5、0 (Windows; U; Windows NT 5、1; zh-CN; rv:1、8、1、14) Gecko/20080404 Firefox/2、0、0、14
+Accept：text/xml,application/xml,application/xhtml+xml,text/html;q=0、9,text/plain;q=0、8,image/png,&lt;em&gt;/&lt;/em&gt;;q=0、5
+Accept-Language：zh-cn,zh;q=0、5
+Accept-Encoding：gzip,deflate
+Accept-Charset：gb2312,utf-8;q=0、7,*;q=0、7
+Keep-Alive：300
+Connection：keep-alive
+Cookie：userId=C5bYpXrimdmsiQmsBPnE1Vn8ZQmdWSm3WRlEB3vRwTnRtW &amp;amp;lt;&amp;ndash; Cookie
+If-Modified-Since：Sun, 01 Jun 2008 12:05:30 GMT
+Cache-Control：max-age=0
+HTTP 响应消息头部实例：
+Status：OK - 200 &amp;amp;lt;&amp;ndash; 响应状态码，表示 web 服务器处理的结果。
+Date：Sun, 01 Jun 2008 12:35:47 GMT
+Server：Apache/2、0、61 (Unix)
+Last-Modified：Sun, 01 Jun 2008 12:35:30 GMT
+Accept-Ranges：bytes
+Content-Length：18616
+Cache-Control：max-age=120
+Expires：Sun, 01 Jun 2008 12:37:47 GMT
+Content-Type：application/xml
+Age：2
+X-Cache：HIT from 236-41、D07071951、sina、com、cn &amp;amp;lt;&amp;ndash; 反向代理服务器使用的 HTTP 头部
+Via：1.0 236-41.D07071951.sina.com.cn:80 (squid/2.6.STABLE13)
+Connection：close&lt;/p&gt;
+
+&lt;p&gt;本节摘自：&lt;a href=&#34;http://ynhu33.blog.51cto.com/412835/408801&#34;&gt;http://ynhu33.blog.51cto.com/412835/408801&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;——最后我想说：“怪自己学艺不精，浪费了一次机会（而且是我最想进的公司）”&lt;/p&gt;
+
+&lt;p&gt;希望老天再给我一次机会。&lt;/p&gt;
+
+&lt;p&gt;PS：还有一点加速了我的死亡，我学习过&lt;a href=&#34;http://www.cnblogs.com/skynet/category/241385.html&#34; target=&#34;_blank&#34;&gt;Android开发&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;但是用的是JAVA，经理说研究Android开发就得用NDK，那才是核心。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;div id=&#34;MySignature&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;作者：吴秦
+出处：&lt;a href=&#34;http://www.cnblogs.com/skynet/&#34;&gt;http://www.cnblogs.com/skynet/&lt;/a&gt;
+本文基于&lt;a href=&#34;http://creativecommons.org/licenses/by/2.5/cn/&#34; target=&#34;_blank&#34;&gt;署名 2.5 中国大陆&lt;/a&gt;许可协议发布，欢迎转载，演绎或用于商业目的，但是必须保留本文的署名&lt;a href=&#34;http://www.cnblogs.com/skynet/&#34; target=&#34;_blank&#34;&gt;吴秦&lt;/a&gt;（包含链接）.&lt;/p&gt;
+
+&lt;p&gt;—————————————————————————————————————————————————————————————————&lt;/p&gt;
+
+&lt;p&gt;全文到此为止。。。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu与windows间的远程桌面、共享文件访问</title>
+      <link>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</link>
+      <pubDate>Mon, 07 Mar 2011 12:10:16 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</guid>
+      <description>&lt;p&gt;1、 Ubuntu访问windows&lt;/p&gt;
+
+&lt;p&gt;这方面基本上Ubuntu系统上做的已经很全了，现有的应用用起来就行。远程桌面可以用Remote Desktop Viewer和Terminal Server Client两个应用。都在Applications-&amp;gt;Internet目录下。有俩截图如下：&lt;img class=&#34;aligncenter&#34; title=&#34;RDV&amp;amp;TSC&#34; src=&#34;http://farm6.static.flickr.com/5178/5505991350_930ecf16d2.jpg&#34; alt=&#34;应用位置&#34; width=&#34;473&#34; height=&#34;345&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;两个应用的界面分别为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Remote Desktop Viewer&#34; src=&#34;http://farm6.static.flickr.com/5219/5505991512_3b0b3e514f.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;409&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Terminal Server Client&#34; src=&#34;http://farm6.static.flickr.com/5171/5505394227_3a37ef989a.jpg&#34; alt=&#34;&#34; width=&#34;373&#34; height=&#34;500&#34; /&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;PS:&lt;/p&gt;
+VNC (Virtual Network Computing)是虚拟网络计算机的缩写。VNC是一款优秀的远程控制工具软件，由著名的AT&amp;amp;T的欧洲研究实验室开发的。
+&lt;p id=&#34;best-answer-content&#34;&gt;RDP:远程桌面协议，主要用于windows 2000及更早的windows版本。 RDPv5支持xp等。&lt;/p&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;SSH: Secure Shell Protocol，是一种在不安全网络上提供安全远程登录及其它安全网络服务的协议。&lt;/p&gt;
+共享文件的访问有另外一个应用，这个应用能进行FTP，http的访问。位于Places-&amp;gt;connect to server。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5172/5505991388_9e08508c3b.jpg&#34; alt=&#34;&#34; width=&#34;344&#34; height=&#34;423&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;界面如下；&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5135/5505394145_dbbf6594d4.jpg&#34; alt=&#34;&#34; width=&#34;369&#34; height=&#34;358&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、windows访问ubuntu。Ubuntu互访。&lt;/p&gt;
+
+&lt;p&gt;公司不准私自架设ftp等服务器。所以通常通过文件共享。Linux也可以类似window那样共享文件，只是Ubuntu需要先安装应用。&lt;/p&gt;
+
+&lt;p&gt;Windows和Linux间共享可以用samba。Linux和Linux之间共享文件有更好的网络文件系统NFS。网上使用教程方法很多，这里就不多说了。&lt;/p&gt;
+
+&lt;p&gt;再废话一句，linux里很多可以用mount。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SNMP简单网络管理协议（Simple Network Management Protocol）</title>
+      <link>http://www.daniex.tk/blog/2010/simple-network-management-protocol-snmp-simple-network-management-protocol/</link>
+      <pubDate>Wed, 03 Nov 2010 13:40:52 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/simple-network-management-protocol-snmp-simple-network-management-protocol/</guid>
+      <description>&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;SNMP历史&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;随着网络数目与网络内主机数目的日益增多，单纯依靠一些网络专业进行网络管理已经不可能了，必须有一种通行的网络管理标准以及相应的管理工具使普通人也能够管理网络。第一个相关的协议是SGMP，它提供了一种直接监视网关的方法，也因此成了一种通用的网络管理工具。下来，有三种可供选择的管理工具：HEMS，SNMP和建立在TCP/IP基础上的CMIP（CMOT），因为需要使用ISO/OSI模型进行网络管理，SNMP首选CMOT作为管理工具。基本的SNMP已经被广泛使用了，所有的网络产品都提供对SNMP的支持，新开发的具有远程管理能力的SNMP是RMON，它使管理人员可以将整个子网进行管理，而不是对整个子网内的设备进行管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;一些定义&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SNMP&lt;/strong&gt;，Simple Network Management Protocol：简单网络管理协议  它是一个标准的用于管理IP网络上结点的协议。此协议包括了监视和控制变量集以及用于监视设备的两个数据格式：SMI和MIB。
+&lt;strong&gt;MIB&lt;/strong&gt;，Management Information Base：管理信息库  由网络管理协议访问的管理对象数据库，它包括SNMP可以通过网络设备的SNMP管理代理进行设置的变量。
+&lt;strong&gt;SMI&lt;/strong&gt;，Structure of Management Information：管理信息结构  用于定义通过网络管理协议可访问的对象的规则。SMI定义在MIB中使用的数据类型及网络资源在MIB中的名称或表示。
+&lt;strong&gt;ASN.1&lt;/strong&gt;，Abstract Syntax Notation One：抽象语法定义  用于定义语法的正式语言，在SNMP中它用于定义SNMP协议数据单元和对象的格式。
+&lt;strong&gt;PDU&lt;/strong&gt;，Protocol Data Unit：协议数据单元  在网络中传送的数据包。
+&lt;strong&gt;BER&lt;/strong&gt;，basic encoding rules：基本编码规则  由CCITT (X.209)和ISO (ISO 8825)指定的编码规则，它描述了如何将ASN.1类型表示为字符串。
+&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;简介&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;随着网络技术的飞速发展，网络的数量也越来越多。而网络中的设备来自各个不同的厂家，如何管理这些设备就变得十分重要。本章的内容就是介绍管理这些设备的标准。基于T C P / I P的网络管理包含两个部分：网络管理站（也叫管理进程， m a n a g e r）和被管的网络单元（也叫被管设备） 。被管设备种类繁多，例如：路由器、 X 终端、终端服务器和打印机等。这些被管设备的共同点就是都运行 T C P / I P协议。被管设备端和管理相关的软件叫做代理程序( a g e n t )或代理进程。管理站一般都是带有彩色监视器的工作站，可以显示所有被管设备的状态(例如连接是否掉线、各种连接上的流量状况等 )。&lt;/p&gt;
+
+&lt;p&gt;管理进程和代理进程之间的通信可以有两种方式。一种是管理进程向代理进程发出请求，询问一个具体的参数值（例如：你产生了多少个不可达的 I C M P端口？） 。另外一种方式是代理进程主动向管理进程报告有某些重要的事件发生（例如：一个连接口掉线了） 。当然，管理进程除了可以向代理进程询问某些参数值以外，它还可以按要求改变代理进程的参数值（例
+如：把默认的IP TTL值改为6 4） 。&lt;/p&gt;
+
+&lt;p&gt;基于T C P / I P的网络管理包含3个组成部分：&lt;/p&gt;
+
+&lt;p&gt;1) 一个管理信息库M I B（Management Information Base） 。管理信息库包含所有代理进程的所有可被查询和修改的参数。RFC 1213 [McCloghrie and Rose 1991]定义了第二版的M I B，叫做M I B - I I。&lt;/p&gt;
+
+&lt;p&gt;2)  关于M I B的一套公用的结构和表示符号。叫做管理信息结构 S M I（Structure of Management Information） 。这个在RFC 1155 [Rose and McCloghrie 1990] 中定义。例如：S M I定义计数器是一个非负整数，它的计数范围是 0~4 294 967 295，当达到最大值时，又从0开始计数。&lt;/p&gt;
+
+&lt;p&gt;3) 管理进程和代理进程之间的通信协议，叫做简单网络管理协议 S N M P（Simple Network Management Protocol） 。在RFC 1157 [Case et al. 1990]中定义。S N M P包括数据报交换的格式等。尽管可以在运输层采用各种各样的协议，但是在 S N M P中，用得最多的协议还是U D P。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;协议&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;关于管理进程和代理进程之间的交互信息， S N M P定义了5种报文：&lt;/p&gt;
+
+&lt;p&gt;1)  g e t - r e q u e s t操作：从代理进程处提取一个或多个参数值。&lt;/p&gt;
+
+&lt;p&gt;2)  g e t - n e x t - r e q u e s t操作：从代理进程处提取一个或多个参数的下一个参数值（关于“下一个（n e x t） ”的含义将在后面的章节中介绍） 。&lt;/p&gt;
+
+&lt;p&gt;3)  s e t - r e q u e s t操作：设置代理进程的一个或多个参数值。&lt;/p&gt;
+
+&lt;p&gt;4)  g e t - r e s p o n s e操作：返回的一个或多个参数值。这个操作是由代理进程发出的。它是前面3中操作的响应操作。&lt;/p&gt;
+
+&lt;p&gt;5) t r a p操作：代理进程主动发出的报文，通知管理进程有某些事情发生。前面的3个操作是由管理进程向代理进程发出的。后面两个是代理进程发给管理进程的。&lt;/p&gt;
+
+&lt;p&gt;简单介绍一下用法&lt;/p&gt;
+
+&lt;p&gt;snmputil，就是程序名拉，呵呵。&lt;/p&gt;
+
+&lt;p&gt;get，就理解成获取一个信息。&lt;/p&gt;
+
+&lt;p&gt;getnext，就理解成获取下一个信息。&lt;/p&gt;
+
+&lt;p&gt;walk，就理解成获取一堆信息（嗯，应该说所有数据库子树/子目录的信息）&lt;/p&gt;
+
+&lt;p&gt;agent，具体某台机器拉。&lt;/p&gt;
+
+&lt;p&gt;community，嗯就是那个“community strings”“查询密码”拉。&lt;/p&gt;
+
+&lt;p&gt;oid，这个要多说一下，这个呢，就是物件识别代码（Object Identifier）。&lt;/p&gt;
+
+&lt;p&gt;可以把oid理解成MIB管理信息库中各种信息分类存放树资源的一个数字标识。&lt;/p&gt;
+
+&lt;p&gt;好了，具体的资料可以查阅相关文章。&lt;/p&gt;
+
+&lt;p&gt;开始刺探信息：&lt;/p&gt;
+
+&lt;p&gt;尝试获得对方机器当前进程列表&lt;/p&gt;
+
+&lt;p&gt;snmputil.exe walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;SNMP的三大版本 &lt;/span&gt;&lt;/strong&gt;
+SNMP的常用版本有三个：SNMPv1、SNMPv2、SNMPv3
+Three different version of SNMP exist: SNMPv1 (RFC’s 1155, 1157, and 1212), SNMPv2c (RFC’s 1901 through 1908), and SNMPv3 (RFC’s 3411 though 3418). The co-existence of all three versions are detailed in RFC 3584.&lt;/p&gt;
+
+&lt;p&gt;SNMP有三个不同的版本：SNMPv1(RFC 1155、RFC 1157、RFC 1212),SNMPv2c (RFC 1901、1908）以及 SNMPv3 (RFC 3411 - 3418). RFC 3584中详细说明了这三种版本同时共存方面的信息。&lt;/p&gt;
+
+&lt;p&gt;SNMPv1 is the original standard for community based management. SNMPv2 was derived from the SNMPv1 framework but had no message definition, which was later revamped aa SNMPv2c, a community based version of SNMPv2 with a message format similar to SNMPv1. SNMPv2 added several new datatypes (Counter32, Counter64, Gauge32, UInteger32, NsapAdress, and BIT STRING), as well as enhancements to OID tables and the setting of OID values. SNMPv3 is an extensable SNMPv2 framework with a new message format, ACL and security abilities, and remote configuration of SNMP parameters.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #808080;&#34;&gt;SNMPv1是为基于公共管理的初始标准。SNMPv2是SNMPv1框架下衍生出来的，但是没有定义信息，其后修订为SNMPv2c,一个带有于SNMPv1类似信息格式的给予公共管理的版本。SNMPv2添加了几个新的数据类型（Counter32、Counter64、Gauge32、UInteger32、NsapAdress 以及BIT STRING),以及对OID表和OID值的设置的增强。SNMPv3是一个带有新的信息格式、ACL、安全功能和远处SNMP参数配置的、扩展了SNMPv2框架的版本。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;SNMP is based on several other standards including the Abstract Syntax Notation 1 Basic Encoding Rules (ASN.1 BER) which defines the SNMP used Datatypes and the Structure of Management Information (SMI) which details the grammar used by SNMP MIBs. SMI comes in two varieties: SMIv1 (RFC 1155) and SMIv2 (RFC 2578). SMIv1 is now obsolete and should not be used. If you choose to modify MIBs at some point you’ll need to learn SMIv2 and ASN.1 syntax, but otherwise they are interesting but unnecessary to learn.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: blue;&#34;&gt;&lt;span style=&#34;color: #808080;&#34;&gt;SNMP是基于几个其他规范的，包括定义给予SNMP的数据类型的ASN.1 BER(Abstract Syntax Notation 1 Basic Encoding Rules), 以及详细描述有SNMP MIB使用的语法的管理信息结构（SMI）。SMIv1目前被独立出来，不应当再被使用。如果你选择修改MIB的某些东西，你需要学习SMIv2和ASN.1语法，不过其他情况下你只需要在兴趣时看看他，而不&lt;span style=&#34;color: #808080;&#34;&gt;必学习他&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;color: #808080;&#34;&gt;。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;To this day, SNMPv1 and SNMPv2c are the most commonly used, however due to the insecurity inherent to these protocols read-only access is typical. In general, don’t bother with SNMPv3 unless you really need the added security features.&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #808080;&#34;&gt;现在，SNMPv1和SNMPv2被广泛应用，但是由于这些协议的不安全特性，通常只使用只读访问。通常，除非你确实需要附加安全特性，否则你不需要过多地关注SNMPv3。SNMPv3是具有安全性的通信协议。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;strong&gt;简单介绍一下用法&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;以WIN2K来说，一旦安装并启动了简单网络管理协议，系统将打开&lt;/p&gt;
+
+&lt;p&gt;UDP 161 snmp&lt;/p&gt;
+
+&lt;p&gt;UDP 162 snmptrap&lt;/p&gt;
+
+&lt;p&gt;两个端口。&lt;/p&gt;
+
+&lt;p&gt;具体做什么我们不去细究。需要注意的是，这里使用的是UDP端口，而不是TCP端口。同时，WIN2K系统支持初始的“查询密码”community strings 为：public 我们只要通过一款Resource Kit里面的工具snmputil，就可以方便的获得非常多的信息。&lt;/p&gt;
+
+&lt;p&gt;在这里可以下载：&lt;a href=&#34;http://www.patching.net/abu/tools/win/snmputil.exe&#34;&gt;http://www.patching.net/abu/tools/win/snmputil.exe&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;snmputil，程序名。&lt;/p&gt;
+
+&lt;p&gt;get，就理解成获取一个信息。&lt;/p&gt;
+
+&lt;p&gt;getnext，就理解成获取下一个信息。&lt;/p&gt;
+
+&lt;p&gt;walk，就理解成获取一堆信息（应该说所有数据库子树/子目录的信息）&lt;/p&gt;
+
+&lt;p&gt;agent，具体某台机器拉。&lt;/p&gt;
+
+&lt;p&gt;community，嗯就是那个“community strings”“查询密码”。&lt;/p&gt;
+
+&lt;p&gt;oid，物件识别代码（Object Identifier）。&lt;/p&gt;
+
+&lt;p&gt;可以把oid理解成MIB管理信息库中各种信息分类存放树资源的一个数字标识。&lt;/p&gt;
+
+&lt;p&gt;具体的资料可以查阅相关文章。&lt;/p&gt;
+
+&lt;p&gt;开始刺探信息：&lt;/p&gt;
+
+&lt;p&gt;尝试获得对方机器当前进程列表&lt;/p&gt;
+
+&lt;p&gt;snmputil.exe walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2&lt;/p&gt;
+
+&lt;p&gt;尝试获得对方机器系统用户列表&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.4.1.77.1.2.25.1.1&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2 列出系统进程&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.4.1.77.1.2.25.1.1 列系统用户列表&lt;/p&gt;
+
+&lt;p&gt;snmputil get 对方ip public .1.3.6.1.4.1.77.1.4.1.0 列出域名&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.2.1.25.6.3.1.2 列出安装的软件&lt;/p&gt;
+
+&lt;p&gt;snmputil walk 对方ip public .1.3.6.1.2.1.1 列出系统信息&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;来源：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.cnblogs.com/scottckt/archive/2007/07/30/836309.html&#34;&gt;http://www.cnblogs.com/scottckt/archive/2007/07/30/836309.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.longen.org/s-z/details-z/snmpintro.htm&#34;&gt;http://www.longen.org/s-z/details-z/snmpintro.htm&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bbs.cunzone.com/thread-32414-1-1.html&#34;&gt;http://bbs.cunzone.com/thread-32414-1-1.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;以及TCP/IP详解&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>twitter、微博、WordPress的同步</title>
+      <link>http://www.daniex.tk/blog/2010/twittertoall/</link>
+      <pubDate>Tue, 13 Jul 2010 12:05:59 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/twittertoall/</guid>
+      <description>&lt;p&gt;今天折腾了阵子twitter同步的小东西，先是同步WordPress到twitter，然后twitter到其他各地。WordPress到twitter有插件，写代码也是几段就ok的，略过不提。简单的说下关于twitter、国内各个微博、部分SNS网站同步的情况。教程大家自己去找，很多，按着步骤做也挺简单的。&lt;/p&gt;
+
+&lt;p&gt;1、  Gae同步twitter&lt;/p&gt;
+
+&lt;p&gt;就&lt;a href=&#34;http://www.williamlong.info/archives/2049.html&#34; target=&#34;_blank&#34;&gt;月光博客&lt;/a&gt;那个版本，同步都是微薄，要同步人人、豆瓣之类的就得自己写代码了。基本步骤是申请gae账号，下几个包，改下自己的账号密码，按步骤上传文件，这就搞定。&lt;/p&gt;
+
+&lt;p&gt;2、  php空间同步twitter&lt;/p&gt;
+
+&lt;p&gt;这个方法的前提是有php空间，空间性能还有点关系，之后会提到。步骤的话也是下个包，改下账号密码，上传。一样简单。&lt;/p&gt;
+
+&lt;p&gt;这个方法用的是Tw2other的包，和PHP空间的cron功能的有点关系。&lt;a href=&#34;http://www.qiankun.org.ru/2010/04/using-php-space-cron-synchronize-twitter-sina-163-microblog.html&#34;&gt;推荐个教程&lt;/a&gt;。空间支持cron那很ok，注意下更新时间。默认是每间隔50秒一次更新的，如果需要修改更新间隔，可以修改config.php中的INTERVAL参数。提示：程序中 config.php中有个时间参数设置，个时间参数最好要小于所设置的Cron间隔，比如Cron设置的为1分钟，那么程序中设置为50-58秒比较好。 这个提示的前提是你的服务器够强劲。如果是免费空间，这么设置就有可能因太占资源被禁止。&lt;/p&gt;
+
+&lt;p&gt;如果空间不支持cron呢？这里有个取巧的办法，就是放段代码在自己的网站里面，有人访问，就能同步twitter了。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;iframe frameborder=0 width=0 height=0 name= &amp;ldquo;cron-twitter&amp;rdquo; src=&amp;ldquo;&lt;a href=&#34;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &#34;&gt;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &lt;/a&gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;3、  follow5类似&lt;/p&gt;
+
+&lt;p&gt;就是注册个能够同步很多微博的微博或者其他网站账号，设置一下就能同步了。&lt;/p&gt;
+
+&lt;p&gt;4、  Gtalk&lt;/p&gt;
+
+&lt;p&gt;这个方法没研究过，嘿嘿，有兴趣的自己看去。&lt;/p&gt;
+
+&lt;p&gt;最后还要提醒下的是，设置多个微薄同步的时候，这几个微薄之间不要再设置同步了，这样会重复同步，不断刷屏。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

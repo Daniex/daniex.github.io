@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Propertychangedeventhandler on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/propertychangedeventhandler/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Mon, 26 Sep 2011 08:04:35 &#43;0000</updated>
+    
+    <item>
+      <title>WPF数据绑定UI显示同步变更例子</title>
+      <link>http://www.daniex.tk/blog/2011/wpf-data-binding-ui-shows-examples-of-simultaneous-changes/</link>
+      <pubDate>Mon, 26 Sep 2011 08:04:35 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wpf-data-binding-ui-shows-examples-of-simultaneous-changes/</guid>
+      <description>&lt;p&gt;WPF数据绑定功能很好，很强大。只需要写一点代码就可以做到数据的绑定，数据变更后UI的数据同步显示。UI和主程序多线程间的数据交互问题可以通过这个轻松解决。对“由于其他线程拥有此对象，因此调用线程无法对其进行访问”这样的问题，wpf 的dispatcher 是一个可能的解决方法，数据绑定也是一个方式。&lt;/p&gt;
+
+&lt;p&gt;定义类
+&lt;pre class=&#34;brush:csharp&#34;&gt;using System;
+using System.ComponentModel;&lt;/p&gt;
+
+&lt;p&gt;namespace Demo.View
+{
+    public class DemoBinding: INotifyPropertyChanged
+    {
+        private double fail;
+        public double Fail
+        {
+            get { return fail; }
+            set
+            {
+                fail= value;
+                NotifyPropertyChanged(&amp;ldquo;Fail&amp;rdquo;);
+            }
+        }&lt;/p&gt;
+
+&lt;p&gt;        private String pass = Properties.Resources.statusPass + &amp;ldquo;0&amp;rdquo;;
+        public String Pass
+        {
+            get { return pass; }
+            set
+            {
+                pass = value;
+                NotifyPropertyChanged(&amp;ldquo;Pass&amp;rdquo;);
+            }
+        }&lt;/p&gt;
+
+&lt;p&gt;        public event PropertyChangedEventHandler PropertyChanged;&lt;/p&gt;
+
+&lt;p&gt;        public void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}&lt;/pre&gt;
+xaml 文件内容：
+&lt;pre class=&#34;brush:xml&#34;&gt; &amp;lt;ProgressBar Name=&amp;ldquo;progressBar&amp;rdquo; Value=&amp;ldquo;{Binding Fail}&amp;rdquo; Height=&amp;ldquo;30&amp;rdquo; Margin=&amp;ldquo;4&amp;rdquo; /&amp;gt;
+&amp;lt;Label Name=&amp;ldquo;label_pass&amp;rdquo;  Foreground=&amp;ldquo;Green&amp;rdquo; FontSize=&amp;ldquo;14&amp;rdquo; Content=&amp;ldquo;{Binding Pass}&amp;rdquo; /&amp;gt;&lt;/pre&gt;
+当数据需要改变时，只要使数据对象DemoBinding data的属性值赋值，数据和UI都会随之改变，如:data.fail = 50;&lt;/p&gt;
+
+&lt;p&gt;当然，可以把类对象定义为static的静态对象，这样就不需要保证对象唯一性的代码了。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

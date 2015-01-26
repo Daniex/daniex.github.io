@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>SNMP简单网络管理协议（Simple Network Management Protocol） &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="Http,IP,SNMP,TCP,协议,数据库,简单网络管理协议,管理,编码,软件">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>SNMP简单网络管理协议（Simple Network Management Protocol）</h1>
+    <span class="post-date">Nov 3, 2010 &middot; 3 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/Http">Http</a><a class="label" href="http://www.daniex.tk/tags/IP">IP</a><a class="label" href="http://www.daniex.tk/tags/SNMP">SNMP</a><a class="label" href="http://www.daniex.tk/tags/TCP">TCP</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a><a class="label" href="http://www.daniex.tk/tags/%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E5%8D%8F%E8%AE%AE">简单网络管理协议</a><a class="label" href="http://www.daniex.tk/tags/%E7%AE%A1%E7%90%86">管理</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a><a class="label" href="http://www.daniex.tk/tags/%E8%BD%AF%E4%BB%B6">软件</a>
+    </span>
+    <p><span style="color: #0000ff;"><strong>SNMP历史</strong></span></p>
+
+<p>随着网络数目与网络内主机数目的日益增多，单纯依靠一些网络专业进行网络管理已经不可能了，必须有一种通行的网络管理标准以及相应的管理工具使普通人也能够管理网络。第一个相关的协议是SGMP，它提供了一种直接监视网关的方法，也因此成了一种通用的网络管理工具。下来，有三种可供选择的管理工具：HEMS，SNMP和建立在TCP/IP基础上的CMIP（CMOT），因为需要使用ISO/OSI模型进行网络管理，SNMP首选CMOT作为管理工具。基本的SNMP已经被广泛使用了，所有的网络产品都提供对SNMP的支持，新开发的具有远程管理能力的SNMP是RMON，它使管理人员可以将整个子网进行管理，而不是对整个子网内的设备进行管理。</p>
+
+<p><strong><span style="color: #0000ff;">一些定义</span></strong></p>
+
+<p><strong>SNMP</strong>，Simple Network Management Protocol：简单网络管理协议  它是一个标准的用于管理IP网络上结点的协议。此协议包括了监视和控制变量集以及用于监视设备的两个数据格式：SMI和MIB。
+<strong>MIB</strong>，Management Information Base：管理信息库  由网络管理协议访问的管理对象数据库，它包括SNMP可以通过网络设备的SNMP管理代理进行设置的变量。
+<strong>SMI</strong>，Structure of Management Information：管理信息结构  用于定义通过网络管理协议可访问的对象的规则。SMI定义在MIB中使用的数据类型及网络资源在MIB中的名称或表示。
+<strong>ASN.1</strong>，Abstract Syntax Notation One：抽象语法定义  用于定义语法的正式语言，在SNMP中它用于定义SNMP协议数据单元和对象的格式。
+<strong>PDU</strong>，Protocol Data Unit：协议数据单元  在网络中传送的数据包。
+<strong>BER</strong>，basic encoding rules：基本编码规则  由CCITT (X.209)和ISO (ISO 8825)指定的编码规则，它描述了如何将ASN.1类型表示为字符串。
+<span style="color: #0000ff;"><strong>简介</strong></span></p>
+
+<p>随着网络技术的飞速发展，网络的数量也越来越多。而网络中的设备来自各个不同的厂家，如何管理这些设备就变得十分重要。本章的内容就是介绍管理这些设备的标准。基于T C P / I P的网络管理包含两个部分：网络管理站（也叫管理进程， m a n a g e r）和被管的网络单元（也叫被管设备） 。被管设备种类繁多，例如：路由器、 X 终端、终端服务器和打印机等。这些被管设备的共同点就是都运行 T C P / I P协议。被管设备端和管理相关的软件叫做代理程序( a g e n t )或代理进程。管理站一般都是带有彩色监视器的工作站，可以显示所有被管设备的状态(例如连接是否掉线、各种连接上的流量状况等 )。</p>
+
+<p>管理进程和代理进程之间的通信可以有两种方式。一种是管理进程向代理进程发出请求，询问一个具体的参数值（例如：你产生了多少个不可达的 I C M P端口？） 。另外一种方式是代理进程主动向管理进程报告有某些重要的事件发生（例如：一个连接口掉线了） 。当然，管理进程除了可以向代理进程询问某些参数值以外，它还可以按要求改变代理进程的参数值（例
+如：把默认的IP TTL值改为6 4） 。</p>
+
+<p>基于T C P / I P的网络管理包含3个组成部分：</p>
+
+<p>1) 一个管理信息库M I B（Management Information Base） 。管理信息库包含所有代理进程的所有可被查询和修改的参数。RFC 1213 [McCloghrie and Rose 1991]定义了第二版的M I B，叫做M I B - I I。</p>
+
+<p>2)  关于M I B的一套公用的结构和表示符号。叫做管理信息结构 S M I（Structure of Management Information） 。这个在RFC 1155 [Rose and McCloghrie 1990] 中定义。例如：S M I定义计数器是一个非负整数，它的计数范围是 0~4 294 967 295，当达到最大值时，又从0开始计数。</p>
+
+<p>3) 管理进程和代理进程之间的通信协议，叫做简单网络管理协议 S N M P（Simple Network Management Protocol） 。在RFC 1157 [Case et al. 1990]中定义。S N M P包括数据报交换的格式等。尽管可以在运输层采用各种各样的协议，但是在 S N M P中，用得最多的协议还是U D P。</p>
+
+<p><span style="color: #0000ff;"><strong>协议</strong></span></p>
+
+<p>关于管理进程和代理进程之间的交互信息， S N M P定义了5种报文：</p>
+
+<p>1)  g e t - r e q u e s t操作：从代理进程处提取一个或多个参数值。</p>
+
+<p>2)  g e t - n e x t - r e q u e s t操作：从代理进程处提取一个或多个参数的下一个参数值（关于“下一个（n e x t） ”的含义将在后面的章节中介绍） 。</p>
+
+<p>3)  s e t - r e q u e s t操作：设置代理进程的一个或多个参数值。</p>
+
+<p>4)  g e t - r e s p o n s e操作：返回的一个或多个参数值。这个操作是由代理进程发出的。它是前面3中操作的响应操作。</p>
+
+<p>5) t r a p操作：代理进程主动发出的报文，通知管理进程有某些事情发生。前面的3个操作是由管理进程向代理进程发出的。后面两个是代理进程发给管理进程的。</p>
+
+<p>简单介绍一下用法</p>
+
+<p>snmputil，就是程序名拉，呵呵。</p>
+
+<p>get，就理解成获取一个信息。</p>
+
+<p>getnext，就理解成获取下一个信息。</p>
+
+<p>walk，就理解成获取一堆信息（嗯，应该说所有数据库子树/子目录的信息）</p>
+
+<p>agent，具体某台机器拉。</p>
+
+<p>community，嗯就是那个“community strings”“查询密码”拉。</p>
+
+<p>oid，这个要多说一下，这个呢，就是物件识别代码（Object Identifier）。</p>
+
+<p>可以把oid理解成MIB管理信息库中各种信息分类存放树资源的一个数字标识。</p>
+
+<p>好了，具体的资料可以查阅相关文章。</p>
+
+<p>开始刺探信息：</p>
+
+<p>尝试获得对方机器当前进程列表</p>
+
+<p>snmputil.exe walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2</p>
+
+<p><strong><span style="color: #0000ff;">SNMP的三大版本 </span></strong>
+SNMP的常用版本有三个：SNMPv1、SNMPv2、SNMPv3
+Three different version of SNMP exist: SNMPv1 (RFC’s 1155, 1157, and 1212), SNMPv2c (RFC’s 1901 through 1908), and SNMPv3 (RFC’s 3411 though 3418). The co-existence of all three versions are detailed in RFC 3584.</p>
+
+<p>SNMP有三个不同的版本：SNMPv1(RFC 1155、RFC 1157、RFC 1212),SNMPv2c (RFC 1901、1908）以及 SNMPv3 (RFC 3411 - 3418). RFC 3584中详细说明了这三种版本同时共存方面的信息。</p>
+
+<p>SNMPv1 is the original standard for community based management. SNMPv2 was derived from the SNMPv1 framework but had no message definition, which was later revamped aa SNMPv2c, a community based version of SNMPv2 with a message format similar to SNMPv1. SNMPv2 added several new datatypes (Counter32, Counter64, Gauge32, UInteger32, NsapAdress, and BIT STRING), as well as enhancements to OID tables and the setting of OID values. SNMPv3 is an extensable SNMPv2 framework with a new message format, ACL and security abilities, and remote configuration of SNMP parameters.</p>
+
+<p><span style="color: #808080;">SNMPv1是为基于公共管理的初始标准。SNMPv2是SNMPv1框架下衍生出来的，但是没有定义信息，其后修订为SNMPv2c,一个带有于SNMPv1类似信息格式的给予公共管理的版本。SNMPv2添加了几个新的数据类型（Counter32、Counter64、Gauge32、UInteger32、NsapAdress 以及BIT STRING),以及对OID表和OID值的设置的增强。SNMPv3是一个带有新的信息格式、ACL、安全功能和远处SNMP参数配置的、扩展了SNMPv2框架的版本。</span></p>
+
+<p>SNMP is based on several other standards including the Abstract Syntax Notation 1 Basic Encoding Rules (ASN.1 BER) which defines the SNMP used Datatypes and the Structure of Management Information (SMI) which details the grammar used by SNMP MIBs. SMI comes in two varieties: SMIv1 (RFC 1155) and SMIv2 (RFC 2578). SMIv1 is now obsolete and should not be used. If you choose to modify MIBs at some point you’ll need to learn SMIv2 and ASN.1 syntax, but otherwise they are interesting but unnecessary to learn.</p>
+
+<p><span style="color: blue;"><span style="color: #808080;">SNMP是基于几个其他规范的，包括定义给予SNMP的数据类型的ASN.1 BER(Abstract Syntax Notation 1 Basic Encoding Rules), 以及详细描述有SNMP MIB使用的语法的管理信息结构（SMI）。SMIv1目前被独立出来，不应当再被使用。如果你选择修改MIB的某些东西，你需要学习SMIv2和ASN.1语法，不过其他情况下你只需要在兴趣时看看他，而不<span style="color: #808080;">必学习他</span></span><span style="color: #808080;">。</span></span></p>
+
+<p>To this day, SNMPv1 and SNMPv2c are the most commonly used, however due to the insecurity inherent to these protocols read-only access is typical. In general, don’t bother with SNMPv3 unless you really need the added security features.</p>
+
+<p><span style="color: #808080;">现在，SNMPv1和SNMPv2被广泛应用，但是由于这些协议的不安全特性，通常只使用只读访问。通常，除非你确实需要附加安全特性，否则你不需要过多地关注SNMPv3。SNMPv3是具有安全性的通信协议。</span></p>
+
+<p><span style="color: #0000ff;"><strong>简单介绍一下用法</strong></span></p>
+
+<p>以WIN2K来说，一旦安装并启动了简单网络管理协议，系统将打开</p>
+
+<p>UDP 161 snmp</p>
+
+<p>UDP 162 snmptrap</p>
+
+<p>两个端口。</p>
+
+<p>具体做什么我们不去细究。需要注意的是，这里使用的是UDP端口，而不是TCP端口。同时，WIN2K系统支持初始的“查询密码”community strings 为：public 我们只要通过一款Resource Kit里面的工具snmputil，就可以方便的获得非常多的信息。</p>
+
+<p>在这里可以下载：<a href="http://www.patching.net/abu/tools/win/snmputil.exe">http://www.patching.net/abu/tools/win/snmputil.exe</a></p>
+
+<p>snmputil，程序名。</p>
+
+<p>get，就理解成获取一个信息。</p>
+
+<p>getnext，就理解成获取下一个信息。</p>
+
+<p>walk，就理解成获取一堆信息（应该说所有数据库子树/子目录的信息）</p>
+
+<p>agent，具体某台机器拉。</p>
+
+<p>community，嗯就是那个“community strings”“查询密码”。</p>
+
+<p>oid，物件识别代码（Object Identifier）。</p>
+
+<p>可以把oid理解成MIB管理信息库中各种信息分类存放树资源的一个数字标识。</p>
+
+<p>具体的资料可以查阅相关文章。</p>
+
+<p>开始刺探信息：</p>
+
+<p>尝试获得对方机器当前进程列表</p>
+
+<p>snmputil.exe walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2</p>
+
+<p>尝试获得对方机器系统用户列表</p>
+
+<p>snmputil walk 对方ip public .1.3.6.1.4.1.77.1.2.25.1.1</p>
+
+<p>snmputil walk 对方ip public .1.3.6.1.2.1.25.4.2.1.2 列出系统进程</p>
+
+<p>snmputil walk 对方ip public .1.3.6.1.4.1.77.1.2.25.1.1 列系统用户列表</p>
+
+<p>snmputil get 对方ip public .1.3.6.1.4.1.77.1.4.1.0 列出域名</p>
+
+<p>snmputil walk 对方ip public .1.3.6.1.2.1.25.6.3.1.2 列出安装的软件</p>
+
+<p>snmputil walk 对方ip public .1.3.6.1.2.1.1 列出系统信息</p>
+
+<hr />
+
+<p>来源：</p>
+
+<p><a href="http://www.cnblogs.com/scottckt/archive/2007/07/30/836309.html">http://www.cnblogs.com/scottckt/archive/2007/07/30/836309.html</a></p>
+
+<p><a href="http://www.longen.org/s-z/details-z/snmpintro.htm">http://www.longen.org/s-z/details-z/snmpintro.htm</a></p>
+
+<p><a href="http://bbs.cunzone.com/thread-32414-1-1.html">http://bbs.cunzone.com/thread-32414-1-1.html</a></p>
+
+<p>以及TCP/IP详解</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

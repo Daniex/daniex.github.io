@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Weblogic on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/weblogic/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Wed, 29 Jun 2011 12:24:54 &#43;0000</updated>
+    
+    <item>
+      <title>用jersey和JSF开发应用，部署在weblogic上。</title>
+      <link>http://www.daniex.tk/blog/2011/jersey-jsf-weblogic-development/</link>
+      <pubDate>Wed, 29 Jun 2011 12:24:54 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/jersey-jsf-weblogic-development/</guid>
+      <description>&lt;p&gt;项目中尝试开发小工具，在构建RESTful服务的同时提供web页面。想可以用jersey和JSF在weblogic上部署工程。由于对两者都不是很熟。所以开发过程中磕磕绊绊比较不顺畅。&lt;/p&gt;
+
+&lt;p&gt;单个功能的应用开发都挺顺利的，但当集成两者的时候发现，要么RESTful服务工作不正常要们web页面不正常。查了半天发现是web.xml中定义servlet有冲突。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;servlet&amp;gt;
+&amp;lt;servlet-name&amp;gt;Faces Servlet&amp;lt;/servlet-name&amp;gt;
+&amp;lt;servlet-class&amp;gt;javax.faces.webapp.FacesServlet&amp;lt;/servlet-class&amp;gt;
+&amp;lt;load-on-startup&amp;gt;1&amp;lt;/load-on-startup&amp;gt;
+&amp;lt;/servlet&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+&amp;lt;servlet-name&amp;gt;Faces Servlet&amp;lt;/servlet-name&amp;gt;
+&amp;lt;url-pattern&amp;gt;/faces/&lt;em&gt;&amp;lt;/url-pattern&amp;gt;
+&amp;lt;/servlet-mapping&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;JSF自己生成的部分
+&amp;lt;servlet&amp;gt;
+&amp;lt;servlet-name&amp;gt;My Jersey Appliaction&amp;lt;/servlet-name&amp;gt;
+&amp;lt;servlet-class&amp;gt;com.sun.jersey.spi.container.servlet.ServletContainer&amp;lt;/servlet-class&amp;gt;
+&amp;lt;/servlet&amp;gt;
+&amp;lt;servlet-mapping&amp;gt;
+&amp;lt;servlet-name&amp;gt;My Jersey Appliaction&amp;lt;/servlet-name&amp;gt;
+&amp;lt;url-pattern&amp;gt;/&lt;/em&gt;&amp;lt;/url-pattern&amp;gt;
+&amp;lt;/servlet-mapping&amp;gt;
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-jersey的一种部署方式&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;要注意的是,他们的url-pattern是冲突的&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;1 三种写法&lt;/p&gt;
+
+&lt;p&gt;①　完全匹配&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;/test/list.do&amp;lt;/url-pattern&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;② 目录匹配&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;/test/*&amp;lt;/url-pattern&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;③ 扩展名匹配&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;url-pattern&amp;gt;*.do&amp;lt;/url-pattern&amp;gt;
+2 注意事项&lt;/p&gt;
+
+&lt;p&gt;☆ 容器会首先查找完全匹配，如果找不到，再查找目录匹配，如果也找不到，就查找扩展名匹配。&lt;/p&gt;
+
+&lt;p&gt;☆ 如果一个请求匹配多个“目录匹配”，容器会选择最长的匹配。&lt;/p&gt;
+
+&lt;p&gt;☆ 定义”/*.action”这样一个看起来很正常的匹配会报错？因为这个匹配即属于路径映射，也属于扩展映射，导致容器无法判断。
+☆ “/” 是用来定义default servlet映射的。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;servlet+jsr311就能实现简单的RESTful服务端。项目需要的时候再用jersey或者RESTlet，EasyREST之类的包吧。
+&lt;h3&gt;————————————————————————————————————&lt;/h3&gt;
+&lt;h3&gt;RESTful Web 服务简介&lt;/h3&gt;
+REST 在 2000 年由 Roy Fielding 在博士论文中提出，他是 HTTP 规范 1.0 和 1.1 版的首席作者之一。&lt;/p&gt;
+
+&lt;p&gt;REST 中最重要的概念是资源（resources），使用全球 ID（通常使用 URI）标识。客户端应用程序使用 HTTP 方法（GET/ POST/ PUT/ DELETE）操作资源或资源集。RESTful Web 服务是使用 HTTP 和 REST 原理实现的 Web 服务。通常，RESTful Web 服务应该定义以下方面：&lt;/p&gt;
+
+&lt;p&gt;Web 服务的基/根 URI，比如 &lt;a href=&#34;http://host//resources。&#34;&gt;http://host//resources。&lt;/a&gt;
+支持 MIME 类型的响应数据，包括 JSON/XML/ATOM 等等。
+服务支持的操作集合（例如 POST、GET、PUT 或 DELETE）。
+&lt;h3&gt;&lt;strong&gt;JSR 311 (JAX-RS) 和 Jersey&lt;/strong&gt;&lt;/h3&gt;
+JSR 311 或 JAX-RS（用于 RESTful Web Services 的 Java API）的提议开始于 2007 年，1.0 版本到 2008 年 10 月定稿。目前，JSR 311 版本 1.1 还处于草案阶段。该 JSR 的目的是提供一组 API 以简化 REST 样式的 Web 服务的开发。&lt;/p&gt;
+
+&lt;p&gt;在 JAX-RS 规范之前，已经有 Restlet 和 RestEasy 之类的框架，可以帮助您实现 RESTful Web 服务，但是它们不够直观。Jersey 是 JAX-RS 的参考实现，它包含三个主要部分。&lt;/p&gt;
+
+&lt;p&gt;核心服务器（Core Server）：通过提供 JSR 311 中标准化的注释和 API 标准化，您可以用直观的方式开发 RESTful Web 服务。
+核心客户端（Core Client）：Jersey 客户端 API 帮助您与 REST 服务轻松通信。
+集成（Integration）：Jersey 还提供可以轻松集成 Spring、Guice、Apache Abdera 的库。&lt;/p&gt;
+
+&lt;p&gt;以上取自：&lt;a title=&#34;使用 Jersey 和 Apache Tomcat 构建 RESTful Web 服务&#34; href=&#34;http://www.ibm.com/developerworks/cn/web/wa-aj-tomcat/&#34; target=&#34;_blank&#34;&gt;IBM&amp;ndash;使用 Jersey 和 Apache Tomcat 构建 RESTful Web 服务&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h3&gt;Java Server Faces (JSF)&lt;/h3&gt;
+JSF是一种用于构建Java Web 应用程序的标准框架(是Java Community Process  规定的JSR-127标准)。它提供了一种以组件为中心的用户界面(UI)构建方法，从而简化了Java服务器端应用程序的开发。由于由Java  Community Process (JCP) 推动，属于Java EE 5中的技术规范，而受到了厂商的广泛支持。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

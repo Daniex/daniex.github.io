@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>用jersey和JSF开发应用，部署在weblogic上。 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="java,RESTful,weblogic,WebService">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>用jersey和JSF开发应用，部署在weblogic上。</h1>
+    <span class="post-date">Jun 29, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/java">java</a><a class="label" href="http://www.daniex.tk/categories/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/java">java</a><a class="label" href="http://www.daniex.tk/tags/RESTful">RESTful</a><a class="label" href="http://www.daniex.tk/tags/weblogic">weblogic</a><a class="label" href="http://www.daniex.tk/tags/WebService">WebService</a>
+    </span>
+    <p>项目中尝试开发小工具，在构建RESTful服务的同时提供web页面。想可以用jersey和JSF在weblogic上部署工程。由于对两者都不是很熟。所以开发过程中磕磕绊绊比较不顺畅。</p>
+
+<p>单个功能的应用开发都挺顺利的，但当集成两者的时候发现，要么RESTful服务工作不正常要们web页面不正常。查了半天发现是web.xml中定义servlet有冲突。</p>
+
+<p>&lt;servlet&gt;
+&lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;
+&lt;servlet-class&gt;javax.faces.webapp.FacesServlet&lt;/servlet-class&gt;
+&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+&lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;
+&lt;url-pattern&gt;/faces/<em>&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&lt;servlet-mapping&gt;
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;JSF自己生成的部分
+&lt;servlet&gt;
+&lt;servlet-name&gt;My Jersey Appliaction&lt;/servlet-name&gt;
+&lt;servlet-class&gt;com.sun.jersey.spi.container.servlet.ServletContainer&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+&lt;servlet-name&gt;My Jersey Appliaction&lt;/servlet-name&gt;
+&lt;url-pattern&gt;/</em>&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-jersey的一种部署方式</p>
+
+<p><span style="color: #3366ff;">要注意的是,他们的url-pattern是冲突的</span></p>
+
+<p>1 三种写法</p>
+
+<p>①　完全匹配</p>
+
+<p>&lt;url-pattern&gt;/test/list.do&lt;/url-pattern&gt;</p>
+
+<p>② 目录匹配</p>
+
+<p>&lt;url-pattern&gt;/test/*&lt;/url-pattern&gt;</p>
+
+<p>③ 扩展名匹配</p>
+
+<p>&lt;url-pattern&gt;*.do&lt;/url-pattern&gt;
+2 注意事项</p>
+
+<p>☆ 容器会首先查找完全匹配，如果找不到，再查找目录匹配，如果也找不到，就查找扩展名匹配。</p>
+
+<p>☆ 如果一个请求匹配多个“目录匹配”，容器会选择最长的匹配。</p>
+
+<p>☆ 定义”/*.action”这样一个看起来很正常的匹配会报错？因为这个匹配即属于路径映射，也属于扩展映射，导致容器无法判断。
+☆ “/” 是用来定义default servlet映射的。</p>
+
+<p>&nbsp;</p>
+
+<p>servlet+jsr311就能实现简单的RESTful服务端。项目需要的时候再用jersey或者RESTlet，EasyREST之类的包吧。
+<h3>————————————————————————————————————</h3>
+<h3>RESTful Web 服务简介</h3>
+REST 在 2000 年由 Roy Fielding 在博士论文中提出，他是 HTTP 规范 1.0 和 1.1 版的首席作者之一。</p>
+
+<p>REST 中最重要的概念是资源（resources），使用全球 ID（通常使用 URI）标识。客户端应用程序使用 HTTP 方法（GET/ POST/ PUT/ DELETE）操作资源或资源集。RESTful Web 服务是使用 HTTP 和 REST 原理实现的 Web 服务。通常，RESTful Web 服务应该定义以下方面：</p>
+
+<p>Web 服务的基/根 URI，比如 <a href="http://host//resources。">http://host//resources。</a>
+支持 MIME 类型的响应数据，包括 JSON/XML/ATOM 等等。
+服务支持的操作集合（例如 POST、GET、PUT 或 DELETE）。
+<h3><strong>JSR 311 (JAX-RS) 和 Jersey</strong></h3>
+JSR 311 或 JAX-RS（用于 RESTful Web Services 的 Java API）的提议开始于 2007 年，1.0 版本到 2008 年 10 月定稿。目前，JSR 311 版本 1.1 还处于草案阶段。该 JSR 的目的是提供一组 API 以简化 REST 样式的 Web 服务的开发。</p>
+
+<p>在 JAX-RS 规范之前，已经有 Restlet 和 RestEasy 之类的框架，可以帮助您实现 RESTful Web 服务，但是它们不够直观。Jersey 是 JAX-RS 的参考实现，它包含三个主要部分。</p>
+
+<p>核心服务器（Core Server）：通过提供 JSR 311 中标准化的注释和 API 标准化，您可以用直观的方式开发 RESTful Web 服务。
+核心客户端（Core Client）：Jersey 客户端 API 帮助您与 REST 服务轻松通信。
+集成（Integration）：Jersey 还提供可以轻松集成 Spring、Guice、Apache Abdera 的库。</p>
+
+<p>以上取自：<a title="使用 Jersey 和 Apache Tomcat 构建 RESTful Web 服务" href="http://www.ibm.com/developerworks/cn/web/wa-aj-tomcat/" target="_blank">IBM&ndash;使用 Jersey 和 Apache Tomcat 构建 RESTful Web 服务</a></p>
+
+<p>&nbsp;
+<h3>Java Server Faces (JSF)</h3>
+JSF是一种用于构建Java Web 应用程序的标准框架(是Java Community Process  规定的JSR-127标准)。它提供了一种以组件为中心的用户界面(UI)构建方法，从而简化了Java服务器端应用程序的开发。由于由Java  Community Process (JCP) 推动，属于Java EE 5中的技术规范，而受到了厂商的广泛支持。</p>
+
+<p>&nbsp;</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>A Versatile TreeView for WPF &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C#,datagrid,wpf,wpf toolkit">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>A Versatile TreeView for WPF</h1>
+    <span class="post-date">Sep 22, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/C">C#</a><a class="label" href="http://www.daniex.tk/categories/WPF">WPF</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C">C#</a><a class="label" href="http://www.daniex.tk/tags/datagrid">datagrid</a><a class="label" href="http://www.daniex.tk/tags/wpf">wpf</a><a class="label" href="http://www.daniex.tk/tags/wpf-toolkit">wpf toolkit</a>
+    </span>
+    <p>写自动化测试工具的时候要用到tree view，于是上网各种找。C#的Infragistics NetAdvantage，DevExpress之类框架。都太大了，小工具用不着这么大的。用自带的tree view又觉得土了点，WPF又是在边学边做。终于折腾着找个到一个，看着挺好，用着也还合适。</p>
+
+<p><span style="color: #0000ff;"><a title="A Versatile TreeView for WPF" href="http://www.codeproject.com/KB/WPF/versatile_treeview.aspx" target="_blank"><span style="color: #0000ff;">A Versatile TreeView for WPF</span></a></span> 来自<span style="color: #0000ff;"> <a title="codeproject" href="http://www.codeproject.com/" target="_blank"><span style="color: #0000ff;">codeproject  </span></a></span></p>
+
+<p>他是个DLL，加到工程就好，还提供例子程序，对于我这种WPF未入门的来说正好。在他代码上边学边改，学着不少。例程如下图：
+<p style="text-align: center;"><img class="aligncenter" title="wpf tree view ui" src="http://www.codeproject.com/KB/WPF/versatile_treeview/sampleapp.png" alt="" width="571" height="420" /></p>
+树的展开，折叠，选中，状态变更更换图片，增加删除节点，排序，筛选等等功能都支持。</p>
+
+<p>但是也发现了问题，比如，根节点不好删除，重新加载/更换树也不方便。需要继续努力学习wpf去改代码了。任重道远哦～</p>
+
+<p>&nbsp;</p>
+
+<p>另外还用了wpf toolkit 这个插件花datagrid，由于用的是.net3.5 平台，居然都没有datagrid！搜下下载安装就好，也挺好用的一个工具。详见<a href="../wpf-datagrid.html"><span style="color: #0000ff;">WPF DataGrid 绑定数据 </span></a></p>
+
+<p>#######################################</p>
+
+<p>总结下删除树更换节点的问题，之前提到的都不是问题。方法如下：</p>
+
+<p>继承的TreeViewBase&lt;T&gt;类没有提供相应的接口去删除根节点，但是，由于整个树都是绑定于可自己定义的数据结构上。例如，例程中将树形结构绑定到ShopUtil中的一个列表中，对该列表直接进行操作，删除，更换节点，甚至更换整个树形结构。其后刷新树就可以得到新的结构了。</p>
+
+<p>&nbsp;</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

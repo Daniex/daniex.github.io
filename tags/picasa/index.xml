@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Picasa on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/picasa/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Wed, 28 Jul 2010 08:51:24 &#43;0000</updated>
+    
+    <item>
+      <title>Autoviewer幻灯片相册制作</title>
+      <link>http://www.daniex.tk/blog/2010/autoviewer/</link>
+      <pubDate>Wed, 28 Jul 2010 08:51:24 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/autoviewer/</guid>
+      <description>&lt;p&gt;写blog总会有些图片需要展示，方法有很多种。本人就是用的这个autoviewer做的相册，效果看 &lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://img.daniex.info/karen/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #000000;&#34;&gt; ，是&lt;/span&gt;&lt;span style=&#34;color: #000000;&#34;&gt;莫文蔚《文丞武蔚》写真集的几张图。更多图片请看本站的&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;简单描述下制作方法：
+&lt;h3&gt;&lt;strong&gt;1、&lt;/strong&gt;安装&lt;a href=&#34;http://picasa.google.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;Google Picasa&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+去这里下载：  &lt;a href=&#34;http://picasa.google.com/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://picasa.google.com/&#34;&gt;http://picasa.google.com/&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;h3&gt;&lt;strong&gt;2、&lt;/strong&gt;下载 &lt;a href=&#34;http://www.simpleviewer.net/autoviewer/support/picasa.html&#34; target=&#34;_blank&#34;&gt;a&lt;span style=&#34;color: #0000ff;&#34;&gt;utoviewer Picasa Template&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;a href=&#34;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&#34;&gt;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;h3&gt;&lt;strong&gt;3、&lt;/strong&gt; 解压文件。&lt;/h3&gt;
+解压，将simpleviewer_picasa_template 文件夹放到picasa对应目录下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Windows: \Program Files\Google\Picasa3\web\templates&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Picasa2的目录是这个路径： \Program Files\Picasa2\web\templates&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Macintosh: Applications:Picasa.app:Contents:Resources:web:templates
+&lt;h3&gt;&lt;strong&gt;4、&lt;/strong&gt;导出网页&lt;/h3&gt;
+找到Picasa中存放目标图片的文件夹，导出为html页面。具体操作方法为：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;选中目标文件夹 -&amp;gt; 点击工具栏文件夹选项 -&amp;gt; 选择导出为html文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-374&#34; title=&#34;Untitled&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/Untitled.png&#34; alt=&#34;&#34; width=&#34;527&#34; height=&#34;439&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;或者选中文件夹，右键点击选择导出为html文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-375&#34; title=&#34;2&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/2.jpg&#34; alt=&#34;&#34; width=&#34;563&#34; height=&#34;508&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;设置参数：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-376&#34; title=&#34;3&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/3.png&#34; alt=&#34;&#34; width=&#34;672&#34; height=&#34;579&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;导出，生成文件：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-377&#34; title=&#34;4&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/4.png&#34; alt=&#34;&#34; width=&#34;164&#34; height=&#34;209&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击index.html文件就能查看效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-379&#34; title=&#34;5&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/51.png&#34; alt=&#34;&#34; width=&#34;638&#34; height=&#34;359&#34; /&gt;
+&lt;h3&gt;5、上传&lt;/h3&gt;
+最后吧文件放到网站空间，注意正确的链接地址。一切ok。&lt;/p&gt;
+
+&lt;p&gt;比如我将导出的文件夹 jiangxinyun 放到 img.daniex.info域名的public_html目录下，那链接地址即&lt;a href=&#34;http://img.daniex.info/jiangxinyun&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://img.daniex.info/jiangxinyun&#34;&gt;http://img.daniex.info/jiangxinyun&lt;/a&gt;&lt;/span&gt;&lt;/a&gt; 。&lt;/p&gt;
+
+&lt;p&gt;该相册即本人边写这篇博文边做的相册。是姜行云的一些武侠小说插画，《神雕侠侣》。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;___________________________________________________&lt;/span&gt;
+&lt;h3&gt;&lt;span style=&#34;color: #ff0000;&#34;&gt;ps:&lt;/span&gt;&lt;/h3&gt;
+还有个类似的 叫 &lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;S&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;impleViewer&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; ，使用方法和这个autoviewer一样，效果看 &lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/examples/modern/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

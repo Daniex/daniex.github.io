@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Seo on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/seo/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Fri, 27 Jan 2012 11:58:33 &#43;0000</updated>
+    
+    <item>
+      <title>使用JavaMail API</title>
+      <link>http://www.daniex.tk/blog/2012/the-javamail-api/</link>
+      <pubDate>Fri, 27 Jan 2012 11:58:33 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/the-javamail-api/</guid>
+      <description>&lt;p&gt;使用JavaMail API，接上文&lt;a title=&#34;javax.mail.internet API 学习&#34; href=&#34;http://daniex.info/javax-mail-internet-api.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;javax.mail.internet api 学习&lt;/span&gt;
+&lt;/a&gt;1．发送邮件
+在获得了Session后，建立并填入邮件信息，然后发送它到邮件服务器。这便是使用Java Mail API发送邮件的过程，在发送邮件之前，我们需要设置SMTP服务器：通过设置Properties的mail.smtp.host属性。
+&lt;blockquote&gt;String host = &amp;hellip;;
+String from = &amp;hellip;;
+String to = &amp;hellip;;
+// Get system properties
+Properties props = System.getProperties();
+// Setup mail server
+props.put(&amp;ldquo;mail.smtp.host&amp;rdquo;, host);
+// Get session
+Session session = Session.getDefaultInstance(props, null);// Define message
+MimeMessage message = new MimeMessage(session);
+message.setFrom(new InternetAddress(from));message.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));message.setSubject(&amp;ldquo;Hello JavaMail&amp;rdquo;);
+message.setText(&amp;ldquo;Welcome to JavaMail&amp;rdquo;);
+// Send message
+Transport.send(message);&lt;/blockquote&gt;
+由于建立邮件信息和发送邮件的过程中可能会抛出异常，所以我们需要将上面的代码放入到try-catch结构块中。
+2．接收邮件
+为了在读取邮件，我们获得了session，并且连接到了邮箱的相应store，打开相应的Folder，然后得到我们想要的邮件，当然别忘记了在结束时关闭连接。
+&lt;blockquote&gt;String host = &amp;hellip;;
+String username = &amp;hellip;;
+String password = &amp;hellip;;
+// Create empty properties
+Properties props = new Properties();
+// Get session
+Session session = Session.getDefaultInstance(props, null);
+// Get the store
+Store store = session.getStore(&amp;ldquo;pop3&amp;rdquo;);
+store.connect(host, username, password);
+// Get folder
+Folder folder = store.getFolder(&amp;ldquo;INBOX&amp;rdquo;);
+folder.open(Folder.READ_ONLY);
+// Get directory
+Message message[] = folder.getMessages();
+for (int i=0, n=message.length; i++)&amp;hellip;&lt;/blockquote&gt;
+上面的代码所作的是从邮箱中读取每个邮件，并且显示邮件的发信人地址和主题。从技术角度讲，这里存在着一个异常的可能：当发信人地址为空时，getFrom()[0]将抛出异常。&lt;/p&gt;
+
+&lt;p&gt;下 面的代码片断有效的说明了如何读取邮件内容，在显示每个邮件发信人和主题后，将出现用户提示从而得到用户是否读取该邮件的确认，如果输入YES的话，我们 可用Message.writeTo(java.io.OutputStream os)方法将邮件内容输出到控制台上，关于 Message.writeTo()的具体用法请看JavaMail API。
+&lt;blockquote&gt;BufferedReader reader = new BufferedReader (  new InputStreamReader(System.in));
+// Get directory
+Message message[] = folder.getMessages();
+for (int i=0, n=message.length; i&amp;hellip;&lt;/blockquote&gt;
+3．删除邮件和标志
+设置与message相关的Flags是删除邮件的常用方法。这些Flags表示了一些系统定义和用户定义的不同状态。在Flags类的内部类Flag中预定义了一些标志：
+&lt;blockquote&gt;Flags.Flag.ANSWERED
+Flags.Flag.DELETED
+Flags.Flag.DRAFT
+Flags.Flag.FLAGGED
+Flags.Flag.RECENT
+Flags.Flag.SEEN
+Flags.Flag.USER&lt;/blockquote&gt;
+但 需要在使用时注意的：标志存在并非意味着这个标志被所有的邮件服务器所支持。例如，对于删除邮件的操作，POP协议不支持上面的任何一个。所以要确定哪些 标志是被支持的??通过访问一个已经打开的Folder对象的getPermanetFlags()方法，它将返回当前被支持的Flags类对象。
+删除邮件时，我们可以设置邮件的DELETED标志：
+&lt;blockquote&gt;message.setFlag(Flags.Flag.DELETED, true);&lt;/blockquote&gt;
+但是首先要采用READ_WRITE的方式打开Folder：
+&lt;blockquote&gt;folder.open(Folder.READ_WRITE);&lt;/blockquote&gt;
+在对邮件进行删除操作后关闭Folder时，需要传递一个true作为对删除邮件的擦除确认。
+&lt;blockquote&gt;folder.close(true);&lt;/blockquote&gt;
+Folder类中另一种用于删除邮件的方法expunge()也同样可删除邮件，但是它并不为sun提供的POP3实现支持，而其它第三方提供的POP3实现支持或者并不支持这种方法。
+另外，介绍一种检查某个标志是否被设置的方法：Message.isSet(Flags.Flag flag)方法，其中参数为被检查的标志。&lt;/p&gt;
+
+&lt;p&gt;4．邮件认证
+我 们在前面已经学会了如何使用Authenticator类来代替直接使用用户名和密码这两字符串作为 Session.getDefaultInstance()或者Session.getInstance()方法的参数。在前面的小试牛刀后，现在我们将 了解到全面认识一下邮件认证。
+我们在此取代了直接使用邮件服务器主机名、用户名、密码这三个字符串作为连接到POP3 Store的方式，使用存储了邮件服务器主机名信息的属性文件，并在获得Session时传入自定义的Authenticator实例：
+&lt;blockquote&gt;// Setup properties
+Properties props = System.getProperties();
+props.put(&amp;ldquo;mail.pop3.host&amp;rdquo;, host);
+// Setup authentication, get session
+Authenticator auth = new PopupAuthenticator();
+Session session = Session.getDefaultInstance(props, auth);
+// Get the store
+Store store = session.getStore(&amp;ldquo;pop3&amp;rdquo;);
+store.connect();&lt;/blockquote&gt;
+PopupAuthenticator 类继承了抽象类Authenticator，并且通过重载Authenticator类的getPasswordAuthentication()方法返 回PasswordAuthentication类对象。而getPasswordAuthentication()方法的参数param是以逗号分割的 用户名、密码组成的字符串。
+&lt;blockquote&gt;import javax.mail.&lt;em&gt;;
+import java.util.&lt;/em&gt;;&lt;/p&gt;
+
+&lt;p&gt;public class PopupAuthenticator extends Authenticator {
+public PasswordAuthentication getPasswordAuthentication(String param) {
+String username, password;
+StringTokenizer st = new StringTokenizer(param, &amp;rdquo;,&amp;ldquo;);
+username = st.nextToken();
+password = st.nextToken();
+return new PasswordAuthentication(username, password);
+}
+}&lt;/blockquote&gt;
+5．回复邮件
+回复邮件的方法很简单：使用Message类的reply()方法，通过配 置回复邮件的收件人地址和主题（如果没有提供主题的话，系统将默认将“Re：”作为邮件的主体），这里不需要设置任何的邮件内容，只要复制发信人或者 reply-to到新的收件人。而reply()方法中的boolean参数表示是否将邮件回复给发送者（参数值为false），或是恢复给所有人（参数 值为true）。
+补充一下，reply-to地址需要在发信时使用setReplyTo()方法设置。
+&lt;blockquote&gt;MimeMessage reply = (MimeMessage)message.reply(false);
+reply.setFrom(new InternetAddress(&amp;ldquo;president@whitehouse.gov&amp;rdquo;));
+reply.setText(&amp;ldquo;Thanks&amp;rdquo;);
+Transport.send(reply);&lt;/blockquote&gt;
+6．转发邮件
+转发邮件的过程不如前面的回复邮件那样简单，它将建立一个转发邮件，这并非一个方法就能做到。
+每 个邮件是由多个部分组成，每个部分称为一个邮件体部分，是一个BodyPart类对象，对于MIME类型邮件来讲就是MimeBodyPart类对象。这 些邮件体包含在成为Multipart的容器中对于MIME类型邮件来讲就是MimeMultiPart类对象。在转发邮件时，我们建立一个文字邮件体部 分和一个被转发的文字邮件体部分，然后将这两个邮件体放到一个Multipart中。说明一下，复制一个邮件内容到另一个邮件的方法是仅复制它的 DataHandler（数据处理者）即可。这是由JavaBeans Activation Framework定义的一个类，它提供了对邮件内容的操 作命令的访问、管理了邮件内容操作，是不同的数据源和数据格式之间的一致性接口。
+&lt;blockquote&gt;// Create the message to forward
+Message forward = new MimeMessage(session);
+// Fill in header
+forward.setSubject(&amp;ldquo;Fwd: &amp;rdquo; + message.getSubject());
+forward.setFrom(new InternetAddress(from));
+forward.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));
+// Create your new message part
+BodyPart messageBodyPart = new MimeBodyPart();
+messageBodyPart.setText(  &amp;rdquo;Here you go with the original message:\n\n&amp;rdquo;);
+// Create a multi-part to combine the parts
+Multipart multipart = new MimeMultipart();
+multipart.addBodyPart(messageBodyPart);
+// Create and fill part for the forwarded content
+messageBodyPart = new MimeBodyPart();
+messageBodyPart.setDataHandler(message.getDataHandler());
+// Add part to multi part
+multipart.addBodyPart(messageBodyPart);
+// Associate multi-part with message
+forward.setContent(multipart);
+// Send message
+Transport.send(forward);&lt;/blockquote&gt;
+7．使用附件
+附件作为与邮件相关的资源经常以文本、表格、图片等格式出现，如流行的邮件客户端一样，我们可以用JavaMail API从邮件中获取附件或是发送带有附件的邮件。&lt;/p&gt;
+
+&lt;p&gt;A．发送带有附件的邮件
+发送带有附件的邮件的过程有些类似转发邮件，我们需要建立一个完整邮件的各个邮件体部分，在第一个部分（即我们的邮件内容文字）后，增加一个具有DataHandler的附件而不是在转发邮件时那样复制第一个部分的DataHandler。&lt;/p&gt;
+
+&lt;p&gt;如果我们将文件作为附件发送，那么要建立FileDataSource类型的对象作为附件数据源；如果从URL读取数据作为附件发送，那么将要建立URLDataSource类型的对象作为附件数据源。&lt;/p&gt;
+
+&lt;p&gt;然后将这个数据源（FileDataSource或是URLDataSource）对象作为DataHandler类构造方法的参数传入，从而建立一个DataHandler对象作为数据源的DataHandler。&lt;/p&gt;
+
+&lt;p&gt;接着将这个DataHandler设置为邮件体部分的DataHandler。这样就完成了邮件体与附件之间的关联工作，下面的工作就是BodyPart的setFileName()方法设置附件名为原文件名。&lt;/p&gt;
+
+&lt;p&gt;最后将两个邮件体放入到Multipart中，设置邮件内容为这个容器Multipart，发送邮件。
+&lt;blockquote&gt;// Define message
+Message message = new MimeMessage(session);
+message.setFrom(new InternetAddress(from));
+message.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));
+message.setSubject(&amp;ldquo;Hello JavaMail Attachment&amp;rdquo;);
+// Create the message part
+BodyPart messageBodyPart = new MimeBodyPart();
+// Fill the message
+messageBodyPart.setText(&amp;ldquo;Pardon Ideas&amp;rdquo;);
+Multipart multipart = new MimeMultipart();
+multipart.addBodyPart(messageBodyPart);
+// Part two is attachment
+messageBodyPart = new MimeBodyPart();
+DataSource source = new FileDataSource(filename);
+messageBodyPart.setDataHandler(new DataHandler(source));
+messageBodyPart.setFileName(filename);
+multipart.addBodyPart(messageBodyPart);
+// Put parts in message
+message.setContent(multipart);
+// Send the message
+Transport.send(message);&lt;/blockquote&gt;
+如果我们使用servlet实现发送带有附件的邮件，则必须上传附件给servlet，这时需要注意提交页面form中对编码类型的设置应为multipart/form-data。&lt;/p&gt;
+
+&lt;p&gt;B．读取邮件中的附件
+读取邮件中的附件的过程要比发送它的过程复杂一点。因为带有附件的邮件是多部分组成的，我们必须处理每一个部分获得邮件的内容和附件。
+但 是如何辨别邮件信息内容和附件呢？Sun在Part类（BodyPart类实现的接口类）中提供了getDisposition()方法让开发者获得邮件 体部分的部署类型，当该部分是附件时，其返回之将是Part.ATTACHMENT。但附件也可以没有部署类型的方式存在或者部署类型为 Part.INLINE，无论部署类型为Part.ATTACHMENT还是Part.INLINE，我们都能把该邮件体部分导出保存。
+&lt;blockquote&gt;Multipart mp = (Multipart)message.getContent();
+for (int i=0, n=multipart.getCount(); i&amp;hellip;&lt;/blockquote&gt;
+下列代码中使用了saveFile方法是自定义的方法，它根据附件的文件名建立一个文件，如果本地磁盘上存在名为附件的文件，那么将在文件名后增加数字表示区别。然后从邮件体中读取数据写入到本地文件中（代码省略）。
+&lt;blockquote&gt;// from saveFile()
+File file = new File(filename);
+for (int i=0; file.exists(); i++)
+{
+file = new File(filename+i);
+}&lt;/blockquote&gt;
+以上是邮件体部分被正确设置的简单例子，如果邮件体部分的部署类型为null，那么我们通过获得邮件体部分的MIME类型来判断其类型作相应的处理，代码结构框架如下：
+&lt;blockquote&gt;if (disposition == null) {
+// Check if plain
+MimeBodyPart mbp = (MimeBodyPart)part;
+if (mbp.isMimeType(&amp;ldquo;text/plain&amp;rdquo;)) {
+// Handle plain
+} else {
+// Special non-attachment cases here of
+// image/gif, text/html, .
+..
+}
+&amp;hellip;
+}&lt;/blockquote&gt;
+8．处理HTML邮件
+前面的例子中发送的邮件都是以文本为内容的（除了附件），下面将介绍如何接收和发送基于HTML的邮件。
+A．发送HTML邮件
+假如我们需要发送一个HTML文件作为邮件内容，并使邮件客户端在读取邮件时获取相关的图片或者文字的话，只要设置邮件内容为html代码，并设置内容类型为text/html即可：
+&lt;blockquote&gt;String htmlText = &amp;rdquo;&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;&amp;rdquo; ;
+message.setContent(htmlText, &amp;rdquo;text/html&amp;rdquo;));&lt;/blockquote&gt;
+请注意：这里的图片并不是在邮件中内嵌的，而是在URL中定义的。邮件接收者只有在线时才能看到。
+在接收邮件时，如果我们使用JavaMail API接收邮件的话是无法实现以HTML方式显示邮件内容的。因为JavaMail API邮件内容视为二进制流。所以要显示HTML内容的邮件，我们必须使用JEditorPane或者第三方HTML展现组件。&lt;/p&gt;
+
+&lt;p&gt;以下代码显示了如何使用JEditorPane显示邮件内容：
+&lt;blockquote&gt;if (message.getContentType().equals(&amp;ldquo;text/html&amp;rdquo;)) {
+String content = (String)message.getContent();
+JFrame frame = new JFrame();
+JEditorPane text = new JEditorPane(&amp;ldquo;text/html&amp;rdquo;, content);
+text.setEditable(false);
+JScrollPane pane = new JScrollPane(text);
+frame.getContentPane().add(pane);
+frame.setSize(300, 300);
+frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+frame.show();
+}&lt;/blockquote&gt;
+B．在邮件中包含图片
+如 果我们在邮件中使用HTML作为内容，那么最好将HTML中使用的图片作为邮件的一部分，这样无论是否在线都会正确的显示HTML中的图片。处理方法就是 将HTML中用到的图片作为邮件附件并使用特殊的cid URL作为图片的引用，这个cid就是对图片附件的Content-ID头的引用。
+处理内嵌图片就像向邮件中添加附件一样，不同之处在于我们必须通过设置图片附件所在的邮件体部分的header中Content-ID为一个随机字符串，并在HTML中img的src标记中设置为该字符串。这样就完成了图片附件与HTML的关联。
+&lt;blockquote&gt;
+String file = &amp;hellip;;
+// Create the messageMessage message = new MimeMessage(session);// Fill its headers
+message.setSubject(&amp;ldquo;Embedded Image&amp;rdquo;);
+message.setFrom(new InternetAddress(from));
+message.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));
+// Create your new message part
+BodyPart messageBodyPart = new MimeBodyPart();String htmlText = &amp;rdquo;&amp;rdquo;&amp;lt;h1&amp;gt;Hello&amp;lt;/h1&amp;gt;&amp;rdquo; ;
+messageBodyPart.setContent(htmlText, &amp;rdquo;text/html&amp;rdquo;);
+// Create a related multi-part to combine the parts
+MimeMultipart multipart = new MimeMultipart(&amp;ldquo;related&amp;rdquo;);
+multipart.addBodyPart(messageBodyPart);
+// Create part for the image
+messageBodyPart = new MimeBodyPart();
+// Fetch the image and associate to part
+DataSource fds = new FileDataSource(file);
+messageBodyPart.setDataHandler(new DataHandler(fds));
+messageBodyPart.setHeader(&amp;ldquo;Content-ID&amp;rdquo;,&amp;ldquo;&amp;rdquo;);
+// Add part to multi-part
+multipart.addBodyPart(messageBodyPart);
+// Associate multi-part with message
+message.setContent(multipart);&lt;/blockquote&gt;
+9．在邮件中搜索短语
+JavaMail API提供了过滤器机制，它被用来建立搜索短语。这个短语由javax.mail.search包中的SearchTerm抽象类来定义，在定义后我们便可以使用Folder的Search()方法在Folder中查找邮件：
+SearchTerm st = &amp;hellip;;Message[] msgs = folder.search(st);
+下面有22个不同的类（继承了SearchTerm类）供我们使用：
+AND terms (class AndTerm)
+OR terms (class OrTerm)
+NOT terms (class NotTerm)
+SENT DATE terms (class SentDateTerm)
+CONTENT terms (class BodyTerm)
+HEADER terms (FromTerm / FromStringTerm, RecipientTerm / RecipientStringTerm, SubjectTerm, etc.)
+使用这些类定义的断语集合，我们可以构造一个逻辑表达式，并在Folder中进行搜索。下面是一个实例：在Folder中搜索邮件主题含有“ADV”字符串或者发信人地址为friend@public.com的邮件。
+&lt;blockquote&gt;SearchTerm st = new OrTerm(new SubjectTerm(&amp;ldquo;ADV:&amp;ldquo;), new FromStringTerm(&amp;ldquo;friend@public.com&amp;rdquo;));
+Message[] msgs = folder.search(st);
+&lt;/blockquote&gt;
+&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>百度又收录我的网站啦啊哈哈哈哈！！！！</title>
+      <link>http://www.daniex.tk/blog/2011/baidu-include-sites/</link>
+      <pubDate>Sat, 15 Oct 2011 15:41:52 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/baidu-include-sites/</guid>
+      <description>&lt;p&gt;查了下百度收录，惊喜地发现度娘又理我了。啊哈哈哈哈哈！！！容我先释放下感情。然后上图为证。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;a href=&#34;http://daniex.info/wp-content/uploads/2011/10/20111015220856208.png&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-845&#34; title=&#34;20111015220856208&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/10/20111015220856208.png&#34; alt=&#34;百度收录&#34; width=&#34;590&#34; height=&#34;191&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;那是多么黑暗的半年多。本来建站没多久，度娘就收录我的worldpress网站了。开始也比较勤奋（我是一只小蜜蜂，小蜜蜂。。。），没事就折腾网站，博文也一篇一篇热情高涨地发着。主题，seo优化，改php代码，找插件这些折腾的更是不少（伪技术宅做派）。这样弄当然也会影响收录，反正刚建站，就折腾呗。庆幸的是人品还行，内容也就是小的个人博客那种受众不大。本来也不指望赚钱什么的，博客就这么弄着（死猪不怕开水烫类型，我是一块大咸鱼，就等被风干，被风干。。。）。&lt;/p&gt;
+
+&lt;p&gt;然后换工作来深圳，博文越来越少（梦游状态），再然后悲剧的是ip被墙，墙真是对敏感词太敏感了。偶尔翻个墙些下博文（今天天气不错，晒下渔网）。在然后今年年初worldpress blog搬家，搬了一半（追MM追一半，是有代价的！）。应为是搬到一个vps，要ssh远程装数据库服务器等等东西，没弄好。blog是放上去了，但是内存优化不够，权限也没设好，导致blog能看不能更新文章（对不起，不才卖艺不卖身！）。半死不活的放了几个月。四月份的时候换了简单的cpanel空间，终于把blog安顿好！&lt;/p&gt;
+
+&lt;p&gt;然后，灾难开始，不晓得是啥原因，百度收录减少，直到没有！百度怎么就不收录我的网站呢！！！陛下，翻我的牌啊！！！！&lt;/p&gt;
+
+&lt;p&gt;上个月底没事又折腾，装了个百度统计。效果奇好，没几天百度就把我的主页收录进去了。在过几天，收录回去了。期间也稍稍针对worldpress改了下robot.txt。&lt;/p&gt;
+
+&lt;p&gt;度娘，你到底咩意思么！就算是娈童也有尊严啊！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress seo--永久链接permalink搜索引擎优化</title>
+      <link>http://www.daniex.tk/blog/2010/wordpress-seo-permalink/</link>
+      <pubDate>Mon, 23 Aug 2010 09:08:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/wordpress-seo-permalink/</guid>
+      <description>&lt;p&gt;话说很久没更新了，哎，心不在焉的。最近一个月休息养生、沉迷进自身小世界去了，申明下，体重没上涨！&lt;/p&gt;
+
+&lt;p&gt;话说今儿嘴巴提到wp固定连接（Permalink）优化的事儿。于是分享个小文：&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a title=&#34;偏执wordpress seo教程之一——永久链接permalink的搜索引擎优化&#34; rel=&#34;bookmark&#34; href=&#34;http://blog.linggan.com/wordpress-seo-permalinks-customize-permalink-structure.html&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;偏执wordpress seo教程之一——永久链接permalink的搜索引擎优化&lt;/span&gt;&lt;/a&gt; &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;span style=&#34;color: #000000;&#34;&gt;简单总结就是，伪静态、域名后直接跟网页地址。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress Cannot modify header information错误</title>
+      <link>http://www.daniex.tk/blog/2010/cannot-modify-header-information/</link>
+      <pubDate>Mon, 12 Jul 2010 13:24:40 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cannot-modify-header-information/</guid>
+      <description>&lt;p&gt;今天在改网页固定链接的时候，总是跳 Cannot modify header information&amp;hellip;.的错误。然而WordPress虽然报错，但是我改的固定链接确实改了。&lt;/p&gt;
+
+&lt;p&gt;插几句固定连接的话：之前本站的链接都是WordPress的默认方式，没好好做seo，至此时此刻（2010年7月12日完21点03分）百度都不肯收录这块方塘。不得不叨咕下，百度你口味也太奇怪了，其他搜索引擎可都收录了啊！&lt;/p&gt;
+
+&lt;p&gt;回归话题，关于这个错误，我这边最后的解决方案是删掉多余的空行。就是说，导致出现这个问题的罪魁祸首，就是某个文件中多了几个回车。看到一个写的比较清晰地&lt;a href=&#34;http://abgne.tw/wordpress/wordpress-3-0-warning-cannot-modify-header-information.html&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt;，把他的截图借过来用用。&lt;/p&gt;
+
+&lt;p&gt;报错的图，他这个报错的比较厉害，我的可没这么多：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-289&#34; title=&#34;wordpress_warning_cannot_modify_header_information_0&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_0.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;341&#34; /&gt;然后找到warning：后面括号里面提到的php文件：&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-290&#34; title=&#34;wordpress_warning_cannot_modify_header_information_1&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_1.jpg&#34; alt=&#34;&#34; width=&#34;491&#34; height=&#34;69&#34; /&gt;最后是删掉该文件中的多余空行，就是 &lt;span style=&#34;color: #ff0000;&#34;&gt;&amp;lt;?&lt;/span&gt; 和 &lt;span style=&#34;color: #ff0000;&#34;&gt;?&amp;gt;&lt;/span&gt; 符号前后多出的空行。&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-291&#34; title=&#34;wordpress_warning_cannot_modify_header_information_2&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_2.jpg&#34; alt=&#34;&#34; width=&#34;386&#34; height=&#34;95&#34; /&gt;&lt;/p&gt;
+删掉之后就大功告成。一切回归正常了。修改的时候发现，是我自己在添加&lt;a href=&#34;http://fairyfish.net/2010/01/12/wp-follow5/&#34; target=&#34;_blank&#34;&gt;我爱水煮鱼&lt;/a&gt;版本同步WordPress到follow5代码的时候，为了看得清楚，在functions.php里面多加了几个回车导致的。自作孽啊！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

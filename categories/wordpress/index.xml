@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Wordpress on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/categories/wordpress/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sat, 19 Nov 2011 09:33:37 &#43;0000</updated>
+    
+    <item>
+      <title>wordpress自定义个性化首页</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</link>
+      <pubDate>Sat, 19 Nov 2011 09:33:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</guid>
+      <description>&lt;p&gt;自己好不容易折腾了个wordpress博客，发现所有人的首页样式都大同小异，是不是很没创意，很扫兴？下面就来说说如何制作一个wordpress个性化首页，让你随心所欲的改变首页的样式，让你有个不一样的主页。最后效果如我的&lt;a title=&#34;澄清的半亩方糖&#34; href=&#34;http://danie.info&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;首页&lt;/strong&gt;&lt;/a&gt;，截图如下：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-974&#34; title=&#34;ss&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/ss.jpg&#34; alt=&#34;&#34; width=&#34;590&#34; height=&#34;482&#34; /&gt;&lt;/p&gt;
+&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;一、 设置wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+wordpress有设置page页作为默认首页的功能，下面的方法就是自定义一个page也模板，然后添加一个用这个模板制作的page页，最后将这个page页设为首页。&lt;/p&gt;
+
+&lt;p&gt;1) ftp或者cpanel到部署wordpress空间或其他。复制wordpress主题目录下的page.php文件，重名名。比如，找到文件（wp目录）/wp-content/themes/zbench/page.php 重命名为 myhomepage.php&lt;/p&gt;
+
+&lt;p&gt;2) 用文本编辑器打开myhomepage.php，例如用记事本打开，在文件首位添加以下代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;&lt;/blockquote&gt;
+“Template Name : ” 后的文字可以是任意的。这样我们就添加了一个新的page页模板。自定义的首页内容其实就是这个myhomepage.php的内容。如何设计修改这个文件，建立自己的个性化首页，会在后面提到。我们先将它设为首页。&lt;/p&gt;
+
+&lt;p&gt;3) 添加一个新的page页：浏览器登录wordpress后台控制面板，dashboard -&amp;gt;pages -&amp;gt; add new。 输入标题，在右方page attributes 面板中会有parent 和 template 的下拉框，在模板下拉框中选择刚刚添加的模板。如图，我添加的模板名字叫“首页”，我就选择它。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-961&#34; title=&#34;selecttemplate&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/selecttemplate.jpg&#34; alt=&#34;&#34; width=&#34;281&#34; height=&#34;253&#34; /&gt;选择好后，给这个page也命名，我是在title那输入的“首页”。然后就可以发表了，其他的内容什么可以都不用写。&lt;/p&gt;
+
+&lt;p&gt;4) 设置首页的最后一步，点击后台的reading设置项：dashboard -&amp;gt; settings -&amp;gt; reading。在第一个设置项目里选择第二项 a static page ，然后再它下方的第一个下拉选项框里选则刚刚给page页设置的名字。比如我的“首页”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-962&#34; title=&#34;setreading&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/setreading.png&#34; alt=&#34;&#34; width=&#34;552&#34; height=&#34;506&#34; /&gt;点击 save changes 保存配置。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这样，我们把首页重新设置好了。这个时候访问首页的时候我们会发现，我们的首页除了头上的标题名称、侧边栏、底部栏之外就什么都没有。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;二、 设计自己的wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+我们已经把wordpress的首页换掉，但是这个首页现在是一片空白，我们要怎么去填充这片空白呢？如果你有html、css、js功底，那就是你一展身手的时候。如果水平一般，那也没关系，能看懂一点点代码，那就有办法去使用一些好的模板，好的插件，设计出一个自己满意的首页还是可以的。我就只是能看懂代码的那种，根本不熟悉网页前端开发。
+&lt;h4&gt;&lt;strong&gt;方法一&lt;/strong&gt;&lt;/h4&gt;
+怎么给这个首页填充内容，最简单的方法就是，编辑我们之前添加的page页。之前我们并没有在文章内容里添加任何东西。只要你有好内容，好方案，就可以像写一个新的文章一样这里出一个你自己的主页。
+&lt;h4&gt;&lt;strong&gt;方法二&lt;/strong&gt;&lt;/h4&gt;
+这个方法就需要去修改我们的myhomepage.php文件。前端开发的牛人大有人在，我也不多说。就把我的一些代码贴出来，有心思看到朋友可以参考下。主要用到的几个函数我罗列一下：
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;&lt;/blockquote&gt;
+这是我使用的wp-thumbnail插件提供的函数，用于显示分类中的文章和缩略图。在wp-thumbnail插件设置中设置好分类文章的相关数据，如图片大小、标题位置。然后再这里调用。id=7表示文章分类id为7的分类下的文章，num=1表示显示一篇。文章分类ID是几可以参考&lt;a title=&#34;wordpress查看分类category的id&#34; href=&#34;http://daniex.info/view-category-id-wordpress.html&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;这篇文章&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;嵌入的探讨tt1 tt2 的css代码是控制左侧栏目的背景。另外有block1和block2的代码是用来控制左右两部分的布局。
+&lt;blockquote&gt;.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}&lt;/p&gt;
+
+&lt;p&gt;.block2 { float:left; width:250px; height:700px}
+.block3 { float:right; width:350px; height:700px}&lt;/blockquote&gt;
+中间栏的随机文章和标题评论控制是用这些函数：
+&lt;blockquote&gt;$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;。。。&lt;/blockquote&gt;
+&amp;nbsp;
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&lt;/blockquote&gt;
+这段代码是用了postviews+的插件，用于统计文章浏览次数。&lt;/p&gt;
+
+&lt;p&gt;更多代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;
+&amp;lt;?php get_header() ?&amp;gt;
+&amp;lt;div id=&amp;ldquo;content&amp;rdquo;&amp;gt;
+&amp;lt;?php the_post(); ?&amp;gt;
+&amp;lt;div &amp;lt;?php post_class(&amp;lsquo;post post-page&amp;rsquo;); ?&amp;gt; id=&amp;ldquo;post-&amp;lt;?php the_ID(); ?&amp;gt;&amp;ldquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;block2&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;a href=&amp;ldquo;&lt;a href=&#34;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&#34;&gt;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&lt;/a&gt; java C# wpf php&amp;hellip;&amp;lt;/span&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;amp;order=recent&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;style&amp;gt;
+.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}
+&amp;lt;/style&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;block3&amp;rdquo;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php
+$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;
+&amp;lt;h3&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink(); ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php the_title(); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;
+&amp;lt;?php if (&amp;lsquo;open&amp;rsquo; == $post-&amp;gt;comment_status) { ?&amp;gt;
+&amp;lt;div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;span&amp;gt;&amp;lt;?php the_time(get_option( &amp;lsquo;date_format&amp;rsquo; )); ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;ldquo;gotocomments&amp;rdquo;&amp;gt;&amp;lt;?php comments_popup_link(&lt;strong&gt;(&amp;lsquo;0 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), __(&amp;lsquo;1 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), &amp;lsquo;% &amp;lsquo;.&lt;/strong&gt;(&amp;rsquo; 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;)); ?&amp;gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;!&amp;ndash;&amp;lt;div&amp;gt;
+&amp;lt;?php if ( $options[&amp;lsquo;excerpt_check&amp;rsquo;]==&amp;lsquo;true&amp;rsquo; ) { the_excerpt(&lt;strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } else { the_content(&lt;/strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } ?&amp;gt;
+&amp;lt;/div&amp;gt; END entry &amp;ndash;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php if(is_sticky()) { ?&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;&amp;lt;?php _e(&amp;lsquo;This is a sticky post!&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt; &amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink() ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php _e(&amp;lsquo;continue reading?&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;
+&amp;lt;?php } else { ?&amp;gt;
+&amp;lt;div style=&amp;ldquo;height:1px;&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php echo mb_strimwidth(strip_tags(apply_filters(‘the_content’, $post-&amp;gt;post_content)), 0, 100,&amp;ldquo;&amp;hellip;&amp;rdquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
+&amp;lt;?php endforeach; ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash; END post &amp;ndash;&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash;content&amp;ndash;&amp;gt;
+&amp;lt;?php get_sidebar() ?&amp;gt;
+&amp;lt;?php get_footer() ?&amp;gt;&lt;/blockquote&gt;
+&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wordpress查看分类category的id</title>
+      <link>http://www.daniex.tk/blog/2011/view-category-id-wordpress/</link>
+      <pubDate>Fri, 04 Nov 2011 09:24:32 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/view-category-id-wordpress/</guid>
+      <description>&lt;p style=&#34;text-align: left;&#34;&gt;在改wordpress的时候需要用到不同的函数，有的函数需要输入category的id，那，category的id在哪里查看呢？&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;很简单，登录后台编辑所要查看的分类。dashboard -&amp;gt; posts -&amp;gt;categories -&amp;gt; edit 你所要查看的分类。在浏览器地址栏就会有id的数字显示，如下图：&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter&#34; src=&#34;data:image/png;base64,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&#34; alt=&#34;&#34; width=&#34;633&#34; height=&#34;87&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>利用wp_dorpdown_categories做worldpress文章分类下拉框『转』</title>
+      <link>http://www.daniex.tk/blog/2011/wp_dorpdown_categories/</link>
+      <pubDate>Wed, 26 Oct 2011 03:07:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp_dorpdown_categories/</guid>
+      <description>&lt;p&gt;昨天折腾wp侧边栏，主题默认的是一栏，但是放分类列表和友情链接的时候空了很多，太浪费。于是折腾了下分栏，找wp写好的一些函数调用来展示内容。以下是参考的文章。相关请看&lt;span style=&#34;color: #3366ff;&#34;&gt;&lt;a title=&#34;利用wp_list_categories做worldpress文章分类列表&#34; href=&#34;http://daniex.info/wp_list_categories.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;wp_list_categories&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;一文。
+&lt;h3&gt;————————————————————————————————&lt;/h3&gt;
+&lt;h3&gt;说明&lt;/h3&gt;
+该标签在一个没有提交按钮的选择框（如下拉式选框）中展示分类目录列表。
+&lt;h3&gt;用法&lt;/h3&gt;
+&amp;lt;?php wp_dropdown_categories( $args ); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;默认用法&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php $args = array(
+&amp;lsquo;show_option_all&amp;rsquo; =&amp;gt; ,
+&amp;lsquo;show_option_none&amp;rsquo; =&amp;gt; ,
+&amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;ID&amp;rsquo;,
+&amp;lsquo;order&amp;rsquo; =&amp;gt; &amp;lsquo;ASC&amp;rsquo;,
+&amp;lsquo;show_last_update&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;show_count&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;hide_empty&amp;rsquo; =&amp;gt; 1,
+&amp;lsquo;child_of&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;exclude&amp;rsquo; =&amp;gt; ,
+&amp;lsquo;echo&amp;rsquo; =&amp;gt; 1,
+&amp;lsquo;selected&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;hierarchical&amp;rsquo; =&amp;gt; 0,
+&amp;lsquo;name&amp;rsquo; =&amp;gt; &amp;lsquo;cat&amp;rsquo;,
+&amp;lsquo;class&amp;rsquo; =&amp;gt; &amp;lsquo;postform&amp;rsquo;,
+&amp;lsquo;depth&amp;rsquo; =&amp;gt; 0 ); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;默认情况下的显示状态：
+&lt;ul&gt;
+    &lt;li&gt;升序排列分类目录ID&lt;/li&gt;
+    &lt;li&gt;不显示最新更新&lt;/li&gt;
+    &lt;li&gt;不显示分类目录下的文章总数&lt;/li&gt;
+    &lt;li&gt;不显示“空”分类&lt;/li&gt;
+    &lt;li&gt;不排除任何分类&lt;/li&gt;
+    &lt;li&gt;显示（回应）分类目录&lt;/li&gt;
+    &lt;li&gt;选项框中不选中任何分类&lt;/li&gt;
+    &lt;li&gt;不以分层结构显示分类目录&lt;/li&gt;
+    &lt;li&gt;为列表命名为“cat”&lt;/li&gt;
+    &lt;li&gt;将列表赋值给&amp;rsquo;postform&amp;rsquo;类&lt;/li&gt;
+    &lt;li&gt;无层数限制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;参数&lt;/h3&gt;
+&lt;strong&gt;show_option_all&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）生成下拉式选项框的HTML，从而允许你选定所有分类目录。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;show_option_none&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）生成下拉式选项框的HTML，从而允许你不选定任何分类目录。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;orderby&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）按某种标准为分类目录排序。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;&amp;lsquo;ID&amp;rsquo; ——默认值&lt;/li&gt;
+    &lt;li&gt;&amp;lsquo;name&amp;rsquo;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;order&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）为分类目录排序（升序或降序）有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;&amp;lsquo;ASC&amp;rsquo;（升序） ——默认值&lt;/li&gt;
+    &lt;li&gt;&amp;lsquo;DESC&amp;rsquo;（降序）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;show_last_updated&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）是（TRUE）否（FALSE）显示分类目录下最新更新日志的日期。默认值为FALSE。&lt;/p&gt;
+
+&lt;p&gt;有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （true）&lt;/li&gt;
+    &lt;li&gt;0（false）——默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;show_count&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）是否显示每个分类目录下现有的日志总数。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （true）&lt;/li&gt;
+    &lt;li&gt;0（false）——默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;hide_empty&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）是否隐藏（不显示）不含有文章的分类目录。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （true）——默认值&lt;/li&gt;
+    &lt;li&gt;0（false）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;child_of（整数）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;只显示某一个分类的子分类；用该分类的ID作为参数值。无默认值。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;exclude&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）将要排除的分类目录的ID列表，各ID用逗号隔开。例如， &amp;lsquo;exclude=4,12&amp;rsquo; 表示不显示或返回ID为4和12的分类。默认值为不排除任何分类。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;exclude_tree&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）定义需要排除的父分类ID列表，各ID用逗号隔开。用该参数排除某个父分类目录及其所有子分类目录。因此 &amp;lsquo;exclude_tree=5&amp;rsquo; 可排除ID为5的父分类及其所有子分类。该参数引入于WP &lt;a title=&#34;Version 2.7.1&#34; href=&#34;http://codex.wordpress.org/Version_2.7.1&#34;&gt;2.7.1&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;echo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）显示结果（TRUE），或返回结果以供PHP使用（FALSE）。默认值为TRUE。
+&lt;ul&gt;
+    &lt;li&gt;1 （true）——默认值&lt;/li&gt;
+    &lt;li&gt;0（false）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;selected&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（整数）在显示框中选中/显示的分类目录的ID。默认为不选中任何分类目录。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;hierarchical&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（布尔型）以分层形式显示分类目录（子分类目录内嵌于其父分类目录下）。默认值为FALSE。有效值包括：
+&lt;ul&gt;
+    &lt;li&gt;1 （True）—— 默认值&lt;/li&gt;
+    &lt;li&gt;0 （False）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;strong&gt;name&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）下拉式选框被赋予的名称。默认为cat&amp;rsquo;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;class&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（字符串）被赋给下拉式选项框的类，默认为&amp;rsquo;postform&amp;rsquo;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;depth（整数）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;该参数决定wp_list_pages所生成的分类目录列表中所允许的分类层级的层数。默认值为0（显示包括子分类目录在内的所有分类目录）。该参数引入于WP &lt;a title=&#34;Version 2.5&#34; href=&#34;http://codex.wordpress.org/Version_2.5&#34;&gt;2.5&lt;/a&gt;。
+&lt;ul&gt;
+    &lt;li&gt;0 —— 显示所有分类目录和他们的子分类目录（默认）&lt;/li&gt;
+    &lt;li&gt;-1 —— 以平面（不缩进）方式显示所有分类目录和他们的子分类目录&lt;/li&gt;
+    &lt;li&gt;1 —— 只显示顶级分类目录&lt;/li&gt;
+    &lt;li&gt;n —— 该值表示可以缩进显示的分类目录层数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;示例&lt;/h3&gt;
+&lt;strong&gt;带有提交按钮的下拉式选项框&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在WordPress侧边栏的无序列表中，以HTML格式显示带有层级的分类目录下拉式列表，有提交按钮，给出各分类目录下的文章总数。
+&lt;pre&gt;&amp;lt;li id=&amp;ldquo;categories&amp;rdquo;&amp;gt;
+ &amp;lt;h2&amp;gt;&amp;lt;?php _e(&amp;lsquo;Categories:&amp;lsquo;); ?&amp;gt;&amp;lt;/h2&amp;gt;
+   &amp;lt;form action=&amp;rdquo;&amp;lt;?php bloginfo(&amp;lsquo;url&amp;rsquo;); ?&amp;gt;&amp;rdquo; method=&amp;ldquo;get&amp;rdquo;&amp;gt;
+   &amp;lt;?php wp_dropdown_categories(&amp;lsquo;show_count=1&amp;amp;hierarchical=1&amp;rsquo;); ?&amp;gt;
+   &amp;lt;input type=&amp;ldquo;submit&amp;rdquo; name=&amp;ldquo;submit&amp;rdquo; value=&amp;ldquo;view&amp;rdquo; /&amp;gt;
+   &amp;lt;/form&amp;gt;
+&amp;lt;/li&amp;gt;&lt;/pre&gt;
+&lt;strong&gt;用JavaScript显示一个没有提交按钮的下拉式选项框&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;下面这个示例摘自&lt;a href=&#34;http://wordpress.org/support/topic/145489?replies=13#post-657759&#34;&gt;WordPress论坛上的一个帖子&lt;/a&gt;，该示例借用了show_option_none参数。
+&lt;blockquote&gt;&amp;lt;li id=&amp;ldquo;categories&amp;rdquo;&amp;gt;&amp;lt;h2&amp;gt;&amp;lt;?php _e(&amp;lsquo;Posts by Category&amp;rsquo;); ?&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;?php wp_dropdown_categories(&amp;lsquo;show_option_none=Select category&amp;rsquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;script type=&amp;ldquo;text/javascript&amp;rdquo;&amp;gt;&amp;lt;!&amp;ndash;
+var dropdown = document.getElementById(&amp;ldquo;cat&amp;rdquo;);
+function onCatChange() {
+if ( dropdown.options[dropdown.selectedIndex].value &amp;gt; 0 ) {
+location.href = &amp;ldquo;&amp;lt;?php echo get_option(&amp;lsquo;home&amp;rsquo;);
+?&amp;gt;/?cat=&amp;ldquo;+dropdown.options[dropdown.selectedIndex].value;
+}
+}
+dropdown.onchange = onCatChange;
+&amp;ndash;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/li&amp;gt;&lt;/blockquote&gt;
+&lt;strong&gt;用JavaScript显示一个没有提交按钮的下拉式选项框（2）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;下面这段代码使用了echo参数（echo=0）。在JavaScript代码中插入一个简单的 &lt;em&gt;preg_replace&lt;/em&gt;。即使没有JavaScript，代码也可正常运行（提交按钮被noscript标签包裹）。
+&lt;blockquote&gt;&amp;lt;li id=&amp;ldquo;categories&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;?php _e(&amp;lsquo;Posts by Category&amp;rsquo;); ?&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;form action=&amp;rdquo;&amp;lt;?php bloginfo(&amp;lsquo;url&amp;rsquo;); ?&amp;gt;/&amp;rdquo; method=&amp;ldquo;get&amp;rdquo;&amp;gt;
+&amp;lt;?php
+$select = wp_dropdown_categories(&amp;lsquo;show_option_none=Select category&amp;amp;show_count=1&amp;amp;orderby=name&amp;amp;echo=0&amp;rsquo;);
+$select = preg_replace(&amp;ldquo;#&amp;lt;select([^&amp;gt;]*)&amp;gt;#&amp;ldquo;, &amp;ldquo;&amp;lt;select$1 onchange=&amp;lsquo;return this.form.submit()&amp;rsquo;&amp;gt;&amp;rdquo;, $select);
+echo $select;
+?&amp;gt;
+&amp;lt;noscript&amp;gt;&amp;lt;input type=&amp;ldquo;submit&amp;rdquo; value=&amp;ldquo;View&amp;rdquo; /&amp;gt;&amp;lt;/noscript&amp;gt;
+&amp;lt;/form&amp;gt;
+&amp;lt;/li&amp;gt;&lt;/blockquote&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>利用wp_list_categories做worldpress文章分类列表</title>
+      <link>http://www.daniex.tk/blog/2011/wp_list_categories/</link>
+      <pubDate>Tue, 25 Oct 2011 06:12:04 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp_list_categories/</guid>
+      <description>&lt;p&gt;折腾wp侧边栏，主题默认的是一栏，但是放分类列表和友情链接的时候空了很多，太浪费。于是折腾了下分栏，找wp写好的一些函数调用来展示内容。以下是参考的文章。相关请看&lt;a title=&#34;利用wp_dorpdown_categories做worldpress文章分类下拉框『转』&#34; href=&#34;http://daniex.info/wp_dorpdown_categories.html&#34; target=&#34;_blank&#34;&gt;wp_dropdown_categories&lt;/a&gt;一文。
+&lt;h3&gt;————————————————————————————————&lt;/h3&gt;
+&lt;strong&gt;分类标签 wp_list_categories&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;wp_list_categories标签负责的是分类的调用，在模板archive.php文件中添加wp_list_categories标签可以调用wp程序的存档。&lt;/p&gt;
+
+&lt;p&gt;用法如下：
+wp_list_categories标签的所有数值：
+show_option_all
+值：任意填。
+如果你写&amp;lt;?php wp_list_categories(’show_option_all=*’); ?&amp;gt;，那么在列表第一个分类就显示“*”两字，不过连接是连接到blog首页的，正好可以利用此参数加个“首页”。&lt;/p&gt;
+
+&lt;p&gt;orderby
+值：ID、name（默认值）、count。
+作用是按这3个值来排序。
+order
+值：ASC（默认值）、DESC。
+ASC为升序，DESC为降序。&lt;/p&gt;
+
+&lt;p&gt;show_last_updated
+值：0（默认值）、1。
+0无作用，1为最近更新的分类显示在前面。&lt;/p&gt;
+
+&lt;p&gt;style
+值：list（默认值）、none。
+例6中已经举例了。none无作用。&lt;/p&gt;
+
+&lt;p&gt;show_count
+值：0、1（默认值）
+1在每个分类后面显示日志数量，0不显示。&lt;/p&gt;
+
+&lt;p&gt;hide_empty
+值：0、1（默认值）
+1是隐藏没有发表日志的分类，0是显示所有。&lt;/p&gt;
+
+&lt;p&gt;use_desc_for_title
+值：0、1（默认值）
+0为关闭说明，1为显示说明。上面有例子。&lt;/p&gt;
+
+&lt;p&gt;child_of
+值：数字
+显示指定ID（也就是所填的这个数字）下的子分类。&lt;/p&gt;
+
+&lt;p&gt;feed
+值：任意
+假如你填“啊!”，那么在你每个分类后面都会出现“(啊!)”，连接地址是RSS地址。&lt;/p&gt;
+
+&lt;p&gt;feed_image
+值：任意。虽然任意，但是是个图片的地址才对。
+用来在分类后面显示个RSS Feed图标，上面有例子。&lt;/p&gt;
+
+&lt;p&gt;exclude
+值：任意。但是要填分类名称或者分类ID才有效。
+用来过滤（或者说隐藏）某个分类在列表中的出现。&lt;/p&gt;
+
+&lt;p&gt;include
+值：任意。但是要填分类名称或者分类ID才有效。
+作用是只显示所填的这个分类名或ID。&lt;/p&gt;
+
+&lt;p&gt;hierarchical
+值：0、1（默认值）
+说是按分类文章数目排列的，但测试无效果。&lt;/p&gt;
+
+&lt;p&gt;title_li
+值：任意
+用来改变列表标题的。&lt;/p&gt;
+
+&lt;p&gt;number
+值：整数
+设置一个显示上限。&lt;/p&gt;
+
+&lt;p&gt;数值应用举例：&lt;/p&gt;
+
+&lt;p&gt;1.包含或排除某分类：
+意思就是把分类ID为3，5，9，16的分类按名称顺序来排序：
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;include=3,5,9,16′); ?&amp;gt;&lt;/blockquote&gt;
+按名称排列，并显示每个分类的日志总数，并不显示ID为10的分类：
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;show_count=1&amp;amp;exclude=10′); ?&amp;gt;&lt;/blockquote&gt;
+2.显示或隐藏列表标题：
+过滤ID为4和7的分类，并且列表标题设置为“哈哈”：
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’exclude=4,7&amp;amp;title_li=哈哈’); ?&amp;gt;&lt;/blockquote&gt;
+列表中只显示ID为5、9、23的分类，并把列表标题改为Poetry（下面的格式是为了把“要显示的数据”和“标签参数区分开来”）
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’include=5,9,23&amp;amp;title_li=&amp;lt;h2&amp;gt;’ . __(’Poetry’) . ‘&amp;lt;/h2&amp;gt;’ ); ?&amp;gt;&lt;/blockquote&gt;
+3.这个参数的意思是：按ID排序，关闭分类说明（就是鼠标移动到连接上就不显示你在后台填的分类说明了，只显示“察看XX分类下的所有文章”），并且只显示ID为8的分类下的子分类，如果没有，则参数无效，会按默认来显示。
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=id&amp;amp;show_count=1&amp;amp;use_desc_for_title=0&amp;amp;child_of=8′); ?&amp;gt;&lt;/blockquote&gt;
+4.外观是分类后面显示个（RSS），作用就不用我说了吧？
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;show_count=1&amp;amp;feed=RSS’); ?&amp;gt;&lt;/blockquote&gt;
+5.这个比较酷，相信大家都喜欢：
+分类名称后面显示一个自己制定的小图标，作用是RSS。
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’orderby=name&amp;amp;show_count=1&amp;amp;feed_image=/images/rss.gif’); ?&amp;gt;&lt;/blockquote&gt;
+6.花式列表：
+改变当前正在浏览的分类名字的样式。’style=list’的作用是给输出的html代码&lt;/p&gt;
+
+&lt;p&gt;中加一个class=”current-cat”， 然后你在CSS里添一个.current-cat {color:red;}那么我浏览分类AAA时，列表中的“AAA”3个字就是红色的，浏览BBB，“BBB”就是红色的。
+&lt;blockquote&gt;&amp;lt;?php wp_list_categories(’style=list’ ); ?&amp;gt;&lt;/blockquote&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>百度又收录我的网站啦啊哈哈哈哈！！！！</title>
+      <link>http://www.daniex.tk/blog/2011/baidu-include-sites/</link>
+      <pubDate>Sat, 15 Oct 2011 15:41:52 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/baidu-include-sites/</guid>
+      <description>&lt;p&gt;查了下百度收录，惊喜地发现度娘又理我了。啊哈哈哈哈哈！！！容我先释放下感情。然后上图为证。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;a href=&#34;http://daniex.info/wp-content/uploads/2011/10/20111015220856208.png&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-845&#34; title=&#34;20111015220856208&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/10/20111015220856208.png&#34; alt=&#34;百度收录&#34; width=&#34;590&#34; height=&#34;191&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;那是多么黑暗的半年多。本来建站没多久，度娘就收录我的worldpress网站了。开始也比较勤奋（我是一只小蜜蜂，小蜜蜂。。。），没事就折腾网站，博文也一篇一篇热情高涨地发着。主题，seo优化，改php代码，找插件这些折腾的更是不少（伪技术宅做派）。这样弄当然也会影响收录，反正刚建站，就折腾呗。庆幸的是人品还行，内容也就是小的个人博客那种受众不大。本来也不指望赚钱什么的，博客就这么弄着（死猪不怕开水烫类型，我是一块大咸鱼，就等被风干，被风干。。。）。&lt;/p&gt;
+
+&lt;p&gt;然后换工作来深圳，博文越来越少（梦游状态），再然后悲剧的是ip被墙，墙真是对敏感词太敏感了。偶尔翻个墙些下博文（今天天气不错，晒下渔网）。在然后今年年初worldpress blog搬家，搬了一半（追MM追一半，是有代价的！）。应为是搬到一个vps，要ssh远程装数据库服务器等等东西，没弄好。blog是放上去了，但是内存优化不够，权限也没设好，导致blog能看不能更新文章（对不起，不才卖艺不卖身！）。半死不活的放了几个月。四月份的时候换了简单的cpanel空间，终于把blog安顿好！&lt;/p&gt;
+
+&lt;p&gt;然后，灾难开始，不晓得是啥原因，百度收录减少，直到没有！百度怎么就不收录我的网站呢！！！陛下，翻我的牌啊！！！！&lt;/p&gt;
+
+&lt;p&gt;上个月底没事又折腾，装了个百度统计。效果奇好，没几天百度就把我的主页收录进去了。在过几天，收录回去了。期间也稍稍针对worldpress改了下robot.txt。&lt;/p&gt;
+
+&lt;p&gt;度娘，你到底咩意思么！就算是娈童也有尊严啊！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress 的 RSS feed</title>
+      <link>http://www.daniex.tk/blog/2011/wordpresss-rss-feed/</link>
+      <pubDate>Fri, 23 Sep 2011 02:45:22 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpresss-rss-feed/</guid>
+      <description>&lt;p&gt;整理了下分类rss，发现有不少技巧，整理如下：&lt;/p&gt;
+
+&lt;p&gt;worldpress url 分几种，默认的和postname模式，对不同模式各自有方式去得到文章分类，标签，搜索结果，评论的rss地址。&lt;/p&gt;
+
+&lt;p&gt;分类网址: &lt;a href=&#34;http://www.example.com/?cat=7&#34;&gt;http://www.example.com/?cat=7&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/?cat=7&amp;amp;feed=rss2&#34;&gt;http://www.example.com/?cat=7&amp;amp;feed=rss2&lt;/a&gt;
+分类网址: &lt;a href=&#34;http://www.example.com/category/wordpress/&#34;&gt;http://www.example.com/category/wordpress/&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/category/wordpress/feed/&#34;&gt;http://www.example.com/category/wordpress/feed/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;标签网址: &lt;a href=&#34;http://www.example.com/?tag=wordpress&#34;&gt;http://www.example.com/?tag=wordpress&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/?tag=wordpress&amp;amp;feed=rss2&#34;&gt;http://www.example.com/?tag=wordpress&amp;amp;feed=rss2&lt;/a&gt;
+标签网址: &lt;a href=&#34;http://www.example.com/tag/wordpress/&#34;&gt;http://www.example.com/tag/wordpress/&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/tag/wordpress/feed/&#34;&gt;http://www.example.com/tag/wordpress/feed/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;搜索网址: &lt;a href=&#34;http://www.example.com/?s=wordpress&#34;&gt;http://www.example.com/?s=wordpress&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/?s=wordpress&amp;amp;feed=rss2&#34;&gt;http://www.example.com/?s=wordpress&amp;amp;feed=rss2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;评论rss地址: &lt;a href=&#34;http://www.example.com/?feed=comments-rss2&#34;&gt;http://www.example.com/?feed=comments-rss2&lt;/a&gt;
+评论rss地址: &lt;a href=&#34;http://www.example.com/comments/feed/&#34;&gt;http://www.example.com/comments/feed/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wordpress在页面及RSS中添加随机文章相关文章版权信息</title>
+      <link>http://www.daniex.tk/blog/2011/rss-wordpress-page-and-add-copyright-information-articles-random-article/</link>
+      <pubDate>Wed, 16 Mar 2011 12:41:43 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/rss-wordpress-page-and-add-copyright-information-articles-random-article/</guid>
+      <description>&lt;p&gt;1、插件法&lt;/p&gt;
+
+&lt;p&gt;推荐random post 和similar post 插件，属于Post-Plugin Library系列。该系列中还有recent post、 recent comment插件。&lt;/p&gt;
+
+&lt;p&gt;安装插件后再设置中可以设置是否在RSS和文章页面显示随机文章和相关文章列表。附带widget，可在边栏或者底部显示。如果使用代码在特定位置添加。可用&amp;lt;?php random-posts(); ?&amp;gt;&amp;lt;?php similar-posts(); ?&amp;gt;嵌入。&lt;/p&gt;
+
+&lt;p&gt;2、代码&lt;/p&gt;
+
+&lt;p&gt;1）可以在single.php或者functions.php中添加代码，使显示随机文章或是版权信息。single.php的修改无法再RSS中显示。&lt;/p&gt;
+
+&lt;p&gt;在single.php中找到&amp;lt;?php the_content(); ?&amp;gt;代码，在其后添加代码就会在文章后显示你要的信息，可以是版权信息或是相关文章，广告等。网上有不用插件，用代码生成随机文章列表的方法，可以去搜索一下。&lt;/p&gt;
+
+&lt;p&gt;2）在functions.php中添加&lt;/p&gt;
+
+&lt;p&gt;function FUNCTIONNAME($content) {
+if(!is_feed() &amp;amp;&amp;amp; !is_home()) {
+$content.= &amp;ldquo;&amp;lt;div class=&amp;lsquo;sub&amp;rsquo;&amp;gt;&amp;ldquo;；
+$content.= &amp;ldquo;&amp;lt;a&amp;gt;填入想要添加的内容（版权信息广告等）&amp;lt;/a&amp;gt;&amp;rdquo;;
+$content.= &amp;ldquo;&amp;lt;/div&amp;gt;&amp;rdquo;;
+}
+return $content;
+}
+add_filter (&amp;lsquo;the_content&amp;rsquo;, ’FUNCTIONNAME‘);&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wp搬家血泪史</title>
+      <link>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</link>
+      <pubDate>Mon, 28 Feb 2011 13:38:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</guid>
+      <description>&lt;p&gt;之前blog先是无法访问，后来是显示空白页或者it works！这样的非正常状态持续有三个多月。我也是一直忙这忙那的没把心思花这上面。就让它这么一直流血流血流血流血地濒临天堂。&lt;/p&gt;
+
+&lt;p&gt;一开始无法访问的原因，是，当时的共享ip空间的ip被墙，悲剧的无法访问。之后断断续续的找找有没有地方安置blog。不巧接着俺又辞职换工作，奔波找工作折腾得我就没打理它。再往后工作有着落后，弄了个vps玩玩，结果CentOS+LAMP弄了一半，没有完全按着攻略做，折腾出一些问题。访问很不稳定，时不时的变成It works等等问题。指导最近，重新弄了个共享空间，搬家，才算告一段落。罗列下遇到的问题和一些解决问题的方向作参考，由于时间过得久了，具体的方法还需另外百度谷歌去。&lt;/p&gt;
+
+&lt;p&gt;1、 LAMP（CentOS） 相关&lt;/p&gt;
+
+&lt;p&gt;要弄技术那就好好折腾，找个教程看看，然后看下各个参数设置要设置成什么样，有什么关联。我就是没设置好，弄的时不时的来个“It works！”的提示。真打击，回头继续折腾！&lt;/p&gt;
+
+&lt;p&gt;折腾的那个vps是独立128M内存，共享最大到256M。我装上LAMP后，启动程序，内存涨到220M+，收到邮件警告内存使用过高。原因是没有好好设置好Mysql的参数。在网上找了数据库配置的文章后重新设置参数，启动php、Mysql后内存用了80M左右。当然还有更省内存的配置。&lt;/p&gt;
+
+&lt;p&gt;2、 乱码&lt;/p&gt;
+
+&lt;p&gt;这个是一般是编码问题，mysql4.0 会用latin编码存数据，我们一般用的是utf8，GBK等，所以会有乱码。&lt;/p&gt;
+
+&lt;p&gt;解决方案有几个：1）用数据库指令导出抓换编码导入。&lt;/p&gt;
+
+&lt;p&gt;2）phpmyadmin导入导出。&lt;/p&gt;
+
+&lt;p&gt;3、 wp显示空白页&lt;/p&gt;
+
+&lt;p&gt;这个症状比较多，有的个别页显示正常有的任何页不能显示。诱因不少，说几个方法：&lt;/p&gt;
+
+&lt;p&gt;1）重新配置wp-config.php。&lt;/p&gt;
+
+&lt;p&gt;2）重新配主题。&lt;/p&gt;
+
+&lt;p&gt;3）插件冲突，修改删除插件。&lt;/p&gt;
+
+&lt;p&gt;4、无法post或comment&lt;/p&gt;
+
+&lt;p&gt;这个问题我也不知道为什么，估计是LAMP配置哪出问题了，网上也没有搜到解决方案。&lt;/p&gt;
+
+&lt;p&gt;就记得这么些问题了，记起来再添。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress评论显示倒序</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-comment-reverse/</link>
+      <pubDate>Wed, 23 Feb 2011 10:40:27 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-comment-reverse/</guid>
+      <description>&lt;p&gt;之前自制留言板的时候实现过将评论顺序改为倒序。具体可以看&lt;span style=&#34;color: #ff0000;&#34;&gt;&lt;a title=&#34;WordPress自制留言板&#34; href=&#34;http://daniex.info/wordpress-message-board.html&#34; target=&#34;_blank&#34;&gt;这篇&lt;/a&gt;&lt;/span&gt;文章。现在重新折腾blog，不想改太多代码，于是干脆把所有评论都将最新的显示在最上方。&lt;/p&gt;
+
+&lt;p&gt;参考&lt;a title=&#34;修改WordPress评论显示顺序为倒序&#34; href=&#34;http://www.yulaoda.com/comments-desc/&#34; target=&#34;_blank&#34;&gt;这篇&lt;/a&gt;文章进行修改。他的两个方法中，方法二修改类似自制留言板的情况，但是这次在这个版本的zBench的主题上修改没有任何效果。在按照方法一修改后效果看&lt;span style=&#34;color: #ff0000;&#34;&gt;&lt;a title=&#34;留言板&#34; href=&#34;http://daniex.info/messageboard&#34; target=&#34;_blank&#34;&gt;我的留言板&lt;/a&gt;&lt;/span&gt;。&lt;/p&gt;
+
+&lt;p&gt;记录操作方法如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1、修改comments-template.php文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;a：进入Wordpress安装目录下的wp-includes目录找到comment-template.php文件；&lt;/p&gt;
+
+&lt;p&gt;b：找到并替换代玛：将ORDER BY comment_date_gmt替换成ORDER BY comment_date DESC（共两处）；&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2、修改评论模板comments.php文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在评论模板comments.php中找到下列语句：&lt;/p&gt;
+
+&lt;p&gt;foreach ($comments as $comment)&lt;/p&gt;
+
+&lt;p&gt;替换为&lt;/p&gt;
+
+&lt;p&gt;foreach (array_reverse($comments) as $comment)&lt;/p&gt;
+
+&lt;p&gt;=====================傻逼的分割线=======================&lt;/p&gt;
+
+&lt;p&gt;其实，Dashboard-&amp;gt;setting-&amp;gt;discussion里面有排序选项的。。。。&lt;/p&gt;
+
+&lt;p&gt;Other comment settings-&amp;gt;Comments should be displayed with the
+&lt;select id=&#34;comment_order&#34; name=&#34;comment_order&#34;&gt;&lt;option value=&#34;asc&#34;&gt;older&lt;/option&gt;&lt;option selected=&#34;selected&#34; value=&#34;desc&#34;&gt;newer&lt;/option&gt;&lt;/select&gt;&lt;/p&gt;
+
+&lt;p&gt;comments at the top of each page&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress seo--永久链接permalink搜索引擎优化</title>
+      <link>http://www.daniex.tk/blog/2010/wordpress-seo-permalink/</link>
+      <pubDate>Mon, 23 Aug 2010 09:08:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/wordpress-seo-permalink/</guid>
+      <description>&lt;p&gt;话说很久没更新了，哎，心不在焉的。最近一个月休息养生、沉迷进自身小世界去了，申明下，体重没上涨！&lt;/p&gt;
+
+&lt;p&gt;话说今儿嘴巴提到wp固定连接（Permalink）优化的事儿。于是分享个小文：&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a title=&#34;偏执wordpress seo教程之一——永久链接permalink的搜索引擎优化&#34; rel=&#34;bookmark&#34; href=&#34;http://blog.linggan.com/wordpress-seo-permalinks-customize-permalink-structure.html&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;偏执wordpress seo教程之一——永久链接permalink的搜索引擎优化&lt;/span&gt;&lt;/a&gt; &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;span style=&#34;color: #000000;&#34;&gt;简单总结就是，伪静态、域名后直接跟网页地址。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>相册、图床制作，WordPress图片站、插件相关</title>
+      <link>http://www.daniex.tk/blog/2010/photo-gallery/</link>
+      <pubDate>Tue, 03 Aug 2010 06:42:06 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/photo-gallery/</guid>
+      <description>&lt;p&gt;之前回家了一趟，回杭后工作上又有些变动。这一篇出来的比较混乱。这里简单说说我所知道的一些图片站点的建设，wp相关插件。&lt;/p&gt;
+
+&lt;p&gt;1、WordPress图片站&lt;/p&gt;
+
+&lt;p&gt;将相当于把图片作为一个post发表。有比较好的显示方式，麻烦在于上传图片，发布同步稍显繁琐。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.chinaz.com/Design/CoolSite/0910911B2009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;有几个图片站主题推荐，可以看看参考下效果。&lt;/p&gt;
+
+&lt;p&gt;2、在WordPress里面插图、图片的显示，有很多很多方法，插件数不胜数。比如NextGen Gallery，slideshare， cincopa等等，各种slideshow、各种gallery。试过才知道。本站&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册page&lt;/span&gt;&lt;/a&gt;里的是用NextGen Gallery生成，mvp的blog中的&lt;a href=&#34;http://www.mvpwinner.com/about-mvp/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;关于页&lt;/span&gt;&lt;/a&gt;是用的slideshare，cincopa的例子在&lt;a href=&#34;http://mimisunanduncleliu.com/blog/?page_id=92&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，是咪咪孙&amp;amp;刘大叔的相册。&lt;/p&gt;
+
+&lt;p&gt;3、自建图床&lt;/p&gt;
+
+&lt;p&gt;这个也有很多手段，建成的图片站各有特色，推荐zenphoto&lt;em&gt;，&lt;/em&gt;Menalto Gallery，Coppermine，piwigo。blog图片由图床接入，可以省下大量的网站空间。 更多推荐看&lt;a href=&#34;http://www.chinaz.com/Webmaster/Club/01045Z432009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，和&lt;a href=&#34;http://blogunion.org/wordpress/wordpress-plugins/five-wordpress-gallery-plugins.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Autoviewer幻灯片相册制作</title>
+      <link>http://www.daniex.tk/blog/2010/autoviewer/</link>
+      <pubDate>Wed, 28 Jul 2010 08:51:24 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/autoviewer/</guid>
+      <description>&lt;p&gt;写blog总会有些图片需要展示，方法有很多种。本人就是用的这个autoviewer做的相册，效果看 &lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://img.daniex.info/karen/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #000000;&#34;&gt; ，是&lt;/span&gt;&lt;span style=&#34;color: #000000;&#34;&gt;莫文蔚《文丞武蔚》写真集的几张图。更多图片请看本站的&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;简单描述下制作方法：
+&lt;h3&gt;&lt;strong&gt;1、&lt;/strong&gt;安装&lt;a href=&#34;http://picasa.google.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;Google Picasa&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+去这里下载：  &lt;a href=&#34;http://picasa.google.com/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://picasa.google.com/&#34;&gt;http://picasa.google.com/&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;h3&gt;&lt;strong&gt;2、&lt;/strong&gt;下载 &lt;a href=&#34;http://www.simpleviewer.net/autoviewer/support/picasa.html&#34; target=&#34;_blank&#34;&gt;a&lt;span style=&#34;color: #0000ff;&#34;&gt;utoviewer Picasa Template&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;a href=&#34;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&#34;&gt;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;h3&gt;&lt;strong&gt;3、&lt;/strong&gt; 解压文件。&lt;/h3&gt;
+解压，将simpleviewer_picasa_template 文件夹放到picasa对应目录下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Windows: \Program Files\Google\Picasa3\web\templates&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Picasa2的目录是这个路径： \Program Files\Picasa2\web\templates&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Macintosh: Applications:Picasa.app:Contents:Resources:web:templates
+&lt;h3&gt;&lt;strong&gt;4、&lt;/strong&gt;导出网页&lt;/h3&gt;
+找到Picasa中存放目标图片的文件夹，导出为html页面。具体操作方法为：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;选中目标文件夹 -&amp;gt; 点击工具栏文件夹选项 -&amp;gt; 选择导出为html文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-374&#34; title=&#34;Untitled&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/Untitled.png&#34; alt=&#34;&#34; width=&#34;527&#34; height=&#34;439&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;或者选中文件夹，右键点击选择导出为html文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-375&#34; title=&#34;2&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/2.jpg&#34; alt=&#34;&#34; width=&#34;563&#34; height=&#34;508&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;设置参数：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-376&#34; title=&#34;3&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/3.png&#34; alt=&#34;&#34; width=&#34;672&#34; height=&#34;579&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;导出，生成文件：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-377&#34; title=&#34;4&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/4.png&#34; alt=&#34;&#34; width=&#34;164&#34; height=&#34;209&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击index.html文件就能查看效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-379&#34; title=&#34;5&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/51.png&#34; alt=&#34;&#34; width=&#34;638&#34; height=&#34;359&#34; /&gt;
+&lt;h3&gt;5、上传&lt;/h3&gt;
+最后吧文件放到网站空间，注意正确的链接地址。一切ok。&lt;/p&gt;
+
+&lt;p&gt;比如我将导出的文件夹 jiangxinyun 放到 img.daniex.info域名的public_html目录下，那链接地址即&lt;a href=&#34;http://img.daniex.info/jiangxinyun&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://img.daniex.info/jiangxinyun&#34;&gt;http://img.daniex.info/jiangxinyun&lt;/a&gt;&lt;/span&gt;&lt;/a&gt; 。&lt;/p&gt;
+
+&lt;p&gt;该相册即本人边写这篇博文边做的相册。是姜行云的一些武侠小说插画，《神雕侠侣》。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;___________________________________________________&lt;/span&gt;
+&lt;h3&gt;&lt;span style=&#34;color: #ff0000;&#34;&gt;ps:&lt;/span&gt;&lt;/h3&gt;
+还有个类似的 叫 &lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;S&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;impleViewer&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; ，使用方法和这个autoviewer一样，效果看 &lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/examples/modern/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>twitter、微博、WordPress的同步</title>
+      <link>http://www.daniex.tk/blog/2010/twittertoall/</link>
+      <pubDate>Tue, 13 Jul 2010 12:05:59 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/twittertoall/</guid>
+      <description>&lt;p&gt;今天折腾了阵子twitter同步的小东西，先是同步WordPress到twitter，然后twitter到其他各地。WordPress到twitter有插件，写代码也是几段就ok的，略过不提。简单的说下关于twitter、国内各个微博、部分SNS网站同步的情况。教程大家自己去找，很多，按着步骤做也挺简单的。&lt;/p&gt;
+
+&lt;p&gt;1、  Gae同步twitter&lt;/p&gt;
+
+&lt;p&gt;就&lt;a href=&#34;http://www.williamlong.info/archives/2049.html&#34; target=&#34;_blank&#34;&gt;月光博客&lt;/a&gt;那个版本，同步都是微薄，要同步人人、豆瓣之类的就得自己写代码了。基本步骤是申请gae账号，下几个包，改下自己的账号密码，按步骤上传文件，这就搞定。&lt;/p&gt;
+
+&lt;p&gt;2、  php空间同步twitter&lt;/p&gt;
+
+&lt;p&gt;这个方法的前提是有php空间，空间性能还有点关系，之后会提到。步骤的话也是下个包，改下账号密码，上传。一样简单。&lt;/p&gt;
+
+&lt;p&gt;这个方法用的是Tw2other的包，和PHP空间的cron功能的有点关系。&lt;a href=&#34;http://www.qiankun.org.ru/2010/04/using-php-space-cron-synchronize-twitter-sina-163-microblog.html&#34;&gt;推荐个教程&lt;/a&gt;。空间支持cron那很ok，注意下更新时间。默认是每间隔50秒一次更新的，如果需要修改更新间隔，可以修改config.php中的INTERVAL参数。提示：程序中 config.php中有个时间参数设置，个时间参数最好要小于所设置的Cron间隔，比如Cron设置的为1分钟，那么程序中设置为50-58秒比较好。 这个提示的前提是你的服务器够强劲。如果是免费空间，这么设置就有可能因太占资源被禁止。&lt;/p&gt;
+
+&lt;p&gt;如果空间不支持cron呢？这里有个取巧的办法，就是放段代码在自己的网站里面，有人访问，就能同步twitter了。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;iframe frameborder=0 width=0 height=0 name= &amp;ldquo;cron-twitter&amp;rdquo; src=&amp;ldquo;&lt;a href=&#34;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &#34;&gt;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &lt;/a&gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;3、  follow5类似&lt;/p&gt;
+
+&lt;p&gt;就是注册个能够同步很多微博的微博或者其他网站账号，设置一下就能同步了。&lt;/p&gt;
+
+&lt;p&gt;4、  Gtalk&lt;/p&gt;
+
+&lt;p&gt;这个方法没研究过，嘿嘿，有兴趣的自己看去。&lt;/p&gt;
+
+&lt;p&gt;最后还要提醒下的是，设置多个微薄同步的时候，这几个微薄之间不要再设置同步了，这样会重复同步，不断刷屏。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress Cannot modify header information错误</title>
+      <link>http://www.daniex.tk/blog/2010/cannot-modify-header-information/</link>
+      <pubDate>Mon, 12 Jul 2010 13:24:40 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cannot-modify-header-information/</guid>
+      <description>&lt;p&gt;今天在改网页固定链接的时候，总是跳 Cannot modify header information&amp;hellip;.的错误。然而WordPress虽然报错，但是我改的固定链接确实改了。&lt;/p&gt;
+
+&lt;p&gt;插几句固定连接的话：之前本站的链接都是WordPress的默认方式，没好好做seo，至此时此刻（2010年7月12日完21点03分）百度都不肯收录这块方塘。不得不叨咕下，百度你口味也太奇怪了，其他搜索引擎可都收录了啊！&lt;/p&gt;
+
+&lt;p&gt;回归话题，关于这个错误，我这边最后的解决方案是删掉多余的空行。就是说，导致出现这个问题的罪魁祸首，就是某个文件中多了几个回车。看到一个写的比较清晰地&lt;a href=&#34;http://abgne.tw/wordpress/wordpress-3-0-warning-cannot-modify-header-information.html&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt;，把他的截图借过来用用。&lt;/p&gt;
+
+&lt;p&gt;报错的图，他这个报错的比较厉害，我的可没这么多：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-289&#34; title=&#34;wordpress_warning_cannot_modify_header_information_0&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_0.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;341&#34; /&gt;然后找到warning：后面括号里面提到的php文件：&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-290&#34; title=&#34;wordpress_warning_cannot_modify_header_information_1&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_1.jpg&#34; alt=&#34;&#34; width=&#34;491&#34; height=&#34;69&#34; /&gt;最后是删掉该文件中的多余空行，就是 &lt;span style=&#34;color: #ff0000;&#34;&gt;&amp;lt;?&lt;/span&gt; 和 &lt;span style=&#34;color: #ff0000;&#34;&gt;?&amp;gt;&lt;/span&gt; 符号前后多出的空行。&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-291&#34; title=&#34;wordpress_warning_cannot_modify_header_information_2&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_2.jpg&#34; alt=&#34;&#34; width=&#34;386&#34; height=&#34;95&#34; /&gt;&lt;/p&gt;
+删掉之后就大功告成。一切回归正常了。修改的时候发现，是我自己在添加&lt;a href=&#34;http://fairyfish.net/2010/01/12/wp-follow5/&#34; target=&#34;_blank&#34;&gt;我爱水煮鱼&lt;/a&gt;版本同步WordPress到follow5代码的时候，为了看得清楚，在functions.php里面多加了几个回车导致的。自作孽啊！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress自制留言板</title>
+      <link>http://www.daniex.tk/blog/2010/wordpress-message-board/</link>
+      <pubDate>Fri, 02 Jul 2010 12:35:45 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/wordpress-message-board/</guid>
+      <description>&lt;p&gt;换了个皮肤，把一些代码重新写好，又把之前就像做的留言板做了起来。&lt;/p&gt;
+
+&lt;p&gt;我的留言板制作主要参考大大有名的&lt;a href=&#34;http://www.sbtalk.com.cn/&#34;&gt;sbtalk&lt;/a&gt;上，大大有名的&lt;a href=&#34;http://www.sbtalk.com.cn/2007/06/16/wordpress_guestbook.html&#34;&gt;简单5步，制作wordpress留言板&lt;/a&gt;一文制作的。只是其成文比较早，wp的版本又不断更新，文中所述方法里面就出现了一点点没跟上wp版本脚步的小问题。&lt;/p&gt;
+
+&lt;p&gt;制作过程中前面几步是都没有问题的，再次我也不赘述了。自己参考去。这里说说文中第三大节关于把留言板做的更完美这个部分。
+1）去掉发布日期：
+这个部分各个模板都有不同，看得懂代码，把该去掉的时间去掉便是，代码去掉的部分形式和下图不同是很正常的。
+&lt;a rel=&#34;attachment wp-att-174&#34; href=&#34;http://daniex.info/wordpress-message-board.html/guestbookdeletedate&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-174&#34; title=&#34;guestbookdeletedate&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/guestbookdeletedate.png&#34; alt=&#34;&#34; width=&#34;407&#34; height=&#34;307&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2）自定义“留言”样式的提示文本
+该改啥改啥，照着五步法原文自己干去。&lt;br /&gt;
+3）最新留言显示在顶部
+这个部分就有些不一样了，原文说的是wp v2.7以前的情况，现在略有不同，改下面代码&lt;br /&gt;
+&lt;pre class=&#34;brush:php&#34;&gt;
+// for WordPress 2.7 or higher
+if (function_exists(&amp;lsquo;wp_list_comments&amp;rsquo;)) {
+    wp_list_comments(&amp;lsquo;type=comment&amp;amp;callback=custom_comments&amp;rsquo;);
+    // for WordPress 2.6.3 or lower
+} else {
+    foreach ($comments as $comment) {
+        if($comment-&amp;gt;comment_type != &amp;lsquo;pingback&amp;rsquo; &amp;amp;&amp;amp; $comment-&amp;gt;comment_type != &amp;lsquo;trackback&amp;rsquo;) {
+        custom_comments($comment, null, null);
+        }
+    }
+}
+&lt;/pre&gt;&lt;br /&gt;
+为
+&lt;br /&gt;&lt;pre class=&#34;brush:php&#34;&gt;
+// for WordPress 2.7 or higher
+if (function_exists(&amp;lsquo;wp_list_comments&amp;rsquo;)) {
+    wp_list_comments(&amp;lsquo;type=comment&amp;amp;callback=custom_comments&amp;amp;reverse_top_level=DESC&amp;rsquo;);
+// for WordPress 2.6.3 or lower
+} else {
+    foreach (array_reverse($comments) as $comment) {
+        if($comment-&amp;gt;comment_type != &amp;lsquo;pingback&amp;rsquo; &amp;amp;&amp;amp; $comment-&amp;gt;comment_type != &amp;lsquo;trackback&amp;rsquo;) {
+            custom_comments($comment, null, null);
+        }
+    }
+}
+&lt;/pre&gt;
+&lt;br /&gt;
+这样就能让留言倒叙排列了。
+&lt;br /&gt;&lt;br /&gt;
+在折腾完留言板功能后，多嘴再说两句。之前我用的一个模板代码看起来稍有些麻烦，为了这个功能，折腾半天，无果，水平不够。现在一拍脑袋，丫的我之前怎么就没想到，找个简单的主题把要用的这两页代码拷贝过来，不就一样做成留言板了！啧啧，榆木脑袋啊！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

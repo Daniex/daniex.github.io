@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>虚拟机 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E8999AE68B9FE69CBA/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 29 Dec 2011 14:55:34 &#43;0000</updated>
+    
+    <item>
+      <title>win7下使用virtualbox制作mac虚拟机后root用户开启分辨率和输入法问题</title>
+      <link>http://www.daniex.tk/blog/2011/mac-virtual-machine-root-resolution/</link>
+      <pubDate>Thu, 29 Dec 2011 14:55:34 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/mac-virtual-machine-root-resolution/</guid>
+      <description>&lt;p&gt;闲来无事就折腾了下，其实很久之前就想玩下苹果操作系统了，由于自己的笔记本太老土不支持虚拟64位，放弃。最近又有了兴致，就继续折腾。&lt;/p&gt;
+
+&lt;p&gt;mac虚拟机制作已经是老生常谈的话题，我也不多废话，给个链接大家去参考参考，一步步照做就行了。用virtualbox虚拟机安装&lt;/p&gt;
+
+&lt;p&gt;Mac OS 10.6.x详细步骤-用vmware安装失败的可以看这里（不断更新） &lt;a href=&#34;http://bbs.weiphone.com/read-htm-tid-1702048.html&#34;&gt;http://bbs.weiphone.com/read-htm-tid-1702048.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这里说一下虚拟机装完后的两件事。
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;开启Mac OS X系统Root用户权限&lt;/h2&gt;
+&lt;a href=&#34;http://article.yeeyan.org/view/187683/151364&#34;&gt;http://article.yeeyan.org/view/187683/151364&lt;/a&gt;
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;怎样更改mac的分辨率&lt;/h2&gt;
+&lt;a href=&#34;http://jingyan.baidu.com/article/4e5b3e198d5bbb91901e24bd.html&#34;&gt;http://jingyan.baidu.com/article/4e5b3e198d5bbb91901e24bd.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;root 权限照着做很快就搞定了。但是分辨率的问题一直没有弄好。照着几个方法都做了还是未成功。最后无奈放弃，我也不弄ios开发，只是看看玩玩。&lt;/p&gt;
+
+&lt;p&gt;上图为证：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;mac&#34; src=&#34;http://farm8.staticflickr.com/7016/6594196203_a1ddc74ef5_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;463&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有个，是输入法的问题。我装的是英文的系统，但是语言包其实他都有了，只要设置下。在system preference 的language&amp;amp;text项目，input source 选项卡中中勾选你要的语言就ok了。当然也可以去下载第三方的输入法。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>win7使用virtualbox安装xp虚拟机窗口化玩游戏英雄无敌3</title>
+      <link>http://www.daniex.tk/blog/2011/win7-install-xp-virtualbox-heroes3/</link>
+      <pubDate>Sat, 24 Sep 2011 11:38:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/win7-install-xp-virtualbox-heroes3/</guid>
+      <description>&lt;p&gt;想到好久没玩游戏了，最近拿《英雄无敌3》出来耍耍。╮(╯▽╰)╭ 好吧，我比较老土，还玩这么老的游戏。想当初还特意装了个DOS box去玩初中时候玩的《三国英杰传》，整个游戏就2M。《英雄无敌3》好歹200M+，算高级货了。&lt;img class=&#34;alignnone&#34; src=&#34;http://daniex.info/wp-includes/images/smilies/icon_idea.gif&#34; alt=&#34;&#34; width=&#34;20&#34; height=&#34;20&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;win7玩heroes3会突然报错，而且不能窗口化。某人是想边玩游戏边看看美剧顺便干点其他的，所以。。。折腾下吧，弄个虚拟机，之前弄过阵子virtualbox，反正也不麻烦。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;简述步骤：&lt;/p&gt;
+
+&lt;p&gt;1、下载virtualbox。安装。&lt;/p&gt;
+
+&lt;p&gt;2、下载windows xp iso镜像。不要别人做好的一键安装盘，virtualbox不认的，下个xp的原始安装镜像一步一步装过去。玩游戏的，装系统是小菜啦~&lt;/p&gt;
+
+&lt;p&gt;3、virtualbox装虚拟机的步骤就不多说了，选机器类型，选择内存/显存，建个新磁盘文件，加载iso镜像，安装。&lt;/p&gt;
+
+&lt;p&gt;4、某人是用virtual box的共享文件夹将xp上的文件夹共享到虚拟机里面的。网上有说可以用系统的文件共享，没试过不知道。这里说下用virtual box的共享将win 7 机器上的文件夹共享到xp虚拟机里面。&lt;/p&gt;
+
+&lt;p&gt;1）启动虚拟机，在virtual box 的设备（device）菜单下有个Install Guest Additions的选项，呃，我用的英文的，不晓得中文是什么了。点击安装，重启虚拟机。&lt;/p&gt;
+
+&lt;p&gt;2）Device-&amp;gt;share folders-&amp;gt;add share folders(右边带加号的图标)。 选择要共享的win 7 文件夹，命名改文件夹在virtualbox中的名字，选择auto mount。重启下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-medium wp-image-770&#34; title=&#34;virtualbox共享文件设置&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/09/20110924191850343-300x287.png&#34; alt=&#34;&#34; width=&#34;300&#34; height=&#34;287&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3）打开XP的我的电脑，里面就有你共享的文件夹。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;终于，我可以在win7下边看美剧边游戏，哇哈哈哈哈哈哈的爽~&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-large wp-image-771&#34; title=&#34;窗口化游戏heroes3&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/09/20110924192147450-1024x640.png&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

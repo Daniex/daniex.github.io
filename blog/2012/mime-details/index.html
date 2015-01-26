@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>MIME详细介绍 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="Http,IP,MIME,windows,主题,互联网,协议,格式,编码,视频,软件,邮件">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>MIME详细介绍</h1>
+    <span class="post-date">Jan 19, 2012 &middot; 5 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/Http">Http</a><a class="label" href="http://www.daniex.tk/tags/IP">IP</a><a class="label" href="http://www.daniex.tk/tags/MIME">MIME</a><a class="label" href="http://www.daniex.tk/tags/windows">windows</a><a class="label" href="http://www.daniex.tk/tags/%E4%B8%BB%E9%A2%98">主题</a><a class="label" href="http://www.daniex.tk/tags/%E4%BA%92%E8%81%94%E7%BD%91">互联网</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E6%A0%BC%E5%BC%8F">格式</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a><a class="label" href="http://www.daniex.tk/tags/%E8%A7%86%E9%A2%91">视频</a><a class="label" href="http://www.daniex.tk/tags/%E8%BD%AF%E4%BB%B6">软件</a><a class="label" href="http://www.daniex.tk/tags/%E9%82%AE%E4%BB%B6">邮件</a>
+    </span>
+    <div id="cnblogs_post_body">
+（注：本文转自CSDN，因本人学习，只是做一笔记，以防遗忘。）
+
+<strong>Q</strong> 什么是MIME？什么是MIME邮件？
+
+<strong>A</strong> MIME, 全称为“Multipurpose Internet Mail Extensions”, 比较确切的中文名称为“多用途互联网邮件扩展”。它是当前广泛应用的一种电子邮件技术规范，基本内容定义于RFC 2045-2049。
+
+自然，MIME邮件就是符合MIME规范的电子邮件，或者说根据MIME规范编码而成的电子邮件。
+
+在MIME出台之前，使用RFC 822只能发送基本的ASCII码文本信息，邮件内容如果要包括二进制文件、声音和动画等，实现起来非常困难。MIME提供了一种可以在邮件中附加多种不 同编码文件的方法，弥补了原来的信息格式的不足。实际上不仅仅是邮件编码，现在MIME经成为HTTP协议标准的一个部分。
+
+下面举几个MIME邮件的例子，让我们先对MIME编码的格式有个直观的印象。例1是最简单的，只带纯文本正 文，基本上就是RFC 822格式；例2复杂一些，包含纯文本和超文本正文；例3是最复杂的，包含纯文本正文、超文本正文、内嵌资源和文件附件。其中，行号和行号后的空格是为了 分析方便而另外加的，“... ... ... ...”表示此处省略了大段编码。
+
+例1
+<blockquote>1 Date: Thu, 18 Apr 2002 09:32:45 +0800
+2 From: &lt;bhw98@sina.com&gt;
+3 To: &lt;bhwang@jlonline.com&gt;
+4 Subject: Test
+5 Mime-Version: 1.0
+6 Content-Type: text/plain; charset="iso-8859-1"
+7
+8 This is a simple mail.
+9</blockquote>
+例2
+<blockquote>1 From: "bhw98" &lt;bhw98@sina.com&gt;
+2 Reply-To: bhw98@sina.com
+3 To: &lt;bluesky7810@163.com&gt;
+4 Subject: Re: help
+5 X-Mailer: Foxmail 4.2 [cn]
+6 Mime-Version: 1.0
+7 Content-Type: multipart/alternative;
+8 boundary="=====002_Dragon307572345230_====="
+9
+10
+11 This is a multi-part message in MIME format.
+12
+13 --=====002_Dragon307572345230_=====
+14 Content-Type: text/plain; charset="GB2312"
+15 Content-Transfer-Encoding: quoted-printable
+16
+17 bluesky7810=A3=AC=C4=FA=BA=C3=A3=A1
+18
+19 =A1=A1=A1=A1=D4=DA=CF=C2=C6=AA=D7=EE=BA=F3=BF=C9=D2=D4=CF=C2=D4=D8=B0=A1=A3=AC=C4=E3
+... ... ... ...
+30 =A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A1=A12003-04-07
+31
+32 --=====002_Dragon307572345230_=====
+33 Content-Type: text/html; charset="GB2312"
+34 Content-Transfer-Encoding: quoted-printable
+35
+36 &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;
+37 &lt;HTML&gt;&lt;HEAD&gt;
+38 &lt;META content=3D"text/html; charset=3Dgb2312"=
+39 http-equiv=3DContent-Type&gt;
+40 &lt;META content=3D"MSHTML 5.00.2920.0" name=3DGENERATOR&gt;
+... ... ... ...
+79 &lt;/HTML&gt;
+80
+81 --=====002_Dragon307572345230_=====--
+82</blockquote>
+例3
+<blockquote>1 Return-Path: &lt;bluesky7810@163.com&gt;
+2 Delivered-To: bhw98@sina.com
+3 Received: (qmail 75513 invoked by alias); 20 May 2002 02:19:53 -0000
+4 Received: from unknown (HELO bluesky) (61.155.118.135)
+5 by 202.106.187.143 with SMTP; 20 May 2002 02:19:53 -0000
+6 Message-ID: &lt;007f01c3111c$742fec00$0100007f@bluesky&gt;
+7 From: "=?gb2312?B?wLbAtrXEzOwNCg==?=" &lt;bluesky7810@163.com&gt;
+8 To: "bhw98" &lt;bhw98@sina.com&gt;
+9 Cc: &lt;bhwang@jlonline.com&gt;
+10 Subject: =?gb2312?B?ztK1xLbgtK6/2rPM0PI=?=
+11 Date: Sat, 20 May 2002 10:03:36 +0800
+12 MIME-Version: 1.0
+13 Content-Type: multipart/mixed;
+14 boundary="----=_NextPart_000_007A_01C3115F.80DFC5E0"
+15 X-Priority: 3
+16 X-MSMail-Priority: Normal
+17 X-Mailer: Microsoft Outlook Express 5.00.2919.6700
+18 X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2919.6700
+19
+20 This is a multi-part message in MIME format.
+21
+22 ------=_NextPart_000_007A_01C3115F.80DFC5E0
+23 Content-Type: multipart/related; type="multipart/alternative";
+24 boundary="----=_NextPart_001_007B_01C3115F.80DFC5E0"
+25
+26
+27 ------=_NextPart_001_007B_01C3115F.80DFC5E0
+28 Content-Type: multipart/alternative;
+29 boundary="----=_NextPart_002_007C_01C3115F.80DFC5E0"
+30
+31 ------=_NextPart_002_007C_01C3115F.80DFC5E0
+32 Content-Type: text/plain; charset="gb2312"
+33 Content-Transfer-Encoding: quoted-printable
+34
+35 bhw98, =C4=E3=BA=C3!
+36 =D5=E2=CA=C7=CE=D2=D0=B4=B5=C4=B6=E0=B4=AE=BF=DA=CD=A8=D0=C5=B5=C4=B3=CC=D0=
+37 =F2, =C7=EB=D6=B8=BD=CC!
+38
+39
+40 ------=_NextPart_002_007C_01C3115F.80DFC5E0
+41 Content-Type: text/html; charset="gb2312"
+42 Content-Transfer-Encoding: quoted-printable
+43
+44 &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;
+45 &lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;=C7=E7=C0=CA&lt;/TITLE&gt;
+46 &lt;META content=3D"text/html; charset=3Dgb2312" http-equiv=3DContent-Type&gt;
+47 &lt;STYLE&gt;BODY {
+48 COLOR: #0033cc; FONT-FAMILY: =CB=CE=CC=E5, Arial, Helvetica; FONT-SIZE: =
+49 9pt; MARGIN-LEFT: 10px; MARGIN-TOP: 25px
+50 }
+51 &lt;/STYLE&gt;
+52 &lt;META content=3D"MSHTML 5.00.2920.0" name=3DGENERATOR&gt;&lt;/HEAD&gt;
+53 &lt;BODY background=3Dcid:007901c3111c$72b978a0$0100007f@bluesky =
+54 bgColor=3D#ffffff&gt;
+55 &lt;DIV&gt;
+56 &lt;DIV&gt;bhw98, =C4=E3=BA=C3!&lt;/DIV&gt;
+57 &lt;P&gt;=D5=E2=CA=C7=CE=D2=D0=B4=B5=C4=B6=E0=B4=AE=BF=DA=CD=A8=D0=C5=B5=C4=B3=CC=
+58 =D0=F2, =C7=EB=D6=B8=BD=CC!&lt;/P&gt;&lt;/DIV&gt;
+59 &lt;P&gt; &lt;/P&gt;&lt;/BODY&gt;&lt;/HTML&gt;
+60
+61 ------=_NextPart_002_007C_01C3115F.80DFC5E0--
+62
+63 ------=_NextPart_001_007B_01C3115F.80DFC5E0
+64 Content-Type: image/jpeg; name="=?gb2312?B?x+fAyrGzvrAuSlBH?="
+65 Content-Transfer-Encoding: base64 66 Content-ID: &lt;007901c3111c$72b978a0$0100007f@bluesky&gt;
+67
+68 /9j/4AAQSkZJRgABAgEASABIAAD/7QVoUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+69 AQBIAAAAAQABOEJJTQPzAAAAAAAIAAAAAAAAAAA4QklNBAoAAAAAAAEAADhCSU0nEAAAAAAACgAB
+70 AAAAAAAAAAI4QklNA/UAAAAAAEgAL2ZmAAEAbGZmAAYAAAAAAAEAL2ZmAAEAoZmaAAYAAAAAAAEA
+... ... ... ...
+169 RxVw98Vawq12xQ44q0cKtHFDWKGsKt4EtiuKt4q//9k=
+170
+171 ------=_NextPart_001_007B_01C3115F.80DFC5E0--
+172
+173 ------=_NextPart_000_007A_01C3115F.80DFC5E0
+174 Content-Type: application/msword; name="readme.doc"
+175 Content-Transfer-Encoding: base64
+176 Content-Disposition: attachment; filename="readme.doc"
+177
+178 0M8R4KGxGuEAAAAAAAAAAAAAAAAAAAAAPgADAP7/CQAGAAAAAAAAAAAAAAABAAAAJgAAAAAAAAAA
+179 EAAAKAAAAAEAAAD+////AAAAACUAAAD/////////////////////////////////////////////
+180 ////////////////////////////////////////////////////////////////////////////
+... ... ... ...
+1688 AAAAAAAAAAAAAAAAAAA=
+1689
+1690 ------=_NextPart_000_007A_01C3115F.80DFC5E0
+1691 Content-Type: application/x-zip-compressed;
+1692 name="=?gb2312?B?tuC0rr/azajQxbXE1LTC6y56aXA=?="
+1693 Content-Transfer-Encoding: base64
+1694 Content-Disposition: attachment;
+1695 filename="=?gb2312?B?tuC0rr/azajQxbXE1LTC6y56aXA=?="
+1696
+1697 UEsDBBQAAAAIAFKAoi7qOMOvLw0AAABWAAAUAAAAtuC0rr/azajQxbXE1LTC6y5kb2PtXHtwVNUZ
+1698 /+4+kk3IQoAkBkRYQkSgbrKb7IYNEMwmm6ckG0jCI0boZneTbJJ9sNlAEsdOtFqd8Z846tQ6PhB1
+1699 hrZTJoK0Vhgf1aGt4rMy6D8tdugfTjuOpcBIR9j+vvsIy4YkRNTRen87v/ud53cee+6557vn7L73
+... ... ... ...
+3125 zajQxbXE1LTC6y5kb2NQSwUGAAAAAAEAAQBCAAAAYQ0AAA==
+3126
+3127 ------=_NextPart_000_007A_01C3115F.80DFC5E0--
+3128</blockquote>
+<strong>Q</strong> 在开始研究MIME邮件的时候，如何得到这样的源码？
+
+<strong>A</strong> 一些功能比较完善的邮件客户端软件，如微软的Outlook Express，国产的Foxmail等，都提供了查看和保存邮件源码(原始信息)的功能。在Foxmail中，选择邮件列表右键菜单的“原始信息”进行 查看，主菜单的“文件-导出”进行保存。在Outlook Express中，对应的操作分别是“属性”和“另存为”。所保存的.eml文件，可以调用这些程序打开。
+
+<strong>Q</strong> 请介绍一下MIME邮件的组成？
+
+<strong>A</strong> 总体来说，MIME消息由消息头和消息体两大部分组成。现在我们关注的是MIME邮件，因此在以下的讨论中姑且称“消息”为“邮件”。在上面的例子中，例 1的1-6行，例2的1—8行，例3的1-18行，是邮件头；例1的8—9行，例2的10—82行，例3的20—3128行，是邮件体。邮件头与邮件体之 间以空行进行分隔，如例1的第7行，例2的第9行，例3的第19行。邮件头中不允许出现空行。有一些邮件不能被邮件客户端软件识别，显示的是原始码，就是 因为首行是空行。
+
+邮件头包含了发件人、收件人、主题、时间、MIME版本、邮件内容的类型等重要信息。每条信息称为一个域，由 域名后加“: ”和信息内容构成，可以是一行，较长的也可以占用多行。域的首行必须“顶头”写，即左边不能有空白字符（空格和制表符）；续行则必须以空白字符打头，且第 一个空白字符不是信息本身固有的，解码时要过滤掉。如例2的7-8行，例3的4-5行，13-14行，分别属于一个域。
+
+邮件体包含邮件的内容，它的类型由邮件头的“Content-Type”域指出。常见的简单类型有text/plain(纯文本)和text/html(超文本)。
+
+例2和例3中出现的multipart类型，是MIME邮件的精髓。邮件体被分为多个段，每个段又包含段头和 段体两部分，这两部分之间也以空行分隔。常见的multipart类型有三种：multipart/mixed, multipart/related和multipart/alternative。从它们的名称，不难推知这些类型各自的含义和用处。它们之间的层次关 系可归纳为下图所示：
+<pre>+------------------------- multipart/mixed ----------------------------+
+|                                                                      |
+|  +----------------- multipart/related ------------------+            |
+|  |                                                      |            |
+|  |  +----- multipart/alternative ------+  +----------+  |  +------+  |
+|  |  |                                  |  | 内嵌资源 |  |  | 附件 |  |
+|  |  |  +------------+  +------------+  |  +----------+  |  +------+  |
+|  |  |  | 纯文本正文 |  | 超文本正文 |  |                |            |
+|  |  |  +------------+  +------------+  |  +----------+  |  +------+  |
+|  |  |                                  |  | 内嵌资源 |  |  | 附件 |  |
+|  |  +----------------------------------+  +----------+  |  +------+  |
+|  |                                                      |            |
+|  +------------------------------------------------------+            |
+|                                                                      |
++----------------------------------------------------------------------+</pre>
+可以看出，如果在邮件中要添加附件，必须定义multipart/mixed段；如果存在内嵌资源，至少要定义 multipart/related段；如果纯文本与超文本共存，至少要定义multipart/alternative段。什么是“至少”？举个例子 说，如果只有纯文本与超文本正文，那么在邮件头中将类型扩大化，定义为multipart/related，甚至multipart/mixed，都是允 许的。
+
+multipart诸类型的共同特征是，在段头指定“boundary”参数字符串，段体内的每个子段以此串 定界。所有的子段都以“--”+boundary行开始，父段则以“--”+boundary+“--”行结束。段与段之间也以空行分隔。在邮件体是 multipart类型的情况下，邮件体的开始部分(第一个“--”+boundary行之前)可以有一些附加的文本行，相当于注释，解码时应忽略。段间 也可以有一些附加的文本行，不会显示出来，如果有兴趣，不妨验证一下。
+
+结合boundary定界和multipart层次关系图，我们分析一下例2和例3的邮件体层次与段嵌套关系。
+
+在例2中，10-12行是附加文本行，13-82行是multipart/alternative型的段，包含两个子段：13-30行是纯文本正文，32-79行是超文本正文。
+
+在例3中，20-21行是附加文本行，22-3127行是multipart/mixed型的段，包含3个子 段：22-171行是multipart/related段，173-1688行与1690-3125行是两个附件。multipart/related 段又包含两个子段：27-61行是multipart/alternative段，63-169行是一个内嵌资源(图片)。multipart /alternative段又包含两个子段：31-48行是纯文本正文，40-59行是超文本正文。
+
+例1只有纯文本正文，实际上属于multipart层次关系图中的一个特殊情况。如果非要避简就繁，写成下面的形式，也是完全符合MIME精神的。
+<blockquote>Date: Thu, 18 Apr 2002 09:32:45 +0800
+From: &lt;bhw98@sina.com&gt;
+To: &lt;bhwang@jlonline.com&gt;
+Subject: Test
+Mime-Version: 1.0
+Content-Type: multipart/alternative; boundary="{[(^_^)]}" --{[(^_^)]}
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit This is a simple mail. --{[(^_^)]}--</blockquote>
+<strong>Q</strong> 在邮件头和段头中，有哪一些常见的域？
+
+<strong>A</strong> 在邮件头中，有很多从RFC 822沿用的域名，MIME也增加了一些。常见的标准域名和含义如下
+<table align="center">
+<tbody>
+<tr>
+<td>域名</td>
+<td>含义</td>
+<td>添加者</td>
+</tr>
+<tr>
+<td>Received</td>
+<td>传输路径</td>
+<td>各级邮件服务器</td>
+</tr>
+<tr>
+<td>Return-Path</td>
+<td>回复地址</td>
+<td>目标邮件服务器</td>
+</tr>
+<tr>
+<td>Delivered-To</td>
+<td>发送地址</td>
+<td>目标邮件服务器</td>
+</tr>
+<tr>
+<td>Reply-To</td>
+<td>回复地址</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>From</td>
+<td>发件人地址</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>To</td>
+<td>收件人地址</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Cc</td>
+<td>抄送地址</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Bcc</td>
+<td>暗送地址</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>日期和时间</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Subject</td>
+<td>主题</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Message-ID</td>
+<td>消息ID</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>MIME-Version</td>
+<td>MIME版本</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>内容的类型</td>
+<td>邮件的创建者</td>
+</tr>
+<tr>
+<td>Content-Transfer-Encoding</td>
+<td>内容的传输编码方式</td>
+<td>邮件的创建者</td>
+</tr>
+</tbody>
+</table>
+非标准的、自定义域名都以X-开头，例如X-Mailer, X-MSMail-Priority等，通常在接收和发送邮件的是同一程序时才能理解它们的意义。
+
+在段头中，大致有如下一些域
+<table align="center">
+<tbody>
+<tr>
+<td>域名</td>
+<td>含义</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>段体的类型</td>
+</tr>
+<tr>
+<td>Content-Transfer-Encoding</td>
+<td>段体的传输编码方式</td>
+</tr>
+<tr>
+<td>Content-Disposition</td>
+<td>段体的安排方式</td>
+</tr>
+<tr>
+<td>Content-ID</td>
+<td>段体的ID</td>
+</tr>
+<tr>
+<td>Content-Location</td>
+<td>段体的位置(路径)</td>
+</tr>
+<tr>
+<td>Content-Base</td>
+<td>段体的基位置</td>
+</tr>
+</tbody>
+</table>
+有 的域除了值之外，还带有参数。值与参数、参数与参数之间以“;”分隔。参数名与参数值之间以“=”分隔。如例3的28-29行，Content-Type 域的值为“multipart/alternative”，此外有一个参数boundary，值 为"----=_NextPart_002_007C_01C3115F.80DFC5E0"。又如例3的第176行，Content- Disposition域的值为“attachment”，此外有一个参数filename，值为“readme.doc”。
+
+<strong>Q</strong> Content-Type以及它们的参数有哪些形式？
+
+<strong>A</strong> Content-Type都是“主类型/子类型”的形式。主类型有text, image, audio, video, application, multipart, message等，分别表示文本、图片、音频、视频、应用、分段、消息等。每个主类型都可能有多个子类型，如text类型就包含plain, html, xml, css等子类型。以X-开头的主类型和子类型，同样表示自定义的类型，未向IANA正式注册，但大多已经约定成俗了。如application/x- zip-compressed是ZIP文件类型。在Windows中，注册表的“HKEY_CLASSES_ROOT\MIME\Database \Content Type”内列举了除multipart之外大部分已知的Content-Type。
+
+关于参数的形式，RFC里有很多补充规定，有的允许带几个参数，较为常见的有
+<table align="center">
+<tbody>
+<tr>
+<td>主类型</td>
+<td>参数名</td>
+<td>含义</td>
+</tr>
+<tr>
+<td>text</td>
+<td>charset</td>
+<td>字符集</td>
+</tr>
+<tr>
+<td>image</td>
+<td>name</td>
+<td>名称</td>
+</tr>
+<tr>
+<td>application</td>
+<td>name</td>
+<td>名称</td>
+</tr>
+<tr>
+<td>multipart</td>
+<td>boundary</td>
+<td>边界</td>
+</tr>
+</tbody>
+</table>
+其中字符集也能在Windows注册表的“HKEY_CLASSES_ROOT\MIME\Database\Charset”内见到。
+
+<strong>Q</strong> Content-Transfer-Encoding有哪些？有什么特点？
+
+<strong>A</strong> Content-Transfer-Encoding共有Base64, Quoted-printable, 7bit, 8bit, Binary等几种。其中7bit是缺省的编码方式。电子邮件源码最初设计为全部是可打印的ASCII码的形式。非ASCII码的文本或数据要编码成要求 的格式，如上面的三个例子。Base64, Quoted-Printable是在非英语国家使用最广使的编码方式。Binary方式只具有象征意义，而没有任何实用价值。
+
+Base64将输入的字符串或一段数据编码成只含有 {'A'-'Z', 'a'-'z', '0'-'9', '+', '/'}这64个字符的串，'='用于填充。其编码的方法是，将输入数据流每次取6 bit，用此6 bit的值(0-63)作为索引去查表，输出相应字符。这样，每3个字节将编码为4个字符(3×8 → 4×6)；不满4个字符的以'='填充。有的场合，以“=?charset?B?xxxxxxxx?=”表示xxxxxxxx是Base64编码，且原文 的字符集是charset。如例3第7行"=?gb2312?B?wLbAtrXEzOwNCg==?="是由简体中文“蓝蓝的天”编码而成的。在段体内 则直接编码，适当时机换行，MIME建议每行最多76个字符。如例3的1697-3125行，是一个ZIP文件的Base64编码。
+
+Quoted-printable根据输入的字符串或字节 范围进行编码，若是不需编码的字符，直接输出；若需要编码，则先输出'='，后面跟着以2个字符表示的十六进制字节值。有的场合，以 “=?charset?Q?xxxxxxxx?=”表示xxxxxxxx是Quoted-printable编码，且原文的字符集是charset。在段 体内则直接编码，适当时机换行，换行前额外输出一个'='。如例3的44-59行，是HTML文本的Quoted-printable编码。其中第45行 “=C7=E7=C0=CA”原文是“晴朗”，因为“晴”的GB2312码是C7E7，“朗”的GB2312码是C0CA。第48、53、57行末尾只有 孤零零的'='，表示这是由编码造成的软回车，而非原文固有的。
+
+近年来，国内多数邮件服务器已经支持8bit方式，因此只在国内传输的邮件，特别是在邮件头中，可直接使用8bit编码，对汉字不做处理。如果邮件要出国，还是老老实实地按Base64或Quoted-printable编码才行。
+
+<strong>Q</strong> 什么是内嵌资源？它有哪些形式？
+
+<strong>A</strong> 内嵌资源也是MIME的一个发光点，它能使邮件内容变得生动活泼、丰富多彩。可在邮件的multipart/related框架内定义一些与正文关联的图 片、动画、声音甚至CSS样式和脚本的段。通常在HTML正文内，使用超级链接与内嵌资源相联系。如在例3中，HTML正文53-54行，解码后为
+<blockquote>&lt;BODY background=cid:007901c3111c$72b978a0$0100007f@bluesky bgColor=#ffffff&gt;</blockquote>
+它指出用一个Content-ID为007901c3111c$72b978a0$0100007f@bluesky的图片作为背景(cid:xxxxxxxx也是一种超级链接)。而64-169行恰好就是这样一个内嵌资源。
+
+除了用Content-ID进行联系外，还有另外一种常用形式：用普通超级连接和Content-Location。例如：
+
+在HTML正文中，
+<blockquote>... ... ... ... &lt;
+IMG SRC="http://www.dangdang.com/images/all/anti_joyo_dm_book.gif"&gt;
+... ... ... ... &lt;
+IMG SRC="http://www.dangdang.com/dd2001/getimage_small.asp?id=486341"&gt;
+... ... ... ...</blockquote>
+对应的内嵌资源为
+<blockquote>Content-Type: image/gif; name="anti_joyo_dm_book.gif"
+Content-Transfer-Encoding: base64
+Content-Location: http://www.dangdang.com/images/all/anti_joyo_dm_book.gif
+... ... ... ...
+Content-Type: application/octet-stream; name="getimage_small.asp?id=486341"
+Content-Transfer-Encoding: base64
+Content-Location: http://www.dangdang.com/dd2001/getimage_small.asp?id=486341
+... ... ... ...</blockquote>
+另外，
+<blockquote>Content-Location: http://www.dangdang.com/images/all/anti_joyo_dm_book.gif</blockquote>
+与
+<blockquote>Content-Location: anti_joyo_dm_book.gif Content-Base: http://www.dangdang.com/images/all/</blockquote>
+是等效的。
+
+<strong>Q</strong> 邮件病毒如何利用附件和内嵌资源传播？
+
+<strong>A</strong> 有的邮件附件可能带有病毒，容易理解。附件毕竟是文件，也好预防，不轻易打开就是了。但内嵌资源是在浏览邮件内容时就要访问的，若其中藏有病毒或恶意代码，你在不知不觉中就中招了。如前两年曾经在全球范围内流行的Nimda病毒，功能性源码如下：
+<blockquote>MIME-Version: 1.0
+Content-Type: multipart/related; type="multipart/alternative"; boundary="====_ABC1234567890DEF_===="
+
+--====_ABC1234567890DEF_====
+Content-Type: multipart/alternative; boundary="====_ABC0987654321DEF_===="
+
+--====_ABC0987654321DEF_====
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit &lt;HTML&gt;&lt;HEAD&gt;&lt;/HEAD&gt;&lt;BODY bgColor=#ffffff&gt; &lt;iframe src=cid:EA4DMGBP9p height=0 width=0&gt; &lt;/iframe&gt;&lt;/BODY&gt;&lt;/HTML&gt;
+
+--====_ABC0987654321DEF_====--
+
+--====_ABC1234567890DEF_====
+Content-Type: audio/x-wav; name="readme.exe"
+Content-Transfer-Encoding: base64 Content-ID: &lt;EA4DMGBP9p&gt; TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAA2AAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v ZGUuDQ0KJAAAAAAAAAA11CFvcbVPPHG1TzxxtU88E6pcPHW1TzyZqkU8dbVPPJmqSzxytU88cbVO
+... ... ... ... ... ... ... ...
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+
+--====_ABC1234567890DEF_====</blockquote>
+它 将一个可执行文件作为资源嵌入了框架型页面，却声明这段可执行代码是波形声音类型。由于当时微软的IE(版本5.0及以下)存在重大安全漏洞，没有检查 Content-Type与name的扩展名是否匹配，于是就被轻易骗过了，致使点选或打开邮件时自动运行了这个“readme.exe”，机器就感染上 病毒。带毒的机器利用地址簿向别人发送带毒的邮件，一传十，十传百，Nimda蠕虫大行其道。
+
+纵观历史，病毒刚出来时是厉害，但没有任何一种能够持续肆虐下去。Nimda如此，SARS亦当如此。曰：“多难兴邦，众志成城”，又曰：“非典终将倒下，城市精神永存”，相信我们定能很快战胜“非典”!
+
+病毒库升级是跟在新病毒屁股后进行的，不要过分依赖杀毒软件。一个良好的习惯是关闭邮件预览功能，或者设定预览纯文本部分，先查看邮件源码，确信排除病毒嫌疑后再打开。对陌生人发来的带超文本正文的邮件，尤其要当心。永远不要在邮件客户端软件内直接打开附件。
+
+<strong>Q</strong> 一些垃圾邮件采取隐藏发件人的方式，如何追查它们来自哪里？
+
+<strong>A</strong> 从上面的邮件头域名表中可以看出，邮件的创建者可以掌握大部分的域的内容，但Received等域由各级服务器自动添加，发件人是鞭长莫及。垃圾邮件一般 采用了群发软件发送，邮件头的From域(发件人地址)可以任意伪造，甚至写成收件人地址(收到了自己并没有发过的垃圾邮件，气愤吧？)。查看 Received域(传输路径)链可以找到真正的出处。每个服务器添加的Received语句都在邮件首，故最下面一个Received就包含了发件人所 用的SMTP或HTTP服务器，及最初的网关外部IP地址。
+
+Receive语句的基本格式是：from A by B。A为发送方，B为接收方。例如：
+<blockquote>Received: (qmail 45304 invoked from network); 4 May 2003 17:05:47 -0000 Received: from unknown (HELO bjapp9.163.net) (202.108.255.197) by 202.106.182.244 with SMTP; 4 May 2003 17:05:47 -0000 Received: from localhost (localhost [127.0.0.1]) by bjapp9.163.net (Postfix) with SMTP id E1C761D84C631 for &lt;bhw98@sina.com&gt;; Mon, 5 May 2003 01:07:26 +0800 (CST) Received: from fanyingxxxx@tom.com (unknown [211.99.162.194]) by bjapp9.163.net (Coremail) with SMTP id OgEAAM1ItT7MNaLC.1 for &lt;bhw98@sina.com&gt;; Mon, 05 May 2003 01:07:26 +0800 (CST)</blockquote>
+从 上面的例子中不难看出，该邮件的传输路径是：211.99.162.194 → bjapp9.163.net (Coremail 202.108.255.197?) → bjapp9.163.net (Postfix, 202.108.255.197?) → 202.106.182.244。恰好出现了发件人邮箱fanyingxxxx@tom.com，但多数情况不一定能列出来。
+
+此例的localhost [127.0.0.1]，意味着bjapp9.163.net上安装了邮件服务代理性质的软件。
+
+</div>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

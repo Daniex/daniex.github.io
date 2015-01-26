@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Wordpress在页面及RSS中添加随机文章相关文章版权信息 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="WordPress,插件,版权">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>Wordpress在页面及RSS中添加随机文章相关文章版权信息</h1>
+    <span class="post-date">Mar 16, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/tags/%E6%8F%92%E4%BB%B6">插件</a><a class="label" href="http://www.daniex.tk/tags/%E7%89%88%E6%9D%83">版权</a>
+    </span>
+    <p>1、插件法</p>
+
+<p>推荐random post 和similar post 插件，属于Post-Plugin Library系列。该系列中还有recent post、 recent comment插件。</p>
+
+<p>安装插件后再设置中可以设置是否在RSS和文章页面显示随机文章和相关文章列表。附带widget，可在边栏或者底部显示。如果使用代码在特定位置添加。可用&lt;?php random-posts(); ?&gt;&lt;?php similar-posts(); ?&gt;嵌入。</p>
+
+<p>2、代码</p>
+
+<p>1）可以在single.php或者functions.php中添加代码，使显示随机文章或是版权信息。single.php的修改无法再RSS中显示。</p>
+
+<p>在single.php中找到&lt;?php the_content(); ?&gt;代码，在其后添加代码就会在文章后显示你要的信息，可以是版权信息或是相关文章，广告等。网上有不用插件，用代码生成随机文章列表的方法，可以去搜索一下。</p>
+
+<p>2）在functions.php中添加</p>
+
+<p>function FUNCTIONNAME($content) {
+if(!is_feed() &amp;&amp; !is_home()) {
+$content.= &ldquo;&lt;div class=&lsquo;sub&rsquo;&gt;&ldquo;；
+$content.= &ldquo;&lt;a&gt;填入想要添加的内容（版权信息广告等）&lt;/a&gt;&rdquo;;
+$content.= &ldquo;&lt;/div&gt;&rdquo;;
+}
+return $content;
+}
+add_filter (&lsquo;the_content&rsquo;, ’FUNCTIONNAME‘);</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

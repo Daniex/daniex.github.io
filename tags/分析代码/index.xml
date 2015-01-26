@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>分析代码 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E58886E69E90E4BBA3E7A081/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 01 Jul 2010 14:45:43 &#43;0000</updated>
+    
+    <item>
+      <title>Google Analytics分析的跟踪代码在哪？！！</title>
+      <link>http://www.daniex.tk/blog/2010/where-is-google-analytics-codes/</link>
+      <pubDate>Thu, 01 Jul 2010 14:45:43 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/where-is-google-analytics-codes/</guid>
+      <description>&lt;p&gt;换了个主题想起统计工具代码没加，上Google Analytics悲剧地发现又找不到分析代码了！！！ :twisted:&lt;/p&gt;
+
+&lt;p&gt;Google Analytics分析的跟踪代码在哪？在哪？在哪？&lt;/p&gt;
+
+&lt;p&gt;通过账户登录进去的首页，选择相应名称右边的“修改”，进入“网站配置页面”，点击右上方“检查状态”。&lt;/p&gt;
+
+&lt;p&gt;如果你正在“控制台”页面，请点击本页左上方“Analytics 设置”回到后台首页，然后按以上操作。
+&lt;a href=&#34;http://daniex.info/2010/07/where-is-google-analytics-codes/attachment/20100701223933312/&#34; rel=&#34;attachment wp-att-156&#34;&gt;&lt;img src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/20100701223933312.png&#34; alt=&#34;&#34; title=&#34;20100701223933312&#34; width=&#34;417&#34; height=&#34;247&#34; class=&#34;aligncenter size-full wp-image-156&#34; /&gt;&lt;/a&gt;
+&lt;a href=&#34;http://daniex.info/2010/07/where-is-google-analytics-codes/attachment/20100701223914437/&#34; rel=&#34;attachment wp-att-155&#34;&gt;&lt;img src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/20100701223914437.png&#34; alt=&#34;&#34; title=&#34;20100701223914437&#34; width=&#34;417&#34; height=&#34;247&#34; class=&#34;aligncenter size-full wp-image-155&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

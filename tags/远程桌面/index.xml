@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>远程桌面 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E8BF9CE7A88BE6A18CE99DA2/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Mon, 07 Mar 2011 12:10:16 &#43;0000</updated>
+    
+    <item>
+      <title>Ubuntu与windows间的远程桌面、共享文件访问</title>
+      <link>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</link>
+      <pubDate>Mon, 07 Mar 2011 12:10:16 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</guid>
+      <description>&lt;p&gt;1、 Ubuntu访问windows&lt;/p&gt;
+
+&lt;p&gt;这方面基本上Ubuntu系统上做的已经很全了，现有的应用用起来就行。远程桌面可以用Remote Desktop Viewer和Terminal Server Client两个应用。都在Applications-&amp;gt;Internet目录下。有俩截图如下：&lt;img class=&#34;aligncenter&#34; title=&#34;RDV&amp;amp;TSC&#34; src=&#34;http://farm6.static.flickr.com/5178/5505991350_930ecf16d2.jpg&#34; alt=&#34;应用位置&#34; width=&#34;473&#34; height=&#34;345&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;两个应用的界面分别为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Remote Desktop Viewer&#34; src=&#34;http://farm6.static.flickr.com/5219/5505991512_3b0b3e514f.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;409&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Terminal Server Client&#34; src=&#34;http://farm6.static.flickr.com/5171/5505394227_3a37ef989a.jpg&#34; alt=&#34;&#34; width=&#34;373&#34; height=&#34;500&#34; /&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;PS:&lt;/p&gt;
+VNC (Virtual Network Computing)是虚拟网络计算机的缩写。VNC是一款优秀的远程控制工具软件，由著名的AT&amp;amp;T的欧洲研究实验室开发的。
+&lt;p id=&#34;best-answer-content&#34;&gt;RDP:远程桌面协议，主要用于windows 2000及更早的windows版本。 RDPv5支持xp等。&lt;/p&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;SSH: Secure Shell Protocol，是一种在不安全网络上提供安全远程登录及其它安全网络服务的协议。&lt;/p&gt;
+共享文件的访问有另外一个应用，这个应用能进行FTP，http的访问。位于Places-&amp;gt;connect to server。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5172/5505991388_9e08508c3b.jpg&#34; alt=&#34;&#34; width=&#34;344&#34; height=&#34;423&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;界面如下；&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5135/5505394145_dbbf6594d4.jpg&#34; alt=&#34;&#34; width=&#34;369&#34; height=&#34;358&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、windows访问ubuntu。Ubuntu互访。&lt;/p&gt;
+
+&lt;p&gt;公司不准私自架设ftp等服务器。所以通常通过文件共享。Linux也可以类似window那样共享文件，只是Ubuntu需要先安装应用。&lt;/p&gt;
+
+&lt;p&gt;Windows和Linux间共享可以用samba。Linux和Linux之间共享文件有更好的网络文件系统NFS。网上使用教程方法很多，这里就不多说了。&lt;/p&gt;
+
+&lt;p&gt;再废话一句，linux里很多可以用mount。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

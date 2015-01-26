@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Permalink on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/permalink/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sat, 19 Nov 2011 09:33:37 &#43;0000</updated>
+    
+    <item>
+      <title>wordpress自定义个性化首页</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</link>
+      <pubDate>Sat, 19 Nov 2011 09:33:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</guid>
+      <description>&lt;p&gt;自己好不容易折腾了个wordpress博客，发现所有人的首页样式都大同小异，是不是很没创意，很扫兴？下面就来说说如何制作一个wordpress个性化首页，让你随心所欲的改变首页的样式，让你有个不一样的主页。最后效果如我的&lt;a title=&#34;澄清的半亩方糖&#34; href=&#34;http://danie.info&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;首页&lt;/strong&gt;&lt;/a&gt;，截图如下：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-974&#34; title=&#34;ss&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/ss.jpg&#34; alt=&#34;&#34; width=&#34;590&#34; height=&#34;482&#34; /&gt;&lt;/p&gt;
+&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;一、 设置wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+wordpress有设置page页作为默认首页的功能，下面的方法就是自定义一个page也模板，然后添加一个用这个模板制作的page页，最后将这个page页设为首页。&lt;/p&gt;
+
+&lt;p&gt;1) ftp或者cpanel到部署wordpress空间或其他。复制wordpress主题目录下的page.php文件，重名名。比如，找到文件（wp目录）/wp-content/themes/zbench/page.php 重命名为 myhomepage.php&lt;/p&gt;
+
+&lt;p&gt;2) 用文本编辑器打开myhomepage.php，例如用记事本打开，在文件首位添加以下代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;&lt;/blockquote&gt;
+“Template Name : ” 后的文字可以是任意的。这样我们就添加了一个新的page页模板。自定义的首页内容其实就是这个myhomepage.php的内容。如何设计修改这个文件，建立自己的个性化首页，会在后面提到。我们先将它设为首页。&lt;/p&gt;
+
+&lt;p&gt;3) 添加一个新的page页：浏览器登录wordpress后台控制面板，dashboard -&amp;gt;pages -&amp;gt; add new。 输入标题，在右方page attributes 面板中会有parent 和 template 的下拉框，在模板下拉框中选择刚刚添加的模板。如图，我添加的模板名字叫“首页”，我就选择它。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-961&#34; title=&#34;selecttemplate&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/selecttemplate.jpg&#34; alt=&#34;&#34; width=&#34;281&#34; height=&#34;253&#34; /&gt;选择好后，给这个page也命名，我是在title那输入的“首页”。然后就可以发表了，其他的内容什么可以都不用写。&lt;/p&gt;
+
+&lt;p&gt;4) 设置首页的最后一步，点击后台的reading设置项：dashboard -&amp;gt; settings -&amp;gt; reading。在第一个设置项目里选择第二项 a static page ，然后再它下方的第一个下拉选项框里选则刚刚给page页设置的名字。比如我的“首页”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-962&#34; title=&#34;setreading&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/setreading.png&#34; alt=&#34;&#34; width=&#34;552&#34; height=&#34;506&#34; /&gt;点击 save changes 保存配置。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这样，我们把首页重新设置好了。这个时候访问首页的时候我们会发现，我们的首页除了头上的标题名称、侧边栏、底部栏之外就什么都没有。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;二、 设计自己的wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+我们已经把wordpress的首页换掉，但是这个首页现在是一片空白，我们要怎么去填充这片空白呢？如果你有html、css、js功底，那就是你一展身手的时候。如果水平一般，那也没关系，能看懂一点点代码，那就有办法去使用一些好的模板，好的插件，设计出一个自己满意的首页还是可以的。我就只是能看懂代码的那种，根本不熟悉网页前端开发。
+&lt;h4&gt;&lt;strong&gt;方法一&lt;/strong&gt;&lt;/h4&gt;
+怎么给这个首页填充内容，最简单的方法就是，编辑我们之前添加的page页。之前我们并没有在文章内容里添加任何东西。只要你有好内容，好方案，就可以像写一个新的文章一样这里出一个你自己的主页。
+&lt;h4&gt;&lt;strong&gt;方法二&lt;/strong&gt;&lt;/h4&gt;
+这个方法就需要去修改我们的myhomepage.php文件。前端开发的牛人大有人在，我也不多说。就把我的一些代码贴出来，有心思看到朋友可以参考下。主要用到的几个函数我罗列一下：
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;&lt;/blockquote&gt;
+这是我使用的wp-thumbnail插件提供的函数，用于显示分类中的文章和缩略图。在wp-thumbnail插件设置中设置好分类文章的相关数据，如图片大小、标题位置。然后再这里调用。id=7表示文章分类id为7的分类下的文章，num=1表示显示一篇。文章分类ID是几可以参考&lt;a title=&#34;wordpress查看分类category的id&#34; href=&#34;http://daniex.info/view-category-id-wordpress.html&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;这篇文章&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;嵌入的探讨tt1 tt2 的css代码是控制左侧栏目的背景。另外有block1和block2的代码是用来控制左右两部分的布局。
+&lt;blockquote&gt;.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}&lt;/p&gt;
+
+&lt;p&gt;.block2 { float:left; width:250px; height:700px}
+.block3 { float:right; width:350px; height:700px}&lt;/blockquote&gt;
+中间栏的随机文章和标题评论控制是用这些函数：
+&lt;blockquote&gt;$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;。。。&lt;/blockquote&gt;
+&amp;nbsp;
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&lt;/blockquote&gt;
+这段代码是用了postviews+的插件，用于统计文章浏览次数。&lt;/p&gt;
+
+&lt;p&gt;更多代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;
+&amp;lt;?php get_header() ?&amp;gt;
+&amp;lt;div id=&amp;ldquo;content&amp;rdquo;&amp;gt;
+&amp;lt;?php the_post(); ?&amp;gt;
+&amp;lt;div &amp;lt;?php post_class(&amp;lsquo;post post-page&amp;rsquo;); ?&amp;gt; id=&amp;ldquo;post-&amp;lt;?php the_ID(); ?&amp;gt;&amp;ldquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;block2&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;a href=&amp;ldquo;&lt;a href=&#34;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&#34;&gt;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&lt;/a&gt; java C# wpf php&amp;hellip;&amp;lt;/span&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;amp;order=recent&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;style&amp;gt;
+.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}
+&amp;lt;/style&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;block3&amp;rdquo;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php
+$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;
+&amp;lt;h3&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink(); ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php the_title(); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;
+&amp;lt;?php if (&amp;lsquo;open&amp;rsquo; == $post-&amp;gt;comment_status) { ?&amp;gt;
+&amp;lt;div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;span&amp;gt;&amp;lt;?php the_time(get_option( &amp;lsquo;date_format&amp;rsquo; )); ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;ldquo;gotocomments&amp;rdquo;&amp;gt;&amp;lt;?php comments_popup_link(&lt;strong&gt;(&amp;lsquo;0 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), __(&amp;lsquo;1 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), &amp;lsquo;% &amp;lsquo;.&lt;/strong&gt;(&amp;rsquo; 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;)); ?&amp;gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;!&amp;ndash;&amp;lt;div&amp;gt;
+&amp;lt;?php if ( $options[&amp;lsquo;excerpt_check&amp;rsquo;]==&amp;lsquo;true&amp;rsquo; ) { the_excerpt(&lt;strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } else { the_content(&lt;/strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } ?&amp;gt;
+&amp;lt;/div&amp;gt; END entry &amp;ndash;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php if(is_sticky()) { ?&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;&amp;lt;?php _e(&amp;lsquo;This is a sticky post!&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt; &amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink() ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php _e(&amp;lsquo;continue reading?&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;
+&amp;lt;?php } else { ?&amp;gt;
+&amp;lt;div style=&amp;ldquo;height:1px;&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php echo mb_strimwidth(strip_tags(apply_filters(‘the_content’, $post-&amp;gt;post_content)), 0, 100,&amp;ldquo;&amp;hellip;&amp;rdquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
+&amp;lt;?php endforeach; ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash; END post &amp;ndash;&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash;content&amp;ndash;&amp;gt;
+&amp;lt;?php get_sidebar() ?&amp;gt;
+&amp;lt;?php get_footer() ?&amp;gt;&lt;/blockquote&gt;
+&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress seo--永久链接permalink搜索引擎优化</title>
+      <link>http://www.daniex.tk/blog/2010/wordpress-seo-permalink/</link>
+      <pubDate>Mon, 23 Aug 2010 09:08:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/wordpress-seo-permalink/</guid>
+      <description>&lt;p&gt;话说很久没更新了，哎，心不在焉的。最近一个月休息养生、沉迷进自身小世界去了，申明下，体重没上涨！&lt;/p&gt;
+
+&lt;p&gt;话说今儿嘴巴提到wp固定连接（Permalink）优化的事儿。于是分享个小文：&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a title=&#34;偏执wordpress seo教程之一——永久链接permalink的搜索引擎优化&#34; rel=&#34;bookmark&#34; href=&#34;http://blog.linggan.com/wordpress-seo-permalinks-customize-permalink-structure.html&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;偏执wordpress seo教程之一——永久链接permalink的搜索引擎优化&lt;/span&gt;&lt;/a&gt; &lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;span style=&#34;color: #000000;&#34;&gt;简单总结就是，伪静态、域名后直接跟网页地址。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

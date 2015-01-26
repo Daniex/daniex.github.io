@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>利用wp_dorpdown_categories做worldpress文章分类下拉框『转』 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="WordPress,站长">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>利用wp_dorpdown_categories做worldpress文章分类下拉框『转』</h1>
+    <span class="post-date">Oct 26, 2011 &middot; 2 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/WordPress">WordPress</a><a class="label" href="http://www.daniex.tk/tags/%E7%AB%99%E9%95%BF">站长</a>
+    </span>
+    <p>昨天折腾wp侧边栏，主题默认的是一栏，但是放分类列表和友情链接的时候空了很多，太浪费。于是折腾了下分栏，找wp写好的一些函数调用来展示内容。以下是参考的文章。相关请看<span style="color: #3366ff;"><a title="利用wp_list_categories做worldpress文章分类列表" href="http://daniex.info/wp_list_categories.html" target="_blank"><span style="color: #3366ff;">wp_list_categories</span></a></span>一文。
+<h3>————————————————————————————————</h3>
+<h3>说明</h3>
+该标签在一个没有提交按钮的选择框（如下拉式选框）中展示分类目录列表。
+<h3>用法</h3>
+&lt;?php wp_dropdown_categories( $args ); ?&gt;</p>
+
+<p><strong>默认用法</strong></p>
+
+<p>&lt;?php $args = array(
+&lsquo;show_option_all&rsquo; =&gt; ,
+&lsquo;show_option_none&rsquo; =&gt; ,
+&lsquo;orderby&rsquo; =&gt; &lsquo;ID&rsquo;,
+&lsquo;order&rsquo; =&gt; &lsquo;ASC&rsquo;,
+&lsquo;show_last_update&rsquo; =&gt; 0,
+&lsquo;show_count&rsquo; =&gt; 0,
+&lsquo;hide_empty&rsquo; =&gt; 1,
+&lsquo;child_of&rsquo; =&gt; 0,
+&lsquo;exclude&rsquo; =&gt; ,
+&lsquo;echo&rsquo; =&gt; 1,
+&lsquo;selected&rsquo; =&gt; 0,
+&lsquo;hierarchical&rsquo; =&gt; 0,
+&lsquo;name&rsquo; =&gt; &lsquo;cat&rsquo;,
+&lsquo;class&rsquo; =&gt; &lsquo;postform&rsquo;,
+&lsquo;depth&rsquo; =&gt; 0 ); ?&gt;</p>
+
+<p>默认情况下的显示状态：
+<ul>
+    <li>升序排列分类目录ID</li>
+    <li>不显示最新更新</li>
+    <li>不显示分类目录下的文章总数</li>
+    <li>不显示“空”分类</li>
+    <li>不排除任何分类</li>
+    <li>显示（回应）分类目录</li>
+    <li>选项框中不选中任何分类</li>
+    <li>不以分层结构显示分类目录</li>
+    <li>为列表命名为“cat”</li>
+    <li>将列表赋值给&rsquo;postform&rsquo;类</li>
+    <li>无层数限制</li>
+</ul>
+<h3>参数</h3>
+<strong>show_option_all</strong></p>
+
+<p>（字符串）生成下拉式选项框的HTML，从而允许你选定所有分类目录。</p>
+
+<p><strong>show_option_none</strong></p>
+
+<p>（字符串）生成下拉式选项框的HTML，从而允许你不选定任何分类目录。</p>
+
+<p><strong>orderby</strong></p>
+
+<p>（字符串）按某种标准为分类目录排序。有效值包括：
+<ul>
+    <li>&lsquo;ID&rsquo; ——默认值</li>
+    <li>&lsquo;name&rsquo;</li>
+</ul>
+<strong>order</strong></p>
+
+<p>（字符串）为分类目录排序（升序或降序）有效值包括：
+<ul>
+    <li>&lsquo;ASC&rsquo;（升序） ——默认值</li>
+    <li>&lsquo;DESC&rsquo;（降序）</li>
+</ul>
+<strong>show_last_updated</strong></p>
+
+<p>（布尔型）是（TRUE）否（FALSE）显示分类目录下最新更新日志的日期。默认值为FALSE。</p>
+
+<p>有效值包括：
+<ul>
+    <li>1 （true）</li>
+    <li>0（false）——默认值</li>
+</ul>
+<strong>show_count</strong></p>
+
+<p>（布尔型）是否显示每个分类目录下现有的日志总数。有效值包括：
+<ul>
+    <li>1 （true）</li>
+    <li>0（false）——默认值</li>
+</ul>
+<strong>hide_empty</strong></p>
+
+<p>（布尔型）是否隐藏（不显示）不含有文章的分类目录。有效值包括：
+<ul>
+    <li>1 （true）——默认值</li>
+    <li>0（false）</li>
+</ul>
+<strong>child_of（整数）</strong></p>
+
+<p>只显示某一个分类的子分类；用该分类的ID作为参数值。无默认值。</p>
+
+<p><strong>exclude</strong></p>
+
+<p>（字符串）将要排除的分类目录的ID列表，各ID用逗号隔开。例如， &lsquo;exclude=4,12&rsquo; 表示不显示或返回ID为4和12的分类。默认值为不排除任何分类。</p>
+
+<p><strong>exclude_tree</strong></p>
+
+<p>（字符串）定义需要排除的父分类ID列表，各ID用逗号隔开。用该参数排除某个父分类目录及其所有子分类目录。因此 &lsquo;exclude_tree=5&rsquo; 可排除ID为5的父分类及其所有子分类。该参数引入于WP <a title="Version 2.7.1" href="http://codex.wordpress.org/Version_2.7.1">2.7.1</a>。</p>
+
+<p><strong>echo</strong></p>
+
+<p>（布尔型）显示结果（TRUE），或返回结果以供PHP使用（FALSE）。默认值为TRUE。
+<ul>
+    <li>1 （true）——默认值</li>
+    <li>0（false）</li>
+</ul>
+<strong>selected</strong></p>
+
+<p>（整数）在显示框中选中/显示的分类目录的ID。默认为不选中任何分类目录。</p>
+
+<p><strong>hierarchical</strong></p>
+
+<p>（布尔型）以分层形式显示分类目录（子分类目录内嵌于其父分类目录下）。默认值为FALSE。有效值包括：
+<ul>
+    <li>1 （True）—— 默认值</li>
+    <li>0 （False）</li>
+</ul>
+<strong>name</strong></p>
+
+<p>（字符串）下拉式选框被赋予的名称。默认为cat&rsquo;。</p>
+
+<p><strong>class</strong></p>
+
+<p>（字符串）被赋给下拉式选项框的类，默认为&rsquo;postform&rsquo;。</p>
+
+<p><strong>depth（整数）</strong></p>
+
+<p>该参数决定wp_list_pages所生成的分类目录列表中所允许的分类层级的层数。默认值为0（显示包括子分类目录在内的所有分类目录）。该参数引入于WP <a title="Version 2.5" href="http://codex.wordpress.org/Version_2.5">2.5</a>。
+<ul>
+    <li>0 —— 显示所有分类目录和他们的子分类目录（默认）</li>
+    <li>-1 —— 以平面（不缩进）方式显示所有分类目录和他们的子分类目录</li>
+    <li>1 —— 只显示顶级分类目录</li>
+    <li>n —— 该值表示可以缩进显示的分类目录层数。</li>
+</ul>
+<h3>示例</h3>
+<strong>带有提交按钮的下拉式选项框</strong></p>
+
+<p>在WordPress侧边栏的无序列表中，以HTML格式显示带有层级的分类目录下拉式列表，有提交按钮，给出各分类目录下的文章总数。
+<pre>&lt;li id=&ldquo;categories&rdquo;&gt;
+ &lt;h2&gt;&lt;?php _e(&lsquo;Categories:&lsquo;); ?&gt;&lt;/h2&gt;
+   &lt;form action=&rdquo;&lt;?php bloginfo(&lsquo;url&rsquo;); ?&gt;&rdquo; method=&ldquo;get&rdquo;&gt;
+   &lt;?php wp_dropdown_categories(&lsquo;show_count=1&amp;hierarchical=1&rsquo;); ?&gt;
+   &lt;input type=&ldquo;submit&rdquo; name=&ldquo;submit&rdquo; value=&ldquo;view&rdquo; /&gt;
+   &lt;/form&gt;
+&lt;/li&gt;</pre>
+<strong>用JavaScript显示一个没有提交按钮的下拉式选项框</strong></p>
+
+<p>下面这个示例摘自<a href="http://wordpress.org/support/topic/145489?replies=13#post-657759">WordPress论坛上的一个帖子</a>，该示例借用了show_option_none参数。
+<blockquote>&lt;li id=&ldquo;categories&rdquo;&gt;&lt;h2&gt;&lt;?php _e(&lsquo;Posts by Category&rsquo;); ?&gt;&lt;/h2&gt;
+&lt;?php wp_dropdown_categories(&lsquo;show_option_none=Select category&rsquo;); ?&gt;</p>
+
+<p>&lt;script type=&ldquo;text/javascript&rdquo;&gt;&lt;!&ndash;
+var dropdown = document.getElementById(&ldquo;cat&rdquo;);
+function onCatChange() {
+if ( dropdown.options[dropdown.selectedIndex].value &gt; 0 ) {
+location.href = &ldquo;&lt;?php echo get_option(&lsquo;home&rsquo;);
+?&gt;/?cat=&ldquo;+dropdown.options[dropdown.selectedIndex].value;
+}
+}
+dropdown.onchange = onCatChange;
+&ndash;&gt;&lt;/script&gt;
+&lt;/li&gt;</blockquote>
+<strong>用JavaScript显示一个没有提交按钮的下拉式选项框（2）</strong></p>
+
+<p>下面这段代码使用了echo参数（echo=0）。在JavaScript代码中插入一个简单的 <em>preg_replace</em>。即使没有JavaScript，代码也可正常运行（提交按钮被noscript标签包裹）。
+<blockquote>&lt;li id=&ldquo;categories&rdquo;&gt;
+&lt;h2&gt;&lt;?php _e(&lsquo;Posts by Category&rsquo;); ?&gt;&lt;/h2&gt;
+&lt;form action=&rdquo;&lt;?php bloginfo(&lsquo;url&rsquo;); ?&gt;/&rdquo; method=&ldquo;get&rdquo;&gt;
+&lt;?php
+$select = wp_dropdown_categories(&lsquo;show_option_none=Select category&amp;show_count=1&amp;orderby=name&amp;echo=0&rsquo;);
+$select = preg_replace(&ldquo;#&lt;select([^&gt;]*)&gt;#&ldquo;, &ldquo;&lt;select$1 onchange=&lsquo;return this.form.submit()&rsquo;&gt;&rdquo;, $select);
+echo $select;
+?&gt;
+&lt;noscript&gt;&lt;input type=&ldquo;submit&rdquo; value=&ldquo;View&rdquo; /&gt;&lt;/noscript&gt;
+&lt;/form&gt;
+&lt;/li&gt;</blockquote></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

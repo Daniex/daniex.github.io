@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Ubuntu on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/ubuntu/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sat, 24 Sep 2011 11:38:57 &#43;0000</updated>
+    
+    <item>
+      <title>win7使用virtualbox安装xp虚拟机窗口化玩游戏英雄无敌3</title>
+      <link>http://www.daniex.tk/blog/2011/win7-install-xp-virtualbox-heroes3/</link>
+      <pubDate>Sat, 24 Sep 2011 11:38:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/win7-install-xp-virtualbox-heroes3/</guid>
+      <description>&lt;p&gt;想到好久没玩游戏了，最近拿《英雄无敌3》出来耍耍。╮(╯▽╰)╭ 好吧，我比较老土，还玩这么老的游戏。想当初还特意装了个DOS box去玩初中时候玩的《三国英杰传》，整个游戏就2M。《英雄无敌3》好歹200M+，算高级货了。&lt;img class=&#34;alignnone&#34; src=&#34;http://daniex.info/wp-includes/images/smilies/icon_idea.gif&#34; alt=&#34;&#34; width=&#34;20&#34; height=&#34;20&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;win7玩heroes3会突然报错，而且不能窗口化。某人是想边玩游戏边看看美剧顺便干点其他的，所以。。。折腾下吧，弄个虚拟机，之前弄过阵子virtualbox，反正也不麻烦。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;简述步骤：&lt;/p&gt;
+
+&lt;p&gt;1、下载virtualbox。安装。&lt;/p&gt;
+
+&lt;p&gt;2、下载windows xp iso镜像。不要别人做好的一键安装盘，virtualbox不认的，下个xp的原始安装镜像一步一步装过去。玩游戏的，装系统是小菜啦~&lt;/p&gt;
+
+&lt;p&gt;3、virtualbox装虚拟机的步骤就不多说了，选机器类型，选择内存/显存，建个新磁盘文件，加载iso镜像，安装。&lt;/p&gt;
+
+&lt;p&gt;4、某人是用virtual box的共享文件夹将xp上的文件夹共享到虚拟机里面的。网上有说可以用系统的文件共享，没试过不知道。这里说下用virtual box的共享将win 7 机器上的文件夹共享到xp虚拟机里面。&lt;/p&gt;
+
+&lt;p&gt;1）启动虚拟机，在virtual box 的设备（device）菜单下有个Install Guest Additions的选项，呃，我用的英文的，不晓得中文是什么了。点击安装，重启虚拟机。&lt;/p&gt;
+
+&lt;p&gt;2）Device-&amp;gt;share folders-&amp;gt;add share folders(右边带加号的图标)。 选择要共享的win 7 文件夹，命名改文件夹在virtualbox中的名字，选择auto mount。重启下。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-medium wp-image-770&#34; title=&#34;virtualbox共享文件设置&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/09/20110924191850343-300x287.png&#34; alt=&#34;&#34; width=&#34;300&#34; height=&#34;287&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3）打开XP的我的电脑，里面就有你共享的文件夹。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;终于，我可以在win7下边看美剧边游戏，哇哈哈哈哈哈哈的爽~&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-large wp-image-771&#34; title=&#34;窗口化游戏heroes3&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/09/20110924192147450-1024x640.png&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;400&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu与windows间的远程桌面、共享文件访问</title>
+      <link>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</link>
+      <pubDate>Mon, 07 Mar 2011 12:10:16 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</guid>
+      <description>&lt;p&gt;1、 Ubuntu访问windows&lt;/p&gt;
+
+&lt;p&gt;这方面基本上Ubuntu系统上做的已经很全了，现有的应用用起来就行。远程桌面可以用Remote Desktop Viewer和Terminal Server Client两个应用。都在Applications-&amp;gt;Internet目录下。有俩截图如下：&lt;img class=&#34;aligncenter&#34; title=&#34;RDV&amp;amp;TSC&#34; src=&#34;http://farm6.static.flickr.com/5178/5505991350_930ecf16d2.jpg&#34; alt=&#34;应用位置&#34; width=&#34;473&#34; height=&#34;345&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;两个应用的界面分别为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Remote Desktop Viewer&#34; src=&#34;http://farm6.static.flickr.com/5219/5505991512_3b0b3e514f.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;409&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Terminal Server Client&#34; src=&#34;http://farm6.static.flickr.com/5171/5505394227_3a37ef989a.jpg&#34; alt=&#34;&#34; width=&#34;373&#34; height=&#34;500&#34; /&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;PS:&lt;/p&gt;
+VNC (Virtual Network Computing)是虚拟网络计算机的缩写。VNC是一款优秀的远程控制工具软件，由著名的AT&amp;amp;T的欧洲研究实验室开发的。
+&lt;p id=&#34;best-answer-content&#34;&gt;RDP:远程桌面协议，主要用于windows 2000及更早的windows版本。 RDPv5支持xp等。&lt;/p&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;SSH: Secure Shell Protocol，是一种在不安全网络上提供安全远程登录及其它安全网络服务的协议。&lt;/p&gt;
+共享文件的访问有另外一个应用，这个应用能进行FTP，http的访问。位于Places-&amp;gt;connect to server。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5172/5505991388_9e08508c3b.jpg&#34; alt=&#34;&#34; width=&#34;344&#34; height=&#34;423&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;界面如下；&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5135/5505394145_dbbf6594d4.jpg&#34; alt=&#34;&#34; width=&#34;369&#34; height=&#34;358&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、windows访问ubuntu。Ubuntu互访。&lt;/p&gt;
+
+&lt;p&gt;公司不准私自架设ftp等服务器。所以通常通过文件共享。Linux也可以类似window那样共享文件，只是Ubuntu需要先安装应用。&lt;/p&gt;
+
+&lt;p&gt;Windows和Linux间共享可以用samba。Linux和Linux之间共享文件有更好的网络文件系统NFS。网上使用教程方法很多，这里就不多说了。&lt;/p&gt;
+
+&lt;p&gt;再废话一句，linux里很多可以用mount。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

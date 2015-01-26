@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Ubuntu与windows间的远程桌面、共享文件访问 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="FTP,Http,Linux,ubuntu,windows,协议,软件,远程桌面">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>Ubuntu与windows间的远程桌面、共享文件访问</h1>
+    <span class="post-date">Mar 7, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/Linux">Linux</a><a class="label" href="http://www.daniex.tk/categories/Windows">Windows</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/FTP">FTP</a><a class="label" href="http://www.daniex.tk/tags/Http">Http</a><a class="label" href="http://www.daniex.tk/tags/Linux">Linux</a><a class="label" href="http://www.daniex.tk/tags/ubuntu">ubuntu</a><a class="label" href="http://www.daniex.tk/tags/windows">windows</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E8%BD%AF%E4%BB%B6">软件</a><a class="label" href="http://www.daniex.tk/tags/%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2">远程桌面</a>
+    </span>
+    <p>1、 Ubuntu访问windows</p>
+
+<p>这方面基本上Ubuntu系统上做的已经很全了，现有的应用用起来就行。远程桌面可以用Remote Desktop Viewer和Terminal Server Client两个应用。都在Applications-&gt;Internet目录下。有俩截图如下：<img class="aligncenter" title="RDV&amp;TSC" src="http://farm6.static.flickr.com/5178/5505991350_930ecf16d2.jpg" alt="应用位置" width="473" height="345" /></p>
+
+<p>两个应用的界面分别为：</p>
+
+<p><img class="aligncenter" title="Remote Desktop Viewer" src="http://farm6.static.flickr.com/5219/5505991512_3b0b3e514f.jpg" alt="" width="500" height="409" /></p>
+
+<p><img class="aligncenter" title="Terminal Server Client" src="http://farm6.static.flickr.com/5171/5505394227_3a37ef989a.jpg" alt="" width="373" height="500" />
+<p id="best-answer-content">PS:</p>
+VNC (Virtual Network Computing)是虚拟网络计算机的缩写。VNC是一款优秀的远程控制工具软件，由著名的AT&amp;T的欧洲研究实验室开发的。
+<p id="best-answer-content">RDP:远程桌面协议，主要用于windows 2000及更早的windows版本。 RDPv5支持xp等。</p>
+<p id="best-answer-content">SSH: Secure Shell Protocol，是一种在不安全网络上提供安全远程登录及其它安全网络服务的协议。</p>
+共享文件的访问有另外一个应用，这个应用能进行FTP，http的访问。位于Places-&gt;connect to server。</p>
+
+<p><img class="aligncenter" title="connect to server" src="http://farm6.static.flickr.com/5172/5505991388_9e08508c3b.jpg" alt="" width="344" height="423" /></p>
+
+<p>界面如下；</p>
+
+<p><img class="aligncenter" title="connect to server" src="http://farm6.static.flickr.com/5135/5505394145_dbbf6594d4.jpg" alt="" width="369" height="358" /></p>
+
+<p>2、windows访问ubuntu。Ubuntu互访。</p>
+
+<p>公司不准私自架设ftp等服务器。所以通常通过文件共享。Linux也可以类似window那样共享文件，只是Ubuntu需要先安装应用。</p>
+
+<p>Windows和Linux间共享可以用samba。Linux和Linux之间共享文件有更好的网络文件系统NFS。网上使用教程方法很多，这里就不多说了。</p>
+
+<p>再废话一句，linux里很多可以用mount。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

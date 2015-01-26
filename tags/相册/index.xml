@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>相册 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E79BB8E5868C/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 03 Aug 2010 06:42:06 &#43;0000</updated>
+    
+    <item>
+      <title>相册、图床制作，WordPress图片站、插件相关</title>
+      <link>http://www.daniex.tk/blog/2010/photo-gallery/</link>
+      <pubDate>Tue, 03 Aug 2010 06:42:06 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/photo-gallery/</guid>
+      <description>&lt;p&gt;之前回家了一趟，回杭后工作上又有些变动。这一篇出来的比较混乱。这里简单说说我所知道的一些图片站点的建设，wp相关插件。&lt;/p&gt;
+
+&lt;p&gt;1、WordPress图片站&lt;/p&gt;
+
+&lt;p&gt;将相当于把图片作为一个post发表。有比较好的显示方式，麻烦在于上传图片，发布同步稍显繁琐。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.chinaz.com/Design/CoolSite/0910911B2009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;有几个图片站主题推荐，可以看看参考下效果。&lt;/p&gt;
+
+&lt;p&gt;2、在WordPress里面插图、图片的显示，有很多很多方法，插件数不胜数。比如NextGen Gallery，slideshare， cincopa等等，各种slideshow、各种gallery。试过才知道。本站&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册page&lt;/span&gt;&lt;/a&gt;里的是用NextGen Gallery生成，mvp的blog中的&lt;a href=&#34;http://www.mvpwinner.com/about-mvp/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;关于页&lt;/span&gt;&lt;/a&gt;是用的slideshare，cincopa的例子在&lt;a href=&#34;http://mimisunanduncleliu.com/blog/?page_id=92&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，是咪咪孙&amp;amp;刘大叔的相册。&lt;/p&gt;
+
+&lt;p&gt;3、自建图床&lt;/p&gt;
+
+&lt;p&gt;这个也有很多手段，建成的图片站各有特色，推荐zenphoto&lt;em&gt;，&lt;/em&gt;Menalto Gallery，Coppermine，piwigo。blog图片由图床接入，可以省下大量的网站空间。 更多推荐看&lt;a href=&#34;http://www.chinaz.com/Webmaster/Club/01045Z432009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，和&lt;a href=&#34;http://blogunion.org/wordpress/wordpress-plugins/five-wordpress-gallery-plugins.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Autoviewer幻灯片相册制作</title>
+      <link>http://www.daniex.tk/blog/2010/autoviewer/</link>
+      <pubDate>Wed, 28 Jul 2010 08:51:24 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/autoviewer/</guid>
+      <description>&lt;p&gt;写blog总会有些图片需要展示，方法有很多种。本人就是用的这个autoviewer做的相册，效果看 &lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://img.daniex.info/karen/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #000000;&#34;&gt; ，是&lt;/span&gt;&lt;span style=&#34;color: #000000;&#34;&gt;莫文蔚《文丞武蔚》写真集的几张图。更多图片请看本站的&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;简单描述下制作方法：
+&lt;h3&gt;&lt;strong&gt;1、&lt;/strong&gt;安装&lt;a href=&#34;http://picasa.google.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;Google Picasa&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+去这里下载：  &lt;a href=&#34;http://picasa.google.com/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://picasa.google.com/&#34;&gt;http://picasa.google.com/&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;h3&gt;&lt;strong&gt;2、&lt;/strong&gt;下载 &lt;a href=&#34;http://www.simpleviewer.net/autoviewer/support/picasa.html&#34; target=&#34;_blank&#34;&gt;a&lt;span style=&#34;color: #0000ff;&#34;&gt;utoviewer Picasa Template&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;a href=&#34;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&#34;&gt;http://www.simpleviewer.net/downloads/autoviewer_picasa_template.zip&lt;/a&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;h3&gt;&lt;strong&gt;3、&lt;/strong&gt; 解压文件。&lt;/h3&gt;
+解压，将simpleviewer_picasa_template 文件夹放到picasa对应目录下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Windows: \Program Files\Google\Picasa3\web\templates&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Picasa2的目录是这个路径： \Program Files\Picasa2\web\templates&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt; Macintosh: Applications:Picasa.app:Contents:Resources:web:templates
+&lt;h3&gt;&lt;strong&gt;4、&lt;/strong&gt;导出网页&lt;/h3&gt;
+找到Picasa中存放目标图片的文件夹，导出为html页面。具体操作方法为：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;选中目标文件夹 -&amp;gt; 点击工具栏文件夹选项 -&amp;gt; 选择导出为html文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-374&#34; title=&#34;Untitled&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/Untitled.png&#34; alt=&#34;&#34; width=&#34;527&#34; height=&#34;439&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;或者选中文件夹，右键点击选择导出为html文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-375&#34; title=&#34;2&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/2.jpg&#34; alt=&#34;&#34; width=&#34;563&#34; height=&#34;508&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;设置参数：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-376&#34; title=&#34;3&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/3.png&#34; alt=&#34;&#34; width=&#34;672&#34; height=&#34;579&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;导出，生成文件：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-377&#34; title=&#34;4&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/4.png&#34; alt=&#34;&#34; width=&#34;164&#34; height=&#34;209&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;点击index.html文件就能查看效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-379&#34; title=&#34;5&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/51.png&#34; alt=&#34;&#34; width=&#34;638&#34; height=&#34;359&#34; /&gt;
+&lt;h3&gt;5、上传&lt;/h3&gt;
+最后吧文件放到网站空间，注意正确的链接地址。一切ok。&lt;/p&gt;
+
+&lt;p&gt;比如我将导出的文件夹 jiangxinyun 放到 img.daniex.info域名的public_html目录下，那链接地址即&lt;a href=&#34;http://img.daniex.info/jiangxinyun&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://img.daniex.info/jiangxinyun&#34;&gt;http://img.daniex.info/jiangxinyun&lt;/a&gt;&lt;/span&gt;&lt;/a&gt; 。&lt;/p&gt;
+
+&lt;p&gt;该相册即本人边写这篇博文边做的相册。是姜行云的一些武侠小说插画，《神雕侠侣》。&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;___________________________________________________&lt;/span&gt;
+&lt;h3&gt;&lt;span style=&#34;color: #ff0000;&#34;&gt;ps:&lt;/span&gt;&lt;/h3&gt;
+还有个类似的 叫 &lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;S&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;impleViewer&lt;/span&gt;&lt;/a&gt;&lt;/span&gt; ，使用方法和这个autoviewer一样，效果看 &lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;a href=&#34;http://www.simpleviewer.net/simpleviewer/examples/modern/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>端午</title>
+      <link>http://www.daniex.tk/blog/2010/the-dragon-boat-festival/</link>
+      <pubDate>Wed, 16 Jun 2010 10:56:09 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/the-dragon-boat-festival/</guid>
+      <description>&lt;p&gt;中午 hc 拿来他女友买的粽子，众人分而食之，就当是午饭，就当是过端午节的仪式了。&lt;/p&gt;
+
+&lt;p&gt;这个3天假期一晃就过，俺还没睡清醒就又要爬起去上班！吃喝、毕业晚会准备、睡觉、游戏，然后就没时间了。公司发的两盒粽子没地方煮，惨剧啊！暗黑建了个野蛮人号，玩起来又太耗时间不愿多玩。帮db写程序，截至此时还没开工。WordPress搞了半天没没搞出什么花头。还想在这里弄个相册，弄个推特，再弄个啥？18省下一步操作感觉艰难得很。没有看电影，没有看书，lie to me看了一集，世界杯也没好好看一场！&lt;/p&gt;
+
+&lt;p&gt;据说老妈给我算命，25~26结婚，工作上容易被人抢功，不当心就被人抢了职务！囧！&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;阿迪王&#34; src=&#34;http://farm6.staticflickr.com/5041/5230306097_efca2dbc67.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;375&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>javax.mail.internet API 学习 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="Http,IP,java,javax.mail.internet API 学习,MIME,pop,smtp,主题,书,协议,格式,编码,邮件">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>javax.mail.internet API 学习</h1>
+    <span class="post-date">Jan 20, 2012 &middot; 2 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/java">java</a><a class="label" href="http://www.daniex.tk/categories/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/Http">Http</a><a class="label" href="http://www.daniex.tk/tags/IP">IP</a><a class="label" href="http://www.daniex.tk/tags/java">java</a><a class="label" href="http://www.daniex.tk/tags/javax.mail.internet-API-%E5%AD%A6%E4%B9%A0">javax.mail.internet API 学习</a><a class="label" href="http://www.daniex.tk/tags/MIME">MIME</a><a class="label" href="http://www.daniex.tk/tags/pop">pop</a><a class="label" href="http://www.daniex.tk/tags/smtp">smtp</a><a class="label" href="http://www.daniex.tk/tags/%E4%B8%BB%E9%A2%98">主题</a><a class="label" href="http://www.daniex.tk/tags/%E4%B9%A6">书</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E6%A0%BC%E5%BC%8F">格式</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a><a class="label" href="http://www.daniex.tk/tags/%E9%82%AE%E4%BB%B6">邮件</a>
+    </span>
+    <p>前些天编程，用了个这样的数据传输方式，在http POST消息中传MIME数据包。于是找到javax.mail.internet的包用。在Java EE 1.5的库里包含这个包。现在有的MIME包不仅仅这一个，还有很多，更有千秋。比如这个包的Countent-Type 的 boundary字段是自动生成的，还不太方便取出来。有些包是能够自己设置boundary字段。</p>
+
+<p>下面转载了这个包的基本使用方法，供学习参考。<span style="color: #3366ff;"><a title="MIME详细介绍" href="http://daniex.info/mime-details.html" target="_blank"><span style="color: #3366ff;">MIME学习请参考这里</span></a></span></p>
+
+<p>++++++++++++++++++++++++++++++++++++++++++++</p>
+
+<p>打开JavaMail.jar文件，我们将发现在javax.mail的包下面存在着一些核心类：Session、Message、Address、Authenticator、Transport、Store、Folder。而且在 javax.mail.internet包中还有一些常用的子类。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>A．Session</strong></p>
+
+<p>Session类定义了基本的邮件会话。就像Http会话那样，我们进行收发邮件的工作都是基于这个会话的。Session对象利用了java.util.Properties对象获得了邮件服务器、用户名、密码信息和整个应用程序都要使用到的共享信息。</p>
+
+<p>Session类的构造方法是私有的，所以我们可以使用Session类提供的getDefaultInstance()这个静态工厂方法获得一个默认的Session对象：
+<div>
+<blockquote>
+<div>1 Properties props = new Properties();// fill props with any information
+2  Session session = Session.getDefaultInstance(props, null);</div></blockquote>
+</div>
+或者使用getInstance()这个静态工厂方法获得自定义的Session:
+<div>
+<blockquote>
+<div>1 Properties props = new Properties();// fill props with any information
+2  Session session = Session.getInstance(props, null);</div></blockquote>
+</div>
+从上面的两个例子中不难发现，getDefaultInstance()和getInstance()方法的第二个参数都是null，这是因为在上面的例子中并没有使用到邮件授权，下文中将对授权进行详细介绍。
+从很多的实例看，在对mail server进行访问的过程中使用共享的Session是足够的，即使是工作在多个用户邮箱的模式下也不例外。</p>
+
+<p><strong>B．</strong><strong>Message</strong></p>
+
+<p>当我们建立了Session对象后，便可以构造被 发送的信息体了。在这里SUN提供了Message类型来帮助开发者完成这项工作。由于Message是一个抽象类，大多数情况下，我们使用 javax.mail.internet.MimeMessage这个子类，该类是使用MIME类型、MIME信息头的邮箱信息。信息头只能使用US- ASCII字符，而非ASCII字符将通过编码转换为ASCII的方式使用。</p>
+
+<p>为了建立一个MimeMessage对象，我们必须将Session对象作为MimeMessage构造方法的参数传入：
+<div>
+<blockquote>
+<div>1 MimeMessage message = new MimeMessage(session);</div></blockquote>
+</div>
+注意：对于MimeMessage类来讲存在着多种构造方法，比如使用输入流作为参数的构造方法。</p>
+
+<p>在建立了MimeMessage对象后，我们需要设置它的各个part，对于MimeMessage类来说，这些part就是MimePart接口。最基本的设置信息内容的方法就是通过表示信息内容和米么类型的参数调用setContent()方法：
+<div>
+<blockquote>
+<div>1 message.setContent(&ldquo;Hello&rdquo;, &ldquo;text/plain&rdquo;);</div></blockquote>
+</div>
+然而，如果我们所使用的MimeMessage中信息内容是文本的话，我们便可以直接使用setText()方法来方便的设置文本内容：
+<div>
+<blockquote>
+<div>1 message.setText(&ldquo;Hello&rdquo;);</div></blockquote>
+</div>
+前面所讲的两种方法，对于文本信息，后者更为合适。而对于其它的一些信息类型，比如HTML信息，则要使用前者。
+别忘记了，使用setSubject()方法对邮件设置邮件主题：
+<div>
+<blockquote>
+<div>1 message.setSubject(&ldquo;First&rdquo;);</div></blockquote>
+</div>
+<strong>C．Address</strong></p>
+
+<p>到这里，我们已经建立了Session和Message，下面将介绍如何使用邮件地址类：Address。像Message一样，Address类也是一个抽象类，所以我们将使用javax.mail.internet.InternetAddress这个子类。</p>
+
+<p>通过传入代表邮件地址的字符串，我们可以建立一个邮件地址类：
+<div>
+<blockquote>
+<div>1 Address address = new InternetAddress(&ldquo;president@whitehouse.gov&rdquo;);</div></blockquote>
+</div>
+如果要在邮件地址后面增加名字的话，可以通过传递两个参数：代表邮件地址和名字的字符串来建立一个具有邮件地址和名字的邮件地址类：
+<div>
+<blockquote>
+<div>1 Address address = new InternetAddress(&ldquo;president@whitehouse.gov&rdquo;, &ldquo;George Bush&rdquo;);</div></blockquote>
+</div>
+本文在这里所讲的邮件地址类是为了设置邮件信息的发信人和收信人而准备的，在建立了邮件地址类后，我们通过message的setFrom()和setReplyTo()两种方法设置邮件的发信人：
+<div>
+<blockquote>
+<div>1 message.setFrom(address);message.setReplyTo(address);</div></blockquote>
+</div>
+若在邮件中存在多个发信人地址，我们可用addForm()方法增加发信人：
+<div>
+<blockquote>
+<div>1 Address address[] = &hellip;;
+2 message.addFrom(address);</div></blockquote>
+</div>
+为了设置收信人，我们使用addRecipient()方法增加收信人，此方法需要使用Message.RecipientType的常量来区分收信人的类型：
+<div>
+<blockquote>
+<div>1 message.addRecipient(type, address)</div></blockquote>
+</div>
+下面是Message.RecipientType的三个常量：
+<div>
+<blockquote>
+<div>1 Message.RecipientType.TO
+2 Message.RecipientType.CC
+3 Message.RecipientType.BCC</div></blockquote>
+</div>
+因此，如果我们要发送邮件给总统，并发用一个副本给第一夫人的话，下面的方法将被用到：
+<div>
+<blockquote>
+<div>1 Address toAddress = new InternetAddress(&ldquo;vice.president@whitehouse.gov&rdquo;);
+2 Address ccAddress = new InternetAddress(&ldquo;first.lady@whitehouse.gov&rdquo;);
+3 message.addRecipient(Message.RecipientType.TO, toAddress);
+4 message.addRecipient(Message.RecipientType.CC, ccAddress);</div></blockquote>
+</div>
+JavaMail API并没有提供检查邮件地址有效性的机制。当然我们可以自己完成这个功能：验证邮件地址的字符是否按照RFC822规定的格式书写或者通过DNS服务器上的MX记录验证等。</p>
+
+<p><strong>D．Authenticator</strong></p>
+
+<p>像java.net类那样，JavaMail API通过使用授权者类 （Authenticator）以用户名、密码的方式访问那些受到保护的资源，在这里“资源”就是指邮件服务器。在javax.mail包中可以找到这个 JavaMail的授权者类（Authenticator）。</p>
+
+<p>在使用Authenticator这个抽象类时，我们必须采用继承该抽象类的方式，并且该继 承类必须具有返回PasswordAuthentication对象（用于存储认证时要用到的用户名、密 码）getPasswordAuthentication()方法。并且要在Session中进行注册，使Session能够了解在认证时该使用哪个类。</p>
+
+<p>下面代码片断中的MyAuthenticator就是一个Authenticator的子类：
+<div>
+<blockquote>
+<div>1 Properties props = new Properties();// fill props with any information
+2  Authenticator auth = new MyAuthenticator();
+3 Session session = Session.getDefaultInstance(props, auth);</div></blockquote>
+</div>
+<strong>E．Transport</strong></p>
+
+<p>在发送信息时，Transport类将被用到。这个类实现了发送信息的协议（通称为SMTP），此类是一个抽象类，我们可以使用这个类的静态方法send()来发送消息：
+<div>
+<blockquote>
+<div>1 Transport.send(message);</div></blockquote>
+</div>
+当然，方法是多样的。我们也可由Session获得相应协议对应的Transport实例。并通过传递用户名、密码、邮件服务器主机名等参数建立与邮件服务器的连接，并使用sendMessage()方法将信息发送，最后关闭连接：
+<div>
+<blockquote>
+<div>1 message.saveChanges(); // implicit with send()
+2  Transport transport = session.getTransport(&ldquo;smtp&rdquo;);
+3 transport.connect(host, username, password);
+4 transport.sendMessage(message, message.getAllRecipients());
+5 transport.close();</div></blockquote>
+</div>
+评论：上面的方法是一个很好的方法，尤其是在我们在同一个邮件服务器上发送多个邮件时。因为 这时我们将在连接邮件服务器后连续发送邮件，然后再关闭掉连接。send()这个基本的方法是在每次调用时进行与邮件服务器的连接的，对于在同一个邮件服 务器上发送多个邮件来讲可谓低效的方式。</p>
+
+<p>注意：如果需要在发送邮件过程中监控mail命令的话，可以在发送前设置debug标志：
+<div>
+<blockquote>
+<div>1 session.setDebug(true)；</div></blockquote>
+</div>
+<strong>F．Store和Folder</strong></p>
+
+<p>接 收邮件和发送邮件很类似都要用到Session。但是在获得Session后，我们需要从Session中获取特定类型的Store，然后连接到 Store，这里的Store代表了存储邮件的邮件服务器。在连接Store的过程中，极有可能需要用到用户名、密码或者Authenticator。
+<div>
+<blockquote>
+<div>1 Store store = session.getStore(&ldquo;pop3&rdquo;);
+2 store.connect(host, username, password);</div></blockquote>
+</div>
+在连接到Store后，一个Folder对象即目录对象将通过Store的getFolder()方法被返回，我们可从这个Folder中读取邮件信息：
+<div>
+<blockquote>
+<div>1 Folder folder = store.getFolder(&ldquo;INBOX&rdquo;);
+2 folder.open(Folder.READ_ONLY);
+3 Message message[] = folder.getMessages();</div></blockquote>
+</div>
+上面的例子首先从Store中获得INBOX这个Folder（对于POP3协议只有一个名为INBOX的Folder有效），然后以只读（Folder.READ_ONLY）的方式打开Folder，最后调用Folder的 getMessages()方法得到目录中所有Message的数组。</p>
+
+<p>注意：对于POP3协议只 有一个名为INBOX的Folder有效，而对于IMAP协议，我们可以访问多个Folder（想想前面讲的IMAP协议）。而且SUN在设计 Folder的getMessages()方法时采取了很智能的方式：首先接收新邮件列表，然后再需要的时候（比如读取邮件内容）才从邮件服务器读取邮件 内容。</p>
+
+<p>在读取邮件时，我们可以用Message类的getContent()方法接收邮件或是writeTo()方法将邮件保存，getContent()方法只接收邮件内容（不包含邮件头），而writeTo()方法将包括邮件头。
+<div>
+<blockquote>
+<div>1 System.out.println(((MimeMessage)message).getContent());</div></blockquote>
+</div>
+在读取邮件内容后，别忘记了关闭Folder和Store。
+<div>
+<blockquote>
+<div>1 folder.close(aBoolean);
+2 store.close();</div></blockquote>
+</div>
+传递给Folder.close()方法的boolean类型参数表示是否在删除操作邮件后更新Folder。</p>
+
+<p>转自：<a href="http://tech.ccidnet.com/art/3741/20060531/567247_1.html">http://tech.ccidnet.com/art/3741/20060531/567247_1.html</a></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>CAN简介 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="CAN,Http,协议,同步">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>CAN简介</h1>
+    <span class="post-date">Mar 17, 2013 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/CAN">CAN</a><a class="label" href="http://www.daniex.tk/tags/Http">Http</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E5%90%8C%E6%AD%A5">同步</a>
+    </span>
+    <p>CAN全称为Controller Area Network，即控制器局域网，由德国Bosch公司最先提出，是国际上应用最广泛的现场总线之一。最初CAN 被设计作为汽车环境中的通讯，在汽车电子控制装置之间交换信息形成汽车电子控制网络。由于其卓越的性能、极高的可靠性和低廉的价格现已广泛应用于工业现场控制、医疗仪器等众多领域。</p>
+
+<p>CAN协议是建立在OSI 7层开放互连参考模型基础之上的。但CAN协议只定义了模型的最下面两层:数据链路层和物理层，仅保证了节点间无差错的数据传输。CAN的应用层协议必须由CAN 用户自行定义，或采用一些国际组织制订的标准协议。应用最为广泛的是DeviceNet和CANopen，分别广泛应用于过程控制和机电控制领域。但此类协议一般结构比较复杂，更适合复杂大型系统的应用。
+<div>
+<div id="pageNo-1" data-page-no="1" data-scale="0.70709782964164" data-render="1"></p>
+
+<p> CAN的技术规范</p>
+
+<p>(1) 帧类型</p>
+
+<p>在CAN总线中，有四种不同的帧类型:</p>
+
+<p>数据帧(Data Frame) 数据帧带有应用数据;</p>
+
+<p>远程帧(Remote Frame) 通过发送远程帧可以向网络请求数据，启动其他资源节点传送他们各自的数据，远程帧包含6个不同的位域:帧起始、仲裁域、控制域、CRC域、应答域、帧结尾。仲裁域中的RTR位的隐极性表示为远程帧;</p>
+
+<p>错误帧(Error Frame)错误帧能够报告每个节点的出错，由两个不同的域组成，第一个域是不同站提供的错误标志的叠加，第二个域是错误界定符;</p>
+
+<p>过载帧(Overload Frame)如果节点的接收尚未准备好就会传送过载帧，由两个不同的域组成，第一个域是过载标志，第二个域是过载界定符。</p>
+
+<p>(2) 数据帧结构</p>
+
+<p><img class="aligncenter size-full wp-image-1215" alt="20130317161704028" src="http://daniex.info/wp-content/uploads/2013/03/20130317161704028.png" width="548" height="331" />数据帧由以下7个不同的位域(Bit Field)组成:帧起始、仲裁域、控制域、数据域、CRC域、应答域、帧结尾。</p>
+
+<p>帧起始:标志帧的开始，它由单个显性位构成，在总线空闲时发送，在总线上产生同步作用。</p>
+
+<p>仲裁域:由11位标识符(ID10-ID0)和远程发送请求位(RTR)组成，RTR位为显性表示该帧为数据帧，隐性表示该帧为远程帧;标识符由高至低按次序发送，且前7位 (ID10-ID4)不能全为显性位。标识符ID用来描述数据的含义而不用于通信寻址，CAN总线的帧是没有寻址功能的。标识符还用于决定报文的优先权，ID值越低优先权越高，在竞争总线时，优先权高的报文优先发送，优先权低报文退出总线竞争。CAN总线竞争的算法效率很高，是一种非破坏性竞争。</p>
+
+<p></div>
+</div>
+<div>
+<div id="pageNo-2" data-page-no="2" data-scale="0.70709782964164" data-render="1"></p>
+
+<p>控制域:为数据长度码 (DLC3-DLC0)，表示数据域中数据的字节数，不得超过8。</p>
+
+<p>数据域:由被发送数据组成，数目与控制域中设定的字节数相等，第一个字节的最高位首先被发送。其长度在标准帧中不超过8个字节。</p>
+
+<p>CRC域:包括CRC(循环冗余码校验)序列(15位)和CRC界定符(1个隐性位)，用于帧校验。</p>
+
+<p>应答域:由应答间隙和应答界定符组成，共两位;发送站发送两个隐性位，接收站在应答间隙中发送显性位。应答界定符必须是隐性位。</p>
+
+<p>帧结束:由7位隐性位组成。</p>
+
+<p></div>
+</div></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

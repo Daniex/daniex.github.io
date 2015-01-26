@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>用openssl命令制作生成证书和自签名 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="openSSL,windows">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>用openssl命令制作生成证书和自签名</h1>
+    <span class="post-date">Apr 16, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/categories/SSL">SSL</a><a class="label" href="http://www.daniex.tk/categories/Windows">Windows</a><a class="label" href="http://www.daniex.tk/categories/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/openSSL">openSSL</a><a class="label" href="http://www.daniex.tk/tags/windows">windows</a>
+    </span>
+    <p>前文描述了如何在window下按安装openssl后，这里说下如何利用openssl生成证书。</p>
+
+<p>1、  新建工作目录，将openssl安装路径下的apps/CA.pl 和 apps/openssl.cnf（在window中该文件会显示成名为openssl的快速拨号程序）文件复制到该路径。可以修改openssl.cnf文件中的一些参数。启动控制台，执行命令
+CA.pl -newca
+生成CA工作所需的文件和文件夹。即该目录下新生成的demoCA文件夹。将openssl安装路径下的apps\demoCA\serial文件复制到生成的demoCA文件夹下。</p>
+
+<p>可以略去该步骤，在安装路径\apps下执行后续步骤。</p>
+
+<p>2、  生成根证书和对应的私钥
+openssl req -new -x509 -keyout cakey.pem -out cacert.pem -config openssl.cnf
+记住输入的pass phrase、国家、省、组织等参数，不能全为空。将生成的cakey.pem放到demoCA/private目录下，将cacert.pem放到demoCA目录下。
+注意：在window下需要openssl命令都需要增加-config openssl.cnf参数，防止因找不到配置文件而报错。Linux下不需要该参数。
+<img alt="" src="http://farm6.static.flickr.com/5189/5620697845_30c20ca29e.jpg" title="生成证书" class="aligncenter" width="500" height="483" /></p>
+
+<p>3、  生成服务证书私钥和证书请求文件
+openssl req -newkey rsa:2048 -out newCSR.pem -keyout newKey.pem -config openssl.cnf
+如果要生成多个证书私钥对，注意输入Common Name值要不同。如果不是自签名，可将生成的证书请求文件newCSR.pem交由相关组织签发证书。</p>
+
+<p>4、  用根证书签发该服务证书
+openssl ca -in newCSR.pem -out newCert.pem -config openssl.cnf
+<img alt="" src="http://farm6.static.flickr.com/5189/5620697845_30c20ca29e.jpg" title="签名" class="aligncenter" width="500" height="483" /></p>
+
+<p>至此，我们生成了根证书和私钥cakey.pem、cacert.pem。用于服务由根证书签发了的证书newCert.pem和对应私钥newKey.pem。openssl编程过程中，需要验证newCert.pem和newKey.pem是否匹配。用根证书cacert.pem验证newCert.pem是否可信。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

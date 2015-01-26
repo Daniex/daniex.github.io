@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Syslog on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/syslog/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 28 Apr 2011 08:33:33 &#43;0000</updated>
+    
+    <item>
+      <title>系统日志工具syslog-ng相关介绍</title>
+      <link>http://www.daniex.tk/blog/2011/syslog-ng-system-logging/</link>
+      <pubDate>Thu, 28 Apr 2011 08:33:33 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/syslog-ng-system-logging/</guid>
+      <description>&lt;p&gt;遇到日志相关的问题，由于完全不了解Linux下专业的日志是怎么弄的，遇到Syslog这类词都是一头雾水。于是查了点资料，Syslog是什么？Syslogd是什么？syslog-ng又是什么？可以直接查wiki去了解。&lt;a title=&#34;Syslog wikipedia&#34; href=&#34;http://en.wikipedia.org/wiki/Syslog&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Syslog&#34;&gt;http://en.wikipedia.org/wiki/Syslog&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;项目中用到了syslog-ng,简单的理解是就是一个专门来记录系统日志的服务。通过socket口将要记录的信息发送到这个服务中，通过配置，可以将要输出的信息记录下来。于是贴一篇介绍的文章。安装好syslog-ng后，配置文件在/etc/syslog-ng/syslog-ng.conf&lt;/p&gt;
+
+&lt;p&gt;下一代系统日志工具(syslog-ng)&lt;/p&gt;
+
+&lt;p&gt;原著：Balázs Scheidler
+来源：&lt;a title=&#34;恒哥天地&#34; href=&#34;http://blogold.chinaunix.net/u2/62871/showart_527577.html&#34; target=&#34;_blank&#34;&gt;恒哥天地&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;1.syslog-ng简介
+2.消息路径&lt;/p&gt;
+
+&lt;p&gt;消息源
+过滤器
+日志消息目的
+日志路径
+选项
+日志消息目的驱动器&lt;/p&gt;
+
+&lt;p&gt;3.参考
+消息源驱动器&lt;/p&gt;
+
+&lt;p&gt;4.优化syslog-ng&lt;/p&gt;
+
+&lt;p&gt;设置垃圾收集参数
+设置输出队列的大小
+设置同步(sync)参数&lt;/p&gt;
+
+&lt;p&gt;1.syslog-ng简介&lt;/p&gt;
+
+&lt;p&gt;在UNIX系统的维护中，经常会忽略系统事件的处理。经常检查系统日志对于保持系统的安全和正常运行是至关重要的。但是，系统日志中有太多的噪音，一些不是很重要的信息会掩盖重要的信息。目前的工具很难甄别出系统管理者感兴趣的信息。&lt;/p&gt;
+
+&lt;p&gt;用户可以通过指定facility/priority，把消息发到不同的地方。系统预先定义了12+8个(mail、news、auth等)facility，八个不同的优先级(alert到debug)。&lt;/p&gt;
+
+&lt;p&gt;这其中存在一个问题，大量的程序使用同样的facility(daemon)，把日志都保存到一个文件中(messages)，即使它们毫无关联。这样就造成用户很难筛选出自己感兴趣的东西。&lt;/p&gt;
+
+&lt;p&gt;第二个问题是，大多数的程序无法改变日志配置，只能修改软件的源代码。&lt;/p&gt;
+
+&lt;p&gt;因此，使用facility作为过滤不是一个好办法。最好能够有一些runtime选项，使用这些选项指定日志facility，建立新的facility。&lt;/p&gt;
+
+&lt;p&gt;syslog- ng的一个设计原则就是建立更好的消息过滤粒度。syslog-ng能够进行基于内容和优先权/facility的过滤。另一个设计原则是更容易进行不同防火墙网段的信息转发，它支持主机链，即使日志消息经过了许多计算机的转发，也可以找出原发主机地址和整个转发链。最后的一个设计原则就是尽量使配置文件强大和简洁。&lt;/p&gt;
+
+&lt;p&gt;2.消息路径&lt;/p&gt;
+
+&lt;p&gt;一个消息路径是由一个或者多个日志消息源、一个或者多个过滤规则以及一个或者多个日志消息目的组成的。来自某个日志消息源的消息进入syslog-ng，如果消息命中某条规则，syslog-ng就把它发送到对应的日志消息目的。&lt;/p&gt;
+
+&lt;p&gt;消息源&lt;/p&gt;
+
+&lt;p&gt;一些日志消息源驱动器(source driver)组成一个消息源，这些驱动器使用给定的方法收集日志消息。譬如，有的syslog()系统调用使用的AF_UNIX、SOCK_STREAM风格的套接字源驱动器。&lt;/p&gt;
+
+&lt;p&gt;在配置文件中，你可以使用下面的语法声明一个日志消息源：&lt;/p&gt;
+
+&lt;p&gt;source  { source-driver(params); source-driver(params); &amp;hellip; };&lt;/p&gt;
+
+&lt;p&gt;identifier是给定消息源的唯一标志，但是这个标志符不能和保留字有冲突。&lt;/p&gt;
+
+&lt;p&gt;你可以控制使用哪个驱动器来收集日志消息，因而你需要知道你的系统和他的内部syslogd是如何通讯的。下面介绍一下某些平台中，syslogd是如何工作的。&lt;/p&gt;
+
+&lt;p&gt;Linux 一个叫作/dev/log的SOCK_STREAM unix套接字
+BSD 一个叫作/var/run/log的SOCK_STREAM unix套接字
+Solaris(2.5或以下) 一个叫做/dev/log的SVR4风格的STREAMS设备
+solaris(2.6或以上) 除了2.6之前版本使用的STREAMS设备之外，使用了一种新的多线程IPC方法调用门。默认情况下，这个调用门是/etc/syslog_door，由syslogd使用。&lt;/p&gt;
+
+&lt;p&gt;在syslog-ng中，每个可能的通讯机制都有对应的日志消息源驱动器。例如：如果要打开一个SOCK_DGRAM风格的UNIX套接字进行通讯，你就会用到unix-dgram驱动器，同样SOCK_STREAM式的通讯需要unix-stream驱动器。&lt;/p&gt;
+
+&lt;p&gt;例2-1.Linux中的一个源指令&lt;/p&gt;
+
+&lt;p&gt;source src { unix-stream(&amp;ldquo;/dev/log&amp;rdquo;); internal(); udp(ip(0.0.0.0) port(514)); };&lt;/p&gt;
+
+&lt;p&gt;驱动器可以使用参数，参数有些是必需的，有些是可选的。必需的参数一般在前面。上面的指令中，/dev/log就是必需参数。&lt;/p&gt;
+
+&lt;p&gt;下面是可用的源驱动器：&lt;/p&gt;
+
+&lt;p&gt;internal syslog-ng内部产生的消息
+unix-stream 打开指定的SOCK_STREAM模式的unix套接字，接收日志消息
+unix-dgram 打开指定的SOCK_DGRAM模式的unix套接字，接收日志消息
+file 打开指定的文件读取日志信息
+pipe,fifo 打开指定的管道或者FIFO设备，读取日志信息
+tcp 在指定的TCP端口接收日志消息
+udp 在指定的UDP端口接收日志消息
+sun-stream(s) 在solaris系统中，打开一个(多个)指定的STREAM设备，从其中读取日志消息&lt;/p&gt;
+
+&lt;p&gt;在下一章中，我们将详细介绍每个日志消息源驱动器。&lt;/p&gt;
+
+&lt;p&gt;过滤器&lt;/p&gt;
+
+&lt;p&gt;在syslog-ng中，过滤器执行日志路由。你可以使用syslog-ng的内部函数编写布尔表达式，来决定日志信息是否通过。&lt;/p&gt;
+
+&lt;p&gt;过滤器也都有唯一的标志符，语法如下：&lt;/p&gt;
+
+&lt;p&gt;fileter  { expression;};&lt;/p&gt;
+
+&lt;p&gt;表达式中可以包含逻辑操作符(and、or、not)和函数。&lt;/p&gt;
+
+&lt;p&gt;例2-2.一个搜索来自blurp主机，包含deny的日志消息的过滤指令&lt;/p&gt;
+
+&lt;p&gt;filter f_blurp_deny { host(&amp;ldquo;blurp&amp;rdquo;) and match(&amp;ldquo;deny&amp;rdquo;); };&lt;/p&gt;
+
+&lt;p&gt;下面是syslog-ng的过滤函数：&lt;/p&gt;
+
+&lt;p&gt;facility() 根据设备选择日志消息
+level()或者priority() 根据优先级选择日志消息
+program() 日志消息的程序名是否匹配一个正则表达式
+host() 日志消息的主机名是否和一个正则表达式匹配
+match() 对日志消息的内容进行正则匹配
+filter() 调用另一条过滤规则并判断它的值&lt;/p&gt;
+
+&lt;p&gt;关于这些函数，后面的章节中将有更为详细的介绍。&lt;/p&gt;
+
+&lt;p&gt;有一个特殊的过滤器标志符DEFAULT，用于捕获所有没有处理的日志消息。例如：&lt;/p&gt;
+
+&lt;p&gt;options { keep_hostname(yes); };&lt;/p&gt;
+
+&lt;p&gt;source src { unix-stream(&amp;ldquo;proba2&amp;rdquo;); internal(); };&lt;/p&gt;
+
+&lt;p&gt;destination ftpd { file(&amp;ldquo;ftplog&amp;rdquo;); };
+destination named { file(&amp;ldquo;namedlog&amp;rdquo;); };
+destination daemon { file(&amp;ldquo;daemonlog&amp;rdquo;); };&lt;/p&gt;
+
+&lt;p&gt;filter f_ftpd { match(&amp;ldquo;ftp&amp;rdquo;); };
+filter f_named { match(&amp;ldquo;named&amp;rdquo;); };
+filter f_daemon { facility(daemon); };&lt;/p&gt;
+
+&lt;p&gt;log { source(src); filter(f_ftpd); destination(ftpd); };
+log { source(src); filter(f_named); destination(named); };
+log { source(src); filter(f_daemon); filter(DEFAULT); destination(daemon); };&lt;/p&gt;
+
+&lt;p&gt;在这个例子中，default过滤器捕获所有没有被f_ftpd和f_named过滤器捕获的facility是daemon的日志消息。&lt;/p&gt;
+
+&lt;p&gt;日志消息目的&lt;/p&gt;
+
+&lt;p&gt;destination指定匹配过滤规则的日志消息的去处。和日志消息源类似，日志消息目的可以包括一些目的驱动器，指定日志的派发方向。你需要使用如下语法来声明日志消息目的：&lt;/p&gt;
+
+&lt;p&gt;destination  { destination-driver(params); destination-driver(params); &amp;hellip; };&lt;/p&gt;
+
+&lt;p&gt;下面是syslog-ng支持的日志消息目的驱动器：&lt;/p&gt;
+
+&lt;p&gt;file 日志消息写到指定的文件
+fifo,pipe 把日志消息写到指定的管道
+unix-stream 把日志消息发送到给定的SOCK_STREAM类型的UNIX套接字(Linux)
+unix-dgram 把日志消息发送到给定的SOCK_DGRAM类型的UNIX套接字(BSD)
+udp 把日志消息发送到指定主机的UDP端口
+TCP 把日志消息发送到指定主机的TCP端口
+usertty 如果用户登录，把日志发送到指定的终端
+program fork并启动指定的程序，把日志消息发送到这个进程的标准输出。&lt;/p&gt;
+
+&lt;p&gt;详情请参考下面的章节。&lt;/p&gt;
+
+&lt;p&gt;日志路径&lt;/p&gt;
+
+&lt;p&gt;前面的章节中，我们学习了如何定义消息源、过滤器和消息目的。现在我们要把这些结合起来形成一条完整的指令。凡是来源于指定的消息源，匹配所有指定的过滤器，并送到指定的地址。其语法如下：&lt;/p&gt;
+
+&lt;p&gt;log { source(s1); source(s2); &amp;hellip;
+filter(f1); filter(f2); &amp;hellip;
+destination(d1); destination(d2); &amp;hellip; };&lt;/p&gt;
+
+&lt;p&gt;日志路径中的成员是顺序执行的。&lt;/p&gt;
+
+&lt;p&gt;选项&lt;/p&gt;
+
+&lt;p&gt;你可以通过设置一些选项来改变syslog-ng的行为。设置选项的语法一般是：
+options { option1(params); option2(params); &amp;hellip; };&lt;/p&gt;
+
+&lt;p&gt;每个选项也可以有自己的参数。&lt;/p&gt;
+
+&lt;p&gt;以下是syslog-ng支持的参数：&lt;/p&gt;
+
+&lt;p&gt;名字 参数类型 描述
+time_reopen() 数字 一个断开的连接重新连接之前需要等待的时间
+time_reap() 数字 一个闲置的目标文件关闭之前需要等待的时间
+sync_freq() 数字 在写入文件之前，可以缓冲的日志消息行数
+mark_freq() 数字 目前尚未实现
+log_fifo_size() 数字 输出队列的行数
+chain_hostnames() yes/no 打开/关闭主机名链(用于日志转发)
+use_time_recvd() yes/no 使用收到日志消息的时间，不用日志消息中指定的时间
+use_dns() yes/no 打开/关闭DNS查询功能。因为DNS查询无法返回会造成syslog-ng处于阻塞状态，从而造成拒绝服务攻击。为了避免这种情况的出现，应该使用防火墙严格保护使用syslog-ng的网络节点，并确认syslog-ng使用的所有主机都是可以解析的。
+use_fqdn() yes/no 使用完整的域名
+gc_idle_threshold() 数字 当syslog-ng空闲时，设置其进入垃圾信息收集状态的阀值。一旦分配的对象数达到了这个数字，syslog-ng就启动垃圾信息收集状态。默认值是1000。
+gc_busy_threshold() 数字 当syslog-ng忙时，设置其进入垃圾信息收集状态的阀值。一旦分配的对象数达到这个数字，syslog-ng就启动垃圾信息收集状态。默认值是3000。&lt;/p&gt;
+
+&lt;p&gt;3.参考&lt;/p&gt;
+
+&lt;p&gt;本章，将详细介绍配置文件中使用的驱动器和选项。&lt;/p&gt;
+
+&lt;p&gt;消息源驱动器&lt;/p&gt;
+
+&lt;p&gt;internal()&lt;/p&gt;
+
+&lt;p&gt;所有syslog-ng内部产生的日志消息都来自这个日志消息源。如果你需要syslog-ng自身山城的警告、错误和提醒信息，就需要在配置文件中加入以下声明：&lt;/p&gt;
+
+&lt;p&gt;Declaration: internal()&lt;/p&gt;
+
+&lt;p&gt;如果这个消息源驱动器没有被引用，syslog-ng会向你输出报警信息。&lt;/p&gt;
+
+&lt;p&gt;例3-1.使用inernal()日志消息源驱动器&lt;/p&gt;
+
+&lt;p&gt;source s_local { internal(); };&lt;/p&gt;
+
+&lt;p&gt;unix-stream()和unix-dgram()&lt;/p&gt;
+
+&lt;p&gt;这两个日志消息源驱动器比较相似，都打开AF_UNIX类型的套接字，在套接字上监听日志消息。unix-stream()主要用在Linux，使用 SOCK_STREAM参数，是面向连接的，不会造成日志消息的丢失；unix-dgram()用在BSD系统上，使用SOCK_DGRAM参数，是无连接的，如果系统过载，会造成日志消息丢失。&lt;/p&gt;
+
+&lt;p&gt;在使用面向连接的协议时，为了避免造成拒绝服务攻击，需要对同时接受的连接数量进行闲置。这由max-connections()参数实现。&lt;/p&gt;
+
+&lt;p&gt;Declaration:
+unix-stream(filename [options]);
+unix-dgram(filename [options]);&lt;/p&gt;
+
+&lt;p&gt;以下选项可以用于unix-stream和unix-dgram日志消息源驱动器的声明：&lt;/p&gt;
+
+&lt;p&gt;名字 参数数据类型 描述
+owner() 字符串 设置套接字的uid，默认是：root
+group() 字符串 设置套接字的gid，默认是：root
+perm() 数字 设置权限掩码。八进制数字以0开头，例如：0755表示rwxr-xr-x。
+keep-alive() yes/no 当syslog-ng重启动，选择是否保持连接，只用于unix-stream()。默认是yes
+max-connections()数字 同时打开的连接的数目限制，只用于unix-stream()日志消息源驱动器。默认是10。&lt;/p&gt;
+
+&lt;p&gt;例3-2.使用unix-stream()和unix-dgram()日志消息源驱动器&lt;/p&gt;
+
+&lt;p&gt;source s_stream { unix-stream(&amp;ldquo;/dev/log&amp;rdquo; max-connections(10)); };
+source s_dgram { unix-dgram(&amp;ldquo;/var/run/log&amp;rdquo;); };&lt;/p&gt;
+
+&lt;p&gt;tcp()和udp()&lt;/p&gt;
+
+&lt;p&gt;使用这两个日志消息源驱动器，你可以使用TCP或者UDP协议从网络上接受日志消息。&lt;/p&gt;
+
+&lt;p&gt;UDP是一种简单的用户数据报协议，使用这种协议可能会发生日志消息的丢失，而且这种协议没有重传机制；TCP是一种面向连接的传输层协议，不会造成日志消息的丢失。&lt;/p&gt;
+
+&lt;p&gt;这两种消息源驱动器都不需要位置参数。默认情况下，syslog-ng会绑定到0.0.0.0:514，在所有有效的端口上监听。可以使用localip()参数来限制其接受连接的端口。&lt;/p&gt;
+
+&lt;p&gt;注意：514端口是rshell使用的端口，因此如果syslog-log和rshell同时使用，你需要为syslog-ng选择另外的端口。&lt;/p&gt;
+
+&lt;p&gt;Declaration:
+tcp([options]);
+udp([options]);&lt;/p&gt;
+
+&lt;p&gt;下面是udp()和tcp()可用的选项：&lt;/p&gt;
+
+&lt;p&gt;选项名 数据类型 描述 默认值
+ip或者iplocalip 字符串 绑定的IP地址 0.0.0.0&lt;/p&gt;
+
+&lt;p&gt;udp()和tcp()使用示例：&lt;/p&gt;
+
+&lt;p&gt;source s_tcp { tcp(ip(127.0.0.1) port(1999); max-connections(10); };
+source s_udp { udp(); };&lt;/p&gt;
+
+&lt;p&gt;file()&lt;/p&gt;
+
+&lt;p&gt;通常，内核会把自己的消息送到一个特殊的文件(BSD系统是/dev/kmsg，Linux系统是/proc/kmsg)，因此你需要使用 file()日志消息源驱动器来指定这个文件。在Linux中，klogd会读取内核信息，并转发到syslogd进程，klogd在转发之前会对内核消息进行处理，使用/boot/System.map文件中的符号名代替原来的地址。如果你不需要这种功能，可以使用-x参数运行klogd。&lt;/p&gt;
+
+&lt;p&gt;Declaration:
+file(filename);&lt;/p&gt;
+
+&lt;p&gt;file()日志消息源驱动器示例：&lt;/p&gt;
+
+&lt;p&gt;source s_file { file(&amp;ldquo;/proc/kmsg&amp;rdquo;); };&lt;/p&gt;
+
+&lt;p&gt;pipe()&lt;/p&gt;
+
+&lt;p&gt;pipe日志消息源驱动器打开一个命名管道，在这个命名管道监听日志消息。在HP-UX系统中，它用于内部日志消息的获得。&lt;/p&gt;
+
+&lt;p&gt;Declaration:
+pipe(filename);&lt;/p&gt;
+
+&lt;p&gt;注意首先你需要使用mkfifo建立命名管道。&lt;/p&gt;
+
+&lt;p&gt;例3-6.使用pipe()日志消息源驱动器&lt;/p&gt;
+
+&lt;p&gt;source s_pipe { pipe(&amp;ldquo;/dev/log&amp;rdquo;); );&lt;/p&gt;
+
+&lt;p&gt;sun-streams()&lt;/p&gt;
+
+&lt;p&gt;solaris使用STREAMS API把日志消息发送到syslogd进程。你必须在编译syslog-ng时加入这个特征。&lt;/p&gt;
+
+&lt;p&gt;新版solaris(&amp;gt;=2.51)中，STREAMS使用一个新的IPC调用门来投递日志消息。syslog-ng支持这种IPC机制。&lt;/p&gt;
+
+&lt;p&gt;日志消息目的驱动器&lt;/p&gt;
+
+&lt;p&gt;日志目的驱动器把日志消息从syslog-ng输出到其它地方：一个文件或者一个网络套接字。&lt;/p&gt;
+
+&lt;p&gt;file()&lt;/p&gt;
+
+&lt;p&gt;file是syslog-ng最重要的日志消息目的驱动器之一。使用它，你可以把日志消息定向到一些文件中。&lt;/p&gt;
+
+&lt;p&gt;在设置日志目的文件时，可以使用宏，从而使用一个简单的file日志消息目的驱动器就可以设置很多目的文件。和PHP/PERL一样，宏也是以$开头。&lt;/p&gt;
+
+&lt;p&gt;如果文件所在的目录不存在，则由create_dirs()来决定是否创建这个目录。&lt;/p&gt;
+
+&lt;p&gt;警告：由于syslog-ng必须跟踪建立的每个文件，因此会消耗一些内存。如果在60秒钟内(也可以由time_reap选项设置)没有新的消息到达某个文件，syslog-ng就会关闭这个文件，释放占用的资源。如果目的文件数和所需内存超出日志服务器的的能力，就会造成拒绝服务攻击。&lt;/p&gt;
+
+&lt;p&gt;最危险的宏是$PROGRAM，因此在不可信的环境中不要使用这个宏。&lt;/p&gt;
+
+&lt;p&gt;以下是可以用于扩展file的宏：&lt;/p&gt;
+
+&lt;p&gt;HOST 日志消息的源发主机名。如果日志消息穿过几个主机，并且chain_hostname()功能已经打开，就使用第一个主机名。
+FACILITY 日志消息来自的日志设备
+PRIOPRITY/LEVEL 日志消息的优先级
+PROGRAM 发送日志消息的程序
+YEAR 发送日志消息的年份，这个宏既可以指定日志消息送出的时间，也可以指定日志消息收到的时间。这由use_time_recvd()选项控制
+MONTH 发送日志消息的月份
+DAY 发送日志消息的日子
+HOUR 顾名思义，
+MIN 同上
+SEC 当然是秒了&lt;/p&gt;
+
+&lt;p&gt;file()日志消息目的驱动器的选项：&lt;/p&gt;
+
+&lt;p&gt;选项 数据类型 描述 默认值
+log_file_size() 数字 输出文件的条目数 使用全局设定
+sync_freq() 数字 当日志消息达到一定数目就写入文件 使用全局设定
+encrypt() yes/no 给日志文件加密 使用全局设定
+compress() yes/no 压缩日志文件 使用全局设定
+owner() 字符串 指定日志文件的所有者 root
+group() 字符串 指定日志文件所有者的组 root&lt;/p&gt;
+
+&lt;p&gt;perm() 数字 建立时日志文件的权限掩码 0600
+dir_per() 数字 建立目录时的权限掩码 0600
+create_dirs() yes/no 如果目录不存在就建立 no&lt;/p&gt;
+
+&lt;p&gt;pipe()&lt;/p&gt;
+
+&lt;p&gt;syslog-ng通过pipe()日志消息目的驱动器把日志消息发送到/dev/xconsole之类的命名管道。&lt;/p&gt;
+
+&lt;p&gt;unix-stream()和unix0dgram()&lt;/p&gt;
+
+&lt;p&gt;syslog-ng通过这两个日志消息目的驱动器把日志消息发送到一个SOCK_STREAM或者SOCK_DGRAM模式的UNIX套接字。&lt;/p&gt;
+
+&lt;p&gt;udp()和tcp()&lt;/p&gt;
+
+&lt;p&gt;使用TCP或者UDP协议把日志消息送到本地网络上或者internet上的另外的主机。&lt;/p&gt;
+
+&lt;p&gt;usertty()&lt;/p&gt;
+
+&lt;p&gt;syslog-ng使用这个日志消息目的驱动器把日志消息送到一个登录用户使用的终端。&lt;/p&gt;
+
+&lt;p&gt;program()&lt;/p&gt;
+
+&lt;p&gt;program()驱动器fork出一个进程，使用给定的参数执行一个特定的程序，然后把日志消息送到这个进程的标准输入设备。&lt;/p&gt;
+
+&lt;p&gt;4.优化syslog-ng&lt;/p&gt;
+
+&lt;p&gt;syslog-ng的默认设置是针对单服务器或者工作站的，而对于一个网络的中央日志主机却远远不够。因此，需要对其进行一些调整和优化。&lt;/p&gt;
+
+&lt;p&gt;设置垃圾收集参数&lt;/p&gt;
+
+&lt;p&gt;syslog-ng有自己的垃圾收集器，而且一旦进入垃圾收集状态就不再接受日志消息。从而造成非连接的传输协议的信息丢失。因此，需要对syslog-ng的垃圾收集状态进行控制，你可以通过以下两个选项来控制其垃圾收集状态。&lt;/p&gt;
+
+&lt;p&gt;gc_idle_threshold()&lt;/p&gt;
+
+&lt;p&gt;这个选项能够设置垃圾收集器在syslog-ng处于空闲状态时的阀值。如果分配的的对象达到这个数字，而且系统处于空闲状态(100msec内没有日志消息到达)，syslog-ng就启动垃圾收集器。此时系统处于空闲状态，因此基本不会造成日志信息的丢失。这个值应该比较小，不过要大于已分配对象的最小值。已分配对象的最小值取决于你的配置，也可以通过-v命令行参数指定。&lt;/p&gt;
+
+&lt;p&gt;gc_busy_threshold()&lt;/p&gt;
+
+&lt;p&gt;如果syslog-ng正忙于接受日志消息(日志消息的间隔小于100msec)，为了防止其吃掉所有内存，也应该运行垃圾收集器。这个值应该比较高，以便在正常情况下不打断日志消息的接收。&lt;/p&gt;
+
+&lt;p&gt;设置输出队列的大小&lt;/p&gt;
+
+&lt;p&gt;为了防止发送日志的daemon程序阻塞，syslog-ng一直在读取其向内的日志通道。如果输出队列已满，就可能造成日志消息的丢失。因此，设置输出队列的大小非常重要，你可以设置全局输出队列的大小，也可以为每个日志消息驱动器设置输出队列的大小。&lt;/p&gt;
+
+&lt;p&gt;options { log_fifo_size(1000); };&lt;/p&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;p&gt;destination d_dmessages { file(&amp;ldquo;/var/log/messages&amp;rdquo; log_fifo_size(1000); };&lt;/p&gt;
+
+&lt;p&gt;输出队列的大小应该合理，这对于大量的日志消息涌来特别重要。如果蜂拥而至的日志信息占据了目标通道的所有带宽，syslog-ng能够把日志消息消息保存到输出队列中，等高峰过去再发出。&lt;/p&gt;
+
+&lt;p&gt;当然，syslog-ng不能测试你的网络带宽，因此如果目的主机在一个噪音很大的网络上，而且日志流量超过网络带宽，syslog-ng也无能为力。&lt;/p&gt;
+
+&lt;p&gt;设置同步(sync)参数&lt;/p&gt;
+
+&lt;p&gt;syslog-ng一般先对日志消息进行缓存。当达到一定的数量，就写入磁盘。注意syslog-ng是对每条日志消息分别使用write()系统调用，而不是成匹写入。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

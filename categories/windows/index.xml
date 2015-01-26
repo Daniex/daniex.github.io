@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Windows on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/categories/windows/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 15 Jan 2013 02:16:09 &#43;0000</updated>
+    
+    <item>
+      <title>资源管理器工具栏菜单栏不见了！</title>
+      <link>http://www.daniex.tk/blog/2013/the-explorer-toolbar-menu-bar-is-gone/</link>
+      <pubDate>Tue, 15 Jan 2013 02:16:09 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/the-explorer-toolbar-menu-bar-is-gone/</guid>
+      <description>&lt;p&gt;办公电脑坑爹地出了个奇怪问题，win+E 键掉资源管理器，发现菜单没有了！工具栏没有了！地址栏也没有了！就只剩左边文件夹树状图和右边我的电脑下盘符列表。打开我的电脑又很正常该有的都有！&lt;/p&gt;
+
+&lt;p&gt;这XP都要淘汰了还让我整这问题。。。找到个方法：&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #000000;&#34;&gt;打开注册表编辑器，找到 HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Toolbar\Explorer，删除 ITBarLayout 。然后关闭编辑器，再打开&lt;b&gt;资源管理器&lt;/b&gt;。OK搞定！&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>win7下使用virtualbox制作mac虚拟机后root用户开启分辨率和输入法问题</title>
+      <link>http://www.daniex.tk/blog/2011/mac-virtual-machine-root-resolution/</link>
+      <pubDate>Thu, 29 Dec 2011 14:55:34 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/mac-virtual-machine-root-resolution/</guid>
+      <description>&lt;p&gt;闲来无事就折腾了下，其实很久之前就想玩下苹果操作系统了，由于自己的笔记本太老土不支持虚拟64位，放弃。最近又有了兴致，就继续折腾。&lt;/p&gt;
+
+&lt;p&gt;mac虚拟机制作已经是老生常谈的话题，我也不多废话，给个链接大家去参考参考，一步步照做就行了。用virtualbox虚拟机安装&lt;/p&gt;
+
+&lt;p&gt;Mac OS 10.6.x详细步骤-用vmware安装失败的可以看这里（不断更新） &lt;a href=&#34;http://bbs.weiphone.com/read-htm-tid-1702048.html&#34;&gt;http://bbs.weiphone.com/read-htm-tid-1702048.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这里说一下虚拟机装完后的两件事。
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;开启Mac OS X系统Root用户权限&lt;/h2&gt;
+&lt;a href=&#34;http://article.yeeyan.org/view/187683/151364&#34;&gt;http://article.yeeyan.org/view/187683/151364&lt;/a&gt;
+&lt;h2 style=&#34;background-color: #e3e3e3;&#34;&gt;怎样更改mac的分辨率&lt;/h2&gt;
+&lt;a href=&#34;http://jingyan.baidu.com/article/4e5b3e198d5bbb91901e24bd.html&#34;&gt;http://jingyan.baidu.com/article/4e5b3e198d5bbb91901e24bd.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;root 权限照着做很快就搞定了。但是分辨率的问题一直没有弄好。照着几个方法都做了还是未成功。最后无奈放弃，我也不弄ios开发，只是看看玩玩。&lt;/p&gt;
+
+&lt;p&gt;上图为证：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;mac&#34; src=&#34;http://farm8.staticflickr.com/7016/6594196203_a1ddc74ef5_z.jpg&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;463&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有个，是输入法的问题。我装的是英文的系统，但是语言包其实他都有了，只要设置下。在system preference 的language&amp;amp;text项目，input source 选项卡中中勾选你要的语言就ok了。当然也可以去下载第三方的输入法。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SYBASE数据库日志详解(转)</title>
+      <link>http://www.daniex.tk/blog/2011/sybase-database-log-r/</link>
+      <pubDate>Sun, 09 Oct 2011 02:18:46 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/sybase-database-log-r/</guid>
+      <description>&lt;p&gt;写了点sybase相关的代码，发现数据库配置的时候少做了点配置，导致日志很快就满，无法进行下一步操作。查了下资料，转载过来。&lt;/p&gt;
+
+&lt;p&gt;弄sybase遇到一个比较诡异的事情，就是ABC三人弄了三个sybase数据库，A连AB没问题连C有问题，B连B没问题连C有问题，C连A没问题，连BC有问题。数据库连接的代码都是一样的，闹腾啊。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h1&gt;SYBASE数据库日志详解&lt;/h1&gt;
+&lt;div&gt;&lt;/p&gt;
+
+&lt;p&gt;每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs），日志对于数据库的数据安全性、完整性至关重要，本文详解SYBASE数据库日志。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+我们知道，SYBASE　SQL Server用事务（Transaction）来跟踪所有数据库的变化。事务是SQL　Server的工作单元。一个事务包含一条或多条作为整体执行的 T-SQL语句。每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs）。事务日志自动记录每个用户发出的每个事 务。日志对于数据库的数据安全性、完整性至关重要，我们进行数据库开发和维护必须熟知日志的相关知识。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;一、SYBASE　SQL Server 如何记录和读取日志信息&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;SYBASE　SQL Server是先记Log的机制。每当用户执行将修改数据库的语句时，SQL　Server就会自动地把变化写入日志。一条语句所产生的所有变化都被记录 到日志后，它们就被写到数据页在缓冲区的拷贝里。该数据页保存在缓冲区中，直到别的数据页需要该内存时，该数据页才被写到磁盘上。若事务中的某条语句没能 完成，SQL　Server将回滚事务产生的所有变化。这样就保证了整个数据库系统的一致性和完整性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;二、日志设备&lt;/strong&gt;
+Log和数据库的Data一样，需要存放在数据库设备上，可以将Log和Data存放在同一设备上，也可以分开 存放。一般来说，应该将一个数据库的Data和Log存放在不同的数据库设备上。这样做有如下好处：一是可以单独地备份Backup　事务日志；二是防 止数据库溢满；三是可以看到Log的空间使用情况。
+所建Log设备的大小，没有十分精确的方法来确定。一般来说，对于新建的数据库，Log的大小 应为数据库大小的30%左右。Log的大小还取决于数据库修改的频繁程度。如果数据库修改频繁，则Log的增长十分迅速。所以说Log空间大小依赖于用户 是如何使用数据库的。此外，还有其它因素影响Log大小，我们应该根据实际操作情况估计Log大小，并间隔一段时间就对Log进行备份和清除。
+&lt;strong&gt;三、日志的清除&lt;/strong&gt;
+随着数据库的使用，数据库的Log是不断增长的，必须在它占满空间之前将它们清除掉。清除Log有两种方法：
+&lt;strong&gt;1.自动清除法
+&lt;/strong&gt;
+开放数据库选项 Trunc Log on Chkpt，使数据库系统每隔一段时间自动清除Log。此方法的优点是无须人工干预，由SQL　Server自动执行，并且一般不会出现Log溢满的情况；缺点是只清除Log而不做备份。
+&lt;strong&gt;2.手动清除法&lt;/strong&gt;
+执行命令“dump transaction”来清除Log。以下两条命令都可以清除日志：
+&lt;table width=&#34;400&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&#34;#e6e6e6&#34;&gt;
+dump transaction with truncate_only
+dump transaction with no_log
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+通常删除事务日志中不活跃的部分可使用“dump transaction with trancate_only”命令，这条命令写进事务日志时，还要做必要的并发性检查。SYBASE提供“dump transaction with no_log”来处理某些非常紧迫的情况，使用这条命令有很大的危险性，SQL　Server会弹出一条警告信息。为了尽量确保数据库的一致性，你应将它 作为“最后一招”。
+以上两种方法只是清除日志，而不做日志备份，若想备份日志，应执行“dump transaction database_name to dumpdevice”命令。
+&lt;strong&gt;四、管理庞大的事务&lt;/strong&gt;
+有些操作会大批量地修改数据，如大量数据的修改（Update）、删除一个表的所有数据（Delete）、大量数据的插入（Insert），这样会使Log增长速度很快，有溢满的危险。下面笔者给大家介绍一下如何拆分大事务，以避免日志的溢满。
+例 如执行“update tab_a set col_a=0”命令时，若表tab_a很大，则此Update动作在未完成之前就可能使Log溢满，引起1105错误（Log Full），而且执行这种大的事务所产生的独占锁（Exclusive Table Lock），会阻止其他用户在执行Update操作期间修改这个表，这就有可能引起死锁。为避免这些情况发生，我们可以把这个大的事务分成几个小的事务， 并执行“dump transaction”动作。
+上例中的情况就可以分成两个或多个小的事务：
+&lt;table width=&#34;400&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&#34;#e6e6e6&#34;&gt;
+update tab_a set col_a=0 where col_b&amp;gt;x
+go
+dump transaction database_name with truncate_only
+go
+update tab_a set col_a=0 where col_b &amp;lt;=x
+go
+dump transaction database_name with truncate_only
+go
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+这样，一个大的事务就被分成两个较小的事务。
+按照上述方法可以根据需要任意拆分大的事务。若这个事务需要备份到介质上，则不用“with truncate_only”选项。若执行“dump transaction with truncate_only”命令，应该先执行“dump database”。以此类推，我们可以对表删除、表插入等大事务做相应的拆分。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>C#调用C&#43;&#43;写的DLL</title>
+      <link>http://www.daniex.tk/blog/2011/c-call-dll-written-in-c/</link>
+      <pubDate>Thu, 12 May 2011 06:48:53 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/c-call-dll-written-in-c/</guid>
+      <description>&lt;p&gt;方法有不少，这里记录其中的一个方法。编译、调用通过了的。期间遇到的问题是C#调用时传递string类型的参数和返回值会报错。TargetInvocationException异常，值不在范围内，内存不可访问等等。&lt;/p&gt;
+
+&lt;p&gt;解决方法是；在c++的DLL中将string类型的参数返回值改为LPTSTR类型。在C#程序中使用StringBuilder类型来传入参数和接受返回值。&lt;/p&gt;
+
+&lt;p&gt;下面是代码：
+&lt;pre class=&#34;brush: csharp&#34;&gt;using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;&lt;/p&gt;
+
+&lt;p&gt;//1.       打开项目“Tzb”，打开类视图，右击“Tzb”，选择“添加”&amp;ndash;&amp;gt;“类”，类名设置为“dld”，
+//即dynamic loading dll 的每个单词的开头字母。
+//2.       添加所需的命名空间及声明参数传递方式枚举：
+using System.Runtime.InteropServices; // 用 DllImport 需用此 命名空间
+using System.Reflection; // 使用 Assembly 类需用此 命名空间
+using System.Reflection.Emit; // 使用 ILGenerator 需用此 命名空间&lt;/p&gt;
+
+&lt;p&gt;namespace WpfApplication1
+{
+    //在“public class dld”上面添加如下代码声明参数传递方式枚举：
+    ///
+    /// 参数传递方式枚举 ,ByValue 表示值传递 ,ByRef 表示址传递
+    ///&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public enum ModePass
+{
+    ByValue = 0x0001,
+    ByRef = 0x0002
+}
+public class DLD
+{      
+
+    //3.       声明LoadLibrary、GetProcAddress、FreeLibrary及私有变量hModule和farProc：        
+    /// 
+    /// 原型是 :HMODULE LoadLibrary(LPCTSTR lpFileName);
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt;DLL 文件名 
+    ///  函数库模块的句柄 
+    [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+    static extern IntPtr LoadLibrary(string lpFileName);
+
+    /// 
+    /// 原型是 : FARPROC GetProcAddress(HMODULE hModule, LPCWSTR lpProcName);
+    /// 
+    /// &amp;lt; param name=&amp;quot;hModule&amp;quot; / &amp;gt; 包含需调用函数的函数库模块的句柄 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+    ///  函数指针 
+
+    [DllImport(&amp;quot;kernel32.dll&amp;quot;)]
+    static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+
+    /// 
+    /// 原型是 : BOOL FreeLibrary(HMODULE hModule);
+    /// 
+    /// &amp;lt; param name=&amp;quot;hModule&amp;quot; / &amp;gt; 需释放的函数库模块的句柄 
+    ///  是否已释放指定的 Dll
+
+    [DllImport(&amp;quot;kernel32&amp;quot;, EntryPoint = &amp;quot;FreeLibrary&amp;quot;, SetLastError = true)]
+    static extern bool FreeLibrary(IntPtr hModule);
+
+    /// 
+    /// Loadlibrary 返回的函数库模块的句柄
+    /// 
+
+    private IntPtr hModule = IntPtr.Zero;
+
+    /// 
+    /// GetProcAddress 返回的函数指针
+    /// 
+
+    public IntPtr farProc = IntPtr.Zero;
+
+
+    //4.       添加LoadDll方法，并为了调用时方便，重载了这个方法：
+    /// 
+    /// 装载 Dll
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt;DLL 文件名 
+
+    public void LoadDll(string lpFileName)
+    {
+
+        hModule = LoadLibrary(lpFileName);
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpFileName + &amp;quot;.&amp;quot;));
+    }
+
+
+    //         若已有已装载Dll的句柄，可以使用LoadDll方法的第二个版本：
+    public void LoadDll(IntPtr HMODULE)
+    {
+        if (HMODULE == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 所传入的函数库模块的句柄 HMODULE 为空 .&amp;quot;));
+        hModule = HMODULE;
+    }
+
+
+    //5.       添加LoadFun方法，并为了调用时方便，也重载了这个方法，方法的具体代码及注释如下：
+    /// 
+    /// 获得函数指针
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+
+    public void LoadFun(string lpProcName)
+    { // 若函数库模块的句柄为空，则抛出异常
+
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        // 取得函数指针
+        farProc = GetProcAddress(hModule, lpProcName);
+
+        // 若函数指针，则抛出异常
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 : &amp;quot; + lpProcName + &amp;quot; 这个函数的入口点 &amp;quot;));
+
+    }
+
+    /// 
+    /// 获得函数指针
+    /// 
+    /// &amp;lt; param name=&amp;quot;lpFileName&amp;quot; / &amp;gt; 包含需调用函数的 DLL 文件名 
+    /// &amp;lt; param name=&amp;quot;lpProcName&amp;quot; / &amp;gt; 调用函数的名称 
+
+    public void LoadFun(string lpFileName, string lpProcName)
+    { // 取得函数库模块的句柄
+        hModule = LoadLibrary(lpFileName);
+
+        // 若函数库模块的句柄为空，则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpFileName + &amp;quot;.&amp;quot;));
+
+        // 取得函数指针
+        farProc = GetProcAddress(hModule, lpProcName);
+
+        // 若函数指针，则抛出异常
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 没有找到 :&amp;quot; + lpProcName + &amp;quot; 这个函数的入口点 &amp;quot;));
+
+    }
+
+
+    //6.  添加UnLoadDll及Invoke方法，Invoke方法也进行了重载：
+    /// 
+    /// 卸载 Dll
+    /// 
+
+    public void UnLoadDll()
+    {
+        FreeLibrary(hModule);
+        hModule = IntPtr.Zero;
+        farProc = IntPtr.Zero;
+    }
+
+    /// 
+    /// 调用所设定的函数
+    /// 
+    /// &amp;lt; param name=&amp;quot;ObjArray_Parameter&amp;quot; / &amp;gt; 实参 
+    /// &amp;lt; param name=&amp;quot;TypeArray_ParameterType&amp;quot; / &amp;gt; 实参类型 
+    /// &amp;lt; param name=&amp;quot;ModePassArray_Parameter&amp;quot; / &amp;gt; 实参传送方式 
+    /// &amp;lt; param name=&amp;quot;Type_Return&amp;quot; / &amp;gt; 返回类型 
+    ///  返回所调用函数的 object
+
+    public object Invoke(object[] ObjArray_Parameter, Type[] TypeArray_ParameterType, 
+                             ModePass[] ModePassArray_Parameter, Type Type_Return)
+    {
+
+        // 下面 3 个 if 是进行安全检查 , 若不能通过 , 则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        if (farProc == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数指针为空 , 请确保已进行 LoadFun 操作 !&amp;quot;));
+        if (ObjArray_Parameter.Length != ModePassArray_Parameter.Length)
+            throw (new Exception(&amp;quot; 参数个数及其传递方式的个数不匹配 .&amp;quot;));
+
+        // 下面是创建 MyAssemblyName 对象并设置其 Name 属性
+        AssemblyName MyAssemblyName = new AssemblyName();
+        MyAssemblyName.Name = &amp;quot;InvokeFun&amp;quot;;
+
+        // 生成单模块配件
+        AssemblyBuilder MyAssemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(
+                                                   MyAssemblyName, AssemblyBuilderAccess.Run);
+        ModuleBuilder MyModuleBuilder = MyAssemblyBuilder.DefineDynamicModule(&amp;quot;InvokeDll&amp;quot;);
+
+        // 定义要调用的方法 , 方法名为“ MyFun ”，返回类型是“ Type_Return ”
+        //参数类型是“ TypeArray_ParameterType ”
+        MethodBuilder MyMethodBuilder = MyModuleBuilder.DefineGlobalMethod(
+                                      &amp;quot;Init&amp;quot;, MethodAttributes.Public | MethodAttributes.Static, 
+                                      Type_Return, TypeArray_ParameterType);
+
+        // 获取一个 ILGenerator ，用于发送所需的 IL
+        ILGenerator IL = MyMethodBuilder.GetILGenerator();
+
+        int i;
+        for (i = 0; i &amp;amp;lt; ObjArray_Parameter.Length; i++)
+        {// 用循环将参数依次压入堆栈
+            switch (ModePassArray_Parameter[i])
+            {
+                case ModePass.ByValue:
+                    IL.Emit(OpCodes.Ldarg, i);
+                    break;
+                case ModePass.ByRef:
+                    IL.Emit(OpCodes.Ldarga, i);
+                    break;
+                default:
+                    throw (new Exception(&amp;quot; 第 &amp;quot; + (i + 1).ToString() + &amp;quot; 个参数没有给定正确的传递方式 .&amp;quot;));
+            }
+        }
+
+        if (IntPtr.Size == 4)
+        {// 判断处理器类型
+            IL.Emit(OpCodes.Ldc_I4, farProc.ToInt32());
+        }
+        else if (IntPtr.Size == 8 )
+        {
+            IL.Emit(OpCodes.Ldc_I8, farProc.ToInt64());
+        }
+        else
+        {
+            throw new PlatformNotSupportedException();
+        }
+
+        IL.EmitCalli(OpCodes.Calli, CallingConvention.StdCall, Type_Return, TypeArray_ParameterType);
+        IL.Emit(OpCodes.Ret); // 返回值
+        MyModuleBuilder.CreateGlobalFunctions();
+
+        // 取得方法信息
+        MethodInfo MyMethodInfo = MyModuleBuilder.GetMethod(&amp;quot;Init&amp;quot;);
+        return MyMethodInfo.Invoke(null, ObjArray_Parameter);// 调用方法，并返回其值
+    }
+
+
+
+    //Invoke方法的第二个版本，它是调用了第一个版本的：
+    /// 
+    /// 调用所设定的函数
+    /// 
+    /// &amp;lt; param name=&amp;quot;IntPtr_Function&amp;quot; / &amp;gt; 函数指针 
+    /// &amp;lt; param name=&amp;quot;ObjArray_Parameter&amp;quot; / &amp;gt; 实参 
+    /// &amp;lt; param name=&amp;quot;TypeArray_ParameterType&amp;quot; / &amp;gt; 实参类型 
+    /// &amp;lt; param name=&amp;quot;ModePassArray_Parameter&amp;quot; / &amp;gt; 实参传送方式 
+    /// &amp;lt; param name=&amp;quot;Type_Return&amp;quot; / &amp;gt; 返回类型 
+    ///  返回所调用函数的 object
+
+    public object Invoke(IntPtr IntPtr_Function, object[] ObjArray_Parameter, 
+                           Type[] TypeArray_ParameterType, ModePass[] ModePassArray_Parameter, 
+                           Type Type_Return)
+    {
+
+        // 下面 2 个 if 是进行安全检查 , 若不能通过 , 则抛出异常
+        if (hModule == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数库模块的句柄为空 , 请确保已进行 LoadDll 操作 !&amp;quot;));
+        if (IntPtr_Function == IntPtr.Zero)
+            throw (new Exception(&amp;quot; 函数指针 IntPtr_Function 为空 !&amp;quot;));
+        farProc = IntPtr_Function;
+        return Invoke(ObjArray_Parameter, TypeArray_ParameterType, ModePassArray_Parameter, Type_Return);
+    }            
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+&lt;/pre&gt;
+&lt;pre class=&#34;brush: csharp&#34;&gt;/****&lt;strong&gt;&lt;em&gt;调用方法&lt;/em&gt;&lt;/strong&gt;***/
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        DLD newDLL = new DLD();
+        newDLL.LoadFun(&amp;quot;E:\\workspaces\\WpfApplication1\\Debug\\DLL.dll&amp;quot;, &amp;quot;Init&amp;quot;);
+        StringBuilder MyStringBuilder = new StringBuilder(&amp;quot;Hello World!&amp;quot;);
+        object[] obj = new object[] { MyStringBuilder };
+        Type[] ty = new Type[] { typeof(StringBuilder) };
+        ModePass[] mode = new ModePass[] { ModePass.ByValue };
+        Type Type_Return = typeof(StringBuilder);
+        StringBuilder j = (StringBuilder)newDLL.Invoke(obj, ty, mode, Type_Return);
+
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;/*****&lt;strong&gt;&lt;em&gt;c++DLL中的函数&lt;/em&gt;&lt;/strong&gt;****/&lt;/p&gt;
+
+&lt;p&gt;extern &amp;ldquo;C&amp;rdquo; __declspec(dllexport) LPTSTR Init(LPTSTR a);&lt;/p&gt;
+
+&lt;p&gt;LPTSTR Init(LPTSTR a)
+{
+    strcat((char *)a, &amp;ldquo;added&amp;rdquo;);
+    return a;
+}
+&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>用openssl命令制作生成证书和自签名</title>
+      <link>http://www.daniex.tk/blog/2011/generated-with-the-openssl-command-to-create-self-signed-certificates-and/</link>
+      <pubDate>Sat, 16 Apr 2011 10:04:41 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/generated-with-the-openssl-command-to-create-self-signed-certificates-and/</guid>
+      <description>&lt;p&gt;前文描述了如何在window下按安装openssl后，这里说下如何利用openssl生成证书。&lt;/p&gt;
+
+&lt;p&gt;1、  新建工作目录，将openssl安装路径下的apps/CA.pl 和 apps/openssl.cnf（在window中该文件会显示成名为openssl的快速拨号程序）文件复制到该路径。可以修改openssl.cnf文件中的一些参数。启动控制台，执行命令
+CA.pl -newca
+生成CA工作所需的文件和文件夹。即该目录下新生成的demoCA文件夹。将openssl安装路径下的apps\demoCA\serial文件复制到生成的demoCA文件夹下。&lt;/p&gt;
+
+&lt;p&gt;可以略去该步骤，在安装路径\apps下执行后续步骤。&lt;/p&gt;
+
+&lt;p&gt;2、  生成根证书和对应的私钥
+openssl req -new -x509 -keyout cakey.pem -out cacert.pem -config openssl.cnf
+记住输入的pass phrase、国家、省、组织等参数，不能全为空。将生成的cakey.pem放到demoCA/private目录下，将cacert.pem放到demoCA目录下。
+注意：在window下需要openssl命令都需要增加-config openssl.cnf参数，防止因找不到配置文件而报错。Linux下不需要该参数。
+&lt;img alt=&#34;&#34; src=&#34;http://farm6.static.flickr.com/5189/5620697845_30c20ca29e.jpg&#34; title=&#34;生成证书&#34; class=&#34;aligncenter&#34; width=&#34;500&#34; height=&#34;483&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3、  生成服务证书私钥和证书请求文件
+openssl req -newkey rsa:2048 -out newCSR.pem -keyout newKey.pem -config openssl.cnf
+如果要生成多个证书私钥对，注意输入Common Name值要不同。如果不是自签名，可将生成的证书请求文件newCSR.pem交由相关组织签发证书。&lt;/p&gt;
+
+&lt;p&gt;4、  用根证书签发该服务证书
+openssl ca -in newCSR.pem -out newCert.pem -config openssl.cnf
+&lt;img alt=&#34;&#34; src=&#34;http://farm6.static.flickr.com/5189/5620697845_30c20ca29e.jpg&#34; title=&#34;签名&#34; class=&#34;aligncenter&#34; width=&#34;500&#34; height=&#34;483&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;至此，我们生成了根证书和私钥cakey.pem、cacert.pem。用于服务由根证书签发了的证书newCert.pem和对应私钥newKey.pem。openssl编程过程中，需要验证newCert.pem和newKey.pem是否匹配。用根证书cacert.pem验证newCert.pem是否可信。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>excel中删除回车和换行符</title>
+      <link>http://www.daniex.tk/blog/2011/excel-remove-carriage-return-and-line-feed/</link>
+      <pubDate>Sun, 10 Apr 2011 10:05:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/excel-remove-carriage-return-and-line-feed/</guid>
+      <description>&lt;p&gt;遇到个问题：在excel保存的csv文件里面有换行符，但是读取文件的时候是按行读取的，所以要把换行符去掉。在网上找了几个方法，都没成功，不过最后还是被我解决了。&lt;/p&gt;
+
+&lt;p&gt;网上有好几种方法，要们只是去除的文件中的换行符，而没有去除回车符。要不然就是繁琐。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;13; (ASCII码回车)
+10; (ASCII码换行)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;方法一
+可以使用Excel的宏来将excel的换行符替换掉，方法如下：
+在工作表标签处单击鼠标右键，点“查看代码”，在代码窗口中输入如下内容：&lt;/p&gt;
+
+&lt;p&gt;Sub 去掉所有换行符()
+    Cells.Replace What:=Chr(10), _
+                  Replacement:=&amp;ldquo;&amp;rdquo;, _
+                  LookAt:=xlPart, _
+                  SearchOrder:=xlByRows, _
+                  MatchCase:=False, _
+                  SearchFormat:=False, _
+                  ReplaceFormat:=False
+End Sub&lt;/p&gt;
+
+&lt;p&gt;然后按F5执行，或者点击菜单上的运行。这个代码是指去掉了换行符，将第二行的10换成13，再执行一次就大功告成。&lt;/p&gt;
+
+&lt;p&gt;方法二
+另存为txt文件的话，换行符会变为回车符，这样在记事本替换的话会比较麻烦。你可以将EXCEL的内容复制到word中，然后使用word的替换功能，将^l替换为空白就行了。(^l)就是换行符。&lt;/p&gt;
+
+&lt;p&gt;1、把所需修改的整个表格复制到Word中；
+2、再从Word中把所有内容复制到记事本中；
+3、最后把记事本中的所有内容复制到excel中。DONE!&lt;/p&gt;
+
+&lt;p&gt;方法三
+网上流最广的方法是这样的：
+1、CTRL+F调出查找替换对话框，选择替换
+2、查找中输入：按住ALT，小键盘输入10 ,松开ALT
+3、按替换
+我尝试着按住ALT+13，查找替换，没有成功。只能放弃这种方法。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Windows下安装OpenSSL</title>
+      <link>http://www.daniex.tk/blog/2011/windows-install-openssl/</link>
+      <pubDate>Mon, 28 Mar 2011 03:25:40 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/windows-install-openssl/</guid>
+      <description>&lt;p&gt;环境：window xp； OpenSSL：0.9.8k；IDE：MS Visual Studio 2008&lt;/p&gt;
+
+&lt;p&gt;解压OpenSSL， 在其目录下可以有个INSTALL.W32文件，这个文件就是在windows下的安装说明。用UltraEdit等工具打开它查看安装编译方法。&lt;/p&gt;
+
+&lt;p&gt;安装前需要准备的是VS环境和perl环境。vs安装就不说了。perl可以到&lt;a href=&#34;http://www.activestate.com/ActivePerl&#34;&gt;http://www.activestate.com/ActivePerl&lt;/a&gt; 去下载安装。注意加入环境变量。&lt;/p&gt;
+
+&lt;p&gt;再之后就可以安装了，使用vs提供的控制台安装。否则安装过程中会报出&amp;rdquo;ml&amp;rdquo;不是内部或外部命令之类的提示。&lt;/p&gt;
+
+&lt;p&gt;&lt;a title=&#34;Flickr 上 Daniex Jiang 的 cl&#34; href=&#34;http://www.flickr.com/photos/daniex/5566069829/&#34;&gt;&lt;img src=&#34;http://farm6.static.flickr.com/5189/5566069829_862458b6e8_z.jpg&#34; alt=&#34;cl&#34; width=&#34;640&#34; height=&#34;105&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;打开控制台口依次：&lt;/p&gt;
+
+&lt;p&gt;1.输入：perl Configure VC-WIN32&lt;/p&gt;
+
+&lt;p&gt;2.使用MASM，输入：ms\do_masm&lt;/p&gt;
+
+&lt;p&gt;3.接着输入：nmake -f ms\ntdll.mak 安装&lt;/p&gt;
+
+&lt;p&gt;4.输入：nmake -f ms\ntdll.mak test 测试安装是否成功。&lt;/p&gt;
+
+&lt;p&gt;最后会显示 all tests passed提示。编译就通过了，在out32dll目录下面就可以看到生成的dll文件和可执行文件。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu与windows间的远程桌面、共享文件访问</title>
+      <link>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</link>
+      <pubDate>Mon, 07 Mar 2011 12:10:16 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/between-ubuntu-and-windows-remote-desktop-shared-file-access/</guid>
+      <description>&lt;p&gt;1、 Ubuntu访问windows&lt;/p&gt;
+
+&lt;p&gt;这方面基本上Ubuntu系统上做的已经很全了，现有的应用用起来就行。远程桌面可以用Remote Desktop Viewer和Terminal Server Client两个应用。都在Applications-&amp;gt;Internet目录下。有俩截图如下：&lt;img class=&#34;aligncenter&#34; title=&#34;RDV&amp;amp;TSC&#34; src=&#34;http://farm6.static.flickr.com/5178/5505991350_930ecf16d2.jpg&#34; alt=&#34;应用位置&#34; width=&#34;473&#34; height=&#34;345&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;两个应用的界面分别为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Remote Desktop Viewer&#34; src=&#34;http://farm6.static.flickr.com/5219/5505991512_3b0b3e514f.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;409&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;Terminal Server Client&#34; src=&#34;http://farm6.static.flickr.com/5171/5505394227_3a37ef989a.jpg&#34; alt=&#34;&#34; width=&#34;373&#34; height=&#34;500&#34; /&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;PS:&lt;/p&gt;
+VNC (Virtual Network Computing)是虚拟网络计算机的缩写。VNC是一款优秀的远程控制工具软件，由著名的AT&amp;amp;T的欧洲研究实验室开发的。
+&lt;p id=&#34;best-answer-content&#34;&gt;RDP:远程桌面协议，主要用于windows 2000及更早的windows版本。 RDPv5支持xp等。&lt;/p&gt;
+&lt;p id=&#34;best-answer-content&#34;&gt;SSH: Secure Shell Protocol，是一种在不安全网络上提供安全远程登录及其它安全网络服务的协议。&lt;/p&gt;
+共享文件的访问有另外一个应用，这个应用能进行FTP，http的访问。位于Places-&amp;gt;connect to server。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5172/5505991388_9e08508c3b.jpg&#34; alt=&#34;&#34; width=&#34;344&#34; height=&#34;423&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;界面如下；&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter&#34; title=&#34;connect to server&#34; src=&#34;http://farm6.static.flickr.com/5135/5505394145_dbbf6594d4.jpg&#34; alt=&#34;&#34; width=&#34;369&#34; height=&#34;358&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、windows访问ubuntu。Ubuntu互访。&lt;/p&gt;
+
+&lt;p&gt;公司不准私自架设ftp等服务器。所以通常通过文件共享。Linux也可以类似window那样共享文件，只是Ubuntu需要先安装应用。&lt;/p&gt;
+
+&lt;p&gt;Windows和Linux间共享可以用samba。Linux和Linux之间共享文件有更好的网络文件系统NFS。网上使用教程方法很多，这里就不多说了。&lt;/p&gt;
+
+&lt;p&gt;再废话一句，linux里很多可以用mount。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>比B2 Gmail Notifier更厉害Spiffy – 多 Gmail 邮箱通知工具，支持 Apps</title>
+      <link>http://www.daniex.tk/blog/2010/spiffy/</link>
+      <pubDate>Mon, 16 Aug 2010 06:05:48 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/spiffy/</guid>
+      <description>&lt;p&gt;上一篇才讲gmail邮件通知的问题，今天一看&lt;a href=&#34;http://www.appinn.com/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;小众&lt;/span&gt;&lt;/a&gt;，来了个更厉害的Spiffy。&lt;a href=&#34;http://www.appinn.com/spiffy/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;看小众软件的介绍&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.appinn.com/spiffy/&#34;&gt;&lt;span style=&#34;color: #3366ff;&#34;&gt;Spiffy&lt;/span&gt;&lt;/a&gt; 是款 Gmail 邮箱通知工具，支持最多 5 个 Gmail 邮箱或 Google Apps 邮箱。解决了B2 Gmail Notifier的不支持多账号问题。&lt;/p&gt;
+
+&lt;p&gt;Gmail 本身变相提供同时管理多个邮箱的功能，你只需将其他邮箱的邮件转发至主 Gmail 邮箱，并设置主邮箱可以通过其他邮箱地址发邮件即可。另外 Gmail 最近也开始提供多邮箱管理功能了。但转发的操作将造成主邮箱的混乱及空间的不足，虽然可以通过 label 和购买额外空间（$5=20G/年）解决。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>跨平台的gmail桌面通知工具 B2 Gmail Notifier</title>
+      <link>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</link>
+      <pubDate>Fri, 13 Aug 2010 01:32:55 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</guid>
+      <description>&lt;p&gt;浏览器里开了个Gmail，离开浏览器做其他事的时候，时常忘了去查看邮箱。又不想将Gmail放到ThunderBird，OutLook之类的软件里。于是想到找找有没有Gmail的桌面提示工具。发现有两种方式，一是Google Desktop工具，功能很强劲，有很多小工具。还有一个方法就是B2 Gmail Notifier。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://home.b2labs.com/b2-gmail-notifier-freeware-animated-gmail-notifier&#34; target=&#34;_blank&#34;&gt;B2 Labs制作的Gmail Notifier &lt;/a&gt;是一款跨平台（Windows/Mac/Linux）的Gmail邮件提示小工具，因为它基于Adobe的AIR技术。它可以在你的桌面提示收到的新邮件，可以直接看到发信人、标题、正文和发送时间，而且有多种动态效果可选，还可以在线安装更多效果。不支持多帐号。&lt;/p&gt;
+
+&lt;p&gt;安装文件很小，不到2M，就算加上12M的Adobe Air安装文件还是很小。Google Desktop数百M，多装些小工具有可能就几G了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-445&#34; title=&#34;20100813092206461&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/08/20100813092206461.png&#34; alt=&#34;&#34; width=&#34;268&#34; height=&#34;266&#34; /&gt;提示框后面有个txt文件，它偷偷地露了个头。 - -！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

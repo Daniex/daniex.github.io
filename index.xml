@@ -1,0 +1,1235 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Recent Content on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 22 Jan 2015 14:25:20 CST</updated>
+    
+    <item>
+      <title>hello hugo</title>
+      <link>http://www.daniex.tk/blog/2015/my-first-static-web-post-by-hugo/</link>
+      <pubDate>Thu, 22 Jan 2015 14:25:20 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2015/my-first-static-web-post-by-hugo/</guid>
+      <description>&lt;p&gt;这时我在hugo上发布的第一post。但也不仅仅是hello world。&lt;/br&gt;
+&lt;/br&gt;
+之前听IPN的podcast讲&lt;a href=&#34;https://ipn.li/kernelpanic/3/&#34;&gt;静态网页生成器&lt;/a&gt;,想到自己还有个懒得去搭理的blog，于是有有想法找时间再来折腾一下。结果一找就找了几个月。终于，花了一天时间简单过遍hugo的试用方法，解了大体的功能后，在京东云擎上搭了个试试。&lt;/br&gt;
+&lt;/br&gt;
+要快速的建起hugo站其实只要照着他的&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;quitstart&lt;/a&gt;做就可以了，还是很清楚明了的。麻烦的是定制一些自己要的功能，去修改原有的代码或者扩展他的功能。&lt;/br&gt;
+&lt;/br&gt;
+其中比较基础的是读懂他们提供的&lt;a href=&#34;https://github.com/spf13/hugoThemes&#34;&gt;HugoTheme&lt;/a&gt;然后去做修改。这里推荐其中的hyde-x，在看了几个例子和不同的theme后，我选择他入手学习。
+&lt;/br&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>http://www.daniex.tk/about/</link>
+      <pubDate>Wed, 21 Jan 2015 14:37:43 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/about/</guid>
+      <description>&lt;p&gt;Daniex
+&lt;a href=&#34;http://daniex.info&#34;&gt;http://daniex.info&lt;/a&gt;
+&lt;a href=&#34;http://www.daniex.tk&#34;&gt;http://www.daniex.tk&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;contact: daniex.info@gmail.com&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>license</title>
+      <link>http://www.daniex.tk/license/</link>
+      <pubDate>Wed, 21 Jan 2015 14:37:43 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/license/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>玩剧--你的美剧播出时间表</title>
+      <link>http://www.daniex.tk/blog/2014/wanju/</link>
+      <pubDate>Fri, 21 Feb 2014 05:51:31 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2014/wanju/</guid>
+      <description>&lt;p&gt;&lt;h1 style=&#34;text-align: center;&#34;&gt;下载地址：&lt;/h1&gt;
+&lt;h1 style=&#34;text-align: center;&#34;&gt;&lt;a title=&#34;http://pan.baidu.com/s/1c0nDo2G&#34; href=&#34;http://pan.baidu.com/s/1c0nDo2G&#34;&gt; &lt;a href=&#34;http://pan.baidu.com/s/1c0nDo2G&#34;&gt;http://pan.baidu.com/s/1c0nDo2G&lt;/a&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 style=&#34;text-align: center;&#34;&gt;&lt;a href=&#34;http://as.baidu.com/a/item?docid=5868302&#34;&gt;http://as.baidu.com/a/item?docid=5868302&lt;/a&gt;&lt;/h1&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; style=&#34;line-height: 1.5em;&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7392/12669796653_74851c20f4_o.png&#34; width=&#34;120&#34; height=&#34;120&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm6.staticflickr.com/5507/12672056584_436738d496_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7290/12671579615_8272393068_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7357/12671579075_ab2ce41c91_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;
+&lt;p style=&#34;text-align: left;&#34;&gt;&lt;img class=&#34;aligncenter&#34; alt=&#34;&#34; src=&#34;http://farm8.staticflickr.com/7302/12671707023_28643e6f49_o.jpg&#34; width=&#34;480&#34; height=&#34;800&#34; /&gt;&lt;/p&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2013又一年</title>
+      <link>http://www.daniex.tk/blog/2014/another-year-2013/</link>
+      <pubDate>Tue, 11 Feb 2014 05:56:46 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2014/another-year-2013/</guid>
+      <description>&lt;p&gt;又一整年，照样是看剧看书工作，还少了深圳爬山徒步的乐趣，忙忙碌碌开始为自己的今后忧虑。离开深圳回到苏州，见到一些很久没见的同学朋友，开心满足。&lt;/p&gt;
+
+&lt;p&gt;美剧还是一直在看，动机纯粹是打发时间，吸引力不再。离开深圳后更是没再去过电影院。&lt;/p&gt;
+
+&lt;p&gt;黑道家族全季
+纸牌屋S1
+绝命毒师全季
+新闻编辑室S2
+黑镜S2
+冰与火之歌S3&lt;/p&gt;
+
+&lt;p&gt;惊天魔盗团
+西游降魔篇
+了不起的盖茨比
+隐秘而伟大
+环太平洋
+速度与激情6
+中国合伙人
+夺宝联盟
+美丽生灵
+霍比特人1 2
+僵尸世界大战
+北京遇上西雅图
+厨子戏子痞子
+入侵华尔街
+卑鄙的我1 2&lt;/p&gt;
+
+&lt;p&gt;13年比以往看了更多的书，虽然只是21本。&lt;/p&gt;
+
+&lt;p&gt;长尾理论
+那些有伤的年轻人
+吴敬琏传
+不二
+一只挑战奇迹的狗
+看上去很美
+白色巨塔
+了不起的盖茨比
+乌合之众
+我生活的种种模式
+穷爸爸和富爸爸
+曾国藩家书
+魔鬼经济学
+35岁前要上的33堂理财课
+Behind the Cloud: Salesforce.com
+黑客与画家
+创新算法
+social engineering
+被时光掩埋的秘密
+激荡三十年
+大数据时代&lt;/p&gt;
+
+&lt;p&gt;活动只剩：太湖西山，桃花岛，徽杭古道&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>px、dip、sp区别及apk的drawable资源包关系</title>
+      <link>http://www.daniex.tk/blog/2013/px-dip-sp-difference-and-apk-drawable-resource-bundles-relationship/</link>
+      <pubDate>Mon, 13 May 2013 02:05:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/px-dip-sp-difference-and-apk-drawable-resource-bundles-relationship/</guid>
+      <description>
+
+&lt;p&gt;感谢Neak同学提出下面引用文章的分歧点，文章中存在这样的两个说法，下文中已分别标红和标蓝。【在每英寸160点的显示器上，1dp = 1px。】【density=240时 屏幕实际分辨率为480px*800px （一个点对于一个分辨率）】&lt;/p&gt;
+
+&lt;p&gt;查阅 androd api guides发现有入下描述：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://developer.android.com/guide/practices/screens_support.html&#34;&gt;http://developer.android.com/guide/practices/screens_support.html&lt;/a&gt;
+&lt;blockquote&gt;&lt;em&gt;Density-independent pixel (dp)&lt;/em&gt;A virtual pixel unit that you should use when defining UI layout, to express layout dimensions or position in a density-independent way.&lt;/p&gt;
+
+&lt;p&gt;The density-independent pixel is equivalent to one physical pixel on a 160 dpi screen, which is the baseline density assumed by the system for a &amp;ldquo;medium&amp;rdquo; density screen. At runtime, the system transparently handles any scaling of the dp units, as necessary, based on the actual density of the screen in use. The conversion of dp units to screen pixels is simple: &lt;code&gt;px = dp * (dpi / 160)&lt;/code&gt;. For example, on a 240 dpi screen, 1 dp equals 1.5 physical pixels. You should always use dp units when defining your application&amp;rsquo;s UI, to ensure proper display of your UI on screens with different densities.&lt;/blockquote&gt;
+即android定义density=160的屏幕定位一个基准（basline），在这个基准下1px=1dp。下文标红文字是根据官方baseline转述的。标蓝色的字体中有一段描述【不同density下屏幕分辨率信息，以480dip*800dip的WVGA(density=240)为例。】假设density=240为baseline，则px及dp对应关系正如原文作者罗列表述。&lt;/p&gt;
+
+&lt;p&gt;由此看来，转240为baseline，可以看出原作者对px和dp的理解到位，描述出来时其实无必要转换baseline，以免混淆视听。&lt;/p&gt;
+
+&lt;p&gt;=======================================================================================&lt;/p&gt;
+
+&lt;p&gt;下文来自 &lt;a title=&#34;px、dip、sp区别和使用方法&#34; href=&#34;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&#34;&gt;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;px、dip、sp区别和使用方法&lt;/p&gt;
+
+&lt;p&gt;一、 概述&lt;/p&gt;
+
+&lt;p&gt;我们在页面布局的时候，经常会设置容器的长度，但是到底该使用哪个作为长度的单位而懊恼。&lt;/p&gt;
+
+&lt;p&gt;在Android中支持的描述大小区域的类型有以下几种。&lt;/p&gt;
+
+&lt;p&gt;px(pixels)——像素：不同的设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。&lt;/p&gt;
+
+&lt;p&gt;dip(device independent pixels)——设备独立像素：这个和设备硬件有关，一般哦我们为了支持WCGA、HVGA和QVGA推荐使用这个，不依赖于像素。等同于dp。&lt;/p&gt;
+
+&lt;p&gt;sp(scaled pixels—best for text size)——带比例的像素。&lt;/p&gt;
+
+&lt;p&gt;pt(points)——磅：1pt = 1/72英寸&lt;/p&gt;
+
+&lt;p&gt;in(inches)——英寸&lt;/p&gt;
+
+&lt;p&gt;mm(millimeters)——毫米&lt;/p&gt;
+
+&lt;p&gt;二、 详解&lt;/p&gt;
+
+&lt;p&gt;sp由于是放大像素，主要是用于字体显示，由此根据google的建议，TextView的字体大小最好用sp做单位，而且查看TextView的源码可知Android默认使用水平作为字号单位。&lt;/p&gt;
+
+&lt;p&gt;在Android中最常用到的还是px和dip。但是这两个之间到底有什么区别呢？&lt;/p&gt;
+
+&lt;p&gt;在HVGA屏density=160；QVGA屏density=120；WVGA屏density=240；WQVGA屏density=120 density值表示每英寸有多少个显示点，与分辨率是两个概念。&lt;span style=&#34;color: #0000ff;&#34;&gt;不同density下屏幕分辨率信息，以480dip*800dip的WVGA(density=240)为例。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;density=120时 屏幕实际分辨率为240px*400px （两个点对应一个分辨率）
+状态栏和标题栏高各19px或者25dip
+横屏是屏幕宽度400px 或者800dip,工作区域高度211px或者480dip
+竖屏时屏幕宽度240px或者480dip,工作区域高度381px或者775dip&lt;/p&gt;
+
+&lt;p&gt;density=160时 屏幕实际分辨率为320px*533px （3个点对应两个分辨率）
+状态栏和标题栏高个25px或者25dip
+横屏是屏幕宽度533px 或者800dip,工作区域高度295px或者480dip
+竖屏时屏幕宽度320px或者480dip,工作区域高度508px或者775dip&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;density=240时 屏幕实际分辨率为480px*800px （一个点对于一个分辨率）&lt;/span&gt;
+状态栏和标题栏高个38px或者25dip
+横屏是屏幕宽度800px 或者800dip,工作区域高度442px或者480dip
+竖屏时屏幕宽度480px或者480dip,工作区域高度762px或者775dip&lt;/p&gt;
+
+&lt;p&gt;apk的资源包中，当屏幕density=240时使用hdpi 标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+不加任何标签的资源是各种分辨率情况下共用的。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;引用 Android上dip、dp、px、sp等单位说明&lt;/p&gt;
+
+&lt;p&gt;本文引用自shixin20051108《Android上dip、dp、px、sp等单位说明》&lt;/p&gt;
+
+&lt;p&gt;[ dip: device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。
+px: pixels(像素). 不同设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用；&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。&lt;/h1&gt;
+
+&lt;p&gt;关于换算（以 sp 和 pt 为例）
+查看 TextView 等类的源码，可知：
+case COMPLEX_UNIT_PX:
+return value;
+case COMPLEX_UNIT_SP:
+return value * metrics.scaledDensity;
+case COMPLEX_UNIT_PT:
+return value * metrics.xdpi * (1.0f/72);
+－－－－－－－－－－－－－－－－－－－－－－－－－－
+scaledDensity = DENSITY_DEVICE / (float) DENSITY_DEFAULT;
+xdpi = DENSITY_DEVICE;
+－－－－－－－－－－－－－－－－－－－－－－－－－－&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;DENSITY_DEFAULT = DENSITY_MEDIUM = 160;&lt;/h1&gt;
+
+&lt;p&gt;所以： 假设 pt 和 sp 取相同的值 1，则可设 1pt 和 1sp 之间系数为 x，
+1 * DENSITY_DEVICE / 72 = x * 1 * DENSITY_DEVICE / 160 =&amp;amp;gt;
+x = 160 / 72 = 2.2222&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;也就是说在 Android 中， 1pt 大概等于 2.22sp&lt;/h1&gt;
+
+&lt;p&gt;什么是Dip和Sp
+过去，程序员通常以像素为单位设计计算机用户界面。例如，定义一个宽度为300像素的表单字段，列之间的间距为5个像素，图标大小为16×16像素等。这样处理的问题在于，如果在一个每英寸点数（dpi）更高的新显示器上运行该程序，则用户界面会显得很小。在有些情况下，用户界面可能会小到难以看清内容。
+与分辨率无关的度量单位可以解决这一问题。Android支持下列所有单位。
+px（像素）：屏幕上的点。
+in（英寸）：长度单位。
+mm（毫米）：长度单位。
+pt（磅）：1/72英寸。
+&lt;span style=&#34;color: #ff0000;&#34;&gt;dp（与密度无关的像素）：一种基于屏幕密度的抽象单位。在每英寸160点的显示器上，1dp = 1px。&lt;/span&gt;
+dip：与dp相同，多用于android/ophone示例中。
+sp（与刻度无关的像素）：与dp类似，但是可以根据用户的字体大小首选项进行缩放。
+为了使用户界面能够在现在和将来的显示器类型上正常显示，建议大家始终使用sp作为文字大小的单位，将dip作为其他元素的单位。当然，也可以考虑使用矢量图形，而不是用位图&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;dip: device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。
+px: pixels(像素). 不同设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用；
+sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。由此，根据 google 的建议，TextView 的
+字号最好使用 sp 做单位，而且查看TextView的源码可知 Android 默认使用 sp 作为字号单位。
+在 Android 中， 1pt 大概等于 2.22sp以上供参考，如果 UI 能够以 sp 为单位提供设计是最好的，如果设计中没有 sp的概念，则开发人员也可以通过适当的换算取近似值。
+过去，程序员通常以像素为单位设计计算机用户界面。例如，定义一个宽度为300像素的表单字段，列之间的间距为5个像素，图标大小为16×16像素等。这样处理的问题在于，如果在一个每英寸点数（dpi）更高的新显示器上运行该程序，则用户界面会显得很小。在有些情况下，用户界面可能会小到难以看清内容。
+与分辨率无关的度量单位可以解决这一问题。Android支持下列所有单位。
+px（像素）：屏幕上的点。
+in（英寸）：长度单位。
+mm（毫米）：长度单位。
+pt（磅）：1/72英寸。
+dp（与密度无关的像素）：一种基于屏幕密度的抽象单位。&lt;span style=&#34;color: #ff0000;&#34;&gt;在每英寸160点的显示器上，1dp = 1px。&lt;/span&gt;
+dip：与dp相同，多用于android/ophone示例中。
+sp（与刻度无关的像素）：与dp类似，但是可以根据用户的字体大小首选项进行缩放。
+分辨率:整个屏是多少点，比如800x480，它是对于软件来说的显示单位，以px为单位的点。 density(密度)值表示每英寸有多少个显示点，与分辨率是两个概念。apk的资源包中，
+当屏幕density=240时使用hdpi标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+一般android设置长度和宽度多用dip,设置字体大小多用sp. 在屏幕密度为160，1dp=1px=1dip, 1pt = &lt;sup&gt;160&lt;/sup&gt;&amp;frasl;&lt;sub&gt;72&lt;/sub&gt; sp 1pt = &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;72&lt;/sub&gt; 英寸.当屏幕密度为240时，1dp=1dip=1.5px.
+为了使用户界面能够在现在和将来的显示器类型上正常显示，建议大家始终使用sp作为文字大小的单位，将dip作为其他元素的单位。当然，也可以考虑使用矢量图形，而不是用位图。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>20130406</title>
+      <link>http://www.daniex.tk/blog/2013/20130406/</link>
+      <pubDate>Sat, 06 Apr 2013 03:22:21 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/20130406/</guid>
+      <description>&lt;p&gt;深圳连着下了几乎一个星期的雨了，墙上都在滴水。&lt;/p&gt;
+
+&lt;p&gt;博客又被百度K了，估计是应为转载太多，更新又太不勤快。朋友说做内容写博客，回报率太低，还不如租租服务器，那可是跟收房租似地轻松愉快。内容确实不容易出，可这接近一年没写个东西，要么是懒的写博客，要么是虚度光阴还假装不无病呻吟。&lt;/p&gt;
+
+&lt;p&gt;在深圳两年半，后一年在工作上学到的东西不像之前可以稍整理下就能贴个技术贴，而是需要去经历去感受的。从博客没多少日志贴就看得出，本人并不善于写总结体悟。再加上户外活动参加的不亦乐乎，电视剧、小说、聊天扯皮活动不断，就更加不会写博客了。心灵没有洗涤，而是放在那儿积灰！没有主动学习！写到这里瞬间感觉到这状态就是大二上学期疯狂玩游戏的状态。对了，这一年还曾想和朋友一起弄个网站，结果起步阶段都没到一半就不了了之。已经无耻到连准备做网站的事都可以拿出来给自己邀功地步，那确实微信收费可以是理所当然的。说要做网站的事，好比声称自己要下厨，然后说，“虽然最后我们叫了外卖，但是我发现了家里没有米，这个准备下厨的心态是值得表扬的”，而超市就在3层楼下。&lt;/p&gt;
+
+&lt;p&gt;曾听说，能够自嘲的人，豁达和自知，相对会让人更愿意去接触认识。这一句写出来表示我又要得瑟了。原因是我发现了给点阳光就灿烂的那个我，总有种莫名其妙的自我感觉良好。丫就一埋地里的土豆，还得瑟自己比较圆，确实很有优越感！&lt;/p&gt;
+
+&lt;p&gt;这家伙的路走不远了，不要寄托以希望。。。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CAN简介</title>
+      <link>http://www.daniex.tk/blog/2013/can-introduction/</link>
+      <pubDate>Sun, 17 Mar 2013 08:22:51 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/can-introduction/</guid>
+      <description>&lt;p&gt;CAN全称为Controller Area Network，即控制器局域网，由德国Bosch公司最先提出，是国际上应用最广泛的现场总线之一。最初CAN 被设计作为汽车环境中的通讯，在汽车电子控制装置之间交换信息形成汽车电子控制网络。由于其卓越的性能、极高的可靠性和低廉的价格现已广泛应用于工业现场控制、医疗仪器等众多领域。&lt;/p&gt;
+
+&lt;p&gt;CAN协议是建立在OSI 7层开放互连参考模型基础之上的。但CAN协议只定义了模型的最下面两层:数据链路层和物理层，仅保证了节点间无差错的数据传输。CAN的应用层协议必须由CAN 用户自行定义，或采用一些国际组织制订的标准协议。应用最为广泛的是DeviceNet和CANopen，分别广泛应用于过程控制和机电控制领域。但此类协议一般结构比较复杂，更适合复杂大型系统的应用。
+&lt;div&gt;
+&lt;div id=&#34;pageNo-1&#34; data-page-no=&#34;1&#34; data-scale=&#34;0.70709782964164&#34; data-render=&#34;1&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt; CAN的技术规范&lt;/p&gt;
+
+&lt;p&gt;(1) 帧类型&lt;/p&gt;
+
+&lt;p&gt;在CAN总线中，有四种不同的帧类型:&lt;/p&gt;
+
+&lt;p&gt;数据帧(Data Frame) 数据帧带有应用数据;&lt;/p&gt;
+
+&lt;p&gt;远程帧(Remote Frame) 通过发送远程帧可以向网络请求数据，启动其他资源节点传送他们各自的数据，远程帧包含6个不同的位域:帧起始、仲裁域、控制域、CRC域、应答域、帧结尾。仲裁域中的RTR位的隐极性表示为远程帧;&lt;/p&gt;
+
+&lt;p&gt;错误帧(Error Frame)错误帧能够报告每个节点的出错，由两个不同的域组成，第一个域是不同站提供的错误标志的叠加，第二个域是错误界定符;&lt;/p&gt;
+
+&lt;p&gt;过载帧(Overload Frame)如果节点的接收尚未准备好就会传送过载帧，由两个不同的域组成，第一个域是过载标志，第二个域是过载界定符。&lt;/p&gt;
+
+&lt;p&gt;(2) 数据帧结构&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-1215&#34; alt=&#34;20130317161704028&#34; src=&#34;http://daniex.info/wp-content/uploads/2013/03/20130317161704028.png&#34; width=&#34;548&#34; height=&#34;331&#34; /&gt;数据帧由以下7个不同的位域(Bit Field)组成:帧起始、仲裁域、控制域、数据域、CRC域、应答域、帧结尾。&lt;/p&gt;
+
+&lt;p&gt;帧起始:标志帧的开始，它由单个显性位构成，在总线空闲时发送，在总线上产生同步作用。&lt;/p&gt;
+
+&lt;p&gt;仲裁域:由11位标识符(ID10-ID0)和远程发送请求位(RTR)组成，RTR位为显性表示该帧为数据帧，隐性表示该帧为远程帧;标识符由高至低按次序发送，且前7位 (ID10-ID4)不能全为显性位。标识符ID用来描述数据的含义而不用于通信寻址，CAN总线的帧是没有寻址功能的。标识符还用于决定报文的优先权，ID值越低优先权越高，在竞争总线时，优先权高的报文优先发送，优先权低报文退出总线竞争。CAN总线竞争的算法效率很高，是一种非破坏性竞争。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;div id=&#34;pageNo-2&#34; data-page-no=&#34;2&#34; data-scale=&#34;0.70709782964164&#34; data-render=&#34;1&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;控制域:为数据长度码 (DLC3-DLC0)，表示数据域中数据的字节数，不得超过8。&lt;/p&gt;
+
+&lt;p&gt;数据域:由被发送数据组成，数目与控制域中设定的字节数相等，第一个字节的最高位首先被发送。其长度在标准帧中不超过8个字节。&lt;/p&gt;
+
+&lt;p&gt;CRC域:包括CRC(循环冗余码校验)序列(15位)和CRC界定符(1个隐性位)，用于帧校验。&lt;/p&gt;
+
+&lt;p&gt;应答域:由应答间隙和应答界定符组成，共两位;发送站发送两个隐性位，接收站在应答间隙中发送显性位。应答界定符必须是隐性位。&lt;/p&gt;
+
+&lt;p&gt;帧结束:由7位隐性位组成。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>资源管理器工具栏菜单栏不见了！</title>
+      <link>http://www.daniex.tk/blog/2013/the-explorer-toolbar-menu-bar-is-gone/</link>
+      <pubDate>Tue, 15 Jan 2013 02:16:09 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/the-explorer-toolbar-menu-bar-is-gone/</guid>
+      <description>&lt;p&gt;办公电脑坑爹地出了个奇怪问题，win+E 键掉资源管理器，发现菜单没有了！工具栏没有了！地址栏也没有了！就只剩左边文件夹树状图和右边我的电脑下盘符列表。打开我的电脑又很正常该有的都有！&lt;/p&gt;
+
+&lt;p&gt;这XP都要淘汰了还让我整这问题。。。找到个方法：&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #000000;&#34;&gt;打开注册表编辑器，找到 HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Toolbar\Explorer，删除 ITBarLayout 。然后关闭编辑器，再打开&lt;b&gt;资源管理器&lt;/b&gt;。OK搞定！&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>2012列表</title>
+      <link>http://www.daniex.tk/blog/2013/2012-list/</link>
+      <pubDate>Sat, 05 Jan 2013 03:19:53 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/2012-list/</guid>
+      <description>&lt;p&gt;才看了几本书，惭愧死～blog也断了好几个月～&lt;/p&gt;
+
+&lt;p&gt;电影电视&lt;/p&gt;
+
+&lt;p&gt;2012
+英剧
+sherlock season 1
+sherlock season 2
+black mirror season 1
+silk season 1
+silk season 2
+the walking dead season 2
+The Walking Dead season 3&lt;/p&gt;
+
+&lt;p&gt;美剧
+妙贼警探第三季
+gossip girl season 3
+nikita season 2
+the big bang theory season 5
+the vampire diaries 3
+leverage season 1
+leverage season 2
+leverage season 3
+leverage season 4
+Downton abbey season 1
+冰与火之歌 第二季(HBO)
+don&amp;rsquo;t trust the bitch in apartment 13 season 1
+妙贼警探第四季
+裂痕第五季
+the vampire diaries season 4
+The Big Bang Theory Season 6
+revenge season 1,2
+Arrow Season 1
+The Mob Doctor Season1
+福尔摩斯（美）Elementary Season 1
+super nature season 8
+gossip girl season 6
+don&amp;rsquo;t trust the bitch in aprtment 13 season 2
+scandal season 1 2&lt;/p&gt;
+
+&lt;p&gt;韩剧
+善良的男人&lt;/p&gt;
+
+&lt;p&gt;电影
+大魔术师 20120206
+变形金刚 3 20120209
+玩火的女孩 20120215（千禧年三部曲）
+龙纹身的女孩(美) 20120216（千禧年三部曲）
+龙纹身的女孩 20120217（千禧年三部曲）
+捅马蜂窝的女孩20120221（千禧年三部曲）
+转山 20120225
+老无所依20120314
+午夜巴塞罗那（2）20120315
+低俗小说（3）20120316
+晚秋 20120325
+志明与春娇20120402/03/04 三遍
+爱，不爱 20120404 第二三遍
+偷心 20120414
+大侦探福尔摩斯2诡影游戏20120430
+复仇者联盟20120513
+肮脏电影20120515
+破晓上 20120520
+超级战舰 20120531
+午夜巴黎20120502
+ghost rider I II 20120706
+关键第四号 20120716
+太空一号
+搜索
+光晕4航向黎明号
+醉后一夜
+人在囧途之泰囧
+ted
+life of pi&lt;/p&gt;
+
+&lt;p&gt;书&lt;/p&gt;
+
+&lt;p&gt;2012
+红拂夜奔201201
+冰与火之歌 权利的游戏201204-005
+牛奶可乐经济学20120405
+东京塔20120606
+金刚经说什么
+1Q84 B1
+1Q84 B2
+1Q84 B3
+Books vs Cigarettes &amp;ndash;George Orwell
+中国式青春&lt;/p&gt;
+
+&lt;p&gt;活动&lt;/p&gt;
+
+&lt;p&gt;1.2 香港
+1.20 上海
+2.20-31 春节 张家港
+2.5 深圳梧桐山
+2.18-19 广东 惠州 罗浮山
+3.10 深圳东西冲穿越
+3.17-18 深圳磨房百公里全程
+3.24 香港东龙洲
+4.14 深圳 盐田检查站-木瓜小屋-梅沙尖-大梅沙徒步
+4.15 广州 从化天堂顶
+4.22 深圳 杨梅坑-西冲（部门活动）
+4.29 香港 迪士尼
+5.26 深圳 梧桐山
+6月 欧洲杯
+6.22-25 西安
+7.7 深圳东西冲穿越
+7.14 深圳欢乐谷
+7.21 深圳玫瑰海岸山友沙滩节
+8.11 深圳羊台山
+8.25-26 广东 清远 连南瑶族自治县
+9.8-9 香港 贝澳露营
+9.15-16 深圳玫瑰海岸公司沙滩节
+9.22 ACP 南澳素质拓展
+10.1-7 张家港
+10.13 大鹏-大梅沙徒步
+10.19-21 江西武功山
+11.4 山友九周年东部华侨城-梧桐山村徒步
+11.43-45 广东韶关丹霞山
+12.7-9 山友山野百里韶关新丰帽山-雪山露营
+12.23 三水线徒步
+12.27-28 广东清远温泉&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>胡适：新思潮的意义</title>
+      <link>http://www.daniex.tk/blog/2012/hu-shi-xinsichaodeyiyi/</link>
+      <pubDate>Wed, 19 Dec 2012 08:06:27 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/hu-shi-xinsichaodeyiyi/</guid>
+      <description>&lt;p&gt;研究问题 、输入学理 、整理国故 、再造文明&lt;/p&gt;
+
+&lt;p&gt;(一)&lt;/p&gt;
+
+&lt;p&gt;近来报纸上发表过几篇解释“新思潮”的文章。我读了这几篇文章，觉得他们所举出的新思潮的性质，或太琐碎，或太扰统，不能算作新思潮运动的真确解 释，也不能指出新思潮的将来趋势。即如包世杰先生的“新思潮是什么”一篇长文，列举新思潮的内容，何尝不详细？但是他究竟不曾使我们明白那种种新思潮的共同意义是什么。比较最简单的解释要算我的朋友阿独秀先生所举出的新青年两大罪案，其实就是新思潮的两大罪案，一是拥护德莫克拉西先生(民治主义)，一是拥 护赛因斯先生(科学)。陈先生说：要拥护那德先生，便不得不反对孔教，礼法，贞节，旧伦理，旧政治。要拥护那赛先生，便不得不反对旧艺术，旧宗教。要拥护 德先生，又要拥护赛先生，便不得不反对国粹和旧文学。(新青年六卷一号页一O)
+这话虽然很简明，但是还嫌太扰统了一点。假使有人问：“何以要拥护德先生和赛先生便不能不反对国粹和旧文学呢？&amp;rdquo;答案自然是：&amp;rdquo;因为国粹和旧文学 是同德赛两位先生反对的。”又问：“何以凡同德两位先生反对的东西都该反对呢？”这个问题可就不是几句拢统简单的话所能回答的了。
+据我个人的观察，新思潮的根本意义只是一种新态度。这种新态度可叫做“评判的态度”。
+评判的态度，简单说来，只是凡事要重新分别一个好与不好。仔细说来，评判的态度含有几种特别的要求：
+(1)对于习俗相传下来的制度风俗，要问：“这种制度现在还有存在的价值吗？”
+(2)对于古代遗传下来的圣贤教训，要问：“这句话在今日还是不错吗？”
+(3)对于社会上湖涂公认的行为与信仰，都要问：“大家公认的，就不会错了吗？人家这样做，我也该这样做吗？难道没有别样做法比这个更好，更有理，更有益的吗？”
+尼采说现今时代是一个“重新估定一切价值”(Transvaludtion of all Valuss)的时代。“重新估定一切价值”八个字便是评判的态度的最好解释。从前的人说妇女的脚越小越美。现在我们不但不认小脚为“美”，简直说这是 “惨无人道”了。十年前，人家和店家都用鸦片烟敬客。现在鸦片烟变成犯禁品了。二十年前，康有为是洪水猛兽一般的维新党。现在康有为为变成老古董了。康有 为并不曾变换，估价的人变了，故他的价值也跟着变了。这叫做“重新估定一切价值”。
+我以为现在所谓“新思潮”，无论怎样不一致，根本上同有这公共的一点：&amp;ndash;评判的态度。孔教的讨论只是要重新估定孔教的价值。文学的评论只是要重 新估定旧文学的价值。贞操的讨论只是要重新估定贞操的道德在现代社会的价值。旧戏的评论只是要重新估定旧戏在今日文学上的价值。礼教的讨论只是要重新估定 古代的纲常礼教在今日还有什么价值。女子的问题只是要重新估定女子在社会上的价值。政府与无政府的讨论，财产私有与公有的讨论，也只是要重新估定政府与财 产等等制度在今日社会的价值。……我也不必往下数了，这些例很够证明这种评判的态度是新思潮运动的共同精神。&lt;/p&gt;
+
+&lt;p&gt;(二)&lt;/p&gt;
+
+&lt;p&gt;这种评判的态度，在实际上表现时，有两种趋势。一方面是讨论社会上，政治上，宗教上，文学上种种问题。一方面是介绍西洋的新思想，新学术，新文学，新信仰。前者是“研究问题”，后者是“输入学理”。这两项是新思潮的手段。
+我们随便翻开这两三年以来的新杂志与报纸，便可以看出这两种的趋势。在研究问题一方面，我们可以指出(1)孔教问题，(2)文学改革问题，(3) 国语统一问题，(4)女子解放问题，(5)贞操问题，(6)礼教问题，(7)教育改良问题，(8)婚姻问题，(9)父子问题，(10)戏剧改良问题……等 等。在输入学理一方面，我们可以指出《新青年》的“易卜生号”、&amp;rdquo;“马克思号”，《民铎》的“现代思潮号”，《新教育》的“杜威号”，《建设》的“全民政 治”的学理，和北京《晨报国民公报》、《每周评论》，上海《星斯评论》、《时事新报》、《解放与改造》，广州《民风周刊》……等等杂志报纸所介绍的种种西 洋新学说。
+为什么要研究问题呢？因为我们的社会现在正当根本动摇的时候，有许多风俗制度，向来不发生问题的，现在为不能适应时势的需要，不能使人满意，都渐 渐的变成困难的问题，不能不澈底研究，不能不考问旧日的解决法是否错误；如果错了，错在什么地方；错误寻出了，可有什么更好的解决方法；有什么方法可以适 应现时的要求。例如孔教的问题，向来不成什么问题；后来东方文化与西方文化接近，孔教的势力渐渐衰微，于是有一班信仰孔教的人妄想要用政府法令的势力来恢 复孔教的尊严；却不知识这种高压的手段恰好挑起一种怀疑的反动。因此。民国四五年的时候，孔教会的活动最大，反对孔教的人也最多。孔教成为问题就在这个时 候。现在大多数明白事理的人，已打破了孔教的迷梦，这个问题又渐渐的不成问题，故安福部的议员通过孔教为修身大本的议案时，国内竟没有人睬他们了!
+又如文学革命的问题。向来教育是少数&amp;rdquo;读书人&amp;rdquo;的特别权利，于大多数人是无关系的，文字的艰深不成问题。近来教育成为全国人的公共权利，人人知道 普及教育是不可少的，故逐渐的有人知道文言在教育上实在不适用，于是文言白话就成为问题了。后来有人觉得单用白话做教科书是不中用的，因为世间决没有人情 感学一种除了教科书以外便没有用处的文字。这些人主张：古文不但不配做教育的工具，并且不配做文学的利器；若要提倡国语的教育，先须提倡国语的文学。文学 革命的问题就是这样发生的。现在全国教育联合会已全体一致通过小学教科书改用国语的议案，况且用国语做文章的人也渐渐的多了，这个问题又渐渐的不成问题 了。
+为什么是输入学理呢？这个大概有几层解释。一来呢，有些人深信中国不但缺乏炮弹兵船电报铁路，还缺乏新思想与新学术，故他们尽量的输入西洋近世的 学说。二来呢，有些人自己深信某种学说，要想他传播发展，故尽力提倡。三来呢，有些人自己不能做具体的研究工夫，觉得翻译现成的学说比较容易些，故乐得做 这种稗贩事业。四来呢，研究具体的社会问题或政治问题，一方面做那破壤事业。一方面做对症下药的工夫，不但不容易，并且狠遭犯忌讯，狠容易惹祸，故不如做 介绍学说的事业，借&amp;rdquo;学理研究&amp;rdquo;的美名；既可以避“过激派”的罪名，又还可以种下一点革命的种子。五来呢，研究问题的人，势不能专就问题本身讨论，不能不 从那问题的意义上着想；但是问题引申到意义上去，便不能不靠许多学理做参考比较的材料，故学理的输入往往可以帮助问题的研究。
+这五种动机虽然不同，但是多少总含有一种“评判的态度”，总表示对于旧有学术思想的一种不满意，和对于西方的精神文明的一种新觉悟。
+但是这两三年新思潮运动的历史应该给我们一种狠有益的教训。什么教训呢？就是：这两三年来新思潮运动的最大成绩差不多全是研究问题的结果。新文学 的运动便是一个最明白的例。这个道理很容易解释。凡社会上成为问题的问题，一定是与许多人有密切关系的。这许多人虽然不能提出什么新解决，但是他们平时对 于这个问题自然不能不注意。若有人能把这个问题的各方面都细细分析出来，加上评判的研究，指出不满意的所在，提出新鲜的救济方法，自然容易引起许多人的注 意。起初自然有许多人反对。但是反对便是注意的证据。便是兴趣的表示。试看近日报纸上登的马克思的赢余价值论，可有反对的吗？可有讨论的吗？没有人讨论， 没有人反对，便是不能引起人注意的证据。研究问题的文章所以能发生效果，正为所研究的问题一定是社会人生最切要的问题，最能使人注意，也最能使人觉悟。悬 空介绍一种专家学说，如《赢余价值论》之类，除了少数专门学者之外，决不会发生什么影响。但是我们可以在研究问题里面做点输入学理的事业，或用学理来解释 问题的意义，或从学理上寻求解决问题的方法。用这种方法来输入学理，能使人于不知不觉之中感受学理的影响。不但如此，研究问题最能使读者渐渐的养成一种批 评的态度，研究的兴趣，独立思想的习惯。十部“纯粹理性的评判”，不如一点评判的态度；十篇“赢余价值论”，不如一点研究的兴趣；十种“全民政治论”，不 如一点独立思想的习惯。
+总起来说：研究问题所以能于短时期中发生很大的效力，正因为研究问题有这几种好处：(1)研究社会人生切要的问题最容易引起大家的注意；(2)因 为问题关切人生，故最容易引起反对，但反对是该欢迎的，因为反对便是兴趣的表示，况且反对的讨论不但给我们许多不要钱的广告，还可使我们得讨论益处，使真 理格外分明；(3)因为问题是逼人的活问题，故容易使人觉悟，容易得人信从；(4)因为从研究问题里面输入的学理，最容易消除平常人对于学理的抗拒力，最 容易使人于不知不觉之中受学理的影响；(5)因为研究问题可以不知不觉的养成一班研究的，评判的，独立思想的革新人才。
+这是这几年新思潮运动的大教训!我希望新思潮的领袖人物以后能了解这个教训，能把全副精力贯注到研究问题上去；能把一切学理不看作天经地义，但看 作研究问题的参考材料，能把一切学理应用到我们自己的种种切要问题上去；能在研究问题上面做输入学理的工夫；能用研究问题的工夫来提倡研究问题的态度，来 养成研究问题的人才。
+这是我对于新思潮运动的解释。这也是我对于新思潮将业的趋向的希望。&lt;/p&gt;
+
+&lt;p&gt;(三)&lt;/p&gt;
+
+&lt;p&gt;以上说新思潮的“评判的精神”在实际上的两种表现。现在要问：“新思潮的运动对于中国旧有的学术思想，持什么态度呢？”
+我的答案是：“也是评判的态度。”
+分开来说，我们对于旧有的学术思想有三种态度。第一，反对盲从，第二，反对调和；第三，主张整理国故。
+盲从是评判的反面，我们既主张，‘重新估定一切价值’，自然要反对盲从。这是不消说的了。
+为什么要反对调和呢？因为评判的态度只认得一个是与不是，一个好与不好，一个适与不适，&amp;ndash;不认得什么古今中外的调和。调和是社会的一种天然趋 势。人类社会有一种守旧的惰性，，少数人只管趋向极端的革新，大多数人至多只能跟你走半程路。这就是调和。调和是人类懒病的天然趋势，用不着我们来提倡。 我们走了一百里路，大多数人也许勉强走三四十里。我们若先讲调和，只走五十里，就一步都不走了。所以革新家的责任只是认定&amp;rdquo;是&amp;rdquo;的一个方向走去，洒回头讲 调和。社会上自然有无数懒人丑夫出来调和。
+我们对于旧有的学术思想，积极的只有一个主张，&amp;ndash;就是“整理国故”。整理就是从乱七八糟里面寻出一个条理脉络来；从无头无脑里面寻出一个前因后 果来；从胡说谬解里面寻出一个真意义来；从武断迷信里面寻出一个真价值来。为什么要整理呢&amp;rdquo;因为古代的学术思想向来没有条理，没有头绪，没有系统，故第一 步是条理系统的整理。因为前人研究古书，很少有历史进化的眼光的，故从来不讲究一种学术的渊源，一种思想的前因后果，所以第二步是要寻出每种学术思想怎样 发生，发生之后有什么影响效果。因为前人读古书，除极少数学者以外，大都是以讹传讹的谬说，&amp;ndash;如太极图，爻辰，先天图，卦气……之类，&amp;ndash;故第三步是要 用科学的方法，作精确的考证，把古人的意义弄得明白清楚。因为前人对于古代的学术思想，有种种武断的成见，有种种可笑的迷信，&amp;ndash;如骂杨朱墨翟为禽兽，却 尊孔丘为德配天地、道冠古今!&amp;ndash;故第四步是综合前三步的研究，各家都还他一个本来真面目，各家都还他一个真价值。
+这叫做“整理国故”。现在有许多人自己不懂得国粹是什么东西，却偏要高谈“保存国粹”。林琴南先生做文章论古文之不当废，他说，“吾知其理而不能 言其所以然”!现在许多国粹党，有几个不是这样糊涂懵懂的？这种人如何配谈国粹？若要知道什么是国粹，什么是国渣，先须要用评判的态度，科学的精神，去做 一番整理国故的工夫。&lt;/p&gt;
+
+&lt;p&gt;(四)&lt;/p&gt;
+
+&lt;p&gt;新思潮的精神是一种评判的态度。
+新思潮的手段是研究问题与输入学理。
+新思潮的将来趋势，依我个人的私见看来，应该是注重研究人生社会的切要问题，应该于研究问题之中做介绍学理的事业。
+新思潮对于旧文化的态度，在消极一方面是反对盲从，是反对调和；在积极一方面，是用科学的方法业做整理的工夫。
+新思潮的唯一目的是什么呢？是再造文明。
+文明不是拢统造成的，是一点一滴的造成的。进化不是一晚上拢统进化的。是一点一滴的
+进化的。现今的人爱谈“解放与改造”，须知解放不是拢统解放，改造也不是拢统改造。解放是这个那个制度的解放，这种那种思想的解放，这个那个人的解放，是一点一滴的解放。改造是这个那个制度的改造，这种那种思想的改造，这个那个人的改造，是一点一滴的改造。
+再造文明的下手工夫，是这个那个问题的研究。再造文明的进行，是这个那个问题的解决。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>差不多先生传（胡适）</title>
+      <link>http://www.daniex.tk/blog/2012/chabuduoxiansheng-hu-shi/</link>
+      <pubDate>Thu, 26 Jul 2012 06:11:45 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/chabuduoxiansheng-hu-shi/</guid>
+      <description>&lt;p&gt;你知道中国最有名的人是谁？&lt;/p&gt;
+
+&lt;p&gt;提起此人，人人皆晓，处处闻名。他姓差，名不多，是各省各县各村人氏。你一定见过他，一定听过别人谈起他。差不多先生的名字天天挂在大家的口头，因为他是中国全国人的代表。&lt;/p&gt;
+
+&lt;p&gt;差不多先生的相貌和你和我都差不多。他有一双眼睛，但看得不很清楚；有两只耳朵，但听得不很分明；有鼻子和嘴，但他对于气味和口味都不很讲究。他的脑子也不小，但他的记性却不很精明，他的思想也不很细密。&lt;/p&gt;
+
+&lt;p&gt;他常常说：“凡事只要差不多，就好了。何必太精明呢？”&lt;/p&gt;
+
+&lt;p&gt;他小的时候，他妈教他去买红糖，他买了白糖回来。他妈骂他，他摇摇头说：“红糖白糖不是差不多吗？”&lt;/p&gt;
+
+&lt;p&gt;他在学堂的时候，先生问他：“直隶省的西边是哪一省？”他说是陕西。先生说：“错了。是山西，不是陕西。”他说：“陕西同山西，不是差不多吗？”&lt;/p&gt;
+
+&lt;p&gt;后来他在一个钱铺里作伙计；他会写字，也会算，只是总不会精细。十字常常写成千字，千字常常写成十字。掌柜的生气了，常常骂他。他只是笑嘻嘻地赔小心道：“千字比十字只多一小撇，不是差不多吗？”&lt;/p&gt;
+
+&lt;p&gt;有一天，他为了一件要紧的事，要搭火车到上海去。他从从容容地走到火车站，迟了两分钟，火车已开走了。他白瞪着眼，望着远远的火车上的煤烟，摇摇 头道：“只好明天再走了，今天走同明天走，也还差不多。可是火车公司未免太认真了。8：30分开，同8：32分开，不是差不多吗？”他一面说，一面慢慢地 走回家，心里总不明白为什么火车不肯等他两分钟。&lt;/p&gt;
+
+&lt;p&gt;有一天，他忽然得了急病，赶快教家人去请东街的汪医生。那家人急急忙忙地跑去，一时寻不着东街的汪大夫，却把西街牛医王大夫请来了。差不多先生病 在床上，知道寻错了人；但病急了，身上痛苦，心里焦急，等不得了，心里想道：“好在王大夫同汪大夫也差不多，让他试试看吧。”于是这位牛医王大夫走近床 前，用医牛的法子给差不多先生治病。不上一点钟，差不多先生就一命呜呼了。&lt;/p&gt;
+
+&lt;p&gt;差不多先生差不多要死的时候，一口气断断续续地说道：“活人同死人也差……差……差不多，凡事只要……差……差……不多……就……好了，何……何……必……太……太认真呢？”他说完了这句格言，方才绝气了。&lt;/p&gt;
+
+&lt;p&gt;他死后，大家都很称赞差不多先生样样事情看得破，想得通；他家都说他一生不肯认真，不肯算账，不肯计较，真是一位有德行的人。于是大家给他取个死后的法号，叫他做圆通大师。&lt;/p&gt;
+
+&lt;p&gt;他的名誉越传越远，越久越大。无数无数的人都学他的榜样。于是人人都成了一个差不多先生。然而中国从此就成为一个懒人国了。&lt;/p&gt;
+
+&lt;p&gt;=======================&lt;/p&gt;
+
+&lt;p&gt;这是语文课本里的吧？记得学校期间读过。。。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>海淘第一单</title>
+      <link>http://www.daniex.tk/blog/2012/haitao/</link>
+      <pubDate>Fri, 18 May 2012 13:11:13 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/haitao/</guid>
+      <description>&lt;p style=&#34;text-align: left;&#34;&gt;傻瓜式海淘第一单，还是直邮的！还是很慢的！试水，很深。。。。&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-large wp-image-1187&#34; title=&#34;image001&#34; src=&#34;http://daniex.info/wp-content/uploads/2012/05/image001-1024x816.png&#34; alt=&#34;&#34; width=&#34;640&#34; height=&#34;510&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>粤语词汇</title>
+      <link>http://www.daniex.tk/blog/2012/cantonese-glossary/</link>
+      <pubDate>Wed, 16 May 2012 04:28:02 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/cantonese-glossary/</guid>
+      <description>&lt;p&gt;词汇&lt;/p&gt;
+
+&lt;p&gt;助词：&lt;/p&gt;
+
+&lt;p&gt;喇（了）谂（想）乜（什么）掂（定）嘅（的）咁（这/这么)&lt;/p&gt;
+
+&lt;p&gt;词语：&lt;/p&gt;
+
+&lt;p&gt;乜水（什么东西（带有鄙视）,但在肇庆地区表示为边个(谁)的意思）&lt;/p&gt;
+
+&lt;p&gt;指代、人物&lt;/p&gt;
+
+&lt;p&gt;我（我） 你（你） 佢（他） 我哋（我们）你哋（你们）佢哋（他们） 人哋（人家） 呢度（这里） 嗰度（那里）边度（哪里）呢（这） 嗰（那） 咁样（这样、那样）点解（为什么）第日（改天）第次（下次） 乜嘢（什么） 乜（什么）甘多（这么多）几多（多少）边（哪）咁好（这么好） 阿爸（爸爸） 阿妈（妈妈） 阿哥（哥哥）阿嫂（嫂嫂）阿爷（爷爷）阿嫲（奶奶） 阿公（外公）阿婆（外婆、老婆婆）阿叔（叔叔） 老豆（爸爸） 老妈子（妈妈）家姐（姐姐） 大佬（哥哥）细佬（弟弟） 心抱（媳妇） 舅父（舅舅）孙（孙子）仔仔（儿子）囡囡（女儿） 契爷（干爹） 契仔（干儿子）寡佬（单身汉） 仔（儿子）女（女儿） 后仔乸（继母） 太子爷（少东家）契弟（王八蛋）老坑（老头） 老嘢（老东西，老家伙）老姑婆（老处女）基佬（男同性恋者）老细（老板） 老千（骗子）后生仔（年轻小伙子）后生女（年轻姑娘） 靓仔（漂亮的小伙子）靓女（漂亮的姑娘）细路（小孩） 细蚊仔（小孩） 须虾（婴儿）马仔（打手）事头婆（老板娘）事头（老板） 塞（孙子的儿女） 麦（孙子的儿女的儿女） 老襟（两姐妹同一个老公） 老顶（上司）乸型（娘娘腔）&lt;/p&gt;
+
+&lt;p&gt;工作、交际&lt;/p&gt;
+
+&lt;p&gt;返工（上班） 收工（下班） 揾食（谋生）人工（工钱）出粮（发工资） 搞掂（搞妥当） 搞弯（弄糟糕）就手（顺利）捱夜（熬夜） 空姐（飞机女服务员） 钟点工（计时工）揾工（找工作）做嘢（干活）捞边行（搞什么行业） 一脚踢（一人承担）轮更（轮班）看更（看门） 起屋（盖房子） 揸车（驾驶汽车）熟行（内行）熟手（老练） 车衫（缝衣服）夹手夹脚（一起动手）执头执尾（收拾零碎的东西）搏命（拼命）癐gui6（累）差池（差错） 撞板（碰钉子） 松人（溜走）走人（溜走）炒鱿鱼（解雇） 开OT（加班）秘捞（兼职）手信（小礼物） 人客（客人） 生埗（陌生、生疏）老友记（老朋友）仇口（仇人）托大脚（拍马屁）危ngei1（求）俾面（给面子） 制（肯） 得闲（有空）冇几何（不常）冇相干（没关系） 唔觉意（不留心） 唔话得（没说的）倾（谈）倾偈gei2（聊天）早晨（早上好）早唞（晚安）揾人（找人） 拍拖（谈恋爱） 挂住（想念）隔篱（隔壁）掟煲（恋人分手） 好夹（很合得来） 探（拜访） 讲笑（开玩笑） 羞家（丢脸 ）抄更 （早上正职，晚上兼职） 偷鸡（上班工作时间溜走） 蛇王（工作偷懒） 嗱嗱啉（快点） 沙沙滚（随便应付） 易嘿（马虎） 、危险）拿西（粗枝大叶） 督背脊（打小报告）二五仔（出卖兄弟的人） 啱（适合） 横掂（反正） 侧侧膊（蒙混过去） 踢爆（揭发） 数围（利润得益） 啱 key（有默契） 甘化学（危险）&lt;/p&gt;
+
+&lt;p&gt;用品&lt;/p&gt;
+
+&lt;p&gt;起身（起床） 着（穿）除（脱）浪口（漱口） 飞发（理发） 电发（烫发） 洗面（洗脸）屙屎（大便）屙尿（小便） 闩门（关门） 熄灯（关灯） 水喉（水龙头）瞓觉（睡觉）食（吃）食晏（吃午餐） 食烟（抽烟） 滚水（开水）煲（煮） 焗（焖）饮胜（干杯） 颈渴（口渴） 餸（下饭的菜）腍nem4（软）宵夜（夜宵） 饮（渴） 台（桌子）梳化（沙发）雪柜（冰箱）家俬（家具） 皮箧gib1（皮箱）夹万（保险箱）刀仔（小刀） 花樽（花瓶） 香枧（香皂） 镬（锅）咪（麦克风）插苏（插座） 火水（煤油） 遮（伞）地拖（拖把）电芯（电池）洋烛（蜡烛）花洒（1莲蓬头，用于沐浴2喷壶，用于浇花）壳（勺子）番枧（肥皂） 扫把（扫帚） 匙羹（小勺子） 褛（外套）大褛（大衣）衫（衣服） T恤（针织或棉质上衣）裤（裤子） 鞋（鞋子）底衫（内衣） 底裤（内裤） 高踭鞋（高跟鞋）领太（领带） 荷包（钱包）唇膏（口红） 浪衫（晾衣服） 眼瞓（困） 冲凉（洗澡）一旧水（一百元） 一草（十元） 一撇（一千元） 一蚊鸡（一元） 一皮（一万元） 豆拎/斗零（少量钱） 鸡碎（一点点） 装饭（添饭） 要唔要饭/添唔添饭（添不添饭）食大茶饭(吃香喝辣) 系唔系(是不是)&lt;/p&gt;
+
+&lt;p&gt;人体、疾病&lt;/p&gt;
+
+&lt;p&gt;头壳（脑袋）头皮（头屑）面珠墩（脸蛋儿） 酒凹（酒窝） 下爬（下巴） 眼（眼睛）眼眉（眉毛）眼核（眼珠） 耳仔（耳朵） 耳屎（耳垢） 大牙（槽牙）鼻哥（鼻子）鼻哥窿（鼻孔）身子（身体） 心口（胸口） 膊头（肩膀）毛管（毛孔）罗柚（屁股） 手板（手掌） 手瓜（胳膊） 脚（脚、腿）背脊（脊背）尾龙骨（尾骨） 肚腩（小肚子） 睇医生（看病）驳骨（接骨头）联针（缝针）埋口（合口） 执药（抓药） 燥火（上火）好翻（好了）唔精神（不舒服） 冻亲（着凉） 头赤（头痛）打冷震（发抖）打噎（打嗝） 呕血（吐血） 浊亲（被水呛着）心口翳（胸闷）豆皮（麻脸）血压高（高血压） 落晒形（憔悴不堪）病猫（病鬼）生萝卜（长冻疮） 热痱（痱子） 痕（痒）黐线（神经失常）发羊吊（发羊角疯） 盲佬（瞎子） 甩皮（脱皮）损（破）香港脚（脚气）撞聋（听觉不灵） 作呕（恶心）肚屙（拉肚子）滞（消化不良） 身庆（身体发热） 咳（咳嗽）焗亲（中暑）晕酡酡（晕乎乎）兴heing合合（很热）生痱孜（溃疡）&lt;/p&gt;
+
+&lt;p&gt;动作、行为&lt;/p&gt;
+
+&lt;p&gt;岳高头（仰起头）拧头（摇头） 目及 geb6（盯）眯mｅi1埋眼（闭眼）瞌heb3（闭）啜（嘬，吻）噍（嚼） 唞气（呼吸） 渺嘴（撇嘴） 擘大口（张大口）喐手（动手）笃（戳）笠（套） 弗fit1（鞭打）抰yｅng2（抖）揞（蒙，捂）搣mit1（掰）摱man1（攀，扳）掹meng1（拔）豆（碰，摸）掟dｅng3（扔）抠（掺杂）抠乱（搞混了）抄cao3（搜，翻）挤（放）搦（拿） 捽（揉） 掴（用掌打） 省（擦） 吉（扎，刺）批（削）濑（洒） 枳zed1入去（塞进去）走（跑）走夹唔唞（拼命走） 标（冲）坎头埋墙（把头撞在墙上，形容人自讨苦吃）企（站）嗌（叫，喊）嗌交（吵架） 撩（逗）单单打打（说风凉话，含沙射影，讽刺攻击）诈假ga1意yi1（假装）诈娇（撒娇）扭拧（扭捏） 睇衰（看不起，看扁） 索气（吸气）揩油、索油（占便宜）攞嚟衰（自讨苦吃）储储埋埋（攒起来）打交（打架） 打横（横着）打掂（竖着） 打底（垫底）打赤脚（赤着脚） 打大赤肋（赤着上身）折堕（做孽，遭遇悲惨）惊gｅng1（害怕）发姣hao3（指女性卖弄风骚，淫荡）锡（疼爱）孭（背）得人惊（令人害怕） 得个吉（一场空） 厄水（骗钱） 邓（替） 抵（应该，动词。值得，名词） 翻嚟（回来） 打个冷（走／转一回） 骑呢nie3（古怪） 揾笨（占人便宜）典地（撒赖） 碌（滚动） 睇水（把风） 大洗（花钱过度） 撇pi(走，离开) 头fing fing （不停地晃动脑袋，类似唱摇滚的人的动作）&lt;/p&gt;
+
+&lt;p&gt;思想、感情&lt;/p&gt;
+
+&lt;p&gt;中意（喜欢） 爱惜（疼爱）快活（快乐）得戚（得意洋洋） 嬲nao1（生气）发嬲（生气）笑骑骑（笑哈哈） 笑口噬噬（张开嘴笑）笑口吟吟（笑容满面）莲子蓉面口（比喻笑容满面）偷笑（暗笑）熠熟狗头（形容人张开嘴笑，像煮熟的狗头一样）火起（发火）火滚（恼火）一把火（一肚子火）嬲爆爆（气冲冲）眼崛崛（瞪大眼睛，表示不满或生气） 崛（瞪）吹胀（1气坏，2无可奈何）肉赤（心疼）忧心（担心） 心淡（心灰意冷） 唔忿气（不服气）闭翳（发愁）喊（哭）喊苦喊忽（哭哭啼啼）苦瓜咁嘅面（像苦瓜那样拉长着脸，比喻愁眉苦脸）谷气（憋气）欢喜（喜欢） 乞人憎（令人讨厌）心思思（老惦念着）心挂挂（牵肠挂肚） 心水（心意）愿（愿意）情愿（宁愿）心多多（三心两意）心喐喐（指动了心想做某事，但还没有行动）特登（故意） 爱（要）激气（心里有气） 专登（特意）失魂（慌张，精神恍惚）失魂鱼（形容人惊慌失措如受惊的鱼）心息（死心）想话（打算）谂住（打算，预计） 心罨ngeb1（心里悲伤难受）心甘（甘心） 乍乍帝（装模作样） 拾下拾下（傻乎乎） 戆居（呆，傻，笨） 凼（哄） 蕉积（嚣张，气焰高涨）个心嗱住（心里酸溜溜）&lt;/p&gt;
+
+&lt;p&gt;常见事物&lt;/p&gt;
+
+&lt;p&gt;时间&lt;/p&gt;
+
+&lt;p&gt;一粒钟(一个小时) 一个字(五分钟) 天光(天亮时)&lt;/p&gt;
+
+&lt;p&gt;物品&lt;/p&gt;
+
+&lt;p&gt;氹、凼（坑） 单车(自行车)&lt;/p&gt;
+
+&lt;p&gt;动植物&lt;/p&gt;
+
+&lt;p&gt;语音&lt;/p&gt;
+
+&lt;p&gt;声母&lt;/p&gt;
+
+&lt;p&gt;b波 p婆 m摸 f科 d多 t拖 n挪 l罗&lt;/p&gt;
+
+&lt;p&gt;1、b　发音时上下唇闭拢，闭住一口气，然后让较弱的气流突然冲出来，与普通话中b的发音相同，所管的字也大致与普通话的b相对应。我们还是看一些例子吧，（汉字后面是广州话拼音，上标表示声调，注意这是粤语的声调，不是普通话的声调。点击可听到发音）。&lt;/p&gt;
+
+&lt;p&gt;班ban1　波bo1　杯bui1　把ba2　表biu2&lt;/p&gt;
+
+&lt;p&gt;2、p　发音时口形与b相同，但从双唇冲出的气流较强（语言学上所谓不送气与送气之分），与普通话中p的发音相同，所管的字也大致与普通话的p相对应。例&lt;/p&gt;
+
+&lt;p&gt;怕pa3　破po3　皮pｅi4　平ping4　排pai4&lt;/p&gt;
+
+&lt;p&gt;3、m　发音时先将嘴唇闭拢，声带振动，让气流从鼻孔出来，然后滑向韵母，与普通话发音相同，所管的字也大致与普通话的m相对应。例：&lt;/p&gt;
+
+&lt;p&gt;摩mo1　妈ma1　埋mai4　问men6　名ming4&lt;/p&gt;
+
+&lt;p&gt;4、f　发音时下嘴唇紧贴上门齿，让气流从唇齿间挤出来，与普通话发音相同，所管的字也与普通话的f、k、h相对应。例：&lt;/p&gt;
+
+&lt;p&gt;花fa1　分fen1　快fai3　火fo2　风fung1&lt;/p&gt;
+
+&lt;p&gt;5、d　发音时舌尖顶住牙床，然后让较弱的气流突然冲出，与普通话发音相同，所管的字也大致与普通话的d相对应。例：&lt;/p&gt;
+
+&lt;p&gt;大dai6　地dｅi6　丁ding1　多do1　当dong1&lt;/p&gt;
+
+&lt;p&gt;6、t　发音时口形与d相同，但冲出的气流较强，与普通话发音相同，所管的字也大致与普通话的t相对应。例&lt;/p&gt;
+
+&lt;p&gt;条tiu4　他ta1　拖to1　土tou2　叹tan3&lt;/p&gt;
+
+&lt;p&gt;7、n　发音时舌尖顶住上牙床，声带振动，让气流从鼻孔出来，然后滑向韵母，与普通话发音相同，所管的字也大致与普通话的n相对应。例：&lt;/p&gt;
+
+&lt;p&gt;你nｅi2　难nan4　努nou5　暖nｕn5　懦no6&lt;/p&gt;
+
+&lt;p&gt;注意：n在广州话中通常与l相混，把声母为n的都念为l如“你”念成“里”，“难”念成“兰”。这是一种“懒音”现象。&lt;/p&gt;
+
+&lt;p&gt;8、l　发音时舌尖顶住上牙床，声带振动，让气流从舌边流出，与普通话发音相同，所管的字也大致与普通话的l相对应，如上述，普通话读n的字在广州话中也可以读l。例：&lt;/p&gt;
+
+&lt;p&gt;烂lan6　了liu5　老lou5　龙lung4　乱lｕn6&lt;/p&gt;
+
+&lt;p&gt;g哥 k卡 gu姑 ku箍 ng我 h何&lt;/p&gt;
+
+&lt;p&gt;1、g　发音时先让舌跟顶住上腭后部，然后让较弱的气流突然冲出来，与普通话发音相同，与所管的字普通话g、j部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;哥go1　跟gen1　工gung1　家ga1　经ging1&lt;/p&gt;
+
+&lt;p&gt;2、k　发音口形与g相同，只是冲出的气流较强，与普通话发音相同，所管的字与普通话的k、q、j部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;抗kong3　卡ka1　其kｅi4　倾king1　距kｅu5&lt;/p&gt;
+
+&lt;p&gt;3、gu　发音时舌位与g相同，只是嘴唇圆拢，很像普通话的音节gu，但在粤语中它是作为声母使用，所管字与普通话声母为g、介韵为u的字对应。例：&lt;/p&gt;
+
+&lt;p&gt;关guan1　广guong2　瓜gua1　贵guei3　怪guai3&lt;/p&gt;
+
+&lt;p&gt;4、ku　发音时舌位时k相同，只是嘴唇圆拢，很像普通话的音节ku，但在粤语中它是作为声母使用，所管字与普通话声母和k、介韵为u的字对应。例：&lt;/p&gt;
+
+&lt;p&gt;跨kua1　困kuen3　群kuen4　亏kuei1　旷kuong3&lt;/p&gt;
+
+&lt;p&gt;5、ng　发音时舌跟顶住上腭后部，即与发g时将同，但舌头保持不动，让气流从鼻腔流出，然后滑向韵母。普通话中没有这个声母，但有以这个音为韵尾的韵母，其实它们舌位是相同的，发普通话韵母ang时，到最后ng那个鼻音就是这个音，只不过在粤语中这个可以作声母，后面再与韵母相拼，大家要细心体会。ng所管的字与普通话“零声母”对应，零声母指没有声母。y、w开头的音节也算是“零声母”，部分与ng对应。例：&lt;/p&gt;
+
+&lt;p&gt;安ngon1　牛ngeo4　暗ngem3　我ngo5　瓦nga5&lt;/p&gt;
+
+&lt;p&gt;注意：粤语中也有“零声母”，而且，粤语中零声母与声母ng有相混的现象（几个语气助词，如啊、哦，唉等除外），ng声母的字经常被读成零声母字，如安on1　我o5,读零声母的趋势在年轻人特别是香港的年轻人中尤为明显，这也是一种懒音现象。&lt;/p&gt;
+
+&lt;p&gt;6、h　发音时口微张开，舌跟放松稍向后，作呵气的样子，让气流从口中呼出。这个音与普通话中的h很相似，但又不相同，区别在于粤语的h不必像普通话那样舌跟顶住后腭产生摩擦，发音时尽量放松，与英语中的h相同。h所管的字与普通话h、x部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;哈ha1　海hoi2　汉hon3　希hｅi1　香hｅng1&lt;/p&gt;
+
+&lt;p&gt;j知 q雌 x思 z左 c初 s梳&lt;/p&gt;
+
+&lt;p&gt;这里有两组声母，即j、q、x和z、c、x，其实只能说是一组，因为j、q、x和z、c、x的发音是完全相同的，不像普通话那样有分别。但为什么还要设立两组声母呢？为的是使拼式尽量与普通话接近，便于学习。其中j、q、x与i、ｕ开头的韵母相平，而z、c、x，则与其他的韵母相拼。至于这组声母的发音，还是由我详细为大家解释。&lt;/p&gt;
+
+&lt;p&gt;1、z(j)　发音时舌尖靠齿背，靠近舌尖的舌面向上牙床和硬腭前部靠拢，然后稍微离开，让较弱的气流挤出产生摩擦。这个音既不是普通话的z也不是普通话的j，而是介于两者之间，即舌头比z又要后一点,比j要前一点。z(j)管字大致与普通话的z、zh、j对应。例：&lt;/p&gt;
+
+&lt;p&gt;在zoi6　早zou2　之ji1　站zam6　箭jin3&lt;/p&gt;
+
+&lt;p&gt;2、c(q)　发音时舌位与z(j)相同，但冲出的气流较强，形成“送气音”，像z(j)一样，c(q)是介于普通话话c与q之间的一个音。c(q)管字大致与普通话c、ch、q对应。例：&lt;/p&gt;
+
+&lt;p&gt;次qi3　错co3　长cｅng4　车cｅ1　情qing4&lt;/p&gt;
+
+&lt;p&gt;3、s(x)　发音时舌尖及靠近舌尖的舌面向上牙床和硬腭前部靠近，之间形成一道窄缝，让气流从中挤出。s(x)是介于普通话s和x之间的一个音。s(x)管字大致与普通话s、sh、x对应。例：&lt;/p&gt;
+
+&lt;p&gt;三sam1　四sｅi3　沙sa1　山san1　先xin1&lt;/p&gt;
+
+&lt;p&gt;快下课了，我再次强调，j、q、x和z、c、x是发音完全一样的，不是两组声母。如果你觉得准确把握它们的发音可以较难，那么你不妨就把他们读作普通话的z、c、s吧，其实差别不大，只是听起来好像“尖”了一点，慢慢体会吧，“欲速则不达”。&lt;/p&gt;
+
+&lt;p&gt;y也 w华&lt;/p&gt;
+
+&lt;p&gt;1、y　发音时舌面中前部尽量向硬腭抬起，声带振动，气流呼出时产生较轻的摩擦。这个音很像普通话中的y，但摩擦稍强。y在普通话中只是i的变体，不是声母，而在粤语中y是一个声母。y管字与普通话y开头的字对应。例：&lt;/p&gt;
+
+&lt;p&gt;衣yi1　圆yun4　人yen4　又yeo6　要yiu3&lt;/p&gt;
+
+&lt;p&gt;2、w 发音时双唇圆拢，舌根高提，靠近软腭，气流呼出时产生轻微的摩擦。像y一样，w在粤语中是作为声母，而在普通话w中只是作为u的变体，w的发音也与普通话中的w向相似，只是嘴唇收拢较紧，摩擦稍强。w管字与普通话w开头及读音为yun的字对应。例：&lt;/p&gt;
+
+&lt;p&gt;乌wu1　弯wan1　王wong4　为wei4　云wen4&lt;/p&gt;
+
+&lt;p&gt;韵母&lt;/p&gt;
+
+&lt;p&gt;a呀 o柯 u乌 i衣 ū于 ｅ(靴) ｅ诶&lt;/p&gt;
+
+&lt;p&gt;1、a　发音时嘴张大，舌头位置放得很低，嘴唇呈自然状态，不圆，让气流呼出。比普通话a张口稍大。管字与普通话a、ia、ua对应。例：&lt;/p&gt;
+
+&lt;p&gt;花fa1　他ta1　家ga1　华wa4　马ma5&lt;/p&gt;
+
+&lt;p&gt;2、o　发音时舌头略向后缩，嘴唇拢圆，让气流呼出。比普通话o张口更大。管字与普通话o、uo、e对应。例：&lt;/p&gt;
+
+&lt;p&gt;播bo3　火fo2　多do1　贺ho6　和wo4&lt;/p&gt;
+
+&lt;p&gt;3、u　发音时舌头向后缩，舌后部抬高，接近软腭，双唇尽量拢成圆形，向前突出，中间只留一个小孔让气流呼出。与普通话的u大体相同。管字对应于普通话u的部分字。例：&lt;/p&gt;
+
+&lt;p&gt;姑gu1　古gu2　夫fu1　富fu3　苦fu2&lt;/p&gt;
+
+&lt;p&gt;4、i　发音时舌尖抬高，逼近齿背，舌面前部抬高，接近软腭，嘴唇不圆，与普通话i大体相同。管字与普通话i部分字给er对应。例：&lt;/p&gt;
+
+&lt;p&gt;诗xi1　丝xi1　知ji1　痴qi1　儿yi4&lt;/p&gt;
+
+&lt;p&gt;5、ｕ　发音舌位与i相同，只是嘴唇像u一样圆拢，与普通话ｕ大体相同。管字与普通话zh、ch、sh、r双拼的u及音节yu。ｕ与相拼j、q、x、y时省略两点。例：&lt;/p&gt;
+
+&lt;p&gt;住ju6　处qu5　鼠xu2　如yu4　遇yu6&lt;/p&gt;
+
+&lt;p&gt;6、ｅ　发音时舌位与ｅ相同，张口比ｅ稍大，嘴唇圆拢，让气流呼出。这个音普通话中没有，对北方人来说有点难度，发音关键之处是圆唇。ｅ管字很少，普通话的ｕe、uo部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;靴hｅ1　朵dｅ2&lt;/p&gt;
+
+&lt;p&gt;7、ｅ　发音时口微张，舌尖下垂至下齿背，舌面前面向硬腭前部抬起，嘴唇不圆，让气流呼出。与普通话的ｅ（唉，ie的韵腹或ei的韵头）相同。管字与普通话的ie,e部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;夜yｅ6　谢zｅ6　写sｅ2　车cｅ1　社sｅ5&lt;/p&gt;
+
+&lt;p&gt;ai挨 ei矮 oi哀 ui会 iu妖 ｅi(非)&lt;/p&gt;
+
+&lt;p&gt;1、ai　发音时先发前音a，然后滑向后音i。与普通话中ai发音相近，但其中a比普通话ai中的a张口稍大，口音i张口也较大。管字与普通话ai部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;摆bai2　排pai4　猜cai1　怀wai4　快fai3&lt;/p&gt;
+
+&lt;p&gt;2、ei　发音时先发前音e，然后滑向后音i。ei不是普通话中的ei，普通话中没有这个音，e与普通话中的e发音不同，e发音有点像a，但张口比a小，舌头靠后，发音也比a短。管字主要与普通话i对应。例：&lt;/p&gt;
+
+&lt;p&gt;丽lei6　米mei5　制zei3　世sei3　系hei6&lt;/p&gt;
+
+&lt;p&gt;3、oi　发音时先发前音o，然后滑向后音i。oi这个音虽然在普通话中没有，但它构成的音素短简单，因此应该不难掌握，与英语boy中后面的音相同。管字与普通话ai部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;代doi6　该goi1　来loi4　菜coi3　台toi4&lt;/p&gt;
+
+&lt;p&gt;4、ui　发音时先发前音u，然后滑向后音i。粤语ui与普通话ui不同，普通话ui是uei的简写，不是真正的u+i,粤语才是真正的ui，注意分辩。管字与普通话ei、ui部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;每mui5　杯bui1　培pui4　灰fui1　回wui4&lt;/p&gt;
+
+&lt;p&gt;5、iu　发音时先发前音i，然后滑向后音u。这个音与普通话中的iu有点相似，但又不相同，普通话中的iu是iou的简写（但在一些音节，如xiu、jiu中o的发音很微弱），因此发粤语的iu要注意中间不要带这个o音。管字与普通话ao、iao部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;超qiu1　少xiu3　照jiu3　表biu2　鸟niu5&lt;/p&gt;
+
+&lt;p&gt;6、ｅi　发音时先发前音ｅ，然后滑向后音i。ｅi发音与普通话中ei大体相同。管字主要与普通话i和ei对应。例：&lt;/p&gt;
+
+&lt;p&gt;记gｅi3　起hｅi2　四sｅi3　美mｅi5　非fｅi1&lt;/p&gt;
+
+&lt;p&gt;ao拗 eo欧 ou奥 ｅu(去)&lt;/p&gt;
+
+&lt;p&gt;1、ao　发音时先发前音a，然后滑向后音u。ao的前音a比普通话a张口稍大，后音其实不是o（设计方案时为了避免au与an手写体混淆，故作ao）也不纯粹是u，而是比u张口大一点的一个元音国际音标作大写的〔U]。总的说来，这个音与普通话ao发音相近，只要发音时张口稍大一点就可以了。管钟肫胀ɑ瘾o、iao部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;搞gao2　考hao2　包bao1　交gao1　校hao6&lt;/p&gt;
+
+&lt;p&gt;2、eo　发音时先发前音e，然后滑向后音u，e如前一课所述，它不是普通话中的e，而是一个张口较小、发音较短的a音，后音不是o而是u（设计成eo同样是为了避免手写时与en混淆），这个u张口比ao中的u要小，比较接近纯粹的u音。普通话中没有eo这个音，它听起来像是介于ao与ou的音。管住大致对应普通话ou、iu及u的少数字。例：&lt;/p&gt;
+
+&lt;p&gt;后heo6　够geo3　又yeo6　九geo2　浮feo4&lt;/p&gt;
+
+&lt;p&gt;3、ou　发音时先发前音o，然后滑向后音u。这个音与普通话中的ou大体相同。管字与普通话ao、u部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;到dou3　号hou6　高gou1　度dou6　数sou3&lt;/p&gt;
+
+&lt;p&gt;4、ｅu　发音时先发前ｅ，然后滑向后音ｕ。后音其实是ｕ而不是u（设计成ｅu是为了减少附加符号），普通话中没有这个韵母，发好这个音关键是发好ｅ这个音。管字与普通话ｕ部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;虚hｅu1　去hｅu3　吕lｅu5　追zｅu1　居gｅu1&lt;/p&gt;
+
+&lt;p&gt;an晏 en(恩) on安 un碗 in烟 ūn冤 ｅn(春)&lt;/p&gt;
+
+&lt;p&gt;1、an　发音时先发前音a，然后滑向鼻音n。这个音和普通话中的an筇逑嗤?9茏钟肫胀ɑ瘾n、ian、uan部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;办ban6　产can2　间gan1　限han6　还wan4&lt;/p&gt;
+
+&lt;p&gt;2、en　发音时先发前音e，然后滑向鼻音n。和前边和带e韵母一样，这个e不是普通话的e，它是张口较少，发音较短的a音，它的张口又要比普通话的e大，舌头靠前一点，粤语en这个音听起来像介于普通话an和en之间。管字与普通话en、in、ｕn部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;奔ben1　粉fen2　因yen1　斤gen1　军guen1&lt;/p&gt;
+
+&lt;p&gt;3、on　发音时先发前音o，然后滑向鼻音n。普通话中虽然没有这个音，但它构成很简单，应该不难掌握，和英语John后面的音大体相同。管字与普通话an部分对应。&lt;/p&gt;
+
+&lt;p&gt;按on3　罕hon2　干gon1　汉hon3　寒hon4&lt;/p&gt;
+
+&lt;p&gt;4、un　发音时先发前音u，然后滑向鼻音n。这个音与普通话un不同，普通话un是uen的简写，中间有一个e音，发粤语的un时，注意中间不要带e音，发完u后迅速转向鼻音n。管字与普通话an、uan、en部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;半bun3　满mun5　欢fun1　官gun1　本bun2&lt;/p&gt;
+
+&lt;p&gt;5、in　发音时先发前音i，然后滑向鼻音n。in的与普通话的in大体相同。管字与普通话ian部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;边bin1　浅qin2　电din6　见gin3　年nin4&lt;/p&gt;
+
+&lt;p&gt;6、ｕn　发音时先发前音ｕ，然后滑向鼻音n。这个音与普通话的ｕn大体相同。管字与普通话uan、ｕan、un部分对应。与相拼j、q、x、y时ｕ上两点省略例：&lt;/p&gt;
+
+&lt;p&gt;船xun4　乱lｕn6　娟gｕn1　原yun4　村qun1&lt;/p&gt;
+
+&lt;p&gt;7、ｅn　发音时先发前ｅ，然后滑向鼻音n。管字与普通话un、ｕn、in部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;春cｅn1　唇sｅn4　俊zｅn3　迅sｅn3　进zｅn3&lt;/p&gt;
+
+&lt;p&gt;ang(横) eng莺 ong(康) ung瓮 ing英 ｅng(香) ｅng(镜)&lt;/p&gt;
+
+&lt;p&gt;1、ang　发音时先发前音a，然后滑向后鼻音ng。这个音与普通话的ang发音大体相同，只是a张口稍大。这个韵母管字不多，与普通话eng部分对应＠??br&amp;gt; 猛mang2　孟mang6　冷lang5　鹏pang4　横wang4&lt;/p&gt;
+
+&lt;p&gt;2、eng　发音时先发前音e，然后滑向后鼻音ng。这个韵母与普通话eng不同，前边已经说过多次，粤语中的e不同于普通话的e，它是张口较小，发音较短的a音，但比普通话e张口要大，因此eng像是介于普通话ang和eng之间。管字与普通话eng、ing部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;层ceng4　能neng4　赠zeng6　凭peng4　幸heng6&lt;/p&gt;
+
+&lt;p&gt;3、ong　发音时先发前音o，然后滑向后鼻音ng。粤语的ong与普通话的ong完全不同，与普通话ong对应的是ung，不过如果你学习过英语的话，我想你不会对这个音感到陌生，英语中long后边的音就是ong。ong管字与普通话ang、iang、uang部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;刚gong1　当dong1　江gong1　降gong3　黄wong4&lt;/p&gt;
+
+&lt;p&gt;4、ung　发音时先发前u，然后滑向后鼻音ng。ung与普通话ong发音接近，只是ung张口稍大。管字与普通话ong及eng部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;东dung1　红hung4　龙lung4　风fung1　碰pung3&lt;/p&gt;
+
+&lt;p&gt;5、ing　发音时先发前音i，然后滑向后鼻音ng。ing中的i比单韵母i张口稍大，因此ing发音不同于普通话的ing，像是介于普通话ing、eng之间的音。管字大致与普通话ing、eng对应。例：&lt;/p&gt;
+
+&lt;p&gt;英ying1　兴hing1　经ging1　称qing1　成xing4&lt;/p&gt;
+
+&lt;p&gt;6、ｅng　发音时先发前音ｅ，然后滑向后鼻音ng。ｅ这个音已经出现了可几次，应该不陌生了，ｅng中的ｅ和其他复合韵母一样。ｅng管字与普通话ang、iang部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;常sｅng4　长cｅng4　张zｅng1　两lｅng5　娘nｅng4&lt;/p&gt;
+
+&lt;p&gt;7、ｅng　发音时先发前音ｅ，然后滑向后鼻音ng。ｅng这个韵母管字很少，主要是少数字的口语读音，与普通话ing部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;病bｅng6　请cｅng2　镜gｅng3　饼bｅng2　井zｅng2&lt;/p&gt;
+
+&lt;p&gt;am(监) em庵 im淹&lt;/p&gt;
+
+&lt;p&gt;1、am　发音时先发前音a然后滑向双唇鼻音m。这组韵母的难点就在于双唇鼻音m这个韵尾，因为普通话中并没有这个韵尾，关键是发音到最后要把嘴闭起来。管字与普通话an、ian部分杂Α＠??br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;担dam1　男nam4　蓝lam4　咸ham4　减gam2&lt;/p&gt;
+
+&lt;p&gt;2、em　发音时先发前音e，然后滑向双唇鼻音m。e这个音前边已经讲述多次，不必再说了，要发好这个音，关键还是发音到最后要闭嘴。管字与普通话in、en、an部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;心sem1　金gem1　深sem1　怎zem2　敢gem2&lt;/p&gt;
+
+&lt;p&gt;3、im　发音时先发前音i，然后滑向双唇鼻音m。这个韵母听起来有点像in不同的地方就在于发音到最后双唇闭合。管字与普通话an、ian部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;占jim3　染yim5　兼gim1　点dim2　甜tim4&lt;/p&gt;
+
+&lt;p&gt;在古代汉语中是存在m韵尾的，但再现在北方话中，m韵尾已经归并到n中，因此，学习广东话不但掌握这些韵母较难，而且要分辨哪些字是n韵尾，哪些字是m韵尾更难，所以大家要多看多记。&lt;/p&gt;
+
+&lt;p&gt;ad押 ed(不) od(渴) ud活 id热 ｕd月 ｅd(律)&lt;/p&gt;
+
+&lt;p&gt;以b、d、g三个辅音字母结尾的韵母在语言学上称为“促声韵”。促声韵在现代北方话中已经消失。&lt;/p&gt;
+
+&lt;p&gt;1、ad　发音时先发前音a，然后舌尖顶住牙床，堵塞气流，即作将发状，但之后舌头不离开牙床，不爆破。管字与普通话a、ia、ua部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;八bad3　发fad3　杀sad3　压ngad3　滑wad6&lt;/p&gt;
+
+&lt;p&gt;2、ed　发音时先发前音e，然后舌尖顶住牙床，堵塞气流，即作将发d状，但之后舌头不离开牙床，不爆破。ed听起来有点像ad，但比ad张口小而且发音较短。管字与普通话a、ｕe、i、u部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;拔bed6　罚fed6　掘gued6　一yed1　不bed1&lt;/p&gt;
+
+&lt;p&gt;3、od　发音时先发前音o，然后舌尖顶住牙床，堵塞气流，即作将发d状，但之后舌头不离开牙床，不爆破。od管字极少，与普通话e部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;葛god3　喝hod3　渴hod3　割god3&lt;/p&gt;
+
+&lt;p&gt;4、ud　发音时先发前音u，然后舌尖顶住牙床，堵塞气流，即作将发d状，但之后舌头不离开牙床，不爆破。管字与普通话o、uo部分字对应，例：&lt;/p&gt;
+
+&lt;p&gt;拨bud6　没mud6　沫mud6　活wud6　阔fud3&lt;/p&gt;
+
+&lt;p&gt;5、id　发音时先发前音i，然后舌尖顶住牙床，堵塞气流，即作将发d状，但之后舌头不离开牙床，不爆破。管字与普通话e、ie部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;热yid6　舌xid3　设qid3　别bid6　洁gid3&lt;/p&gt;
+
+&lt;p&gt;6、ｕd　发音时先发前音ｕ，然后舌尖顶住牙床，堵塞气流，即作将发d状，但之后舌头不离开牙床，不爆破。管字与普通话uo、ｕe部分对应。在与j、q、x、y相拼时上ｕ两点省略。例：&lt;/p&gt;
+
+&lt;p&gt;说xud3　夺dｕd3　脱tｕd3　月yud6　决kｕd3&lt;/p&gt;
+
+&lt;p&gt;7、ｅd　发音时先发前音ｅ，然后舌尖顶住牙床，堵塞气流，即作将发d状，但之后舌头不离开牙床，不爆破。其中ｅ比单韵母ｅ张口稍大。管字与普通话ｕ、uai、i部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;律lｅd6　率sｅd1　恤sｅd1　摔sｅd1　栗lｅd6&lt;/p&gt;
+
+&lt;p&gt;ag(客) eg(德) og恶 ug屋 ig益 ｅg(约) ｅg(尺)&lt;/p&gt;
+
+&lt;p&gt;1、ag　发音时先发前音a，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。管字与普通话a、ua、o、uo、e、i、ai部分对应，例：&lt;/p&gt;
+
+&lt;p&gt;帕pag3　划wag6　伯bag3　或wag6　册cag3&lt;/p&gt;
+
+&lt;p&gt;2、eg　发音时先发前音e，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。eg发音与ag相似，但张口较小，发音较短。管字与普通话o、e、ai、ei部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;墨meg6　得deg1　麦meg6　北beg1　黑heg1&lt;/p&gt;
+
+&lt;p&gt;3、og　发音时先发前音o，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。管字与普通话o、e、ｕe、u、ao部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;薄bog6　各gog3　角gog3　扑pog3　剥mog1&lt;/p&gt;
+
+&lt;p&gt;4、ug　发音时先发前音u，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。管字与普通话u、ｕ、ou、iu部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;毒dug6　福fug1　绿lug6　肉yug6　六lug6&lt;/p&gt;
+
+&lt;p&gt;5、ig　发音时先发前音i，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。其中i的发音比单韵母i张口稍大。管字与普通话e、i、ｕ部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;的dig1　色xig1　亿yig1　激gig1　域wig6&lt;/p&gt;
+
+&lt;p&gt;6、ｅg　发音时先发前音ｅ，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。管字与普通话uo、ｕe、iao部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;若yｅg6　桌zｅg3　却kｅg3　约yｅg3　脚gｅg3&lt;/p&gt;
+
+&lt;p&gt;7、ｅg　发音时先发前音ｅ，然后用舌间跟顶住上腭后部，堵塞气流，即作发g状，但之后舌跟不离开上腭，不爆破。管字与普通话i部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;只zｅg3　石sｅg6　吃hｅg3　笛dｅg6　脊zｅg3&lt;/p&gt;
+
+&lt;p&gt;ab鸭 eb(急) ib叶&lt;/p&gt;
+
+&lt;p&gt;1、ab　发音时先发前音a，然后双唇闭合，堵塞气流，作发b状，但之后不爆破。管字与普通话a、ia部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;插cab3　答dab3　腊lab3　甲gab3　鸭ngab3&lt;/p&gt;
+
+&lt;p&gt;2、eb　发音时先发前音e，然后双唇闭合，堵塞气流，作发b状，但之后不爆破。eb发音与ab相近，但张口比ab小，发音较短。管字与普通话e、i部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;合heb6　汁zeb1　湿seb1　急geb1　给keb1&lt;/p&gt;
+
+&lt;p&gt;3、ib　发音时先发前音i，然后双唇闭合，堵塞气流，作发b状，但之后不爆破。管字与普通话e、ie部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;摄xib3　接jib3　劫gib3　协hib6　业yib6&lt;/p&gt;
+
+&lt;p&gt;m唔 ng五&lt;/p&gt;
+
+&lt;p&gt;这是两个很特殊的韵母，称为自成音节鼻音韵母。&lt;/p&gt;
+
+&lt;p&gt;1、m　发音时双唇闭合，让气流从鼻腔呼出。这是一个自成音节的鼻音韵母，不再与其他声母相拼。在粤语中m这个音节只有一个字“唔”（不），但它非常常用。&lt;/p&gt;
+
+&lt;p&gt;唔m4&lt;/p&gt;
+
+&lt;p&gt;2、ng　发音时舌跟顶住上腭后部，让气流从鼻腔呼出。ng也是一个自成音节的鼻音韵母，不再与其他声母双拼。在粤语中ng这个音节的字很少，与普通话音节wu部分对应。例：&lt;/p&gt;
+
+&lt;p&gt;误ng6　午ng5　吴ng4　五ng5　伍ng5&lt;/p&gt;
+
+&lt;p&gt;ai3曱zai2（蟑螂）乸（母，如母猪：猪乸）&lt;/p&gt;
+
+&lt;p&gt;粤语的书写系统&lt;/p&gt;
+
+&lt;p&gt;方言字和粤语白话文&lt;/p&gt;
+
+&lt;p&gt;现代粤语在正式场合里普遍采用二十世纪初兴起的现代汉语白话文书写系统，其语法、词汇跟普通话书面语大致相同。这种白话文的语法、词汇和用语与粤语有较大的差别，不过人们似乎已经基本上习惯了这种差异，不觉有大的不便。但当人们用粤语读这种白话文的时候，一般是不会完全按照字面来读的。朗读者会习惯上根据粤语语法、词汇及用语调整字面文句，用粤语复述出来。&lt;/p&gt;
+
+&lt;p&gt;大众媒体为贴近民众，不时会加入大量粤语固有词汇。部分杂志会采用另外一套自己的粤语白话文书写系统，大量按照粤语语法及用语书写，不懂粤语的中文使用者是难以理解这种粤语白话文的。报纸则会采取折衷方法，主要行文都是以普通话白话文书写，但在对话和引言中，会使用粤语白话文书写广东话对白，令文章更为生动，并避免在翻译成汉语白话文时出现失真。&lt;/p&gt;
+
+&lt;p&gt;因粤语白话文书写会用到大量粤语独有的粤字，在大五码系统（由台湾公司建立的繁文系统）的电脑中没有收录这些字，书写粤语尤为不便。香港政府早年曾推出一个香港增补字符集，收录了扩增粤字约5000字左右），如「啲」、「嘅」、「攞」、「揸」、「嘢」、「冚」等等。在最新一版的增补字符集中，进一步收录了一些所谓的「粗口字」。此做法备受质疑，因为粗口乃社会的一般禁忌，在社会道德层面，始终「粗口」不被普遍认同。香港政府方面则表示收录「粗口字」乃方便警方录取口供时使用。姑勿论谁对谁错，借着这套增补字符集，大部分粤语口语都可以被书写出来。&lt;/p&gt;
+
+&lt;p&gt;由于并非所有电脑都装有广东字增补字集，粤语使用者在网上讨论区等非正式场合，在没办法打出粤字的时候，会折衷地以英文的「o」代替口字旁，写成「o的」、「o既」、「o野」来代替「啲」、「嘅」、「嘢」这类粤字；有时也用更简单的办法，如用英文字母「D」代替发音相同的「啲」字，英文字母「ge」代替发音相同的「嘅」字。&lt;/p&gt;
+
+&lt;p&gt;粤语文学&lt;/p&gt;
+
+&lt;p&gt;粤语文学有非常悠久的历史，在传统的广东戏剧，对白及唱词包含了不少的粤语口语的成分，粤讴、童谣、山歌，及木鱼书等，都有浓厚的广东色彩。&lt;/p&gt;
+
+&lt;p&gt;文体方面，清初有以粤语词语入旧体诗形成的作品。晚清时，兴起了三及弟，即同时包含文言，白话及粤方言的文体。在民国初期，一些广东诗人，以粤语入诗，例如廖恩焘的《嬉笑集》、梁启超的《饮冰室文集》中的粤语诗等。在七十年代，香港出现了新三及弟，由白话，粤语及英语组成的新文体。而在中国大陆，由于普通话的推行，粤语地位受到影响，但仍产生一些粤语文学作品。如欧阳山的《三家巷》、陈残云的《香飘四季》等。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>介绍我自己的思想（胡适文选自序） </title>
+      <link>http://www.daniex.tk/blog/2012/about-my-own-thoughts/</link>
+      <pubDate>Fri, 27 Apr 2012 06:54:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2012/about-my-own-thoughts/</guid>
+      <description>&lt;p&gt;介绍我自己的思想（胡适文选自序）&lt;/p&gt;
+
+&lt;p&gt;我在这十年之中，出版了三集胡适文存，约计有一百四五十万字。我希望少年学生能读我的书，故用报纸印刷，要使定价不贵。但现在三集的书价已在七元以上，贫寒的中学生已无力全买了；字数近百十万，也不是中学生能全读的了。&lt;/p&gt;
+
+&lt;p&gt;所以我现在从这三集里选出了二十二篇论文，印作一册，预备给国内的少年朋友们作一种课外读物。如有学校教师愿意选我的文字作课本的，我也希望他们用这个选熬。&lt;/p&gt;
+
+&lt;p&gt;我选的这二十二篇文字，可以分作五组。&lt;/p&gt;
+
+&lt;p&gt;第一组六篇，泛论思想的方法。
+第二组三篇，论人生观。
+第三组三篇，论中西文化。
+第四组六篇，代表我对于中国文学的见解。
+第五组四篇，代表我对于整理国故问题的态度与方法。&lt;/p&gt;
+
+&lt;p&gt;为读者的便利起见，我现在给每一组作一个简短的提要，使我的少年朋友们容易明白我的思想的路径。&lt;/p&gt;
+
+&lt;p&gt;一&lt;/p&gt;
+
+&lt;p&gt;第一组收的文字是：&lt;/p&gt;
+
+&lt;p&gt;演化论与存疑主义
+杜威先生与中国
+杜威论思想
+问题与主义
+新生活
+新思潮的意义&lt;/p&gt;
+
+&lt;p&gt;我的思想受两个人的影响最大：一个是赫胥黎，一个是杜威先生。赫胥黎教我怎样怀疑，教我不信任一切没有充分证据的东西。杜威先生教我怎样思想，教我处处顾到当前的问题，教我把一切学说理想到思想的结果。这两个人使我明了科学方法的性质与功用，故我选前三篇介绍这两位大师给我的少年朋友们。&lt;/p&gt;
+
+&lt;p&gt;从前陈独秀先生曾说实验主义和辩证法的唯物史观是近代两个最重要的思想方法，他希望这两种方法能合作一条联合战线。这个希望是错误的。辩证法出于海格尔的哲学，是生物进化论成立以前的玄学方法。实验主义是生物进化论出世以后的科学方法。这两种方法所以根本不相容，只是因为中间隔了一层达尔文主义。达尔文的生物演化学说给了我们一个大教训：就是教我们明了生物进化，无论是自然的演变，或是人为的选择，都由于一点一滴的变异，所以是一种很复杂的现象，决没有一个简单的目的地可以一步跳到，更不会有一步跳到之后可以一成不变。辩证法的哲学本来也是生物学发达以前的一种进化理论；依他本身的理论，这个一正一反相毁相成的阶段应该永远不断的呈现。但狭义的共产主义者却似乎忘了这个原则，所以武断的虚悬一个共产共有的理想境界，以为可以用阶级斗争的方法一蹴即到，即到之后又可以用一阶级专政的方法把持不变。这样的化复杂为简单，这样的根本否定演变的继续便是十足的达尔文以前的武断思想，比那顽固的海格尔更顽固了。&lt;/p&gt;
+
+&lt;p&gt;实验主义从达尔文主义出发，故只承认一点一滴的不断的改进是真实可靠的进化。我在「问题与主义」和「新思潮的意义」两篇里，只发挥这个根本观念。
+我认定民国六年以后的新文化运动的目的是再造中国文明，而再造文明的途径全靠研究一个个的具体问题。我说：文明不是笼统造成的，是一点一滴的造成的。进化不是一个晚上笼统进化的，是一点一滴的进化的。现今的人爱谈「解放」与「改造」，须知解放不是笼统解放，改造也不是笼统改造。解放是这个那个制度的解放，这种那种思想的解放，这个那个人的解放：都是一点一滴的解放。改造是这个那个制度的改造，这种那种思想的改造，这个那个人的改造：都是一点一滴的改造。再造文明的下手工夫是这个那个问题的研究。再造文明的进行是这个那个问题的解决。&lt;/p&gt;
+
+&lt;p&gt;我这个主张在当时最不能得各方面的了解。当时（民国八年）承「五四」「六三」之后，国内正倾向于谈主义。我预料到这个趋势的危险，故发表「多研究问题，少谈些主义」的警告。我说：凡是有价值的思想，都是从这个那个具体的问题下手的。先研究了
+问题的种种方面的种种事实，看看究竟病在何处，这是思想的第一步工夫。然后根据于一生的经验学问，提出种种解决的办法，提出种种医病的丹方，这是思想的第二步工夫。然后用一生的经验学问，加上想象的能力，推想每一种假定的解决法应该可以有什么样的效果，更推想这种效果是否真能解决眼前这个困难问题。推想的结果，拣定一种假定的（最满意的）解决，认为我的主张，这是思想的第三步工夫。凡是有价值的主张，都是先经过这三步工夫来的。&lt;/p&gt;
+
+&lt;p&gt;我又说：&lt;/p&gt;
+
+&lt;p&gt;一切主义，一切学理，都该研究。但只可认作一些假设的（待证的）见解，不可认作天经地义的信条；只可认作参考印证的材料，不可奉为金科玉律的宗教；只可用作启发心思的工具，切不可用作蒙蔽聪明、停止思想的绝对真理。如此方才可以渐渐养成人类的创造的思想力，方才可以渐渐使人类有解决具体问题的能力，方才可以渐渐解放人类对于抽象名词的迷信。&lt;/p&gt;
+
+&lt;p&gt;这些话是民国八年七月写的。于今已隔了十几年，当日和我讨论的朋友，一个已被杀死了，一个也颓唐了，但这些话字字句句都还可以应用到今日思想界的现状。十几年前我所预料的种种危险，─「目的热」和「方法盲」，迷信抽象名词，把主义用作蒙蔽聪明、停止思想的绝对真理，─一一都显现在眼前了。所以我十分诚恳的把这些老话贡献给我的少年朋友们，希望他们不可再走错了思想的路子。&lt;/p&gt;
+
+&lt;p&gt;「新生活」一篇，本是为一个通俗周报写的；十几年来，这篇短文走进了中小学的教科书里，读过的人应该在一千万以上了。但我盼望读过此文的朋友们把这篇短文放在同组的五篇里重新读一遍。赫胥黎教人记得一句「拿证据来！」我现在教人记得一句「为什么？」少年的朋友们，请仔细想想：你进学校是为什么？你进一个政党是为什么？你努力作革命工作是为什么？革命是为了什么而革命？政府是为了什么而存在？&lt;/p&gt;
+
+&lt;p&gt;请大家记得：人同畜生的分别，就在这个「为什么」上。&lt;/p&gt;
+
+&lt;p&gt;二&lt;/p&gt;
+
+&lt;p&gt;第二组的文字只有三篇：&lt;/p&gt;
+
+&lt;p&gt;科学与人生观序
+不朽
+易卜生主义&lt;/p&gt;
+
+&lt;p&gt;这三篇代表我的人生观，代表我的宗教。&lt;/p&gt;
+
+&lt;p&gt;易卜生主义一篇写的最早，最初的英文稿是民国三年在康奈尔大学哲学会宣读的，中文稿是民国七年写的。易卜生最可代表十九世纪欧洲的个人主义的精华，故我这篇文章只写得一种健全的个人主义的人生观。这篇文章在民国七八年间所以能有最大的兴奋作用和解放作用，也正是因为它所提倡的个人主义在当日确是最新鲜又最需要的一针注射。&lt;/p&gt;
+
+&lt;p&gt;娜拉抛弃了家庭丈夫儿女，飘然而去，只因为她觉悟了她自己也是一个人，只因为她感觉到她「无论如何，务必努力做一个人。」这便是易卜生主义。易卜生说：&lt;/p&gt;
+
+&lt;p&gt;我所最期望于你的是一种真实纯粹的为我主义，要使你有时觉得天下只有关于你的事最要紧，其余的都算不得什么……你要想有益于社会，最好的法子莫如把你自己这块材料铸造成器。……有的时候我真觉得全世界都象海上撞沉了船，最要紧的还是救出自己。&lt;/p&gt;
+
+&lt;p&gt;这便是最健全的个人主义。救出自己的唯一法子便是把你自己这块材料铸造成器。&lt;/p&gt;
+
+&lt;p&gt;把自己铸造成器，方才可以希望有益于社会。真实的为我，便是最有益的为人。把自己铸造成了自由独立的人格，你自然会不知足，不满意于现状，敢说老实话，敢攻击社会上的腐败情形，做一个「贫贱不能移，富贵不能淫，威武不能曲」的斯铎曼医生。斯铎曼医生为了说老实话，为了揭穿本地社会的黑幕，遂被全社会的人喊作「国民公敌」。但他不肯避「国民公敌」的恶名，他还要说老实话。他大胆的宣言：&lt;/p&gt;
+
+&lt;p&gt;世上最强有力的人就是那最孤立的人！&lt;/p&gt;
+
+&lt;p&gt;这也是健全的个人主义的真精神。&lt;/p&gt;
+
+&lt;p&gt;这个个人主义的人生观一面教我们学娜拉，要努力把自己铸造成个人；一面教我们学斯铎曼医生，要特立独行，敢说老实话，敢向恶势力作战。少年的朋友们，不要笑这是十九世纪维多利亚时代的陈腐思想！我们去维多利亚时代还老远哩。欧洲有了十八九世纪的个人主义，造出了无数爱自由过于面包、爱真理过于生命的特立独行之士，方才有今日的文明世界。&lt;/p&gt;
+
+&lt;p&gt;现在有人对你们说：「牺牲你们个人的自由，去求国家的自由！」我对你们说：「争你们个人的自由，便是为国家争自由！争你们自己的人格，便是为国家争人格！自由平等的国家不是一群奴才建造得起来的！」&lt;/p&gt;
+
+&lt;p&gt;＊　　　　　　＊　　　　　　＊　　　　　　＊&lt;/p&gt;
+
+&lt;p&gt;科学与人生观序一篇略述民国十二年的中国思想界里的一场大论战的背景和内容。（我盼望读者能参读文存三集里「几个反理学的思想家」的吴敬恒一篇，页８２─１０７。）在此序的末段，我提出我所谓「自然主义的人生观」（文存二集页１３６─９）。这不过是一个轮廓，我希望少年的朋友们不要仅仅接受这个轮廓，我希望他们能把这十条都拿到科学教室和实验室里去细细证实或否证。&lt;/p&gt;
+
+&lt;p&gt;这十条的最后一条是：&lt;/p&gt;
+
+&lt;p&gt;根据生物学及社会学的知识，叫人知道个人─「小我」─是要死灭的，而人类─「大我」─是不死的，不朽的；叫人知道「为全种万世而生活」就是宗教，就是最高的宗教；而那些替个人谋死后的天堂净土的宗教乃是自私自利的宗教。&lt;/p&gt;
+
+&lt;p&gt;这个意思在这里说的太简单了，读者容易起误解。所以我把不朽一篇收在后面，专门说明这一点。&lt;/p&gt;
+
+&lt;p&gt;我不信灵魂不朽之说，也不信天堂地狱之说，故我说这个小我是会死灭的。死灭是一切生物的普遍现象，不足怕，也不足惜。但个人自有他不死不灭的部分：他的一切作为，一切功德罪恶，一切语言行事，无论大小，都在那大我上留下不能磨灭的结果和影响。他吐一口痰在地上，也许可以毁灭一村一族。他起一个念头，也许可以引起几十年的血战。他也许「一言可以兴邦；一言可以丧邦。」善亦不朽，恶亦不朽；功盖万世固然不朽，种一担谷子也可以不朽，喝一杯酒，吐一口痰也可以不朽。古人说，「一出言而不敢忘父母，一举足而不敢忘父母。」我们应该说「说一句话而不敢忘这句话的社会影响，走一步路而不敢忘这步路的
+社会影响。」这才是对于大我复责任，能如此做，便是道德，便是宗教。&lt;/p&gt;
+
+&lt;p&gt;这样说法，并不是推崇社会而抹杀个人。这正是极力抬高个人的重要。个人虽渺小，而他的一言一动都在社会上留下不朽的痕迹，芳不止流百世，臭也不止遗万年，这不是绝对承认个人的重要吗？成功不必在我，也许在我千百年后，但没有我也绝不能成功。毒害不必在眼前，「我躬不阅，惶恤我后！」然而我岂能不负这毒害的责任？今日的世界便是我们的祖宗集的德，造的孽。未来的世界全看我们自己集什么德或造什么孽。世界的关键全在我们手里，真如古人说的：「任重而道远」；我们岂可错过这绝好的机会，放下这绝大的担子？&lt;/p&gt;
+
+&lt;p&gt;有人对你说「人生如梦。」就算是一场梦罢，可是你只有这一个作梦的机会。岂可不振作一番，做一个痛痛快快轰轰烈烈的梦？&lt;/p&gt;
+
+&lt;p&gt;有人对你说「人生如戏。」就说是作戏罢，可是，吴稚晖先生说的好，「这唱的是义务戏，自己要好看才唱的；谁便无端的自己扮做跑龙套，辛苦的出台，止算做没有呢？」&lt;/p&gt;
+
+&lt;p&gt;其实人生不是梦，也不是戏，是一件最严重的事实。你种谷子，便有人充饥；你种树，便有人砍柴，便有人乘凉；你拆烂污，便有人遭瘟；你放野火，便有人烧死。你种瓜便得瓜种豆便得豆，种荆棘便得荆棘。少年的朋友们，你爱种什么？你能种什么？&lt;/p&gt;
+
+&lt;p&gt;三&lt;/p&gt;
+
+&lt;p&gt;第三组的文字，也只有三篇：&lt;/p&gt;
+
+&lt;p&gt;我们对于西洋近代文明的态度
+漫游的感想
+请大家来照镜子&lt;/p&gt;
+
+&lt;p&gt;在这三篇里，我很不客气的指摘我们的东方文明，很热烈的颂扬西洋的近代文明。&lt;/p&gt;
+
+&lt;p&gt;人们常说东方文明是精神的文明，西方文明是物质的文明，或唯物的文明。这是有夸大狂的妄人捏造出来的谣言，用来遮掩我们的羞脸的。其实一切文明都有物质和精神的两部分：材料都是物质的，而运用材料的心思才智都是精神的。&lt;/p&gt;
+
+&lt;p&gt;木头是物质；而刳木为舟，构木为屋，都靠人的智力，那便是精神的部分。器物越完备复杂，精神的因子越多。一只蒸汽锅炉，一辆摩托车，一部有声电影机器，其中所含的精神因子比我们老祖宗的瓦罐，大车，毛笔多的多了。我们不能坐在舢板船上自夸精神文明，而嘲笑五万吨大汽船是物质文明。&lt;/p&gt;
+
+&lt;p&gt;但是物质是倔强的东西，你不征服他，他便要征服你。东方人在过去的时代，也曾制造器物，做出一点利用厚生的文明。但后世的懒惰子孙得过且过，不肯用手用脑去和物质抗争，并且编出「不以人易天」的懒人哲学，于是不久便被物质战胜了。天旱了，只会求雨；河决了，只会拜金龙大王；风浪大了，只会祷告观音菩萨或天后娘娘。荒年了，只好逃荒去；瘟疫来了，只好闭门等死；病上身了，只好求神许愿；树砍完了，只好烧茅草；山都精光了，只好对着叹气。这样又愚又懒的民族，不能征服物质，便完全被压死在物质环境之下，成了一分像人九分象鬼的不长进民族。所以我说：&lt;/p&gt;
+
+&lt;p&gt;这样受物质环境的拘束与支配，不能跳出来，不能运用人的心思智力来改造环境改良现状的文明，是懒惰不长进的民族的文明，是真正唯物的文明。&lt;/p&gt;
+
+&lt;p&gt;反过来看看西洋的文明，这样充分运用人的聪明智慧来寻求真理以解放人的心灵，来制服天行以供人用，来改造物质的环境，来改革社会政治的制度，来谋求人类最大多数的最大幸福，──这样的文明是精神的文明。&lt;/p&gt;
+
+&lt;p&gt;这是我的东西文化论的大旨。&lt;/p&gt;
+
+&lt;p&gt;少年的朋友们，现在有一些妄人要煽动你们的夸大狂，天天要你们相信中国的旧文化比任何国高，中国的旧道德比任何国好。还有一些不曾出国门的愚人鼓起喉咙对你们喊道，「往东走！往东走！西方的这一套把戏是行不通的了！」&lt;/p&gt;
+
+&lt;p&gt;我要对你们说：不要上他们的当！不要拿耳朵当眼睛！睁开眼睛看看自己，再看看世界。我们如果还要把这个国家整顿起来，如果还希望这个民族在世界上占一个地位，──只有一条生路，就是我们自己要认错。我们必须承认我们自己百事不如人，不但物质机械上不如人，不但政治制度不如人，并且道德不如人，知识不如人，文学不如人，音乐不如人，艺术不如人，身体不如人。&lt;/p&gt;
+
+&lt;p&gt;肯认错了，方才肯死心塌地的去学人家。不要怕模仿，因为模仿是创造的必要预备工夫。不要怕丧失我们自己的民族文化，因为绝大多数人的惰性已尽够保守那旧文化了，用不着你们少年人去担心。你们的职务在进取，不在保守。&lt;/p&gt;
+
+&lt;p&gt;请大家认清我们当前的紧急问题。我们的问题是救国，救这个衰病的民族，救这半死的文化。在这件大工作的历程里，无论什么文化，凡可以使我们起死回生、返老还童的，都可以充分采用，都应该充分吸收。我们救国建国，正如大匠建屋，只求材料可以应用，不管他来自何方。&lt;/p&gt;
+
+&lt;p&gt;四&lt;/p&gt;
+
+&lt;p&gt;第四组的文字有六篇：&lt;/p&gt;
+
+&lt;p&gt;建设的文学革命论
+尝试集自序
+文学进化观念
+国语的进化
+文学革命运动
+词选自序&lt;/p&gt;
+
+&lt;p&gt;这里有一部分是叙述文学革命运动的经过的，有一部分是我自己对于文学的见解。&lt;/p&gt;
+
+&lt;p&gt;我在这十几年的中国文学革命运动上，如果有一点贡献，我的贡献只在：&lt;/p&gt;
+
+&lt;p&gt;（１）我指出了「用白话作新文学」的一条路子。（文存一集页５７─６３；页２０２─３；二集页２４３─８。）&lt;/p&gt;
+
+&lt;p&gt;（２）我供给了一种根据历史事实的中国文学演变论，使人明了国语是古文的进化，使人明了白话文学在中国史上占什么地位。（文存一集页１４４─５１；页４４９─６７；三集页６３０─５。）&lt;/p&gt;
+
+&lt;p&gt;（３）我发起了白话新诗的尝试。（文存一集页１８７─２０４。）&lt;/p&gt;
+
+&lt;p&gt;这些文字都可以表出我的文学革命论，也只是进化论和实验主义的一种实际应用。&lt;/p&gt;
+
+&lt;p&gt;五&lt;/p&gt;
+
+&lt;p&gt;第五组的文字有四篇：&lt;/p&gt;
+
+&lt;p&gt;国学季刊发刊宣言
+古史讨论的读后感
+红楼梦考证
+治学的方法与材料&lt;/p&gt;
+
+&lt;p&gt;这都是关于整理国故的文字。&lt;/p&gt;
+
+&lt;p&gt;季刊宣言是一篇整理国故的方法总论，有三个要点：&lt;/p&gt;
+
+&lt;p&gt;第一、用历史的眼光来扩大研究的范围。
+第二、用系统的整理来部勒研究的资料。
+第三、用比较的研究来帮助材料的整理与解释。&lt;/p&gt;
+
+&lt;p&gt;这一篇是一种概论，故未免觉的太悬空一点。以下的两篇便是两个具体的例子，都可以说明历史考证的方法。&lt;/p&gt;
+
+&lt;p&gt;古史讨论一篇，在我的文存里要算是最精彩的方法论。这里面讨论了两个基本方法：一个是用历史演变的眼光来追求传说的演变，一个是用严格的考据方法来评判史料。&lt;/p&gt;
+
+&lt;p&gt;顾颉刚先生在他的古史辩的自序里曾说他从我的水浒传考证和井田辩等文字里得着历史方法的暗示。这个方法便是用历史演化的眼光来追求每一个传说演变的历程。我考证水浒的故事，包公的传说，狸猫换太子的故事，井田的制度，都是用这个方法。顾先生用这个方法来研究中国古史，曾有很好的成绩。顾先生说的最好：「我们看史籍的整理还轻而看传说的经历确重。凡是一件史事，应看他最先是怎样，以后逐步的变迁是怎样。」其实对于纸上的古史籍，追求其演变的步骤，便是整理他了。&lt;/p&gt;
+
+&lt;p&gt;在这篇文字里，我又略述考证的方法，我说：&lt;/p&gt;
+
+&lt;p&gt;我们对于「证据」的态度是：
+（１）这种证据是在什么地方寻出的？
+（２）什么时候寻出的？
+（３）什么人寻出的？
+（４）依地方和时候上看起来，这个人有做证人的资格吗？
+（５）这个人虽有证人资格，而他说这句话有作伪（无心的，或有意的）的可能吗？&lt;/p&gt;
+
+&lt;p&gt;红楼梦考证诸篇只是考证方法的一个实例。我说：&lt;/p&gt;
+
+&lt;p&gt;我觉得我们做红楼梦的考证，只能在「著者」和「本子」两个问题上着手；只能运用我们力所能搜集的材料，参考互证，然后抽出一些比较的最近情理的结论。这是考证学的方法。我在这篇文章里，处处想撇开一切先入的成见，处处存一个求证据的目的，处处尊重证据，让证据做向导，引我到相当的结论上去。&lt;/p&gt;
+
+&lt;p&gt;这不过是赫胥黎、杜威的思想方法的实际应用。我的几十万字的小说考证，都只是用一些「深切而著名」的实例来教人怎样思想。&lt;/p&gt;
+
+&lt;p&gt;试举曹雪芹的年代一个问题作个实例。民国十年，我收得了一些证据，得着这些结论：&lt;/p&gt;
+
+&lt;p&gt;我们可以断定曹雪芹死于乾隆三十年左右。（约西历１７５６。）──我们可以猜想雪芹大约生于康熙末叶，（约１７１５─１７２０。）当他死时，约五十岁左右。&lt;/p&gt;
+
+&lt;p&gt;民国十一年五月，我得着了四松堂集的原本。见敦诚鞔曹雪芹的诗题下注「甲申」二字，又诗中有「四十年华」的话，故修正我的结论如下：&lt;/p&gt;
+
+&lt;p&gt;曹雪芹死在乾隆二十九年甲申（１７６４），……他死时只有「四十年华」，我们可以断定他的年纪不能在四十五岁以上。假定他死时年四十五岁，他的生时当康熙五十八年（１７１９）。&lt;/p&gt;
+
+&lt;p&gt;但到了民国十六年，我又得了脂砚斋评本石头记，其中有「壬午除夕，书未成，芹为泪尽而逝」的话。壬午为乾隆二十七年，除夕当西历一七六三年二月十二日，和我七年前的断定（「乾隆三十年左右，约西历一七六五」）只差一年多。又假定他活了四十五岁，他的生年大概在康熙五十六年（一七一七），这也和我七年前的猜测正相符合。&lt;/p&gt;
+
+&lt;p&gt;考证两个年代，经过七年的时间，方才得着证实。证实是思想方法的最后又最重要的一步。不曾证实的理论，只可算是假设；证实之后，才是定论，才是真理。我在别处（文存三集，页１７０─１７１。）说过：&lt;/p&gt;
+
+&lt;p&gt;我为什么要考证红楼梦？&lt;/p&gt;
+
+&lt;p&gt;在消极方面，我要教人怀疑王梦阮、徐柳泉一班人的谬说。&lt;/p&gt;
+
+&lt;p&gt;在积极方面，我要教人一个思想学问的方法。我要教人疑而后信，考而后信，有充分证据而后信。&lt;/p&gt;
+
+&lt;p&gt;我为什么要替水浒传作五万字的考证？我为什么要替庐山一个塔作四千字的考证？&lt;/p&gt;
+
+&lt;p&gt;我要教人知道学问是平等的，思想是一贯的。……肯疑问「佛陀耶舍究竟到过庐山没有」的人，方才肯疑问「夏禹是神是人」。有了不肯放过一个塔的真伪的思想习惯，方才敢疑上帝的有无。&lt;/p&gt;
+
+&lt;p&gt;少年的朋友们，莫把这些小说考证看作我教你们读小说的文字。这些都只是思想学问的方法的一些例子。在这些文字里，我要读者学得一点科学精神，一点科学态度，一点科学方法。科学精神在于寻求事实，寻求真理。科学态度在于撇开成见，搁起感情，只认得事实，只跟着证据走。科学方法只是「大胆的假设，小心的求证」十个字。没有证据，只可悬而不断；证据不够，只可假设，不可武断；必须等到证实之后，方才奉为定论。&lt;/p&gt;
+
+&lt;p&gt;少年的朋友们，用这个方法来做学问，可以无大差失；用这种态度来做人处事，可以不至被人蒙着眼睛牵着鼻子走。&lt;/p&gt;
+
+&lt;p&gt;从前禅宗和尚曾说，「菩提达摩东来，只要寻一个不受人惑的人。」我这里千言万语，也只要教人一个不受人惑的方法。被孔丘、朱熹牵着鼻子走，固然不算高明；被马克思、列宁、斯大林牵着鼻子走，也算不得好汉。我自己决不想牵着谁的鼻子走。我只希望尽我的微薄的能力，教我的少年朋友们学一点防身的本领，努力做一个不受人惑的人。&lt;/p&gt;
+
+&lt;p&gt;＊　　　　　　　　＊　　　　　　　　＊　　　　　　　　＊&lt;/p&gt;
+
+&lt;p&gt;抱着无限的爱和无限的希望，我很诚挚的把这一本小书贡献给全国的少年朋友！&lt;/p&gt;
+
+&lt;p&gt;十九，十一，二十七晨二时，将离开江南的前一日。胡适。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

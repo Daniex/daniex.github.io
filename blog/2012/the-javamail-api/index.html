@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>使用JavaMail API &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="IP,java,javax.mail.internet API 学习,MIME,pop,seo,smtp,主题,协议,格式,管理,编码,邮件">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>使用JavaMail API</h1>
+    <span class="post-date">Jan 27, 2012 &middot; 4 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/java">java</a><a class="label" href="http://www.daniex.tk/categories/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/IP">IP</a><a class="label" href="http://www.daniex.tk/tags/java">java</a><a class="label" href="http://www.daniex.tk/tags/javax.mail.internet-API-%E5%AD%A6%E4%B9%A0">javax.mail.internet API 学习</a><a class="label" href="http://www.daniex.tk/tags/MIME">MIME</a><a class="label" href="http://www.daniex.tk/tags/pop">pop</a><a class="label" href="http://www.daniex.tk/tags/seo">seo</a><a class="label" href="http://www.daniex.tk/tags/smtp">smtp</a><a class="label" href="http://www.daniex.tk/tags/%E4%B8%BB%E9%A2%98">主题</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E6%A0%BC%E5%BC%8F">格式</a><a class="label" href="http://www.daniex.tk/tags/%E7%AE%A1%E7%90%86">管理</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a><a class="label" href="http://www.daniex.tk/tags/%E9%82%AE%E4%BB%B6">邮件</a>
+    </span>
+    <p>使用JavaMail API，接上文<a title="javax.mail.internet API 学习" href="http://daniex.info/javax-mail-internet-api.html" target="_blank"><span style="color: #3366ff;">javax.mail.internet api 学习</span>
+</a>1．发送邮件
+在获得了Session后，建立并填入邮件信息，然后发送它到邮件服务器。这便是使用Java Mail API发送邮件的过程，在发送邮件之前，我们需要设置SMTP服务器：通过设置Properties的mail.smtp.host属性。
+<blockquote>String host = &hellip;;
+String from = &hellip;;
+String to = &hellip;;
+// Get system properties
+Properties props = System.getProperties();
+// Setup mail server
+props.put(&ldquo;mail.smtp.host&rdquo;, host);
+// Get session
+Session session = Session.getDefaultInstance(props, null);// Define message
+MimeMessage message = new MimeMessage(session);
+message.setFrom(new InternetAddress(from));message.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));message.setSubject(&ldquo;Hello JavaMail&rdquo;);
+message.setText(&ldquo;Welcome to JavaMail&rdquo;);
+// Send message
+Transport.send(message);</blockquote>
+由于建立邮件信息和发送邮件的过程中可能会抛出异常，所以我们需要将上面的代码放入到try-catch结构块中。
+2．接收邮件
+为了在读取邮件，我们获得了session，并且连接到了邮箱的相应store，打开相应的Folder，然后得到我们想要的邮件，当然别忘记了在结束时关闭连接。
+<blockquote>String host = &hellip;;
+String username = &hellip;;
+String password = &hellip;;
+// Create empty properties
+Properties props = new Properties();
+// Get session
+Session session = Session.getDefaultInstance(props, null);
+// Get the store
+Store store = session.getStore(&ldquo;pop3&rdquo;);
+store.connect(host, username, password);
+// Get folder
+Folder folder = store.getFolder(&ldquo;INBOX&rdquo;);
+folder.open(Folder.READ_ONLY);
+// Get directory
+Message message[] = folder.getMessages();
+for (int i=0, n=message.length; i++)&hellip;</blockquote>
+上面的代码所作的是从邮箱中读取每个邮件，并且显示邮件的发信人地址和主题。从技术角度讲，这里存在着一个异常的可能：当发信人地址为空时，getFrom()[0]将抛出异常。</p>
+
+<p>下 面的代码片断有效的说明了如何读取邮件内容，在显示每个邮件发信人和主题后，将出现用户提示从而得到用户是否读取该邮件的确认，如果输入YES的话，我们 可用Message.writeTo(java.io.OutputStream os)方法将邮件内容输出到控制台上，关于 Message.writeTo()的具体用法请看JavaMail API。
+<blockquote>BufferedReader reader = new BufferedReader (  new InputStreamReader(System.in));
+// Get directory
+Message message[] = folder.getMessages();
+for (int i=0, n=message.length; i&hellip;</blockquote>
+3．删除邮件和标志
+设置与message相关的Flags是删除邮件的常用方法。这些Flags表示了一些系统定义和用户定义的不同状态。在Flags类的内部类Flag中预定义了一些标志：
+<blockquote>Flags.Flag.ANSWERED
+Flags.Flag.DELETED
+Flags.Flag.DRAFT
+Flags.Flag.FLAGGED
+Flags.Flag.RECENT
+Flags.Flag.SEEN
+Flags.Flag.USER</blockquote>
+但 需要在使用时注意的：标志存在并非意味着这个标志被所有的邮件服务器所支持。例如，对于删除邮件的操作，POP协议不支持上面的任何一个。所以要确定哪些 标志是被支持的??通过访问一个已经打开的Folder对象的getPermanetFlags()方法，它将返回当前被支持的Flags类对象。
+删除邮件时，我们可以设置邮件的DELETED标志：
+<blockquote>message.setFlag(Flags.Flag.DELETED, true);</blockquote>
+但是首先要采用READ_WRITE的方式打开Folder：
+<blockquote>folder.open(Folder.READ_WRITE);</blockquote>
+在对邮件进行删除操作后关闭Folder时，需要传递一个true作为对删除邮件的擦除确认。
+<blockquote>folder.close(true);</blockquote>
+Folder类中另一种用于删除邮件的方法expunge()也同样可删除邮件，但是它并不为sun提供的POP3实现支持，而其它第三方提供的POP3实现支持或者并不支持这种方法。
+另外，介绍一种检查某个标志是否被设置的方法：Message.isSet(Flags.Flag flag)方法，其中参数为被检查的标志。</p>
+
+<p>4．邮件认证
+我 们在前面已经学会了如何使用Authenticator类来代替直接使用用户名和密码这两字符串作为 Session.getDefaultInstance()或者Session.getInstance()方法的参数。在前面的小试牛刀后，现在我们将 了解到全面认识一下邮件认证。
+我们在此取代了直接使用邮件服务器主机名、用户名、密码这三个字符串作为连接到POP3 Store的方式，使用存储了邮件服务器主机名信息的属性文件，并在获得Session时传入自定义的Authenticator实例：
+<blockquote>// Setup properties
+Properties props = System.getProperties();
+props.put(&ldquo;mail.pop3.host&rdquo;, host);
+// Setup authentication, get session
+Authenticator auth = new PopupAuthenticator();
+Session session = Session.getDefaultInstance(props, auth);
+// Get the store
+Store store = session.getStore(&ldquo;pop3&rdquo;);
+store.connect();</blockquote>
+PopupAuthenticator 类继承了抽象类Authenticator，并且通过重载Authenticator类的getPasswordAuthentication()方法返 回PasswordAuthentication类对象。而getPasswordAuthentication()方法的参数param是以逗号分割的 用户名、密码组成的字符串。
+<blockquote>import javax.mail.<em>;
+import java.util.</em>;</p>
+
+<p>public class PopupAuthenticator extends Authenticator {
+public PasswordAuthentication getPasswordAuthentication(String param) {
+String username, password;
+StringTokenizer st = new StringTokenizer(param, &rdquo;,&ldquo;);
+username = st.nextToken();
+password = st.nextToken();
+return new PasswordAuthentication(username, password);
+}
+}</blockquote>
+5．回复邮件
+回复邮件的方法很简单：使用Message类的reply()方法，通过配 置回复邮件的收件人地址和主题（如果没有提供主题的话，系统将默认将“Re：”作为邮件的主体），这里不需要设置任何的邮件内容，只要复制发信人或者 reply-to到新的收件人。而reply()方法中的boolean参数表示是否将邮件回复给发送者（参数值为false），或是恢复给所有人（参数 值为true）。
+补充一下，reply-to地址需要在发信时使用setReplyTo()方法设置。
+<blockquote>MimeMessage reply = (MimeMessage)message.reply(false);
+reply.setFrom(new InternetAddress(&ldquo;president@whitehouse.gov&rdquo;));
+reply.setText(&ldquo;Thanks&rdquo;);
+Transport.send(reply);</blockquote>
+6．转发邮件
+转发邮件的过程不如前面的回复邮件那样简单，它将建立一个转发邮件，这并非一个方法就能做到。
+每 个邮件是由多个部分组成，每个部分称为一个邮件体部分，是一个BodyPart类对象，对于MIME类型邮件来讲就是MimeBodyPart类对象。这 些邮件体包含在成为Multipart的容器中对于MIME类型邮件来讲就是MimeMultiPart类对象。在转发邮件时，我们建立一个文字邮件体部 分和一个被转发的文字邮件体部分，然后将这两个邮件体放到一个Multipart中。说明一下，复制一个邮件内容到另一个邮件的方法是仅复制它的 DataHandler（数据处理者）即可。这是由JavaBeans Activation Framework定义的一个类，它提供了对邮件内容的操 作命令的访问、管理了邮件内容操作，是不同的数据源和数据格式之间的一致性接口。
+<blockquote>// Create the message to forward
+Message forward = new MimeMessage(session);
+// Fill in header
+forward.setSubject(&ldquo;Fwd: &rdquo; + message.getSubject());
+forward.setFrom(new InternetAddress(from));
+forward.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));
+// Create your new message part
+BodyPart messageBodyPart = new MimeBodyPart();
+messageBodyPart.setText(  &rdquo;Here you go with the original message:\n\n&rdquo;);
+// Create a multi-part to combine the parts
+Multipart multipart = new MimeMultipart();
+multipart.addBodyPart(messageBodyPart);
+// Create and fill part for the forwarded content
+messageBodyPart = new MimeBodyPart();
+messageBodyPart.setDataHandler(message.getDataHandler());
+// Add part to multi part
+multipart.addBodyPart(messageBodyPart);
+// Associate multi-part with message
+forward.setContent(multipart);
+// Send message
+Transport.send(forward);</blockquote>
+7．使用附件
+附件作为与邮件相关的资源经常以文本、表格、图片等格式出现，如流行的邮件客户端一样，我们可以用JavaMail API从邮件中获取附件或是发送带有附件的邮件。</p>
+
+<p>A．发送带有附件的邮件
+发送带有附件的邮件的过程有些类似转发邮件，我们需要建立一个完整邮件的各个邮件体部分，在第一个部分（即我们的邮件内容文字）后，增加一个具有DataHandler的附件而不是在转发邮件时那样复制第一个部分的DataHandler。</p>
+
+<p>如果我们将文件作为附件发送，那么要建立FileDataSource类型的对象作为附件数据源；如果从URL读取数据作为附件发送，那么将要建立URLDataSource类型的对象作为附件数据源。</p>
+
+<p>然后将这个数据源（FileDataSource或是URLDataSource）对象作为DataHandler类构造方法的参数传入，从而建立一个DataHandler对象作为数据源的DataHandler。</p>
+
+<p>接着将这个DataHandler设置为邮件体部分的DataHandler。这样就完成了邮件体与附件之间的关联工作，下面的工作就是BodyPart的setFileName()方法设置附件名为原文件名。</p>
+
+<p>最后将两个邮件体放入到Multipart中，设置邮件内容为这个容器Multipart，发送邮件。
+<blockquote>// Define message
+Message message = new MimeMessage(session);
+message.setFrom(new InternetAddress(from));
+message.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));
+message.setSubject(&ldquo;Hello JavaMail Attachment&rdquo;);
+// Create the message part
+BodyPart messageBodyPart = new MimeBodyPart();
+// Fill the message
+messageBodyPart.setText(&ldquo;Pardon Ideas&rdquo;);
+Multipart multipart = new MimeMultipart();
+multipart.addBodyPart(messageBodyPart);
+// Part two is attachment
+messageBodyPart = new MimeBodyPart();
+DataSource source = new FileDataSource(filename);
+messageBodyPart.setDataHandler(new DataHandler(source));
+messageBodyPart.setFileName(filename);
+multipart.addBodyPart(messageBodyPart);
+// Put parts in message
+message.setContent(multipart);
+// Send the message
+Transport.send(message);</blockquote>
+如果我们使用servlet实现发送带有附件的邮件，则必须上传附件给servlet，这时需要注意提交页面form中对编码类型的设置应为multipart/form-data。</p>
+
+<p>B．读取邮件中的附件
+读取邮件中的附件的过程要比发送它的过程复杂一点。因为带有附件的邮件是多部分组成的，我们必须处理每一个部分获得邮件的内容和附件。
+但 是如何辨别邮件信息内容和附件呢？Sun在Part类（BodyPart类实现的接口类）中提供了getDisposition()方法让开发者获得邮件 体部分的部署类型，当该部分是附件时，其返回之将是Part.ATTACHMENT。但附件也可以没有部署类型的方式存在或者部署类型为 Part.INLINE，无论部署类型为Part.ATTACHMENT还是Part.INLINE，我们都能把该邮件体部分导出保存。
+<blockquote>Multipart mp = (Multipart)message.getContent();
+for (int i=0, n=multipart.getCount(); i&hellip;</blockquote>
+下列代码中使用了saveFile方法是自定义的方法，它根据附件的文件名建立一个文件，如果本地磁盘上存在名为附件的文件，那么将在文件名后增加数字表示区别。然后从邮件体中读取数据写入到本地文件中（代码省略）。
+<blockquote>// from saveFile()
+File file = new File(filename);
+for (int i=0; file.exists(); i++)
+{
+file = new File(filename+i);
+}</blockquote>
+以上是邮件体部分被正确设置的简单例子，如果邮件体部分的部署类型为null，那么我们通过获得邮件体部分的MIME类型来判断其类型作相应的处理，代码结构框架如下：
+<blockquote>if (disposition == null) {
+// Check if plain
+MimeBodyPart mbp = (MimeBodyPart)part;
+if (mbp.isMimeType(&ldquo;text/plain&rdquo;)) {
+// Handle plain
+} else {
+// Special non-attachment cases here of
+// image/gif, text/html, .
+..
+}
+&hellip;
+}</blockquote>
+8．处理HTML邮件
+前面的例子中发送的邮件都是以文本为内容的（除了附件），下面将介绍如何接收和发送基于HTML的邮件。
+A．发送HTML邮件
+假如我们需要发送一个HTML文件作为邮件内容，并使邮件客户端在读取邮件时获取相关的图片或者文字的话，只要设置邮件内容为html代码，并设置内容类型为text/html即可：
+<blockquote>String htmlText = &rdquo;&lt;h1&gt;Hello&lt;/h1&gt;&rdquo; ;
+message.setContent(htmlText, &rdquo;text/html&rdquo;));</blockquote>
+请注意：这里的图片并不是在邮件中内嵌的，而是在URL中定义的。邮件接收者只有在线时才能看到。
+在接收邮件时，如果我们使用JavaMail API接收邮件的话是无法实现以HTML方式显示邮件内容的。因为JavaMail API邮件内容视为二进制流。所以要显示HTML内容的邮件，我们必须使用JEditorPane或者第三方HTML展现组件。</p>
+
+<p>以下代码显示了如何使用JEditorPane显示邮件内容：
+<blockquote>if (message.getContentType().equals(&ldquo;text/html&rdquo;)) {
+String content = (String)message.getContent();
+JFrame frame = new JFrame();
+JEditorPane text = new JEditorPane(&ldquo;text/html&rdquo;, content);
+text.setEditable(false);
+JScrollPane pane = new JScrollPane(text);
+frame.getContentPane().add(pane);
+frame.setSize(300, 300);
+frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+frame.show();
+}</blockquote>
+B．在邮件中包含图片
+如 果我们在邮件中使用HTML作为内容，那么最好将HTML中使用的图片作为邮件的一部分，这样无论是否在线都会正确的显示HTML中的图片。处理方法就是 将HTML中用到的图片作为邮件附件并使用特殊的cid URL作为图片的引用，这个cid就是对图片附件的Content-ID头的引用。
+处理内嵌图片就像向邮件中添加附件一样，不同之处在于我们必须通过设置图片附件所在的邮件体部分的header中Content-ID为一个随机字符串，并在HTML中img的src标记中设置为该字符串。这样就完成了图片附件与HTML的关联。
+<blockquote>
+String file = &hellip;;
+// Create the messageMessage message = new MimeMessage(session);// Fill its headers
+message.setSubject(&ldquo;Embedded Image&rdquo;);
+message.setFrom(new InternetAddress(from));
+message.addRecipient(Message.RecipientType.TO,   new InternetAddress(to));
+// Create your new message part
+BodyPart messageBodyPart = new MimeBodyPart();String htmlText = &rdquo;&rdquo;&lt;h1&gt;Hello&lt;/h1&gt;&rdquo; ;
+messageBodyPart.setContent(htmlText, &rdquo;text/html&rdquo;);
+// Create a related multi-part to combine the parts
+MimeMultipart multipart = new MimeMultipart(&ldquo;related&rdquo;);
+multipart.addBodyPart(messageBodyPart);
+// Create part for the image
+messageBodyPart = new MimeBodyPart();
+// Fetch the image and associate to part
+DataSource fds = new FileDataSource(file);
+messageBodyPart.setDataHandler(new DataHandler(fds));
+messageBodyPart.setHeader(&ldquo;Content-ID&rdquo;,&ldquo;&rdquo;);
+// Add part to multi-part
+multipart.addBodyPart(messageBodyPart);
+// Associate multi-part with message
+message.setContent(multipart);</blockquote>
+9．在邮件中搜索短语
+JavaMail API提供了过滤器机制，它被用来建立搜索短语。这个短语由javax.mail.search包中的SearchTerm抽象类来定义，在定义后我们便可以使用Folder的Search()方法在Folder中查找邮件：
+SearchTerm st = &hellip;;Message[] msgs = folder.search(st);
+下面有22个不同的类（继承了SearchTerm类）供我们使用：
+AND terms (class AndTerm)
+OR terms (class OrTerm)
+NOT terms (class NotTerm)
+SENT DATE terms (class SentDateTerm)
+CONTENT terms (class BodyTerm)
+HEADER terms (FromTerm / FromStringTerm, RecipientTerm / RecipientStringTerm, SubjectTerm, etc.)
+使用这些类定义的断语集合，我们可以构造一个逻辑表达式，并在Folder中进行搜索。下面是一个实例：在Folder中搜索邮件主题含有“ADV”字符串或者发信人地址为friend@public.com的邮件。
+<blockquote>SearchTerm st = new OrTerm(new SubjectTerm(&ldquo;ADV:&ldquo;), new FromStringTerm(&ldquo;friend@public.com&rdquo;));
+Message[] msgs = folder.search(st);
+</blockquote>
+&nbsp;</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

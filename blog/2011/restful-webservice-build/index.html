@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>RESTful WebService 搭建 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C/C&#43;&#43;,java,RESTful,WebService,编码">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>RESTful WebService 搭建</h1>
+    <span class="post-date">May 30, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/tags/java">java</a><a class="label" href="http://www.daniex.tk/tags/RESTful">RESTful</a><a class="label" href="http://www.daniex.tk/tags/WebService">WebService</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a>
+    </span>
+    <p>最近了解了些关于WebService搭建方面的知识，这里稍稍做下整理。看的内容不少，但不够深入，如有不对的请指证。</p>
+
+<p>WSDL+SOAP搭建web Service的文档不少，就不多做介绍了。尝试在Jdeveloper下用ADF框架搭建着类WebService确实是方便快捷，轻松上手。这里主要罗列下RESTful框架的webservice搭建。</p>
+
+<p>在C/C++下开发RESTful服务需要第三方的库。核心是建立HTTP服务器和HTTP客户端的问题，其实就是在socket连接时使用TCP，再在上边加一层HTTP协议。如果需要的话中间可以加入SSL协议，使支持HTTPS。推荐使用的库是和mongoose和BOOST下的pion库。使用boost库非常方便，了解原理参照例子程序能很快搭建出来。mongoose是个轻量级的http server。核心代码就一个.c和一个.h文件。代码5000行。使用它的话需要稍稍阅读下源代码。</p>
+
+<p>在java上构建RESTful服务方法也很多。比如RESTlet库jersey库等等。RESTlet的资料相对jersey容易找一些。使用方法各有不同。RESTlet需要另外的http连接器库，比如GRIZZLY或者SimpleHTTP来建立HTTP服务器和客户端，然后再用RESTlet做更好的支持。JAX-RS: Java API for RESTful Web Services, SSL, JAXB, JSON, WADL等等。jersey可以用web服务器，比如glassfish，weblogic等通过annotation进行较快速的RESTful开发。也可以通过Grizzly等建通服务器。构建http请求除了使用内嵌接口之外，也可以使用java.net中的接口来建立连接发送请求。</p>
+
+<p>mongoose： <a title="mongoose" href="http://code.google.com/p/mongoose/" target="_blank"><a href="http://code.google.com/p/mongoose/">http://code.google.com/p/mongoose/</a></a></p>
+
+<p>boost pion: <a title="pion" href="http://www.pion.org/projects/pion-network-library" target="_blank"><a href="http://www.pion.org/projects/pion-network-library">http://www.pion.org/projects/pion-network-library</a></a></p>
+
+<p>TESTlet： <a title="restlet" href="http://www.restlet.org/" target="_blank"><a href="http://www.restlet.org/">http://www.restlet.org/</a></a></p>
+
+<p>jersey： <a title="jersey" href="http://jersey.java.net/" target="_blank"><a href="http://jersey.java.net/">http://jersey.java.net/</a></a>
+<pre class="brush:java">******<strong><em>jersey web服务器上RESTful服务例程</em></strong>****</p>
+
+<p>package com.sun.jersey.samples.helloworld.resources;</p>
+
+<p>import javax.ws.rs.GET;</p>
+
+<p>import javax.ws.rs.Produces;</p>
+
+<p>import javax.ws.rs.Path;</p>
+
+<p>// The Java class will be hosted at the URI path &ldquo;/helloworld&rdquo;</p>
+
+<p>@Path(&ldquo;/helloworld&rdquo;)</p>
+
+<p>public class HelloWorldResource {</p>
+
+<p>// The Java method will process HTTP GET requests</p>
+
+<p>@GET</p>
+
+<p>// The Java method will produce content identified by the MIME Media</p>
+
+<p>// type &ldquo;text/plain&rdquo;</p>
+
+<p>@Produces(&ldquo;text/plain&rdquo;)</p>
+
+<p>public String getClichedMessage() {</p>
+
+<p>// Return some cliched textual content</p>
+
+<p>return &ldquo;Hello World&rdquo;;</p>
+
+<p>}</p>
+
+<p>}
+</pre>
+<pre class="brush:xml">
+****<strong><em>web.xml文件</em></strong>*****</p>
+
+<p>&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?&gt;</p>
+
+<p>&lt;web-app version=&ldquo;2.4&rdquo; xmlns=&ldquo;<a href="http://java.sun.com/xml/ns/j2ee&quot;">http://java.sun.com/xml/ns/j2ee&quot;</a> xmlns:xsi=&ldquo;<a href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a> xsi:schemaLocation=&ldquo;<a href="http://java.sun.com/xml/ns/j2ee">http://java.sun.com/xml/ns/j2ee</a> <a href="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;&gt;">http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd&quot;&gt;</a></p>
+
+<p>&lt;servlet&gt;</p>
+
+<p>&lt;servlet-name&gt;Jersey Web Application&lt;/servlet-name&gt;</p>
+
+<p>&lt;servlet-class&gt;com.sun.jersey.spi.container.servlet.ServletContainer&lt;/servlet-class&gt;</p>
+
+<p>&lt;init-param&gt;</p>
+
+<p>&lt;param-name&gt;com.sun.jersey.config.property.packages&lt;/param-name&gt;</p>
+
+<p>&lt;param-value&gt;com.sun.jersey.samples.helloworld.resources&lt;/param-value&gt;</p>
+
+<p>&lt;/init-param&gt;</p>
+
+<p>&lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</p>
+
+<p>&lt;/servlet&gt;</p>
+
+<p>&lt;servlet-mapping&gt;</p>
+
+<p>&lt;servlet-name&gt;Jersey Web Application&lt;/servlet-name&gt;</p>
+
+<p>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</p>
+
+<p>&lt;/servlet-mapping&gt;</p>
+
+<p>&lt;/web-app&gt;</p>
+
+<p></pre></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

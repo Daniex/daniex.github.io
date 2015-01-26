@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>插件 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E68F92E4BBB6/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sat, 19 Nov 2011 09:33:37 &#43;0000</updated>
+    
+    <item>
+      <title>wordpress自定义个性化首页</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</link>
+      <pubDate>Sat, 19 Nov 2011 09:33:37 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-custom-home-page/</guid>
+      <description>&lt;p&gt;自己好不容易折腾了个wordpress博客，发现所有人的首页样式都大同小异，是不是很没创意，很扫兴？下面就来说说如何制作一个wordpress个性化首页，让你随心所欲的改变首页的样式，让你有个不一样的主页。最后效果如我的&lt;a title=&#34;澄清的半亩方糖&#34; href=&#34;http://danie.info&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;首页&lt;/strong&gt;&lt;/a&gt;，截图如下：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-974&#34; title=&#34;ss&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/ss.jpg&#34; alt=&#34;&#34; width=&#34;590&#34; height=&#34;482&#34; /&gt;&lt;/p&gt;
+&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;一、 设置wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+wordpress有设置page页作为默认首页的功能，下面的方法就是自定义一个page也模板，然后添加一个用这个模板制作的page页，最后将这个page页设为首页。&lt;/p&gt;
+
+&lt;p&gt;1) ftp或者cpanel到部署wordpress空间或其他。复制wordpress主题目录下的page.php文件，重名名。比如，找到文件（wp目录）/wp-content/themes/zbench/page.php 重命名为 myhomepage.php&lt;/p&gt;
+
+&lt;p&gt;2) 用文本编辑器打开myhomepage.php，例如用记事本打开，在文件首位添加以下代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;&lt;/blockquote&gt;
+“Template Name : ” 后的文字可以是任意的。这样我们就添加了一个新的page页模板。自定义的首页内容其实就是这个myhomepage.php的内容。如何设计修改这个文件，建立自己的个性化首页，会在后面提到。我们先将它设为首页。&lt;/p&gt;
+
+&lt;p&gt;3) 添加一个新的page页：浏览器登录wordpress后台控制面板，dashboard -&amp;gt;pages -&amp;gt; add new。 输入标题，在右方page attributes 面板中会有parent 和 template 的下拉框，在模板下拉框中选择刚刚添加的模板。如图，我添加的模板名字叫“首页”，我就选择它。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-961&#34; title=&#34;selecttemplate&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/selecttemplate.jpg&#34; alt=&#34;&#34; width=&#34;281&#34; height=&#34;253&#34; /&gt;选择好后，给这个page也命名，我是在title那输入的“首页”。然后就可以发表了，其他的内容什么可以都不用写。&lt;/p&gt;
+
+&lt;p&gt;4) 设置首页的最后一步，点击后台的reading设置项：dashboard -&amp;gt; settings -&amp;gt; reading。在第一个设置项目里选择第二项 a static page ，然后再它下方的第一个下拉选项框里选则刚刚给page页设置的名字。比如我的“首页”。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-962&#34; title=&#34;setreading&#34; src=&#34;http://daniex.info/wp-content/uploads/2011/11/setreading.png&#34; alt=&#34;&#34; width=&#34;552&#34; height=&#34;506&#34; /&gt;点击 save changes 保存配置。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;这样，我们把首页重新设置好了。这个时候访问首页的时候我们会发现，我们的首页除了头上的标题名称、侧边栏、底部栏之外就什么都没有。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;div style=&#34;background-color: #e3e3e3;&#34;&gt;
+&lt;h2&gt;二、 设计自己的wordpress首页&lt;/h2&gt;
+&lt;/div&gt;
+我们已经把wordpress的首页换掉，但是这个首页现在是一片空白，我们要怎么去填充这片空白呢？如果你有html、css、js功底，那就是你一展身手的时候。如果水平一般，那也没关系，能看懂一点点代码，那就有办法去使用一些好的模板，好的插件，设计出一个自己满意的首页还是可以的。我就只是能看懂代码的那种，根本不熟悉网页前端开发。
+&lt;h4&gt;&lt;strong&gt;方法一&lt;/strong&gt;&lt;/h4&gt;
+怎么给这个首页填充内容，最简单的方法就是，编辑我们之前添加的page页。之前我们并没有在文章内容里添加任何东西。只要你有好内容，好方案，就可以像写一个新的文章一样这里出一个你自己的主页。
+&lt;h4&gt;&lt;strong&gt;方法二&lt;/strong&gt;&lt;/h4&gt;
+这个方法就需要去修改我们的myhomepage.php文件。前端开发的牛人大有人在，我也不多说。就把我的一些代码贴出来，有心思看到朋友可以参考下。主要用到的几个函数我罗列一下：
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;&lt;/blockquote&gt;
+这是我使用的wp-thumbnail插件提供的函数，用于显示分类中的文章和缩略图。在wp-thumbnail插件设置中设置好分类文章的相关数据，如图片大小、标题位置。然后再这里调用。id=7表示文章分类id为7的分类下的文章，num=1表示显示一篇。文章分类ID是几可以参考&lt;a title=&#34;wordpress查看分类category的id&#34; href=&#34;http://daniex.info/view-category-id-wordpress.html&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;这篇文章&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;嵌入的探讨tt1 tt2 的css代码是控制左侧栏目的背景。另外有block1和block2的代码是用来控制左右两部分的布局。
+&lt;blockquote&gt;.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}&lt;/p&gt;
+
+&lt;p&gt;.block2 { float:left; width:250px; height:700px}
+.block3 { float:right; width:350px; height:700px}&lt;/blockquote&gt;
+中间栏的随机文章和标题评论控制是用这些函数：
+&lt;blockquote&gt;$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;。。。&lt;/blockquote&gt;
+&amp;nbsp;
+&lt;blockquote&gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&lt;/blockquote&gt;
+这段代码是用了postviews+的插件，用于统计文章浏览次数。&lt;/p&gt;
+
+&lt;p&gt;更多代码：
+&lt;blockquote&gt;&amp;lt;?php
+/*
+Template Name: 首页
+*/
+?&amp;gt;
+&amp;lt;?php get_header() ?&amp;gt;
+&amp;lt;div id=&amp;ldquo;content&amp;rdquo;&amp;gt;
+&amp;lt;?php the_post(); ?&amp;gt;
+&amp;lt;div &amp;lt;?php post_class(&amp;lsquo;post post-page&amp;rsquo;); ?&amp;gt; id=&amp;ldquo;post-&amp;lt;?php the_ID(); ?&amp;gt;&amp;ldquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;block2&amp;rdquo;&amp;gt;
+&amp;lt;h2&amp;gt;&amp;lt;a href=&amp;ldquo;&lt;a href=&#34;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&#34;&gt;http://daniex.info/category/coding&amp;quot;&amp;gt;编程开发&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;&amp;lt;span&amp;gt;C/C++&lt;/a&gt; java C# wpf php&amp;hellip;&amp;lt;/span&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt1&amp;rdquo;&amp;gt;
+&amp;lt;div class=&amp;ldquo;tt2&amp;rdquo;&amp;gt;
+&amp;lt;?php if(function_exists(&amp;lsquo;wp_thumbnails_for_category&amp;rsquo;)) { wp_thumbnails_for_category(&amp;lsquo;id=7&amp;amp;num=1&amp;amp;order=recent&amp;rsquo;); } ?&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;style&amp;gt;
+.tt1 {background:#E3E3E3;width:270px;height350px}
+.tt2 {background:#E3E3E3;width:210px;height310px;margin:30px}
+&amp;lt;/style&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&amp;ldquo;block3&amp;rdquo;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php
+$args = array( &amp;lsquo;numberposts&amp;rsquo; =&amp;gt; 5, &amp;lsquo;orderby&amp;rsquo; =&amp;gt; &amp;lsquo;rand&amp;rsquo;, &amp;lsquo;category&amp;rsquo; =&amp;gt; 7 );
+$rand_posts = get_posts( $args );
+foreach( $rand_posts as $post ) : setup_postdata($post); ?&amp;gt;
+&amp;lt;h3&amp;gt;&amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink(); ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php the_title(); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/h3&amp;gt;
+&amp;lt;?php if (&amp;lsquo;open&amp;rsquo; == $post-&amp;gt;comment_status) { ?&amp;gt;
+&amp;lt;div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;span&amp;gt;&amp;lt;?php the_time(get_option( &amp;lsquo;date_format&amp;rsquo; )); ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;ldquo;gotocomments&amp;rdquo;&amp;gt;&amp;lt;?php comments_popup_link(&lt;strong&gt;(&amp;lsquo;0 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), __(&amp;lsquo;1 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;), &amp;lsquo;% &amp;lsquo;.&lt;/strong&gt;(&amp;rsquo; 评论&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;)); ?&amp;gt;&amp;lt;?php if(function_exists(&amp;lsquo;the_views&amp;rsquo;)) { echo &amp;ldquo; | &amp;ldquo;;the_views(); } ?&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;!&amp;ndash;&amp;lt;div&amp;gt;
+&amp;lt;?php if ( $options[&amp;lsquo;excerpt_check&amp;rsquo;]==&amp;lsquo;true&amp;rsquo; ) { the_excerpt(&lt;strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } else { the_content(&lt;/strong&gt;(&amp;rsquo;&amp;amp;raquo; Read more&amp;hellip;&amp;lsquo;,&amp;lsquo;zbench&amp;rsquo;)); } ?&amp;gt;
+&amp;lt;/div&amp;gt; END entry &amp;ndash;&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php if(is_sticky()) { ?&amp;gt;
+&amp;lt;div&amp;gt;&amp;lt;p&amp;gt;&amp;lt;?php _e(&amp;lsquo;This is a sticky post!&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt; &amp;lt;a href=&amp;rdquo;&amp;lt;?php the_permalink() ?&amp;gt;&amp;ldquo;&amp;gt;&amp;lt;?php _e(&amp;lsquo;continue reading?&amp;rsquo;, &amp;lsquo;zbench&amp;rsquo;); ?&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;
+&amp;lt;?php } else { ?&amp;gt;
+&amp;lt;div style=&amp;ldquo;height:1px;&amp;rdquo;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;?php } ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;?php echo mb_strimwidth(strip_tags(apply_filters(‘the_content’, $post-&amp;gt;post_content)), 0, 100,&amp;ldquo;&amp;hellip;&amp;rdquo;); ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;
+&amp;lt;?php endforeach; ?&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash; END post &amp;ndash;&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;!&amp;ndash;content&amp;ndash;&amp;gt;
+&amp;lt;?php get_sidebar() ?&amp;gt;
+&amp;lt;?php get_footer() ?&amp;gt;&lt;/blockquote&gt;
+&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Wordpress在页面及RSS中添加随机文章相关文章版权信息</title>
+      <link>http://www.daniex.tk/blog/2011/rss-wordpress-page-and-add-copyright-information-articles-random-article/</link>
+      <pubDate>Wed, 16 Mar 2011 12:41:43 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/rss-wordpress-page-and-add-copyright-information-articles-random-article/</guid>
+      <description>&lt;p&gt;1、插件法&lt;/p&gt;
+
+&lt;p&gt;推荐random post 和similar post 插件，属于Post-Plugin Library系列。该系列中还有recent post、 recent comment插件。&lt;/p&gt;
+
+&lt;p&gt;安装插件后再设置中可以设置是否在RSS和文章页面显示随机文章和相关文章列表。附带widget，可在边栏或者底部显示。如果使用代码在特定位置添加。可用&amp;lt;?php random-posts(); ?&amp;gt;&amp;lt;?php similar-posts(); ?&amp;gt;嵌入。&lt;/p&gt;
+
+&lt;p&gt;2、代码&lt;/p&gt;
+
+&lt;p&gt;1）可以在single.php或者functions.php中添加代码，使显示随机文章或是版权信息。single.php的修改无法再RSS中显示。&lt;/p&gt;
+
+&lt;p&gt;在single.php中找到&amp;lt;?php the_content(); ?&amp;gt;代码，在其后添加代码就会在文章后显示你要的信息，可以是版权信息或是相关文章，广告等。网上有不用插件，用代码生成随机文章列表的方法，可以去搜索一下。&lt;/p&gt;
+
+&lt;p&gt;2）在functions.php中添加&lt;/p&gt;
+
+&lt;p&gt;function FUNCTIONNAME($content) {
+if(!is_feed() &amp;amp;&amp;amp; !is_home()) {
+$content.= &amp;ldquo;&amp;lt;div class=&amp;lsquo;sub&amp;rsquo;&amp;gt;&amp;ldquo;；
+$content.= &amp;ldquo;&amp;lt;a&amp;gt;填入想要添加的内容（版权信息广告等）&amp;lt;/a&amp;gt;&amp;rdquo;;
+$content.= &amp;ldquo;&amp;lt;/div&amp;gt;&amp;rdquo;;
+}
+return $content;
+}
+add_filter (&amp;lsquo;the_content&amp;rsquo;, ’FUNCTIONNAME‘);&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>wp搬家血泪史</title>
+      <link>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</link>
+      <pubDate>Mon, 28 Feb 2011 13:38:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wp-tragic-history-of-moving/</guid>
+      <description>&lt;p&gt;之前blog先是无法访问，后来是显示空白页或者it works！这样的非正常状态持续有三个多月。我也是一直忙这忙那的没把心思花这上面。就让它这么一直流血流血流血流血地濒临天堂。&lt;/p&gt;
+
+&lt;p&gt;一开始无法访问的原因，是，当时的共享ip空间的ip被墙，悲剧的无法访问。之后断断续续的找找有没有地方安置blog。不巧接着俺又辞职换工作，奔波找工作折腾得我就没打理它。再往后工作有着落后，弄了个vps玩玩，结果CentOS+LAMP弄了一半，没有完全按着攻略做，折腾出一些问题。访问很不稳定，时不时的变成It works等等问题。指导最近，重新弄了个共享空间，搬家，才算告一段落。罗列下遇到的问题和一些解决问题的方向作参考，由于时间过得久了，具体的方法还需另外百度谷歌去。&lt;/p&gt;
+
+&lt;p&gt;1、 LAMP（CentOS） 相关&lt;/p&gt;
+
+&lt;p&gt;要弄技术那就好好折腾，找个教程看看，然后看下各个参数设置要设置成什么样，有什么关联。我就是没设置好，弄的时不时的来个“It works！”的提示。真打击，回头继续折腾！&lt;/p&gt;
+
+&lt;p&gt;折腾的那个vps是独立128M内存，共享最大到256M。我装上LAMP后，启动程序，内存涨到220M+，收到邮件警告内存使用过高。原因是没有好好设置好Mysql的参数。在网上找了数据库配置的文章后重新设置参数，启动php、Mysql后内存用了80M左右。当然还有更省内存的配置。&lt;/p&gt;
+
+&lt;p&gt;2、 乱码&lt;/p&gt;
+
+&lt;p&gt;这个是一般是编码问题，mysql4.0 会用latin编码存数据，我们一般用的是utf8，GBK等，所以会有乱码。&lt;/p&gt;
+
+&lt;p&gt;解决方案有几个：1）用数据库指令导出抓换编码导入。&lt;/p&gt;
+
+&lt;p&gt;2）phpmyadmin导入导出。&lt;/p&gt;
+
+&lt;p&gt;3、 wp显示空白页&lt;/p&gt;
+
+&lt;p&gt;这个症状比较多，有的个别页显示正常有的任何页不能显示。诱因不少，说几个方法：&lt;/p&gt;
+
+&lt;p&gt;1）重新配置wp-config.php。&lt;/p&gt;
+
+&lt;p&gt;2）重新配主题。&lt;/p&gt;
+
+&lt;p&gt;3）插件冲突，修改删除插件。&lt;/p&gt;
+
+&lt;p&gt;4、无法post或comment&lt;/p&gt;
+
+&lt;p&gt;这个问题我也不知道为什么，估计是LAMP配置哪出问题了，网上也没有搜到解决方案。&lt;/p&gt;
+
+&lt;p&gt;就记得这么些问题了，记起来再添。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>相册、图床制作，WordPress图片站、插件相关</title>
+      <link>http://www.daniex.tk/blog/2010/photo-gallery/</link>
+      <pubDate>Tue, 03 Aug 2010 06:42:06 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/photo-gallery/</guid>
+      <description>&lt;p&gt;之前回家了一趟，回杭后工作上又有些变动。这一篇出来的比较混乱。这里简单说说我所知道的一些图片站点的建设，wp相关插件。&lt;/p&gt;
+
+&lt;p&gt;1、WordPress图片站&lt;/p&gt;
+
+&lt;p&gt;将相当于把图片作为一个post发表。有比较好的显示方式，麻烦在于上传图片，发布同步稍显繁琐。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.chinaz.com/Design/CoolSite/0910911B2009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;有几个图片站主题推荐，可以看看参考下效果。&lt;/p&gt;
+
+&lt;p&gt;2、在WordPress里面插图、图片的显示，有很多很多方法，插件数不胜数。比如NextGen Gallery，slideshare， cincopa等等，各种slideshow、各种gallery。试过才知道。本站&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册page&lt;/span&gt;&lt;/a&gt;里的是用NextGen Gallery生成，mvp的blog中的&lt;a href=&#34;http://www.mvpwinner.com/about-mvp/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;关于页&lt;/span&gt;&lt;/a&gt;是用的slideshare，cincopa的例子在&lt;a href=&#34;http://mimisunanduncleliu.com/blog/?page_id=92&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，是咪咪孙&amp;amp;刘大叔的相册。&lt;/p&gt;
+
+&lt;p&gt;3、自建图床&lt;/p&gt;
+
+&lt;p&gt;这个也有很多手段，建成的图片站各有特色，推荐zenphoto&lt;em&gt;，&lt;/em&gt;Menalto Gallery，Coppermine，piwigo。blog图片由图床接入，可以省下大量的网站空间。 更多推荐看&lt;a href=&#34;http://www.chinaz.com/Webmaster/Club/01045Z432009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，和&lt;a href=&#34;http://blogunion.org/wordpress/wordpress-plugins/five-wordpress-gallery-plugins.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>twitter、微博、WordPress的同步</title>
+      <link>http://www.daniex.tk/blog/2010/twittertoall/</link>
+      <pubDate>Tue, 13 Jul 2010 12:05:59 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/twittertoall/</guid>
+      <description>&lt;p&gt;今天折腾了阵子twitter同步的小东西，先是同步WordPress到twitter，然后twitter到其他各地。WordPress到twitter有插件，写代码也是几段就ok的，略过不提。简单的说下关于twitter、国内各个微博、部分SNS网站同步的情况。教程大家自己去找，很多，按着步骤做也挺简单的。&lt;/p&gt;
+
+&lt;p&gt;1、  Gae同步twitter&lt;/p&gt;
+
+&lt;p&gt;就&lt;a href=&#34;http://www.williamlong.info/archives/2049.html&#34; target=&#34;_blank&#34;&gt;月光博客&lt;/a&gt;那个版本，同步都是微薄，要同步人人、豆瓣之类的就得自己写代码了。基本步骤是申请gae账号，下几个包，改下自己的账号密码，按步骤上传文件，这就搞定。&lt;/p&gt;
+
+&lt;p&gt;2、  php空间同步twitter&lt;/p&gt;
+
+&lt;p&gt;这个方法的前提是有php空间，空间性能还有点关系，之后会提到。步骤的话也是下个包，改下账号密码，上传。一样简单。&lt;/p&gt;
+
+&lt;p&gt;这个方法用的是Tw2other的包，和PHP空间的cron功能的有点关系。&lt;a href=&#34;http://www.qiankun.org.ru/2010/04/using-php-space-cron-synchronize-twitter-sina-163-microblog.html&#34;&gt;推荐个教程&lt;/a&gt;。空间支持cron那很ok，注意下更新时间。默认是每间隔50秒一次更新的，如果需要修改更新间隔，可以修改config.php中的INTERVAL参数。提示：程序中 config.php中有个时间参数设置，个时间参数最好要小于所设置的Cron间隔，比如Cron设置的为1分钟，那么程序中设置为50-58秒比较好。 这个提示的前提是你的服务器够强劲。如果是免费空间，这么设置就有可能因太占资源被禁止。&lt;/p&gt;
+
+&lt;p&gt;如果空间不支持cron呢？这里有个取巧的办法，就是放段代码在自己的网站里面，有人访问，就能同步twitter了。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;iframe frameborder=0 width=0 height=0 name= &amp;ldquo;cron-twitter&amp;rdquo; src=&amp;ldquo;&lt;a href=&#34;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &#34;&gt;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &lt;/a&gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;3、  follow5类似&lt;/p&gt;
+
+&lt;p&gt;就是注册个能够同步很多微博的微博或者其他网站账号，设置一下就能同步了。&lt;/p&gt;
+
+&lt;p&gt;4、  Gtalk&lt;/p&gt;
+
+&lt;p&gt;这个方法没研究过，嘿嘿，有兴趣的自己看去。&lt;/p&gt;
+
+&lt;p&gt;最后还要提醒下的是，设置多个微薄同步的时候，这几个微薄之间不要再设置同步了，这样会重复同步，不断刷屏。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>杂记</title>
+      <link>http://www.daniex.tk/blog/2010/mix/</link>
+      <pubDate>Thu, 01 Jul 2010 13:31:27 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/mix/</guid>
+      <description>&lt;p&gt;晚上折腾半宿的的WordPress，各种不顺心，在这里发发牢骚。
+原来那个主题看着还是比较顺眼的，虽然昨天就有念头就想换了它。 好吧，我承认我不专一了。:oops:
+换掉它的根本原因，具体的解释下。这个主题是有付费版本的，我用的是对应的免费版，其代码一个文件引用一个文件，封装的解耦的太完美了。虽然本人学软件的，但是php之前没有玩过，现在也没功夫系统地去学。所以，在按着网上教程一个文件一个文件地找，一段代码一段代码地查的时候，发现，俺要实现一个功能，其操作和教程说的相差的太远了。有一些不同俺就忍了，改改也没问题，但这差的也太多了！于是乎，果断换主题。
+接着使用的是wp 3.0默认的一个主题，想着既然是默认的，代码总归比较随大流了吧。接着动手把分类加到导航栏，找不到wp_list_pages， :cry: 。继续换主题！
+现在这个本人看着蛮顺眼的，其他就不知了。代码看上去泯然众人矣，小问题还是不少的，回复的表情不显示啦，之前改的代码这边要重新改啦，插件重新配置啦，啦啦啦啦各种细节 :roll: 继续折腾。&lt;/p&gt;
+
+&lt;p&gt;图片名：来晚了！
+&lt;a rel=&#34;attachment wp-att-147&#34; href=&#34;http://daniex.info/2010/07/mix/27512_540/&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-147&#34; title=&#34;27512_540&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/27512_540.jpg&#34; alt=&#34;&#34; width=&#34;540&#34; height=&#34;641&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress 手机端插件</title>
+      <link>http://www.daniex.tk/blog/2010/wordpress-mobile/</link>
+      <pubDate>Mon, 28 Jun 2010 12:26:16 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/wordpress-mobile/</guid>
+      <description>&lt;p&gt;今天折腾了俩wp手机端插件，分享下。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://crowdfavorite.com/wordpress/&#34; target=&#34;_blank&#34;&gt;WordPress Mobile Edition&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;装这个插件需要手工的干点事。直接在后台搜索到插件安装，激活插件后他会提示插件安装不正确。按说明移动两个文件，再激活下插件就能正常使用了。如果是直接下载压缩包，也是上传下文件，然后激活。具体做法是：&lt;/p&gt;
+
+&lt;p&gt;1、将 wp-mobile.php 上传到插件目录wp-content/plugins下。&lt;/p&gt;
+
+&lt;p&gt;2、将carrington-mobile-*** 这个文件夹上传到模板目录wp-content/themes下。&lt;/p&gt;
+
+&lt;p&gt;3、激活插件。&lt;/p&gt;
+
+&lt;p&gt;没有插件安装后浏览网站的截图，不过可以参考下面那个插件的截图。页面主要内容为文字标题，干净清爽。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://wordpress.org/extend/plugins/wordpress-mobile-pack/&#34; target=&#34;_blank&#34;&gt;WordPress Mobile Pack&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个插件安装就方便多了，安装激活后就可进行插件的设置。安装还自带几个手机端主题。下图是插件自带的screenshots&lt;/p&gt;
+
+&lt;p&gt;&lt;a rel=&#34;attachment wp-att-93&#34; href=&#34;http://daniex.info/wordpress-mobile.html/screenshot-1&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-93&#34; title=&#34;WordPress Mobile Pack&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/06/screenshot-1.png&#34; alt=&#34;WordPress Mobile Pack截图&#34; width=&#34;530&#34; height=&#34;483&#34; /&gt;&lt;/a&gt;&lt;a rel=&#34;attachment wp-att-94&#34; href=&#34;http://daniex.info/wordpress-mobile.html/screenshot-4&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-94&#34; title=&#34;WordPress Mobile Pack&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/06/screenshot-4.png&#34; alt=&#34;WordPress Mobile Pack截图&#34; width=&#34;530&#34; height=&#34;443&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;手机端目的是为了让手机浏览时页面布局不会变形，方便读者快速加载网页而不需要等待过多时间加载图片，并且让页面更好的适应各种大小的手机屏幕。如果博客上有较多图片，或是有较多散乱的、与页面主题无关的内容，个人建议安装个手机端插件。现在这个大屏幕手机成为主流的年代，伴随很多功能强大的手机浏览器出现，有些博客并不需要专门的手机站也一样能在浏览器中给予读者美好享受。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

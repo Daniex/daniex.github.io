@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Sp on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/sp/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 11 Feb 2014 05:56:46 &#43;0000</updated>
+    
+    <item>
+      <title>2013又一年</title>
+      <link>http://www.daniex.tk/blog/2014/another-year-2013/</link>
+      <pubDate>Tue, 11 Feb 2014 05:56:46 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2014/another-year-2013/</guid>
+      <description>&lt;p&gt;又一整年，照样是看剧看书工作，还少了深圳爬山徒步的乐趣，忙忙碌碌开始为自己的今后忧虑。离开深圳回到苏州，见到一些很久没见的同学朋友，开心满足。&lt;/p&gt;
+
+&lt;p&gt;美剧还是一直在看，动机纯粹是打发时间，吸引力不再。离开深圳后更是没再去过电影院。&lt;/p&gt;
+
+&lt;p&gt;黑道家族全季
+纸牌屋S1
+绝命毒师全季
+新闻编辑室S2
+黑镜S2
+冰与火之歌S3&lt;/p&gt;
+
+&lt;p&gt;惊天魔盗团
+西游降魔篇
+了不起的盖茨比
+隐秘而伟大
+环太平洋
+速度与激情6
+中国合伙人
+夺宝联盟
+美丽生灵
+霍比特人1 2
+僵尸世界大战
+北京遇上西雅图
+厨子戏子痞子
+入侵华尔街
+卑鄙的我1 2&lt;/p&gt;
+
+&lt;p&gt;13年比以往看了更多的书，虽然只是21本。&lt;/p&gt;
+
+&lt;p&gt;长尾理论
+那些有伤的年轻人
+吴敬琏传
+不二
+一只挑战奇迹的狗
+看上去很美
+白色巨塔
+了不起的盖茨比
+乌合之众
+我生活的种种模式
+穷爸爸和富爸爸
+曾国藩家书
+魔鬼经济学
+35岁前要上的33堂理财课
+Behind the Cloud: Salesforce.com
+黑客与画家
+创新算法
+social engineering
+被时光掩埋的秘密
+激荡三十年
+大数据时代&lt;/p&gt;
+
+&lt;p&gt;活动只剩：太湖西山，桃花岛，徽杭古道&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>px、dip、sp区别及apk的drawable资源包关系</title>
+      <link>http://www.daniex.tk/blog/2013/px-dip-sp-difference-and-apk-drawable-resource-bundles-relationship/</link>
+      <pubDate>Mon, 13 May 2013 02:05:57 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/px-dip-sp-difference-and-apk-drawable-resource-bundles-relationship/</guid>
+      <description>
+
+&lt;p&gt;感谢Neak同学提出下面引用文章的分歧点，文章中存在这样的两个说法，下文中已分别标红和标蓝。【在每英寸160点的显示器上，1dp = 1px。】【density=240时 屏幕实际分辨率为480px*800px （一个点对于一个分辨率）】&lt;/p&gt;
+
+&lt;p&gt;查阅 androd api guides发现有入下描述：&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://developer.android.com/guide/practices/screens_support.html&#34;&gt;http://developer.android.com/guide/practices/screens_support.html&lt;/a&gt;
+&lt;blockquote&gt;&lt;em&gt;Density-independent pixel (dp)&lt;/em&gt;A virtual pixel unit that you should use when defining UI layout, to express layout dimensions or position in a density-independent way.&lt;/p&gt;
+
+&lt;p&gt;The density-independent pixel is equivalent to one physical pixel on a 160 dpi screen, which is the baseline density assumed by the system for a &amp;ldquo;medium&amp;rdquo; density screen. At runtime, the system transparently handles any scaling of the dp units, as necessary, based on the actual density of the screen in use. The conversion of dp units to screen pixels is simple: &lt;code&gt;px = dp * (dpi / 160)&lt;/code&gt;. For example, on a 240 dpi screen, 1 dp equals 1.5 physical pixels. You should always use dp units when defining your application&amp;rsquo;s UI, to ensure proper display of your UI on screens with different densities.&lt;/blockquote&gt;
+即android定义density=160的屏幕定位一个基准（basline），在这个基准下1px=1dp。下文标红文字是根据官方baseline转述的。标蓝色的字体中有一段描述【不同density下屏幕分辨率信息，以480dip*800dip的WVGA(density=240)为例。】假设density=240为baseline，则px及dp对应关系正如原文作者罗列表述。&lt;/p&gt;
+
+&lt;p&gt;由此看来，转240为baseline，可以看出原作者对px和dp的理解到位，描述出来时其实无必要转换baseline，以免混淆视听。&lt;/p&gt;
+
+&lt;p&gt;=======================================================================================&lt;/p&gt;
+
+&lt;p&gt;下文来自 &lt;a title=&#34;px、dip、sp区别和使用方法&#34; href=&#34;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&#34;&gt;http://www.cnblogs.com/warioland/archive/2011/10/17/2215110.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;px、dip、sp区别和使用方法&lt;/p&gt;
+
+&lt;p&gt;一、 概述&lt;/p&gt;
+
+&lt;p&gt;我们在页面布局的时候，经常会设置容器的长度，但是到底该使用哪个作为长度的单位而懊恼。&lt;/p&gt;
+
+&lt;p&gt;在Android中支持的描述大小区域的类型有以下几种。&lt;/p&gt;
+
+&lt;p&gt;px(pixels)——像素：不同的设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。&lt;/p&gt;
+
+&lt;p&gt;dip(device independent pixels)——设备独立像素：这个和设备硬件有关，一般哦我们为了支持WCGA、HVGA和QVGA推荐使用这个，不依赖于像素。等同于dp。&lt;/p&gt;
+
+&lt;p&gt;sp(scaled pixels—best for text size)——带比例的像素。&lt;/p&gt;
+
+&lt;p&gt;pt(points)——磅：1pt = 1/72英寸&lt;/p&gt;
+
+&lt;p&gt;in(inches)——英寸&lt;/p&gt;
+
+&lt;p&gt;mm(millimeters)——毫米&lt;/p&gt;
+
+&lt;p&gt;二、 详解&lt;/p&gt;
+
+&lt;p&gt;sp由于是放大像素，主要是用于字体显示，由此根据google的建议，TextView的字体大小最好用sp做单位，而且查看TextView的源码可知Android默认使用水平作为字号单位。&lt;/p&gt;
+
+&lt;p&gt;在Android中最常用到的还是px和dip。但是这两个之间到底有什么区别呢？&lt;/p&gt;
+
+&lt;p&gt;在HVGA屏density=160；QVGA屏density=120；WVGA屏density=240；WQVGA屏density=120 density值表示每英寸有多少个显示点，与分辨率是两个概念。&lt;span style=&#34;color: #0000ff;&#34;&gt;不同density下屏幕分辨率信息，以480dip*800dip的WVGA(density=240)为例。&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;density=120时 屏幕实际分辨率为240px*400px （两个点对应一个分辨率）
+状态栏和标题栏高各19px或者25dip
+横屏是屏幕宽度400px 或者800dip,工作区域高度211px或者480dip
+竖屏时屏幕宽度240px或者480dip,工作区域高度381px或者775dip&lt;/p&gt;
+
+&lt;p&gt;density=160时 屏幕实际分辨率为320px*533px （3个点对应两个分辨率）
+状态栏和标题栏高个25px或者25dip
+横屏是屏幕宽度533px 或者800dip,工作区域高度295px或者480dip
+竖屏时屏幕宽度320px或者480dip,工作区域高度508px或者775dip&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;density=240时 屏幕实际分辨率为480px*800px （一个点对于一个分辨率）&lt;/span&gt;
+状态栏和标题栏高个38px或者25dip
+横屏是屏幕宽度800px 或者800dip,工作区域高度442px或者480dip
+竖屏时屏幕宽度480px或者480dip,工作区域高度762px或者775dip&lt;/p&gt;
+
+&lt;p&gt;apk的资源包中，当屏幕density=240时使用hdpi 标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+不加任何标签的资源是各种分辨率情况下共用的。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;引用 Android上dip、dp、px、sp等单位说明&lt;/p&gt;
+
+&lt;p&gt;本文引用自shixin20051108《Android上dip、dp、px、sp等单位说明》&lt;/p&gt;
+
+&lt;p&gt;[ dip: device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。
+px: pixels(像素). 不同设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用；&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_0&#34;&gt;sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。&lt;/h1&gt;
+
+&lt;p&gt;关于换算（以 sp 和 pt 为例）
+查看 TextView 等类的源码，可知：
+case COMPLEX_UNIT_PX:
+return value;
+case COMPLEX_UNIT_SP:
+return value * metrics.scaledDensity;
+case COMPLEX_UNIT_PT:
+return value * metrics.xdpi * (1.0f/72);
+－－－－－－－－－－－－－－－－－－－－－－－－－－
+scaledDensity = DENSITY_DEVICE / (float) DENSITY_DEFAULT;
+xdpi = DENSITY_DEVICE;
+－－－－－－－－－－－－－－－－－－－－－－－－－－&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_1&#34;&gt;DENSITY_DEFAULT = DENSITY_MEDIUM = 160;&lt;/h1&gt;
+
+&lt;p&gt;所以： 假设 pt 和 sp 取相同的值 1，则可设 1pt 和 1sp 之间系数为 x，
+1 * DENSITY_DEVICE / 72 = x * 1 * DENSITY_DEVICE / 160 =&amp;amp;gt;
+x = 160 / 72 = 2.2222&lt;/p&gt;
+
+&lt;h1 id=&#34;toc_2&#34;&gt;也就是说在 Android 中， 1pt 大概等于 2.22sp&lt;/h1&gt;
+
+&lt;p&gt;什么是Dip和Sp
+过去，程序员通常以像素为单位设计计算机用户界面。例如，定义一个宽度为300像素的表单字段，列之间的间距为5个像素，图标大小为16×16像素等。这样处理的问题在于，如果在一个每英寸点数（dpi）更高的新显示器上运行该程序，则用户界面会显得很小。在有些情况下，用户界面可能会小到难以看清内容。
+与分辨率无关的度量单位可以解决这一问题。Android支持下列所有单位。
+px（像素）：屏幕上的点。
+in（英寸）：长度单位。
+mm（毫米）：长度单位。
+pt（磅）：1/72英寸。
+&lt;span style=&#34;color: #ff0000;&#34;&gt;dp（与密度无关的像素）：一种基于屏幕密度的抽象单位。在每英寸160点的显示器上，1dp = 1px。&lt;/span&gt;
+dip：与dp相同，多用于android/ophone示例中。
+sp（与刻度无关的像素）：与dp类似，但是可以根据用户的字体大小首选项进行缩放。
+为了使用户界面能够在现在和将来的显示器类型上正常显示，建议大家始终使用sp作为文字大小的单位，将dip作为其他元素的单位。当然，也可以考虑使用矢量图形，而不是用位图&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;dip: device independent pixels(设备独立像素). 不同设备有不同的显示效果,这个和设备硬件有关，一般我们为了支持WVGA、HVGA和QVGA 推荐使用这个，不依赖像素。
+px: pixels(像素). 不同设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+pt: point，是一个标准的长度单位，1pt＝1/72英寸，用于印刷业，非常简单易用；
+sp: scaled pixels(放大像素). 主要用于字体显示best for textsize。由此，根据 google 的建议，TextView 的
+字号最好使用 sp 做单位，而且查看TextView的源码可知 Android 默认使用 sp 作为字号单位。
+在 Android 中， 1pt 大概等于 2.22sp以上供参考，如果 UI 能够以 sp 为单位提供设计是最好的，如果设计中没有 sp的概念，则开发人员也可以通过适当的换算取近似值。
+过去，程序员通常以像素为单位设计计算机用户界面。例如，定义一个宽度为300像素的表单字段，列之间的间距为5个像素，图标大小为16×16像素等。这样处理的问题在于，如果在一个每英寸点数（dpi）更高的新显示器上运行该程序，则用户界面会显得很小。在有些情况下，用户界面可能会小到难以看清内容。
+与分辨率无关的度量单位可以解决这一问题。Android支持下列所有单位。
+px（像素）：屏幕上的点。
+in（英寸）：长度单位。
+mm（毫米）：长度单位。
+pt（磅）：1/72英寸。
+dp（与密度无关的像素）：一种基于屏幕密度的抽象单位。&lt;span style=&#34;color: #ff0000;&#34;&gt;在每英寸160点的显示器上，1dp = 1px。&lt;/span&gt;
+dip：与dp相同，多用于android/ophone示例中。
+sp（与刻度无关的像素）：与dp类似，但是可以根据用户的字体大小首选项进行缩放。
+分辨率:整个屏是多少点，比如800x480，它是对于软件来说的显示单位，以px为单位的点。 density(密度)值表示每英寸有多少个显示点，与分辨率是两个概念。apk的资源包中，
+当屏幕density=240时使用hdpi标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+一般android设置长度和宽度多用dip,设置字体大小多用sp. 在屏幕密度为160，1dp=1px=1dip, 1pt = &lt;sup&gt;160&lt;/sup&gt;&amp;frasl;&lt;sub&gt;72&lt;/sub&gt; sp 1pt = &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;72&lt;/sub&gt; 英寸.当屏幕密度为240时，1dp=1dip=1.5px.
+为了使用户界面能够在现在和将来的显示器类型上正常显示，建议大家始终使用sp作为文字大小的单位，将dip作为其他元素的单位。当然，也可以考虑使用矢量图形，而不是用位图。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

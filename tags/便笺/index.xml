@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>便笺 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E4BEBFE7ACBA/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sun, 10 Apr 2011 10:05:00 &#43;0000</updated>
+    
+    <item>
+      <title>excel中删除回车和换行符</title>
+      <link>http://www.daniex.tk/blog/2011/excel-remove-carriage-return-and-line-feed/</link>
+      <pubDate>Sun, 10 Apr 2011 10:05:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/excel-remove-carriage-return-and-line-feed/</guid>
+      <description>&lt;p&gt;遇到个问题：在excel保存的csv文件里面有换行符，但是读取文件的时候是按行读取的，所以要把换行符去掉。在网上找了几个方法，都没成功，不过最后还是被我解决了。&lt;/p&gt;
+
+&lt;p&gt;网上有好几种方法，要们只是去除的文件中的换行符，而没有去除回车符。要不然就是繁琐。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;13; (ASCII码回车)
+10; (ASCII码换行)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;方法一
+可以使用Excel的宏来将excel的换行符替换掉，方法如下：
+在工作表标签处单击鼠标右键，点“查看代码”，在代码窗口中输入如下内容：&lt;/p&gt;
+
+&lt;p&gt;Sub 去掉所有换行符()
+    Cells.Replace What:=Chr(10), _
+                  Replacement:=&amp;ldquo;&amp;rdquo;, _
+                  LookAt:=xlPart, _
+                  SearchOrder:=xlByRows, _
+                  MatchCase:=False, _
+                  SearchFormat:=False, _
+                  ReplaceFormat:=False
+End Sub&lt;/p&gt;
+
+&lt;p&gt;然后按F5执行，或者点击菜单上的运行。这个代码是指去掉了换行符，将第二行的10换成13，再执行一次就大功告成。&lt;/p&gt;
+
+&lt;p&gt;方法二
+另存为txt文件的话，换行符会变为回车符，这样在记事本替换的话会比较麻烦。你可以将EXCEL的内容复制到word中，然后使用word的替换功能，将^l替换为空白就行了。(^l)就是换行符。&lt;/p&gt;
+
+&lt;p&gt;1、把所需修改的整个表格复制到Word中；
+2、再从Word中把所有内容复制到记事本中；
+3、最后把记事本中的所有内容复制到excel中。DONE!&lt;/p&gt;
+
+&lt;p&gt;方法三
+网上流最广的方法是这样的：
+1、CTRL+F调出查找替换对话框，选择替换
+2、查找中输入：按住ALT，小键盘输入10 ,松开ALT
+3、按替换
+我尝试着按住ALT+13，查找替换，没有成功。只能放弃这种方法。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>该好好做点事情了</title>
+      <link>http://www.daniex.tk/blog/2010/this-done-something-good/</link>
+      <pubDate>Thu, 09 Sep 2010 10:47:26 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/this-done-something-good/</guid>
+      <description>&lt;p&gt;看着一个个同学朋友正在创造者自己的精彩世界，在看看某个无业游民，不禁悲从中来。&lt;/p&gt;
+
+&lt;p&gt;于是乎，好好给自己打个气。嗑点药打点鸡血。罗永浩那种论“斤”读励志书的境界是达不到了，俺做个小抄还是可以的。&lt;/p&gt;
+
+&lt;p&gt;p.s. 昨儿看了《盗梦空间》精彩啊~ 某卢瑟的生活就这么点光彩了~&lt;/p&gt;
+
+&lt;p&gt;——————————————————————————&lt;/p&gt;
+
+&lt;p&gt;20岁到30岁应该做的事情&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;一： 这10年，一定要有自己的方向 &lt;/strong&gt;
+1.没有方向感，是最要命的
+2.不管起点有多低，都要坦然接受
+3.围绕自己的兴趣爱好选择职业
+4.做自己最擅长的事
+5.从最容易实现的目标开始做起
+&lt;strong&gt;二：   这10年，要做哪些准备？&lt;/strong&gt;
+1.要过语言关
+2.要有一样看家本领
+3.掌握工作的全部
+4.把知识变成能力
+5.向成功的人学习
+6.走在时代的最前沿
+7.随时记下一闪即逝的灵感
+&lt;strong&gt;三：   这10年，要培养的几种能力 &lt;/strong&gt;
+1.会大会小会来事
+2.把话说到点子上
+3.抓住问题的关键
+4.不放弃，不抛弃
+5.控制自己的情绪和行为
+6.站在对方的位置上
+&lt;strong&gt;四：   这10年，要认识到的问题 &lt;/strong&gt;
+1.用出色的业绩树立自己的品牌
+2.世上的事，最怕认真二字
+3.任何时候，都保持一颗正直的心
+4.用双肩扛起自己的责任
+5.让更多的人记住你
+6.工作不仅仅是为了赚钱
+7.进入成功人的圈子
+&lt;strong&gt;五 ：这10年，绝对不能浪费的东西 &lt;/strong&gt;
+1.抓住生活中的点滴空闲
+2.用心善待身边的每一个人
+3.把每份工作都当成历练自己的舞台
+4.端好信誉那个碗
+5.抓住擦身而过的机会
+6.节约每一分钱
+&lt;strong&gt;六：   这10年，如何对待金钱？&lt;/strong&gt;
+1.成家成名之前，先成为有钱入
+2.能创业就去创业
+3.从小做起，一分钱也要赚
+4.随波逐流永远成不了富翁
+5.把废物变成宝贝
+6.先满足别人的需求
+7.在为客户服务上做文章
+8.让钱在流动中升值
+&lt;strong&gt;七：   这10年，发展重心放在什么位置？&lt;/strong&gt;
+1.抓住当下，做好手边的工作
+2.在细节上下功夫
+3.把时间和精力用在最能创造效益的地方
+4.注重个人的成长和积累
+5.成功之前做该做的事，成功之后做想做的事
+6.始终围绕自己的核心目标做事&lt;/p&gt;
+
+&lt;p&gt;&lt;a title=&#34;转贴并收藏&#34; href=&#34;http://tieba.baidu.com/f?kz=879380086&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>跨平台的gmail桌面通知工具 B2 Gmail Notifier</title>
+      <link>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</link>
+      <pubDate>Fri, 13 Aug 2010 01:32:55 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</guid>
+      <description>&lt;p&gt;浏览器里开了个Gmail，离开浏览器做其他事的时候，时常忘了去查看邮箱。又不想将Gmail放到ThunderBird，OutLook之类的软件里。于是想到找找有没有Gmail的桌面提示工具。发现有两种方式，一是Google Desktop工具，功能很强劲，有很多小工具。还有一个方法就是B2 Gmail Notifier。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://home.b2labs.com/b2-gmail-notifier-freeware-animated-gmail-notifier&#34; target=&#34;_blank&#34;&gt;B2 Labs制作的Gmail Notifier &lt;/a&gt;是一款跨平台（Windows/Mac/Linux）的Gmail邮件提示小工具，因为它基于Adobe的AIR技术。它可以在你的桌面提示收到的新邮件，可以直接看到发信人、标题、正文和发送时间，而且有多种动态效果可选，还可以在线安装更多效果。不支持多帐号。&lt;/p&gt;
+
+&lt;p&gt;安装文件很小，不到2M，就算加上12M的Adobe Air安装文件还是很小。Google Desktop数百M，多装些小工具有可能就几G了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-445&#34; title=&#34;20100813092206461&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/08/20100813092206461.png&#34; alt=&#34;&#34; width=&#34;268&#34; height=&#34;266&#34; /&gt;提示框后面有个txt文件，它偷偷地露了个头。 - -！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

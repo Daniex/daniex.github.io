@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>WPF DataGrid 绑定数据 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C#,datagrid,wpf toolkit">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>WPF DataGrid 绑定数据</h1>
+    <span class="post-date">Sep 1, 2011 &middot; 2 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/C">C#</a><a class="label" href="http://www.daniex.tk/categories/WPF">WPF</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C">C#</a><a class="label" href="http://www.daniex.tk/tags/datagrid">datagrid</a><a class="label" href="http://www.daniex.tk/tags/wpf-toolkit">wpf toolkit</a>
+    </span>
+    <p>写WPF程序，需要表格。用的是.net3.5，于是找了个WPF Toolkit工具用着。</p>
+
+<p>地址：wpf toolkit <a title="wpf toolkit website" href="http://wpf.codeplex.com/" target="_blank"><span style="color: #0000ff;"><a href="http://wpf.codeplex.com/">http://wpf.codeplex.com/</a></span></a></p>
+
+<p>在绑定数据的时候遇到点麻烦，当然绑定数据的方法有很多中，这里转一个。在最后绑定数据的时候方法不止一种，在下面的代码中我稍作添加。</p>
+
+<p>地址：<a title="WPFToolkit DataGrid 使用介绍" href="http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html" target="_blank"><span style="color: #0000ff;"><a href="http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html">http://www.cnblogs.com/xh831213/archive/2010/04/01/1702279.html</a></span></a></p>
+
+<p>&nbsp;
+<pre class="brush: xml">
+xaml文件如下：
+<div>
+<div>&lt;Window x:Class=&ldquo;WpfAppTest.WPFDataGrid&rdquo;
+xmlns=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;">http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</a>
+xmlns:x=&ldquo;<a href="http://schemas.microsoft.com/winfx/2006/xaml&quot;">http://schemas.microsoft.com/winfx/2006/xaml&quot;</a>
+xmlns:sys=&ldquo;clr-namespace:System;assembly=mscorlib&rdquo;
+xmlns:toolkit=&ldquo;<a href="http://schemas.microsoft.com/wpf/2008/toolkit&quot;">http://schemas.microsoft.com/wpf/2008/toolkit&quot;</a>
+xmlns:myWPFDataGrid=&ldquo;clr-namespace:WpfAppTest;assembly=WpfAppTest&rdquo;
+Title=&ldquo;WPFDataGrid&rdquo; Height=&ldquo;351&rdquo; Width=&ldquo;647&rdquo; Loaded=&ldquo;Window_Loaded&rdquo;&gt;</p>
+
+<p>&lt;Window.Resources&gt;
+&lt;ObjectDataProvider x:Key=&ldquo;myEnum&rdquo; MethodName=&ldquo;GetValues&rdquo; ObjectType=&ldquo;{x:Type sys:Enum}&rdquo;&gt;
+&lt;ObjectDataProvider.MethodParameters&gt;
+&lt;x:Type TypeName=&ldquo;myWPFDataGrid:sampleType&rdquo;/&gt;
+&lt;/ObjectDataProvider.MethodParameters&gt;
+&lt;/ObjectDataProvider&gt;
+&lt;/Window.Resources&gt;</p>
+
+<p>&lt;Grid&gt;
+&lt;toolkit:DataGrid Name=&ldquo;SampleDataGrid&rdquo; AutoGenerateColumns=&ldquo;False&rdquo; ItemsSource=&ldquo;{Binding}&rdquo;&gt;
+&lt;toolkit:DataGrid.Columns&gt;
+&lt;toolkit:DataGridTextColumn Header=&ldquo;ID&rdquo;  Binding=&ldquo;{Binding ID}&rdquo;/&gt;
+&lt;toolkit:DataGridTextColumn Header=&ldquo;Name&rdquo; Binding=&ldquo;{Binding Name}&ldquo; /&gt;
+&lt;toolkit:DataGridHyperlinkColumn Header=&ldquo;Link&rdquo; Binding=&ldquo;{Binding Link}&ldquo;  ContentBinding=&rdquo;{Binding Link}&ldquo; /&gt;
+&lt;toolkit:DataGridCheckBoxColumn Header=&ldquo;IsBool&rdquo; Binding=&ldquo;{Binding IsBool}&ldquo; /&gt;
+&lt;toolkit:DataGridComboBoxColumn Header=&ldquo;MyType&rdquo; SelectedItemBinding=&ldquo;{Binding MyType}&ldquo; ItemsSource=&rdquo;{Binding Source={StaticResource myEnum}}&ldquo; TextBinding=&rdquo;{Binding MyType}&ldquo; /&gt;</p>
+
+<p>&lt;/toolkit:DataGrid.Columns&gt;</p>
+
+<p>&lt;/toolkit:DataGrid&gt;
+&lt;/Grid&gt;
+&lt;/Window&gt;</div>
+</div>
+</pre>
+&nbsp;</p>
+
+<p>c#文件如下：
+<pre class="brush: csharp">
+<div>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Data;</p>
+
+<p>namespace WpfAppTest
+{
+/// &lt;summary&gt;
+/// Interaction logic for WPFDataGrid.xaml
+/// &lt;/summary&gt;
+public partial class WPFDataGrid : Window
+{
+public WPFDataGrid()
+{
+InitializeComponent();
+}</p>
+
+<p>private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+DataTable dt = new DataTable();
+DataColumn dc = new DataColumn(&ldquo;ID&rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&ldquo;Name&rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&ldquo;Link&rdquo;, typeof(System.String));
+dt.Columns.Add(dc);
+dc = new DataColumn(&ldquo;IsBool&rdquo;, typeof(System.Boolean));
+dt.Columns.Add(dc);
+dc = new DataColumn(&ldquo;MyType&rdquo;, typeof(sampleType));
+dt.Columns.Add(dc);
+for (int i = 0; i &lt; 10; i++)
+{
+dt.Rows.Add(new object[] { i.ToString(), &rdquo;Name&rdquo; + i.ToString(), &rdquo;Link&rdquo; + i.ToString(), true, sampleType.C });
+}</div>
+<h3><span style="color: #800000;">//可以使用下面注释的一行代码替换其后的三行，数据也能绑定成功</span>
+<span style="color: #800000;">//SampleDataGrid.ItemsSource = dt.DefaultView;</span></h3>
+<div></div>
+<div>DataSet ds = new DataSet();
+ds.Tables.Add(dt);</p>
+
+<p>SampleDataGrid.DataContext = ds.Tables[0];</div>
+<div>}
+}</p>
+
+<p>public enum sampleType
+{ A, B, C, D, E };
+}</div>
+</pre>
+<div></div>
+<div></div>
+<div></div></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

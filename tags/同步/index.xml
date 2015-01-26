@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>同步 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E5908CE6ADA5/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sun, 17 Mar 2013 08:22:51 &#43;0000</updated>
+    
+    <item>
+      <title>CAN简介</title>
+      <link>http://www.daniex.tk/blog/2013/can-introduction/</link>
+      <pubDate>Sun, 17 Mar 2013 08:22:51 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2013/can-introduction/</guid>
+      <description>&lt;p&gt;CAN全称为Controller Area Network，即控制器局域网，由德国Bosch公司最先提出，是国际上应用最广泛的现场总线之一。最初CAN 被设计作为汽车环境中的通讯，在汽车电子控制装置之间交换信息形成汽车电子控制网络。由于其卓越的性能、极高的可靠性和低廉的价格现已广泛应用于工业现场控制、医疗仪器等众多领域。&lt;/p&gt;
+
+&lt;p&gt;CAN协议是建立在OSI 7层开放互连参考模型基础之上的。但CAN协议只定义了模型的最下面两层:数据链路层和物理层，仅保证了节点间无差错的数据传输。CAN的应用层协议必须由CAN 用户自行定义，或采用一些国际组织制订的标准协议。应用最为广泛的是DeviceNet和CANopen，分别广泛应用于过程控制和机电控制领域。但此类协议一般结构比较复杂，更适合复杂大型系统的应用。
+&lt;div&gt;
+&lt;div id=&#34;pageNo-1&#34; data-page-no=&#34;1&#34; data-scale=&#34;0.70709782964164&#34; data-render=&#34;1&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt; CAN的技术规范&lt;/p&gt;
+
+&lt;p&gt;(1) 帧类型&lt;/p&gt;
+
+&lt;p&gt;在CAN总线中，有四种不同的帧类型:&lt;/p&gt;
+
+&lt;p&gt;数据帧(Data Frame) 数据帧带有应用数据;&lt;/p&gt;
+
+&lt;p&gt;远程帧(Remote Frame) 通过发送远程帧可以向网络请求数据，启动其他资源节点传送他们各自的数据，远程帧包含6个不同的位域:帧起始、仲裁域、控制域、CRC域、应答域、帧结尾。仲裁域中的RTR位的隐极性表示为远程帧;&lt;/p&gt;
+
+&lt;p&gt;错误帧(Error Frame)错误帧能够报告每个节点的出错，由两个不同的域组成，第一个域是不同站提供的错误标志的叠加，第二个域是错误界定符;&lt;/p&gt;
+
+&lt;p&gt;过载帧(Overload Frame)如果节点的接收尚未准备好就会传送过载帧，由两个不同的域组成，第一个域是过载标志，第二个域是过载界定符。&lt;/p&gt;
+
+&lt;p&gt;(2) 数据帧结构&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-1215&#34; alt=&#34;20130317161704028&#34; src=&#34;http://daniex.info/wp-content/uploads/2013/03/20130317161704028.png&#34; width=&#34;548&#34; height=&#34;331&#34; /&gt;数据帧由以下7个不同的位域(Bit Field)组成:帧起始、仲裁域、控制域、数据域、CRC域、应答域、帧结尾。&lt;/p&gt;
+
+&lt;p&gt;帧起始:标志帧的开始，它由单个显性位构成，在总线空闲时发送，在总线上产生同步作用。&lt;/p&gt;
+
+&lt;p&gt;仲裁域:由11位标识符(ID10-ID0)和远程发送请求位(RTR)组成，RTR位为显性表示该帧为数据帧，隐性表示该帧为远程帧;标识符由高至低按次序发送，且前7位 (ID10-ID4)不能全为显性位。标识符ID用来描述数据的含义而不用于通信寻址，CAN总线的帧是没有寻址功能的。标识符还用于决定报文的优先权，ID值越低优先权越高，在竞争总线时，优先权高的报文优先发送，优先权低报文退出总线竞争。CAN总线竞争的算法效率很高，是一种非破坏性竞争。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;div id=&#34;pageNo-2&#34; data-page-no=&#34;2&#34; data-scale=&#34;0.70709782964164&#34; data-render=&#34;1&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;控制域:为数据长度码 (DLC3-DLC0)，表示数据域中数据的字节数，不得超过8。&lt;/p&gt;
+
+&lt;p&gt;数据域:由被发送数据组成，数目与控制域中设定的字节数相等，第一个字节的最高位首先被发送。其长度在标准帧中不超过8个字节。&lt;/p&gt;
+
+&lt;p&gt;CRC域:包括CRC(循环冗余码校验)序列(15位)和CRC界定符(1个隐性位)，用于帧校验。&lt;/p&gt;
+
+&lt;p&gt;应答域:由应答间隙和应答界定符组成，共两位;发送站发送两个隐性位，接收站在应答间隙中发送显性位。应答界定符必须是隐性位。&lt;/p&gt;
+
+&lt;p&gt;帧结束:由7位隐性位组成。&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>相册、图床制作，WordPress图片站、插件相关</title>
+      <link>http://www.daniex.tk/blog/2010/photo-gallery/</link>
+      <pubDate>Tue, 03 Aug 2010 06:42:06 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/photo-gallery/</guid>
+      <description>&lt;p&gt;之前回家了一趟，回杭后工作上又有些变动。这一篇出来的比较混乱。这里简单说说我所知道的一些图片站点的建设，wp相关插件。&lt;/p&gt;
+
+&lt;p&gt;1、WordPress图片站&lt;/p&gt;
+
+&lt;p&gt;将相当于把图片作为一个post发表。有比较好的显示方式，麻烦在于上传图片，发布同步稍显繁琐。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.chinaz.com/Design/CoolSite/0910911B2009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;有几个图片站主题推荐，可以看看参考下效果。&lt;/p&gt;
+
+&lt;p&gt;2、在WordPress里面插图、图片的显示，有很多很多方法，插件数不胜数。比如NextGen Gallery，slideshare， cincopa等等，各种slideshow、各种gallery。试过才知道。本站&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册page&lt;/span&gt;&lt;/a&gt;里的是用NextGen Gallery生成，mvp的blog中的&lt;a href=&#34;http://www.mvpwinner.com/about-mvp/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;关于页&lt;/span&gt;&lt;/a&gt;是用的slideshare，cincopa的例子在&lt;a href=&#34;http://mimisunanduncleliu.com/blog/?page_id=92&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，是咪咪孙&amp;amp;刘大叔的相册。&lt;/p&gt;
+
+&lt;p&gt;3、自建图床&lt;/p&gt;
+
+&lt;p&gt;这个也有很多手段，建成的图片站各有特色，推荐zenphoto&lt;em&gt;，&lt;/em&gt;Menalto Gallery，Coppermine，piwigo。blog图片由图床接入，可以省下大量的网站空间。 更多推荐看&lt;a href=&#34;http://www.chinaz.com/Webmaster/Club/01045Z432009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，和&lt;a href=&#34;http://blogunion.org/wordpress/wordpress-plugins/five-wordpress-gallery-plugins.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>twitter、微博、WordPress的同步</title>
+      <link>http://www.daniex.tk/blog/2010/twittertoall/</link>
+      <pubDate>Tue, 13 Jul 2010 12:05:59 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/twittertoall/</guid>
+      <description>&lt;p&gt;今天折腾了阵子twitter同步的小东西，先是同步WordPress到twitter，然后twitter到其他各地。WordPress到twitter有插件，写代码也是几段就ok的，略过不提。简单的说下关于twitter、国内各个微博、部分SNS网站同步的情况。教程大家自己去找，很多，按着步骤做也挺简单的。&lt;/p&gt;
+
+&lt;p&gt;1、  Gae同步twitter&lt;/p&gt;
+
+&lt;p&gt;就&lt;a href=&#34;http://www.williamlong.info/archives/2049.html&#34; target=&#34;_blank&#34;&gt;月光博客&lt;/a&gt;那个版本，同步都是微薄，要同步人人、豆瓣之类的就得自己写代码了。基本步骤是申请gae账号，下几个包，改下自己的账号密码，按步骤上传文件，这就搞定。&lt;/p&gt;
+
+&lt;p&gt;2、  php空间同步twitter&lt;/p&gt;
+
+&lt;p&gt;这个方法的前提是有php空间，空间性能还有点关系，之后会提到。步骤的话也是下个包，改下账号密码，上传。一样简单。&lt;/p&gt;
+
+&lt;p&gt;这个方法用的是Tw2other的包，和PHP空间的cron功能的有点关系。&lt;a href=&#34;http://www.qiankun.org.ru/2010/04/using-php-space-cron-synchronize-twitter-sina-163-microblog.html&#34;&gt;推荐个教程&lt;/a&gt;。空间支持cron那很ok，注意下更新时间。默认是每间隔50秒一次更新的，如果需要修改更新间隔，可以修改config.php中的INTERVAL参数。提示：程序中 config.php中有个时间参数设置，个时间参数最好要小于所设置的Cron间隔，比如Cron设置的为1分钟，那么程序中设置为50-58秒比较好。 这个提示的前提是你的服务器够强劲。如果是免费空间，这么设置就有可能因太占资源被禁止。&lt;/p&gt;
+
+&lt;p&gt;如果空间不支持cron呢？这里有个取巧的办法，就是放段代码在自己的网站里面，有人访问，就能同步twitter了。&lt;/p&gt;
+
+&lt;p&gt;&amp;lt;iframe frameborder=0 width=0 height=0 name= &amp;ldquo;cron-twitter&amp;rdquo; src=&amp;ldquo;&lt;a href=&#34;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &#34;&gt;http://t2o.daniex.info/index.php&amp;quot;&amp;gt; &lt;/a&gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;3、  follow5类似&lt;/p&gt;
+
+&lt;p&gt;就是注册个能够同步很多微博的微博或者其他网站账号，设置一下就能同步了。&lt;/p&gt;
+
+&lt;p&gt;4、  Gtalk&lt;/p&gt;
+
+&lt;p&gt;这个方法没研究过，嘿嘿，有兴趣的自己看去。&lt;/p&gt;
+
+&lt;p&gt;最后还要提醒下的是，设置多个微薄同步的时候，这几个微薄之间不要再设置同步了，这样会重复同步，不断刷屏。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress Cannot modify header information错误</title>
+      <link>http://www.daniex.tk/blog/2010/cannot-modify-header-information/</link>
+      <pubDate>Mon, 12 Jul 2010 13:24:40 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cannot-modify-header-information/</guid>
+      <description>&lt;p&gt;今天在改网页固定链接的时候，总是跳 Cannot modify header information&amp;hellip;.的错误。然而WordPress虽然报错，但是我改的固定链接确实改了。&lt;/p&gt;
+
+&lt;p&gt;插几句固定连接的话：之前本站的链接都是WordPress的默认方式，没好好做seo，至此时此刻（2010年7月12日完21点03分）百度都不肯收录这块方塘。不得不叨咕下，百度你口味也太奇怪了，其他搜索引擎可都收录了啊！&lt;/p&gt;
+
+&lt;p&gt;回归话题，关于这个错误，我这边最后的解决方案是删掉多余的空行。就是说，导致出现这个问题的罪魁祸首，就是某个文件中多了几个回车。看到一个写的比较清晰地&lt;a href=&#34;http://abgne.tw/wordpress/wordpress-3-0-warning-cannot-modify-header-information.html&#34; target=&#34;_blank&#34;&gt;blog&lt;/a&gt;，把他的截图借过来用用。&lt;/p&gt;
+
+&lt;p&gt;报错的图，他这个报错的比较厉害，我的可没这么多：
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-289&#34; title=&#34;wordpress_warning_cannot_modify_header_information_0&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_0.jpg&#34; alt=&#34;&#34; width=&#34;500&#34; height=&#34;341&#34; /&gt;然后找到warning：后面括号里面提到的php文件：&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-290&#34; title=&#34;wordpress_warning_cannot_modify_header_information_1&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_1.jpg&#34; alt=&#34;&#34; width=&#34;491&#34; height=&#34;69&#34; /&gt;最后是删掉该文件中的多余空行，就是 &lt;span style=&#34;color: #ff0000;&#34;&gt;&amp;lt;?&lt;/span&gt; 和 &lt;span style=&#34;color: #ff0000;&#34;&gt;?&amp;gt;&lt;/span&gt; 符号前后多出的空行。&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-291&#34; title=&#34;wordpress_warning_cannot_modify_header_information_2&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/wordpress_warning_cannot_modify_header_information_2.jpg&#34; alt=&#34;&#34; width=&#34;386&#34; height=&#34;95&#34; /&gt;&lt;/p&gt;
+删掉之后就大功告成。一切回归正常了。修改的时候发现，是我自己在添加&lt;a href=&#34;http://fairyfish.net/2010/01/12/wp-follow5/&#34; target=&#34;_blank&#34;&gt;我爱水煮鱼&lt;/a&gt;版本同步WordPress到follow5代码的时候，为了看得清楚，在functions.php里面多加了几个回车导致的。自作孽啊！&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>中小企业采购问题及解决方案（上）——问题篇</title>
+      <link>http://www.daniex.tk/blog/2010/purchasing-problem/</link>
+      <pubDate>Wed, 30 Jun 2010 14:18:29 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/purchasing-problem/</guid>
+      <description>&lt;p&gt;18省面相中小企业，要立足于采购这一企业运作重要领域，需要对中小企业采购现状进行信息搜集、整理并分析，才能够更好的服务于中小企业。鄙人现对网上有关资料进行分析整理，陈述如下：&lt;/p&gt;
+
+&lt;p&gt;采购是公司生产产品及维护正常运作而必须消耗的物品及必须配置的设施的购入活动的总称，是公司成本控制的重点。很多企业利润难以有大幅度提高，除了市场销售因素以外，最根本的原因常常是采购上的问题。传统的采购模式往往制约了企业进一步寻找质高价廉商品的进货渠道，从而导致了企业的产品没有竞争力。无论是公司管理者还是财务部门，对采购工作存在的风险都有着非常敏感，这不仅因为采购是直接影响生产成本的主要因素，而且采购活动中存在很高的人为欺诈的可能。而现今的不规范采购有些什么样的问题呢？&lt;/p&gt;
+
+&lt;p&gt;一是公司采购流程管理方面的问题，这类问题有多方面的表现：&lt;/p&gt;
+
+&lt;p&gt;1、  老资格采购员的“灰色交易”；&lt;/p&gt;
+
+&lt;p&gt;2、  因部分采购人员的离职或新进采购人员对于采购渠道和经验上的不足所造成的“随意性采购”、“购进货物高价质次”、“采购渠道不稳定”、“采购货物难以及时送达”的问题；&lt;/p&gt;
+
+&lt;p&gt;3、  没有专门的职能部门对公司采购活动进行全盘控制；&lt;/p&gt;
+
+&lt;p&gt;4、  没有有效的采购控制制度对公司采购工作进行规范和约束；&lt;/p&gt;
+
+&lt;p&gt;5、  没有相应的事前控制措施, 即未经批准即可办理采购业务或采购业务发生后办理补批手续；&lt;/p&gt;
+
+&lt;p&gt;6、  采购单价与市场行情不尽相符, 正面评价有议价不力情形, 负面评价有人为欺诈可能；&lt;/p&gt;
+
+&lt;p&gt;7、  采购员持有大笔公司现金流转，且未能进行清帐（其中一人一次借支5万元采购工程物资，后来采取多种措施都未有有效的凭据平衡此帐），财务上隐藏着很大的风险；&lt;/p&gt;
+
+&lt;p&gt;8、  采购员有跨月或跨数月的采购报帐（有的采购单据两三个月后才报帐），月结供应商送货单据有遗漏或跨月甚至跨两三月入帐等。&lt;/p&gt;
+
+&lt;p&gt;9、  无法实现异地办公，相关管理和业务人员出差频繁，导致很多业务不能及时进行和完成，在客观上大大降低了采购效率；&lt;/p&gt;
+
+&lt;p&gt;10、 重复劳动，信息利用率低；采购流程中各部分单据信息等不能进行信息的同步共享和利用，造成各个环节都需要重新完成业务处理，无效的和重复的劳动较多；&lt;/p&gt;
+
+&lt;p&gt;11、 缺乏有效的综合统计、分析工具；企业的采购数据难以汇总分析，不利于预测和控制采购中出现的突发性问题，由于采购系统缺乏管理和控制，因此难以进行前瞻性采购。&lt;/p&gt;
+
+&lt;p&gt;12、无法对业务人员实行业绩考核与评估；&lt;/p&gt;
+
+&lt;p&gt;再是供货商管理方面的问题，表现为：&lt;/p&gt;
+
+&lt;p&gt;1、  没有合理的评估体系，对供应商的服务、价格、交货、质量等数据无法充分利用，不能与关键供应商之间达成更深层的合作关系，缺乏对主要供应商的管理能力，当供应商流失或变更时不能主动应变。与现有供应商之间的关系难以协调且不易发展新的供应商。&lt;/p&gt;
+
+&lt;p&gt;2、  采购中只注重谈判、比价、压价，缺乏从关注谈判向建立战略合作伙伴关系转变的意识，没有摆脱一味压价的模式，从而导致未能建立双赢机制。&lt;/p&gt;
+
+&lt;p&gt;3、  采购地域限制，流程不透明，过程烦琐，人力与资金耗费巨大。&lt;/p&gt;
+
+&lt;p&gt;4、  信息的私有化，不共享：采购、供应双方都尽量隐瞒自己的信息，不能有效地进行信息共享，导致信息不对称，引发相互的不信任。&lt;/p&gt;
+
+&lt;p&gt;5、  供需关系是临时的或短期的合作关系：这种合作关系造成了竞争多于合作，导致采购过程的不确定性，阻碍合作的通畅进行。&lt;/p&gt;
+
+&lt;p&gt;6、  响应用户需求能力迟钝：由于供应和采购双方在信息的沟通方面缺乏及时的信息反馈，在市场需求发生变化的情况下，采购方不能改变供应方已有的订货合同，缺乏应付需求变化的能力。&lt;/p&gt;
+
+&lt;p&gt;7、  对于质量和交货期进行事后把关：采购方很难参与供应商的生产过程和有关质量控制活动，不能对采购品进行实时的跟踪查询。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://daniex.info/purchasing-problem.html/1-2&#34; rel=&#34;attachment wp-att-122&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-122&#34; title=&#34;1&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/06/12.jpg&#34; alt=&#34;&#34; width=&#34;450&#34; height=&#34;304&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>揭示洋河蓝色经典团购策略六大秘诀 【转】</title>
+      <link>http://www.daniex.tk/blog/2010/yanghe/</link>
+      <pubDate>Thu, 17 Jun 2010 03:48:27 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/yanghe/</guid>
+      <description>&lt;p&gt;这文特别的软，特别软&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;转自 &lt;a href=&#34;http://www.cnwinenews.com/html/200907/29/20090729082728.htm&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;
+&lt;p style=&#34;text-align: auto;&#34;&gt;&lt;/p&gt;&lt;/p&gt;
+
+&lt;div id=&#34;_mcePaste&#34;&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;作者：刘彬　严霄程  编辑： 张怡&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;洋河蓝色经典掀起的蓝色旋风早已在酒类行业引起各方人士的关注。洋河成功的秘诀是什么呢？&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;可以 说，洋河蓝色经典营销模式是口子窖终端盘中盘模式的升级版。简单概括洋河蓝色经典的模式包括五大方面：“差异化的产品+全国统一传传播+核心终端突破+团 购启动核心消费者+厂家业务人员全面介入终端管理”。而公关团购策略的高效执行，是洋河蓝色经典突破市场的差异化竞争手段。&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;洋河蓝色 经典的团购策略有什么奥秘呢？思卓战略咨询对洋河蓝色经典的市场操作有较全面的研究，揭示了洋河蓝色经典团购策略的六大秘诀。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;&lt;strong&gt;秘 诀一：发展社会资源型客户为团购第一要务&lt;/strong&gt;&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;公关团购靠的是人脉搏，而人脉不是一天两天建立起来的，找到社会资源丰富 的经销商，其人脉是任何投入都无法取代的。启动社会资源型客户作为团购策略的第一要务，是洋河蓝色经典团购策略的重要特点。在江苏省内市场，洋河蓝色经典 利用品牌影响力和社会资源优势，在部分市场直接与政府部门合作，成立销售公司。在省外市场，洋河也将发展社会关系的经销商作为重要标准。在北京等大市场， 厂家直接成立分公司，全面启动社会资源型分销商。经销商本身就是核心消费群体，并有强大的公关能力和消费引导能力，使洋河蓝色经典的市场开拓事半功倍。&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;强调社会资源型经销商，而不是强调市场操作经验。前提是洋河蓝色经典拥有成熟的市场运作管理模式和团队，可以按照统一的操作思路，协助解决经销商运作团 购和终端的短板。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;&lt;strong&gt;秘诀二：专业团购队伍，是团购开展的保障&lt;/strong&gt;&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;专业团购队伍，是 公关团购的重要保障。很多企业要么就是老板公关、要么就随便招聘几个团购场人员，团购工作开展随机性较大，难以启动市场。洋河蓝色经典将团购专业化队伍作 为市场运作的重要保障，并且配置具备公关能力的销售经理+社会关系较强的经销商+团购经理都作为团购部的核心人员。另外，洋河在很多市场上，还发展社会流 动能力较强的名流，作为团购顾问。&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;专业的部门+专业的团队，是将关系转化为团购资源，将团购资源转化为关系，逐步扩大核心消费群体的 重要保障。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;&lt;strong&gt;秘诀三：同步传播，树立品牌形象&lt;/strong&gt;&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;团购本身不仅仅是销售，而是形成 口碑传播和消费带动。对于核心消费者而言，一个没有影响力的品牌靠赠酒和公关是很难成功的。洋河蓝色经典显然是同档次品牌传播力度最大的，一旦确定目标市 场、确定了经销商团队，洋河蓝色经典就针对政务消费集中或者政务消费者经常出入的地方树立大的广告牌。树立了品牌形象，公关团购就顺利多了。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;&lt;strong&gt;秘诀四：公关先行，整合社会资源&lt;/strong&gt;&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;团购，表面上针对团体客户的直接销售。而对于酒而言，口碑传播的 功能大于销售。洋河蓝色经典在开始团购以前，非常重要目标客户关系的建立和扩大目标消费群体的影响。例如，省内市场，洋河酒厂的高层与省市政府保持良好地 沟通，企业高层亲自公关，扩大人脉。洋河蓝色经典在很多市场通过人代会启动政务消费、通过老乡会、通过同学会启动演艺界消费、通过各种关系启动大型的企业 事业单位。北京首钢已经成为洋河蓝色经典的大客户。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;在非江苏市场，蓝色经典吸引当地核心消费群的一个重要做法，首先以在当地具有一定 社会地位的江苏籍人士为突破口，通过他们来启动核心消费市场。如蓝色经典在山东一些区域市场召开同乡会，专门邀请那些有头有脸的江苏人。特别是洋河蓝色经 典在进军郑州市场时，没有按照常规的市场“打法”铺设渠道，而是采取自上而下的方法，把该酒家乡在郑州当官、经商等有头有脸的成功人士，通过召开“江苏籍 在郑工作人员联谊会”即同乡会的形式，把这些驻外人员的“恋乡”情结调动起来，然后，对这些“意见领袖”，也即核心消费群，围绕其影响力、“官阶”、知名 度等进行A、B、C分类，A类客人每个月送两箱洋河蓝色经典，B类客人每两个月送两箱，C类客人每三个月送两箱。由于这些客人一般都有私车，他们就把这些 酒直接搬到客人的车后备箱内。并给予每月赠酒、定期赠酒、不定期赠酒三种不同的待遇。活动开展了一段时间后，效果出人意料，由于这些高端政界及商务人士， 享受一定数量的免费赠酒，因此，与朋友聚会、请客送礼、家人小聚等，都从“后备箱”里拿出“家乡酒”，并大力向亲朋好友推荐，随后，很多餐饮酒店，经常有 询问该款产品的消费者，餐饮终端老板也不得不到处询问，在哪里可以进到这款酒，很多到餐厅、酒店吃饭的客人看到这种包装精致独特的酒，就会问餐厅有没有卖 的，问的人多了，餐饮渠道就形成了这样的印象：很多人对洋河蓝色经典很有兴趣。见时机到了，洋河蓝色经典快速铺货，很快，该款产品就迅速席卷了郑州中高端 消费场所，并形成了一股消费的热潮，产品很快就占领了中高端市场。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;&lt;strong&gt;秘诀五：锁定核心消费者，引导消费习惯&lt;/strong&gt;&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;很多企业的公关团购策略是通过一两次品鉴会、大规模的赠酒就能够启动核心消费，或者无目标赠送，造成资源浪费，很难达到效果。而洋河蓝色经典以“培养意 见领导的消费习惯”为主导思想。首先，精准定位。意见领导的带动作用非常之大，洋河蓝色经典牢牢瞄准有社会地位和影响力的核心消费者，并集中资源突破。第 二，洋河蓝色经典一旦锁定目标消费群体，就会以邀请参观酒厂、社会活动等名义加深消费者的品牌印象.第三,洋河蓝色经典针对核心目标消费者,关键是定期、 定量、长期赠酒，培养消费者的口感依赖。比如，洋河蓝色经典在某地市场针对某政府领导长达两年的赠酒。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;&lt;strong&gt;秘诀六： 团购管理，象酒店终端一样精细&lt;/strong&gt;&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;销售仍然是最终端的目标。前面所有的工作完成以后，团购销量就水到渠成了。洋河蓝色 经典的公关团购部就发挥了作用，他们将单位分类管理，责任到人，制定相应的目标，针对每个单位采取针对性的沟通和促销策略，挖掘团购的销售潜力。&lt;/div&gt;
+&amp;nbsp;
+&lt;div id=&#34;_mcePaste&#34;&gt;总之，洋河蓝色经典把公关团购作为市场运作的战略思路，以人力、物力、财力全面保障其执行到位，形成了系统的操作模式和与众不同的执行力。成为洋河蓝色 经典攻城略地的利器！&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

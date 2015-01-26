@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>wpf toolkit datagrid 添加图片 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="C#,wpf,wpf toolkit,xaml">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>wpf toolkit datagrid 添加图片</h1>
+    <span class="post-date">Oct 22, 2011 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/WPF">WPF</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/C">C#</a><a class="label" href="http://www.daniex.tk/tags/wpf">wpf</a><a class="label" href="http://www.daniex.tk/tags/wpf-toolkit">wpf toolkit</a><a class="label" href="http://www.daniex.tk/tags/xaml">xaml</a>
+    </span>
+    <p><del>找了半天，不幸地发现，wpf toolkit datagrid 要添加图片列，没有普遍的方法。除非加另外的库或者写很复杂的代码。</del>
+<h2><span style="color: #0000ff;">该句删除，因为，下午刚发现这是有办法的！！！</span></h2>
+网上大多加图片的例子都是基于.net 4.0自带的datagrid控件，不要折腾wpf toolkit了，直接升4.0或者更高吧。。。</p>
+
+<p>列几个参考地址：<a href="http://www.cnblogs.com/wainiwann/archive/2011/05/27/WPF_DataGrid.html" target="_blank">wpf中自定义DataGrid控件</a></p>
+
+<p><a href="http://www.cnblogs.com/nickli/archive/2010/10/07/1845175.html" target="_blank">wpf datagrid数据绑定</a></p>
+
+<p><a id="ctl02_TitleUrl" href="http://www.cnblogs.com/mr0512/archive/2011/04/12/2014118.html" target="_blank">Datagrid动态绑定的数据作为图片列添加</a></p>
+
+<p>比较方便的方法还是篇中的方法：
+<pre>28 &lt;DataGridTemplateColumn.CellTemplate&gt;
+29 &lt;DataTemplate &gt;
+30 &lt;Grid Height=&ldquo;75&rdquo; Background=&ldquo;Transparent&rdquo; &gt;
+31 &lt;Grid.ColumnDefinitions&gt;
+32 &lt;ColumnDefinition Width=&rdquo;<em>&rdquo;/&gt;
+33 &lt;ColumnDefinition Width=&ldquo;6</em>&rdquo;/&gt;
+34 &lt;/Grid.ColumnDefinitions&gt;
+35 &lt;Grid Margin=&ldquo;10,0,0,0&rdquo; Grid.Column=&ldquo;1&rdquo; &gt;
+36 &lt;Grid.RowDefinitions&gt;
+37 &lt;RowDefinition Height=&rdquo;<em>&rdquo;/&gt;
+38 &lt;RowDefinition Height=&ldquo;2</em>&rdquo;/&gt;
+39 &lt;/Grid.RowDefinitions&gt;
+40 &lt;TextBlock Grid.Row=&ldquo;0&rdquo; Margin=&ldquo;0,5,0,0&rdquo; Height=&ldquo;24&rdquo; Foreground=&ldquo;Red&rdquo; FontSize=&ldquo;20&rdquo; FontFamily=&ldquo;方正舒体&rdquo; TextWrapping=&ldquo;Wrap&rdquo; Text=&ldquo;{Binding Sex}&rdquo;/&gt;
+41 &lt;TextBlock Margin=&ldquo;1.429,15,0,0&rdquo; Foreground=&ldquo;Blue&rdquo; Grid.Row=&ldquo;1&rdquo; FontFamily=&ldquo;微软雅黑&rdquo; TextWrapping=&ldquo;Wrap&rdquo; Text=&ldquo;{Binding Name}&rdquo;/&gt;
+42 &lt;/Grid&gt;
+43 &lt;Image Margin=&ldquo;7,9,8,8&rdquo; Source=&ldquo;{Binding Pic}&rdquo;/&gt;
+44
+45 &lt;/Grid&gt;
+46 &lt;/DataTemplate&gt;
+47 &lt;/DataGridTemplateColumn.CellTemplate&gt;</pre>
+<span style="color: #ff6600;"> ##################################################</span>
+<h2><span style="color: #ff6600;">我承认我二！极其地特别的！！wpf toolkit datagrid有添加图片有方法！！！超简单！！！！</span></h2>
+<pre>&lt;my:DataGridTemplateColumn Header=&ldquo;{x:Static resx:Resources.tcDetailStatus}&rdquo;&gt;
+&lt;my:DataGridTemplateColumn.CellTemplate&gt;
+&lt;DataTemplate&gt;
+&lt;Image Source=&ldquo;Images/Untested.png&rdquo; /&gt;
+&lt;/DataTemplate&gt;
+&lt;/my:DataGridTemplateColumn.CellTemplate&gt;
+&lt;/my:DataGridTemplateColumn&gt;</pre>
+&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>羞愧！掩面。。。</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

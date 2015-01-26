@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>openssl建立SSL连接例子程序 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="openSSL,windows,各种库,编码">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>openssl建立SSL连接例子程序</h1>
+    <span class="post-date">Apr 19, 2011 &middot; 3 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/categories/SSL">SSL</a><a class="label" href="http://www.daniex.tk/categories/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/openSSL">openSSL</a><a class="label" href="http://www.daniex.tk/tags/windows">windows</a><a class="label" href="http://www.daniex.tk/tags/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a><a class="label" href="http://www.daniex.tk/tags/%E7%BC%96%E7%A0%81">编码</a>
+    </span>
+    <p>下面是server 和client 的代码。用没跑过，但是用类似的代码跑了。流程是这样的。要注意的是openssl中ssl连接建立前用阻塞的socket，建立后可以设置非阻塞。openssl每个操作后最好检查下是否成功。
+<pre class="brush:php">
+/*********<strong><em>server</em></strong>*******************<strong><em>/
+#include &lt;string.h&gt;
+#include &lt;iostream&gt;
+#include &lt;winsock2.h&gt;
+#include &lt;openssl/ssl.h&gt;
+#include &lt;openssl/x509.h&gt;
+#include &lt;openssl/rand.h&gt;
+#include &lt;openssl/err.h&gt;
+&nbsp;
+#pragma comment (lib,&ldquo;WS2_32.lib&rdquo;)
+#pragma comment( lib, &ldquo;libeay32.lib&rdquo; )
+#pragma comment( lib, &ldquo;ssleay32.lib&rdquo; )
+&nbsp;
+char buffer[10001] = {0};
+&nbsp;
+int main()
+{
+SSL_library_init(); //初始化SSL库
+OpenSSL_add_all_algorithms(); //支持所有算法
+SSL_load_error_strings();  //提供将错误号解析为字符串的功能
+SSL *ssl = NULL;
+SSL_CTX *ssl_ctx = NULL;
+SSL_METHOD *ssl_method = NULL;
+X509 *client_cert = NULL;
+//设置客户端使用的SSL版本
+//ssl_method = SSLv3_server_method();
+ssl_method = SSLv23_server_method();
+//创建SSL上下文环境 每个进程只需维护一个SSL_CTX结构体
+ssl_ctx = SSL_CTX_new(ssl_method);
+&nbsp;
+//验证对方
+SSL_CTX_set_verify(ssl_ctx,SSL_VERIFY_PEER,NULL);
+&nbsp;
+//若验证,则放置CA证书
+SSL_CTX_load_verify_locations(ssl_ctx, &ldquo;cacert.pem&rdquo;, NULL);
+&nbsp;
+//设置pass phrase
+SSL_CTX_set_default_passwd_cb_userdata(ssl_ctx, &ldquo;pass phrase&rdquo;);
+//读取证书文件
+SSL_CTX_use_certificate_file(ssl_ctx,&rdquo;</em></strong><strong>Cert.pem&rdquo;,SSL_FILETYPE_PEM);
+&nbsp;
+//读取密钥文件
+SSL_CTX_use_PrivateKey_file(ssl_ctx,&rdquo;</strong><strong><em>Key.pem&rdquo;,SSL_FILETYPE_PEM);
+&nbsp;
+//验证密钥是否与证书一致
+SSL_CTX_check_private_key(ssl_ctx);
+&nbsp;
+/*构建随机数生成机制,WIN32平台必需</em>/
+srand( (unsigned)time( NULL ) );
+for( int i = 0;    i &lt; 100;i++ )
+seed_int[i] = rand();
+RAND_seed(seed_int, sizeof(seed_int));
+//设置加密方式
+//SSL_CTX_set_cipher_list(ssl_ctx,&ldquo;RC4-MD5&rdquo;);
+//建立TCP服务器端、开始监听并接受客户端连接请求
+&nbsp;
+// 初始化 Winsock.
+WSADATA wsaData;
+int iResult = WSAStartup( MAKEWORD(2,2), &amp;wsaData );
+if ( iResult != NO_ERROR )
+{
+//失败
+return -1;
+}
+// 建立socket
+server = socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
+if ( server == INVALID_SOCKET )
+{
+//失败
+WSACleanup();
+return -2;
+}
+&nbsp;
+// 绑定socket
+sockaddr_in service;
+service.sin_family = AF_INET;
+//service.sin_addr.s_addr = inet_addr(&ldquo;127.0.0.1&rdquo;);
+service.sin_addr.s_addr = INADDR_ANY;
+service.sin_port = htons( 8899 );
+&nbsp;
+if ( bind( server, (SOCKADDR*) &amp;service, sizeof(service) ) == SOCKET_ERROR )
+{
+//失败
+closesocket(server);
+return -3;
+}
+&nbsp;
+// 监听 socket
+if ( listen( server, 10 ) == SOCKET_ERROR )
+{
+//失败
+return -4;
+}
+&nbsp;
+do
+{
+sClient = accept(server,NULL,NULL);
+Sleep(100);
+}while(sClient == INVALID_SOCKET);
+&nbsp;
+//创建当前连接的SSL结构体
+ssl = SSL_new(ssl_ctx);
+//将SSL绑定到套接字上
+SSL_set_fd(ssl, sClient);
+&nbsp;
+//接受SSL链接
+SSL_accept(ssl);
+&nbsp;
+//获取和释放客户端证书
+client_cert = SSL_get_peer_certificate(ssl);
+//打印所有加密算法的信息(可选)
+std::cout&lt;&lt;&ldquo;SSL connection using&rdquo;&lt;&lt;SSL_get_cipher(ssl)&lt;&lt;std::endl;
+&nbsp;
+X509_free(client_cert);
+&nbsp;
+//unsigned long cmd;
+//if (SOCKET_ERROR == ioctlsocket(sClient, FIONBIO, &amp;cmd))
+//{
+//创建套接字时发生错误，非阻塞设置失败
+//ErrorProcess();
+//closesocket(sClient);
+//}
+&nbsp;
+while(true)
+{
+SSL_read(ssl, buffer, 10000);
+memset(buffer,0,10000);
+SSL_write(ssl, &ldquo;hello, world!&rdquo;, sizeof(&ldquo;hello, world!&rdquo;));
+Sleep(1000);
+&nbsp;
+}
+&nbsp;
+//断开SSL链接
+SSL_shutdown(ssl);
+//释放当前SSL链接结构体
+SSL_free(ssl);
+//断开TCP链接
+closesocket(sClient);
+//释放SSL上下文
+SSL_CTX_free(ssl_ctx);
+&nbsp;
+return 0;
+}
+</pre>
+<pre class="brush:php">
+/</strong>*********<strong><em>client</em></strong>***************<strong><em>/
+#include &lt;iostream&gt;
+#include &lt;string.h&gt;
+#include &lt;winsock2.h&gt;
+#include &lt;openssl/ssl.h&gt;
+#include &lt;openssl/x509.h&gt;
+#include &lt;openssl/rand.h&gt;
+#include &lt;openssl/err.h&gt;
+#pragma comment (lib,&ldquo;WS2_32.lib&rdquo;)
+#pragma comment( lib, &ldquo;libeay32.lib&rdquo; )
+#pragma comment( lib, &ldquo;ssleay32.lib&rdquo; )
+&nbsp;
+int main(int argc, _TCHAR</em> argv[])
+{
+&nbsp;
+SOCKET client;
+char buffer[256] = {0};
+int  seed_int[100]; /<em>存放随机序列</em>/
+&nbsp;
+SSL <em>ssl = NULL;
+SSL_CTX *ssl_ctx = NULL;
+SSL_METHOD *ssl_method = NULL;
+X509 *server_cert = NULL;
+&nbsp;
+SSL_library_init();        //init libraries
+OpenSSL_add_all_algorithms(); //支持所有算法
+SSL_load_error_strings();  //提供将错误号解析为字符串的功能
+&nbsp;
+&nbsp;
+//设置客户端使用的SSL版本
+ssl_method = SSLv3_client_method();
+//创建SSL上下文环境 每个进程只需维护一个SSL_CTX结构体
+ssl_ctx = SSL_CTX_new(ssl_method);
+/*构建随机数生成机制,WIN32平台必需</em>/
+srand( (unsigned)time( NULL ) );
+for( int i = 0;    i &lt; 100;i++ )
+seed_int[i] = rand();
+RAND_seed(seed_int, sizeof(seed_int));
+&nbsp;
+&nbsp;
+/* Load the RSA CA certificate into the SSL_CTX structure <em>/
+/</em> This will allow this client to verify the server&rsquo;s   <em>/
+/</em> certificate.                             <em>/
+SSL_CTX_load_verify_locations(ssl_ctx, &ldquo;cacert.pem&rdquo;, NULL);
+&nbsp;
+/</em> Set flag in context to require peer (server) certificate verification */
+SSL_CTX_set_verify(ssl_ctx,SSL_VERIFY_PEER,NULL);
+SSL_CTX_set_verify_depth(ssl_ctx,1);
+SSL_CTX_set_default_passwd_cb_userdata(ssl_ctx, &ldquo;pass phrase&rdquo;);
+//读取证书文件
+SSL_CTX_use_certificate_file(ssl_ctx,&rdquo;</strong>*<strong><em>Cert.pem&rdquo;,SSL_FILETYPE_PEM);
+//读取密钥文件
+SSL_CTX_use_PrivateKey_file(ssl_ctx,&rdquo;</em></strong>**<em>Key.pem&rdquo;,SSL_FILETYPE_PEM);
+//验证密钥是否与证书一致
+SSL_CTX_check_private_key(ssl_ctx);
+&nbsp;
+&nbsp;
+//建立TCP链接
+// 初始化 Winsock.
+WSADATA wsaData;
+int iResult = WSAStartup( MAKEWORD(2,2), &amp;wsaData );
+if ( iResult != NO_ERROR )
+{
+//AfxMessageBox(&ldquo;Error at WSAStartup()!&rdquo;);
+return;
+}
+&nbsp;
+// 建立socket socket.
+client = socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
+if ( client == INVALID_SOCKET )
+{
+//AfxMessageBox(&ldquo;Error at socket!&rdquo;);
+WSACleanup();
+return;
+}
+&nbsp;
+// 连接到服务器.
+sockaddr_in clientService;
+clientService.sin_family = AF_INET;
+clientService.sin_addr.s_addr = inet_addr( &ldquo;127.0.0.1&rdquo; );
+clientService.sin_port = htons( 8899 );
+if ( connect( client, (SOCKADDR</em>) &amp;clientService, sizeof(clientService) ) == SOCKET_ERROR)
+{
+//AfxMessageBox( &ldquo;Failed to connect!&rdquo; );
+WSACleanup();
+return;
+}
+&nbsp;
+//unsigned long cmd;
+//if (SOCKET_ERROR == ioctlsocket(client, FIONBIO, &amp;cmd))
+//{
+//  //AfxMessageBox( &ldquo;创建套接字时发生错误，非阻塞设置失败：&rdquo;);
+//  closesocket(client);
+//}
+//创建维护当前连接信息的SSL结构体
+ssl = SSL_new(ssl_ctx);
+//将SSL绑定到套接字上
+SSL_set_fd(ssl, client);
+//建立SSL链接
+SSL_connect(ssl);
+&nbsp;
+//获取服务器端证书
+server_cert = SSL_get_peer_certificate(ssl);
+&nbsp;
+//释放服务器端证书
+X509_free(server_cert);
+&nbsp;
+unsigned long cmd;
+if (SOCKET_ERROR == ioctlsocket(client, FIONBIO, &amp;cmd))
+{
+//AfxMessageBox( &ldquo;创建套接字时发生错误，非阻塞设置失败：&rdquo;);
+closesocket(client);
+}
+while(true)
+{
+SSL_write(ssl, &ldquo;hello, world!&rdquo;, sizeof(&ldquo;hello, world!&rdquo;)；
+SSL_read(ssl, buffer, 255);
+printf(&ldquo;received: %s\n&rdquo;,buffer);
+memset(buffer,0,255);
+&nbsp;
+Sleep(1000);
+}
+//断开SSL链接
+SSL_shutdown(ssl);
+//释放当前SSL链接结构体
+SSL_free(ssl);
+closesocket(client);
+//释放上下文
+SSL_CTX_free(ssl_ctx);
+&nbsp;
+return 0;
+}
+&nbsp;
+</pre></p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

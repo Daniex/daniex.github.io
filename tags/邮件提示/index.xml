@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>邮件提示 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E982AEE4BBB6E68F90E7A4BA/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Fri, 13 Aug 2010 01:32:55 &#43;0000</updated>
+    
+    <item>
+      <title>跨平台的gmail桌面通知工具 B2 Gmail Notifier</title>
+      <link>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</link>
+      <pubDate>Fri, 13 Aug 2010 01:32:55 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/cross-platform-gmail-desktop-notification-tool-b2-gmail-notifier/</guid>
+      <description>&lt;p&gt;浏览器里开了个Gmail，离开浏览器做其他事的时候，时常忘了去查看邮箱。又不想将Gmail放到ThunderBird，OutLook之类的软件里。于是想到找找有没有Gmail的桌面提示工具。发现有两种方式，一是Google Desktop工具，功能很强劲，有很多小工具。还有一个方法就是B2 Gmail Notifier。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://home.b2labs.com/b2-gmail-notifier-freeware-animated-gmail-notifier&#34; target=&#34;_blank&#34;&gt;B2 Labs制作的Gmail Notifier &lt;/a&gt;是一款跨平台（Windows/Mac/Linux）的Gmail邮件提示小工具，因为它基于Adobe的AIR技术。它可以在你的桌面提示收到的新邮件，可以直接看到发信人、标题、正文和发送时间，而且有多种动态效果可选，还可以在线安装更多效果。不支持多帐号。&lt;/p&gt;
+
+&lt;p&gt;安装文件很小，不到2M，就算加上12M的Adobe Air安装文件还是很小。Google Desktop数百M，多装些小工具有可能就几G了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&#34;aligncenter size-full wp-image-445&#34; title=&#34;20100813092206461&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/08/20100813092206461.png&#34; alt=&#34;&#34; width=&#34;268&#34; height=&#34;266&#34; /&gt;提示框后面有个txt文件，它偷偷地露了个头。 - -！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

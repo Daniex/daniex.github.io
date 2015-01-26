@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>留言板 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E79599E8A880E69DBF/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Wed, 23 Feb 2011 10:40:27 &#43;0000</updated>
+    
+    <item>
+      <title>WordPress评论显示倒序</title>
+      <link>http://www.daniex.tk/blog/2011/wordpress-comment-reverse/</link>
+      <pubDate>Wed, 23 Feb 2011 10:40:27 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpress-comment-reverse/</guid>
+      <description>&lt;p&gt;之前自制留言板的时候实现过将评论顺序改为倒序。具体可以看&lt;span style=&#34;color: #ff0000;&#34;&gt;&lt;a title=&#34;WordPress自制留言板&#34; href=&#34;http://daniex.info/wordpress-message-board.html&#34; target=&#34;_blank&#34;&gt;这篇&lt;/a&gt;&lt;/span&gt;文章。现在重新折腾blog，不想改太多代码，于是干脆把所有评论都将最新的显示在最上方。&lt;/p&gt;
+
+&lt;p&gt;参考&lt;a title=&#34;修改WordPress评论显示顺序为倒序&#34; href=&#34;http://www.yulaoda.com/comments-desc/&#34; target=&#34;_blank&#34;&gt;这篇&lt;/a&gt;文章进行修改。他的两个方法中，方法二修改类似自制留言板的情况，但是这次在这个版本的zBench的主题上修改没有任何效果。在按照方法一修改后效果看&lt;span style=&#34;color: #ff0000;&#34;&gt;&lt;a title=&#34;留言板&#34; href=&#34;http://daniex.info/messageboard&#34; target=&#34;_blank&#34;&gt;我的留言板&lt;/a&gt;&lt;/span&gt;。&lt;/p&gt;
+
+&lt;p&gt;记录操作方法如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1、修改comments-template.php文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;a：进入Wordpress安装目录下的wp-includes目录找到comment-template.php文件；&lt;/p&gt;
+
+&lt;p&gt;b：找到并替换代玛：将ORDER BY comment_date_gmt替换成ORDER BY comment_date DESC（共两处）；&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2、修改评论模板comments.php文件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;步骤：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;在评论模板comments.php中找到下列语句：&lt;/p&gt;
+
+&lt;p&gt;foreach ($comments as $comment)&lt;/p&gt;
+
+&lt;p&gt;替换为&lt;/p&gt;
+
+&lt;p&gt;foreach (array_reverse($comments) as $comment)&lt;/p&gt;
+
+&lt;p&gt;=====================傻逼的分割线=======================&lt;/p&gt;
+
+&lt;p&gt;其实，Dashboard-&amp;gt;setting-&amp;gt;discussion里面有排序选项的。。。。&lt;/p&gt;
+
+&lt;p&gt;Other comment settings-&amp;gt;Comments should be displayed with the
+&lt;select id=&#34;comment_order&#34; name=&#34;comment_order&#34;&gt;&lt;option value=&#34;asc&#34;&gt;older&lt;/option&gt;&lt;option selected=&#34;selected&#34; value=&#34;desc&#34;&gt;newer&lt;/option&gt;&lt;/select&gt;&lt;/p&gt;
+
+&lt;p&gt;comments at the top of each page&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WordPress自制留言板</title>
+      <link>http://www.daniex.tk/blog/2010/wordpress-message-board/</link>
+      <pubDate>Fri, 02 Jul 2010 12:35:45 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/wordpress-message-board/</guid>
+      <description>&lt;p&gt;换了个皮肤，把一些代码重新写好，又把之前就像做的留言板做了起来。&lt;/p&gt;
+
+&lt;p&gt;我的留言板制作主要参考大大有名的&lt;a href=&#34;http://www.sbtalk.com.cn/&#34;&gt;sbtalk&lt;/a&gt;上，大大有名的&lt;a href=&#34;http://www.sbtalk.com.cn/2007/06/16/wordpress_guestbook.html&#34;&gt;简单5步，制作wordpress留言板&lt;/a&gt;一文制作的。只是其成文比较早，wp的版本又不断更新，文中所述方法里面就出现了一点点没跟上wp版本脚步的小问题。&lt;/p&gt;
+
+&lt;p&gt;制作过程中前面几步是都没有问题的，再次我也不赘述了。自己参考去。这里说说文中第三大节关于把留言板做的更完美这个部分。
+1）去掉发布日期：
+这个部分各个模板都有不同，看得懂代码，把该去掉的时间去掉便是，代码去掉的部分形式和下图不同是很正常的。
+&lt;a rel=&#34;attachment wp-att-174&#34; href=&#34;http://daniex.info/wordpress-message-board.html/guestbookdeletedate&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-174&#34; title=&#34;guestbookdeletedate&#34; src=&#34;http://hostill.com/~daniex/wp-content/uploads/2010/07/guestbookdeletedate.png&#34; alt=&#34;&#34; width=&#34;407&#34; height=&#34;307&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2）自定义“留言”样式的提示文本
+该改啥改啥，照着五步法原文自己干去。&lt;br /&gt;
+3）最新留言显示在顶部
+这个部分就有些不一样了，原文说的是wp v2.7以前的情况，现在略有不同，改下面代码&lt;br /&gt;
+&lt;pre class=&#34;brush:php&#34;&gt;
+// for WordPress 2.7 or higher
+if (function_exists(&amp;lsquo;wp_list_comments&amp;rsquo;)) {
+    wp_list_comments(&amp;lsquo;type=comment&amp;amp;callback=custom_comments&amp;rsquo;);
+    // for WordPress 2.6.3 or lower
+} else {
+    foreach ($comments as $comment) {
+        if($comment-&amp;gt;comment_type != &amp;lsquo;pingback&amp;rsquo; &amp;amp;&amp;amp; $comment-&amp;gt;comment_type != &amp;lsquo;trackback&amp;rsquo;) {
+        custom_comments($comment, null, null);
+        }
+    }
+}
+&lt;/pre&gt;&lt;br /&gt;
+为
+&lt;br /&gt;&lt;pre class=&#34;brush:php&#34;&gt;
+// for WordPress 2.7 or higher
+if (function_exists(&amp;lsquo;wp_list_comments&amp;rsquo;)) {
+    wp_list_comments(&amp;lsquo;type=comment&amp;amp;callback=custom_comments&amp;amp;reverse_top_level=DESC&amp;rsquo;);
+// for WordPress 2.6.3 or lower
+} else {
+    foreach (array_reverse($comments) as $comment) {
+        if($comment-&amp;gt;comment_type != &amp;lsquo;pingback&amp;rsquo; &amp;amp;&amp;amp; $comment-&amp;gt;comment_type != &amp;lsquo;trackback&amp;rsquo;) {
+            custom_comments($comment, null, null);
+        }
+    }
+}
+&lt;/pre&gt;
+&lt;br /&gt;
+这样就能让留言倒叙排列了。
+&lt;br /&gt;&lt;br /&gt;
+在折腾完留言板功能后，多嘴再说两句。之前我用的一个模板代码看起来稍有些麻烦，为了这个功能，折腾半天，无果，水平不够。现在一拍脑袋，丫的我之前怎么就没想到，找个简单的主题把要用的这两页代码拷贝过来，不就一样做成留言板了！啧啧，榆木脑袋啊！&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

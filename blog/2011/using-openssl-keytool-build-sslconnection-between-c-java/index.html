@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>使用OpenSSL和Keytool在java和C&#43;&#43;间建立SSL链接 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="by Daniex">
+  <meta name="keywords" content="openSSL,协议,各种库">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/Daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>使用OpenSSL和Keytool在java和C&#43;&#43;间建立SSL链接</h1>
+    <span class="post-date">May 3, 2011 &middot; 5 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/Daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/C/C">C/C&#43;&#43;</a><a class="label" href="http://www.daniex.tk/categories/SSL">SSL</a><a class="label" href="http://www.daniex.tk/categories/%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91">编程开发</a>
+    
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/tags/openSSL">openSSL</a><a class="label" href="http://www.daniex.tk/tags/%E5%8D%8F%E8%AE%AE">协议</a><a class="label" href="http://www.daniex.tk/tags/%E5%90%84%E7%A7%8D%E5%BA%93">各种库</a>
+    </span>
+    
+
+<p>C++和java间进行SSL通信遇到了些问题，下面是解决方案。使用了Keytoo和OpenSSL两个工具。TARGETNAME改成要生成的文件名，PASSPHRASE就是密码。
+基础的OpenSSL操作可以参考前文：
+安装：<a title="Windows下安装OpenSSL" href="http://daniex.info/windows-install-openssl.html" target="_blank"><a href="http://daniex.info/windows-install-openssl.html">http://daniex.info/windows-install-openssl.html</a></a>
+生成证书：<a title="用openssl命令制作生成证书和自签名" href="http://daniex.info/generated-with-the-openssl-command-to-create-self-signed-certificates-and.html" target="_blank"><a href="http://daniex.info/generated-with-the-openssl-command-to-create-self-signed-certificates-and.html">http://daniex.info/generated-with-the-openssl-command-to-create-self-signed-certificates-and.html</a></a>
+代码： <a title="openssl建立SSL连接例子程序" href="http://daniex.info/examples-of-procedures-to-establish-ssl-connection-openssl.html" target="_blank"><a href="http://daniex.info/examples-of-procedures-to-establish-ssl-connection-openssl.html">http://daniex.info/examples-of-procedures-to-establish-ssl-connection-openssl.html</a></a></p>
+
+<p>生成私钥
+Keytool –certreq –alias client –sigalg SHA1withRSA –file TARGETNAME.csr  -keypass PASSPHRASE –storepass PASSPHRASE –keystore TARGETNAME.jks
+生成证书
+Openssl ca –in TARGETNAME.csr –out TARGETNAME.crt –cert demoCA/cacert.pem  -keyfile demoCA/private/cakey.pem -notext
+转换证书格式
+Openssl x509 –in TARGETNAME.crt –out TARGETNAME.der –outform DER
+转换根帧数格式
+Openssl x509 –in demoCA/cacert.pem –out demoCA/cacert.der –outform DER
+将根证书加入私钥
+Keytool –import –v –trustcacerts –alias ca_root –file demoCA/cacert.der –storepass PASSPHRASE –keystore TARGETNAME.jks
+将证书加入私钥
+Keytool –import –v –alias client –file TARGETNAME.der –storepass PASSPHRASE –keystore TARGETNAME.jks
+创建jks文件并加入根证书
+Keytool –import –alias ca_root –file demoCA/cacert.der –keystore TARGETNAMETrust.jks</p>
+
+<p>&nbsp;</p>
+
+<p>更详细的可以参考下文，来源；<a title="Essential Security Tools: OpenSSL and Keytool" href="http://blog.csdn.net/platformlib/archive/2007/03/09/1525119.aspx" target="_blank"><a href="http://blog.csdn.net/platformlib/archive/2007/03/09/1525119.aspx">http://blog.csdn.net/platformlib/archive/2007/03/09/1525119.aspx</a></a>
+<h2>1、OpenSSL实践</h2>
+工作中需要配置使用SSL来双向认证并通信的FTP服务器，以OpenSSL和Java的keytool为例，来完成证书的制作：</p>
+
+<p>d:\openssl\mkcerts&gt;openssl genrsa -out ca.key 1024</p>
+
+<p>创建CA私钥
+Loading &lsquo;screen&rsquo; into random state - done
+warning, not much extra random data, consider using the -rand option
+Generating RSA private key, 1024 bit long modulus
+&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.++++++
+&hellip;&hellip;&hellip;&hellip;.++++++
+e is 65537 (0x10001)</p>
+
+<p>d:\openssl\mkcerts&gt;openssl req -new -days 3650 -x509 -key ca.key -out cacert.pem -config openssl.cnf</p>
+
+<p>创建CA自签名证书(使用上一步创建的CA私钥来签名)
+Using configuration from openssl.cnf
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,</p>
+
+<h2 id="toc_0">If you enter &lsquo;.&rsquo;, the field will be left blank.</h2>
+
+<p>Country Name (2 letter code) [AU]:CN
+State or Province Name (full name) [Some-State]:BEIJING
+Locality Name (eg, city) []:BEIJING
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Chelseafc
+Organizational Unit Name (eg, section) []:FTPTest
+Common Name (eg, YOUR name) []:CHELSEA
+Email Address []:chelsea@chelseafc.com</p>
+
+<p>d:\openssl\mkcerts&gt;openssl genrsa -des3 -out server.key 1024</p>
+
+<p>创建服务器私钥
+Loading &lsquo;screen&rsquo; into random state - done
+warning, not much extra random data, consider using the -rand option
+Generating RSA private key, 1024 bit long modulus
+&hellip;&hellip;&hellip;&hellip;..++++++
+.++++++
+e is 65537 (0x10001)
+Enter PEM pass phrase:
+Verifying password - Enter PEM pass phrase:</p>
+
+<p>d:\openssl\mkcerts&gt;openssl rsa -in server.key -out serverkey.pem</p>
+
+<p>加密服务器私钥(保护私钥信息)
+read RSA key
+Enter PEM pass phrase:
+writing RSA key</p>
+
+<p>d:\openssl\mkcerts&gt;openssl req -new -days 3650 -key server.key -out server.csr-config openssl.cnf</p>
+
+<p>创建申请服务器所需证书的请求
+Using configuration from openssl.cnf
+Enter PEM pass phrase:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,</p>
+
+<h2 id="toc_1">If you enter &lsquo;.&rsquo;, the field will be left blank.</h2>
+
+<p>Country Name (2 letter code) [AU]:CN
+State or Province Name (full name) [Some-State]:BEIJING
+Locality Name (eg, city) [] :BEIJING
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Chelseafc
+Organizational Unit Name (eg, section) []: FTPTest
+Common Name (eg, YOUR name) []: CHELSEA
+Email Address []: chelsea@chelseafc.com</p>
+
+<p>Please enter the following &lsquo;extra&rsquo; attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:</p>
+
+<p>d:\openssl\mkcerts&gt;openssl ca -days 3650 -keyfile ca.key -cert cacert.pem -outdir . -in server.csr -out server.pem -config openssl.cnf</p>
+
+<p>CA签署服务器证书(需要CA私钥和序列号文件demoCA/serial, demoCA/index.txt)
+Using configuration from openssl.cnf
+Loading &lsquo;screen&rsquo; into random state - done
+Check that the request matches the signature
+Signature ok
+The Subjects Distinguished Name is as follows
+countryName : PRINTABLE:&lsquo;CN&rsquo;
+stateOrProvinceName : PRINTABLE:&lsquo;BEIJING&rsquo;
+localityName : PRINTABLE:&lsquo;BEIJING&rsquo;
+organizationName : PRINTABLE:&lsquo;Chelseafc&rsquo;
+organizationalUnitName: PRINTABLE:&lsquo;FTPTest&rsquo;
+commonName : PRINTABLE:&lsquo;CHELSEA&rsquo;
+emailAddress : IA5STRING:&lsquo;chelsea@chelseafc.com&rsquo;
+Certificate is to be certified until Oct 26 03:01:33 2006 GMT (365 days)
+Sign the certificate? [y/n]: y</p>
+
+<p>1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated</p>
+
+<p>d:\openssl\mkcerts&gt;openssl x509 -in server.pem -out server.crt</p>
+
+<p>转换格式</p>
+
+<p>d:\openssl\mkcerts&gt;openssl x509 -in demoCA/cacert.pem -out demoCA/cacert.crt</p>
+
+<p>转换格式</p>
+
+<p>d:\openssl\mkcerts&gt;keytool -genkey -keyalg RSA -alias ftpsconnector -keystore ftps.jks -storepass changeit -storetype jks</p>
+
+<p>产生Java客户端私钥文件
+您的名字与姓氏是什么？
+[Unknown]： CHELSEA
+您的组织单位名称是什么？
+[Unknown]： FTPTest
+您的组织名称是什么？
+[Unknown]： Chelseafc
+您所在的城市或区域名称是什么？
+[Unknown]： BEIJING
+您所在的州或省份名称是什么？
+[Unknown]： BEIJING
+该单位的两字母国家代码是什么
+[Unknown]： CN
+CN=CHELSEA, OU=FTPTest, O=Chelseafc, L=BEIJING, ST=BEIJING, C=CN 正确吗？
+[否]： Y</p>
+
+<p>输入&lt;ftpsconnector&gt;的主密码
+（如果和 keystore 密码相同，按回车）：</p>
+
+<p>d:\openssl\mkcerts&gt;keytool -certreq -alias ftpsconnector -keyalg RSA -file ftpsconnector.csr -keystore ftps.jks</p>
+
+<p>产生Java客户端证书请求
+输入keystore密码： changeit</p>
+
+<p>d:\openssl\mkcerts&gt;openssl ca -days 3650 -keyfile ca.key -cert cacert.pem -outdir . -in ftpsconnector.csr -out ftpsconnector.pem -config openssl.cnf</p>
+
+<p>CA签署Java客户端证书
+Using configuration from openssl.cnf
+Loading &lsquo;screen&rsquo; into random state - done
+Check that the request matches the signature
+Signature ok
+The Subjects Distinguished Name is as follows
+countryName : PRINTABLE:&lsquo;CN&rsquo;
+stateOrProvinceName : PRINTABLE:&lsquo;BEIJING&rsquo;
+localityName : PRINTABLE:&lsquo;BEIJING&rsquo;
+organizationName : PRINTABLE:&lsquo;Chelseafc&rsquo;
+organizationalUnitName: PRINTABLE:&lsquo;FTPTest&rsquo;
+commonName : PRINTABLE:&lsquo;CHELSEA&rsquo;
+Certificate is to be certified until Oct 26 03:05:08 2006 GMT (365 days)
+Sign the certificate? [y/n]:y</p>
+
+<p>1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated</p>
+
+<p>d:\openssl\mkcerts&gt;openssl x509 -in ftpsconnector.pem -out ftpsconnector.cer</p>
+
+<p>转换格式</p>
+
+<p>d:\openssl\mkcerts&gt;keytool -import -alias root -trustcacerts -file demoCA/cacert.crt -keystore ftps.jks</p>
+
+<p>导入CA证书到jks文件并信任之(由此CA所签署的所有证书也因此在信任之列)</p>
+
+<p>输入keystore密码： changeit
+Owner: EMAILADDRESS=chelsea@chelseafc.com, CN=CHELSEA, OU=FTPTest, O=Chelseafc, L=BEIJING, S
+T=BEIJING, C=CN
+发照者： EMAILADDRESS=chelsea@chelseafc.com, CN=CHELSEA, OU=FTPTest, O=Chelseafc, L=BEIJING,
+ST=BEIJING, C=CN
+序号： 0
+有效期间： Wed Oct 26 10:55:43 CST 2005 至： Sat Oct 24 10:55:43 CST 2015
+认证指纹：
+MD5： 85:21:11:10:26:4A:CD:01:55:B7:47:DF:0D:58:AA:A3
+SHA1： 91:74:88:03:B7:5C:E4:BD:27:1F:27:BF:10:23:0A:BA:2C:42:13:2B
+信任这个认证？ [否]： y
+认证已添加至keystore中</p>
+
+<p>d:\openssl\mkcerts&gt;keytool -import -alias ftpsconnector -trustcacerts -file ftpsconnector.cer -keystore ftps.jks</p>
+
+<p>导入自己的证书到jks文件(至此,此jks文件包括了建立SSL连接所需所有信息)
+输入keystore密码： changeit
+认证回复已安装在 keystore中</p>
+
+<p>其它OpenSSL命令举例</p>
+
+<p>openssl pkcs12 -export -clcerts -in client.pem -inkey clientkey.pem -out client.p12</p>
+
+<p>openssl pkcs8 -inform PEM -nocrypt -in abcwebnet-pkcs8.key -out abcwebnet.key</p>
+
+<p>openssl pkcs12 -export -out abcwebnet.pfx -inkey abcwebnet.key -in abcwebnet-pem.crt</p>
+
+<p>&hellip; &hellip;
+<h2>2、keytool实践</h2>
+keystore这个名字其实有点误导,应该是CertStore,可以同时包含两种信息:自己的keyEntry,和trusted cert entry.(自然包括自己的私钥公钥和信任的公钥了)(有时会分开,信任的证书存储在单独的文件中)</p>
+
+<p>keystore可以有两类密码,一个是保护这个文件的(storepass),一种是保护文件里每一个key的(keypass)</p>
+
+<p>可以为每个key指定alias,然后使用alias来引用或访问对应的key</p>
+
+<p>Example:</p>
+
+<p>rem 创建客户端keystore</p>
+
+<p>keytool -genkey -keyalg RSA -keystore client.jks -storetype jks -storepass client -alias client_rsa -keypass client_rsa -dname &ldquo;CN=Client, OU=IBM, C=US&rdquo; -keysize 1024 -validity 1460</p>
+
+<p>rem 创建服务端keystore</p>
+
+<p>keytool -genkey -keyalg RSA -keystore server.jks -storetype jks -storepass server -alias server_rsa -keypass server_rsa -dname &ldquo;CN=Server, OU=IBM, C=US&rdquo; -keysize 1024 -validity 1460</p>
+
+<p>rem 从客户端keystore中导出通用格式的证书,以备导入到服务端keystore</p>
+
+<p>keytool -export -keystore client.jks -storetype jks -storepass client -alias client_rsa -file client_rsa.cer</p>
+
+<p>rem 从服务端keystore中导出通用格式的证书,以备导入到客户端keystore</p>
+
+<p>keytool -export -keystore server.jks -storetype jks -storepass server -alias server_rsa -file server_rsa.cer</p>
+
+<p>rem 导入客户端证书到服务端keystore(此动作的后果是使服务端信任客户端)</p>
+
+<p>keytool -import -noprompt -keystore server.jks -storetype jks -storepass server -alias client_rsa -file client_rsa.cer</p>
+
+<p>rem 导入服务端证书到客户端keystore(此动作的后果是使客户端信任服务端)</p>
+
+<p>keytool -import -noprompt -keystore client.jks -storetype jks -storepass client -alias server_rsa -file server_rsa.cer</p>
+
+<p>rem 列出客户端keystore包含的信息供查看</p>
+
+<p>keytool -list -keystore client.jks -storepass client -v</p>
+
+<p>rem 列出服务端keystore包含的信息供查看</p>
+
+<p>keytool -list -keystore server.jks -storepass server -v</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

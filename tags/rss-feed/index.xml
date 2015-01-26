@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Rss-Feed on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/rss-feed/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Fri, 23 Sep 2011 02:45:22 &#43;0000</updated>
+    
+    <item>
+      <title>WordPress 的 RSS feed</title>
+      <link>http://www.daniex.tk/blog/2011/wordpresss-rss-feed/</link>
+      <pubDate>Fri, 23 Sep 2011 02:45:22 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/wordpresss-rss-feed/</guid>
+      <description>&lt;p&gt;整理了下分类rss，发现有不少技巧，整理如下：&lt;/p&gt;
+
+&lt;p&gt;worldpress url 分几种，默认的和postname模式，对不同模式各自有方式去得到文章分类，标签，搜索结果，评论的rss地址。&lt;/p&gt;
+
+&lt;p&gt;分类网址: &lt;a href=&#34;http://www.example.com/?cat=7&#34;&gt;http://www.example.com/?cat=7&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/?cat=7&amp;amp;feed=rss2&#34;&gt;http://www.example.com/?cat=7&amp;amp;feed=rss2&lt;/a&gt;
+分类网址: &lt;a href=&#34;http://www.example.com/category/wordpress/&#34;&gt;http://www.example.com/category/wordpress/&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/category/wordpress/feed/&#34;&gt;http://www.example.com/category/wordpress/feed/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;标签网址: &lt;a href=&#34;http://www.example.com/?tag=wordpress&#34;&gt;http://www.example.com/?tag=wordpress&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/?tag=wordpress&amp;amp;feed=rss2&#34;&gt;http://www.example.com/?tag=wordpress&amp;amp;feed=rss2&lt;/a&gt;
+标签网址: &lt;a href=&#34;http://www.example.com/tag/wordpress/&#34;&gt;http://www.example.com/tag/wordpress/&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/tag/wordpress/feed/&#34;&gt;http://www.example.com/tag/wordpress/feed/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;搜索网址: &lt;a href=&#34;http://www.example.com/?s=wordpress&#34;&gt;http://www.example.com/?s=wordpress&lt;/a&gt;
+rss地址: &lt;a href=&#34;http://www.example.com/?s=wordpress&amp;amp;feed=rss2&#34;&gt;http://www.example.com/?s=wordpress&amp;amp;feed=rss2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;评论rss地址: &lt;a href=&#34;http://www.example.com/?feed=comments-rss2&#34;&gt;http://www.example.com/?feed=comments-rss2&lt;/a&gt;
+评论rss地址: &lt;a href=&#34;http://www.example.com/comments/feed/&#34;&gt;http://www.example.com/comments/feed/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

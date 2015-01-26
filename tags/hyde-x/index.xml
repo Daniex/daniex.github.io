@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Hyde-X on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/hyde-x/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Thu, 22 Jan 2015 14:25:20 CST</updated>
+    
+    <item>
+      <title>hello hugo</title>
+      <link>http://www.daniex.tk/blog/2015/my-first-static-web-post-by-hugo/</link>
+      <pubDate>Thu, 22 Jan 2015 14:25:20 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2015/my-first-static-web-post-by-hugo/</guid>
+      <description>&lt;p&gt;这时我在hugo上发布的第一post。但也不仅仅是hello world。&lt;/br&gt;
+&lt;/br&gt;
+之前听IPN的podcast讲&lt;a href=&#34;https://ipn.li/kernelpanic/3/&#34;&gt;静态网页生成器&lt;/a&gt;,想到自己还有个懒得去搭理的blog，于是有有想法找时间再来折腾一下。结果一找就找了几个月。终于，花了一天时间简单过遍hugo的试用方法，解了大体的功能后，在京东云擎上搭了个试试。&lt;/br&gt;
+&lt;/br&gt;
+要快速的建起hugo站其实只要照着他的&lt;a href=&#34;http://gohugo.io/overview/quickstart/&#34;&gt;quitstart&lt;/a&gt;做就可以了，还是很清楚明了的。麻烦的是定制一些自己要的功能，去修改原有的代码或者扩展他的功能。&lt;/br&gt;
+&lt;/br&gt;
+其中比较基础的是读懂他们提供的&lt;a href=&#34;https://github.com/spf13/hugoThemes&#34;&gt;HugoTheme&lt;/a&gt;然后去做修改。这里推荐其中的hyde-x，在看了几个例子和不同的theme后，我选择他入手学习。
+&lt;/br&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

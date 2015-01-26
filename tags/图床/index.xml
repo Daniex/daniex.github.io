@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>图床 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E59BBEE5BA8A/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Tue, 03 Aug 2010 06:42:06 &#43;0000</updated>
+    
+    <item>
+      <title>相册、图床制作，WordPress图片站、插件相关</title>
+      <link>http://www.daniex.tk/blog/2010/photo-gallery/</link>
+      <pubDate>Tue, 03 Aug 2010 06:42:06 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/photo-gallery/</guid>
+      <description>&lt;p&gt;之前回家了一趟，回杭后工作上又有些变动。这一篇出来的比较混乱。这里简单说说我所知道的一些图片站点的建设，wp相关插件。&lt;/p&gt;
+
+&lt;p&gt;1、WordPress图片站&lt;/p&gt;
+
+&lt;p&gt;将相当于把图片作为一个post发表。有比较好的显示方式，麻烦在于上传图片，发布同步稍显繁琐。&lt;span style=&#34;text-decoration: underline;&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;&lt;a href=&#34;http://www.chinaz.com/Design/CoolSite/0910911B2009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;有几个图片站主题推荐，可以看看参考下效果。&lt;/p&gt;
+
+&lt;p&gt;2、在WordPress里面插图、图片的显示，有很多很多方法，插件数不胜数。比如NextGen Gallery，slideshare， cincopa等等，各种slideshow、各种gallery。试过才知道。本站&lt;a href=&#34;http://daniex.info/album/&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;相册page&lt;/span&gt;&lt;/a&gt;里的是用NextGen Gallery生成，mvp的blog中的&lt;a href=&#34;http://www.mvpwinner.com/about-mvp/&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;关于页&lt;/span&gt;&lt;/a&gt;是用的slideshare，cincopa的例子在&lt;a href=&#34;http://mimisunanduncleliu.com/blog/?page_id=92&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，是咪咪孙&amp;amp;刘大叔的相册。&lt;/p&gt;
+
+&lt;p&gt;3、自建图床&lt;/p&gt;
+
+&lt;p&gt;这个也有很多手段，建成的图片站各有特色，推荐zenphoto&lt;em&gt;，&lt;/em&gt;Menalto Gallery，Coppermine，piwigo。blog图片由图床接入，可以省下大量的网站空间。 更多推荐看&lt;a href=&#34;http://www.chinaz.com/Webmaster/Club/01045Z432009.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;，和&lt;a href=&#34;http://blogunion.org/wordpress/wordpress-plugins/five-wordpress-gallery-plugins.html&#34; target=&#34;_blank&#34;&gt;&lt;span style=&#34;color: #0000ff;&#34;&gt;这里&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

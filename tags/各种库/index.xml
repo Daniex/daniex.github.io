@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>各种库 on Daniex </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://www.daniex.tk/tags/E59084E7A78DE5BA93/index.xml/</link>
+    <language>zh-cn</language>
+    <author>Daniex</author>
+    
+    <updated>Sun, 09 Oct 2011 02:18:46 &#43;0000</updated>
+    
+    <item>
+      <title>SYBASE数据库日志详解(转)</title>
+      <link>http://www.daniex.tk/blog/2011/sybase-database-log-r/</link>
+      <pubDate>Sun, 09 Oct 2011 02:18:46 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/sybase-database-log-r/</guid>
+      <description>&lt;p&gt;写了点sybase相关的代码，发现数据库配置的时候少做了点配置，导致日志很快就满，无法进行下一步操作。查了下资料，转载过来。&lt;/p&gt;
+
+&lt;p&gt;弄sybase遇到一个比较诡异的事情，就是ABC三人弄了三个sybase数据库，A连AB没问题连C有问题，B连B没问题连C有问题，C连A没问题，连BC有问题。数据库连接的代码都是一样的，闹腾啊。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;
+&lt;h1&gt;SYBASE数据库日志详解&lt;/h1&gt;
+&lt;div&gt;&lt;/p&gt;
+
+&lt;p&gt;每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs），日志对于数据库的数据安全性、完整性至关重要，本文详解SYBASE数据库日志。&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;&lt;/div&gt;
+我们知道，SYBASE　SQL Server用事务（Transaction）来跟踪所有数据库的变化。事务是SQL　Server的工作单元。一个事务包含一条或多条作为整体执行的 T-SQL语句。每个数据库都有自己的事务日志（Transaction　Log），即系统表（Syslogs）。事务日志自动记录每个用户发出的每个事 务。日志对于数据库的数据安全性、完整性至关重要，我们进行数据库开发和维护必须熟知日志的相关知识。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;一、SYBASE　SQL Server 如何记录和读取日志信息&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;SYBASE　SQL Server是先记Log的机制。每当用户执行将修改数据库的语句时，SQL　Server就会自动地把变化写入日志。一条语句所产生的所有变化都被记录 到日志后，它们就被写到数据页在缓冲区的拷贝里。该数据页保存在缓冲区中，直到别的数据页需要该内存时，该数据页才被写到磁盘上。若事务中的某条语句没能 完成，SQL　Server将回滚事务产生的所有变化。这样就保证了整个数据库系统的一致性和完整性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;二、日志设备&lt;/strong&gt;
+Log和数据库的Data一样，需要存放在数据库设备上，可以将Log和Data存放在同一设备上，也可以分开 存放。一般来说，应该将一个数据库的Data和Log存放在不同的数据库设备上。这样做有如下好处：一是可以单独地备份Backup　事务日志；二是防 止数据库溢满；三是可以看到Log的空间使用情况。
+所建Log设备的大小，没有十分精确的方法来确定。一般来说，对于新建的数据库，Log的大小 应为数据库大小的30%左右。Log的大小还取决于数据库修改的频繁程度。如果数据库修改频繁，则Log的增长十分迅速。所以说Log空间大小依赖于用户 是如何使用数据库的。此外，还有其它因素影响Log大小，我们应该根据实际操作情况估计Log大小，并间隔一段时间就对Log进行备份和清除。
+&lt;strong&gt;三、日志的清除&lt;/strong&gt;
+随着数据库的使用，数据库的Log是不断增长的，必须在它占满空间之前将它们清除掉。清除Log有两种方法：
+&lt;strong&gt;1.自动清除法
+&lt;/strong&gt;
+开放数据库选项 Trunc Log on Chkpt，使数据库系统每隔一段时间自动清除Log。此方法的优点是无须人工干预，由SQL　Server自动执行，并且一般不会出现Log溢满的情况；缺点是只清除Log而不做备份。
+&lt;strong&gt;2.手动清除法&lt;/strong&gt;
+执行命令“dump transaction”来清除Log。以下两条命令都可以清除日志：
+&lt;table width=&#34;400&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&#34;#e6e6e6&#34;&gt;
+dump transaction with truncate_only
+dump transaction with no_log
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+通常删除事务日志中不活跃的部分可使用“dump transaction with trancate_only”命令，这条命令写进事务日志时，还要做必要的并发性检查。SYBASE提供“dump transaction with no_log”来处理某些非常紧迫的情况，使用这条命令有很大的危险性，SQL　Server会弹出一条警告信息。为了尽量确保数据库的一致性，你应将它 作为“最后一招”。
+以上两种方法只是清除日志，而不做日志备份，若想备份日志，应执行“dump transaction database_name to dumpdevice”命令。
+&lt;strong&gt;四、管理庞大的事务&lt;/strong&gt;
+有些操作会大批量地修改数据，如大量数据的修改（Update）、删除一个表的所有数据（Delete）、大量数据的插入（Insert），这样会使Log增长速度很快，有溢满的危险。下面笔者给大家介绍一下如何拆分大事务，以避免日志的溢满。
+例 如执行“update tab_a set col_a=0”命令时，若表tab_a很大，则此Update动作在未完成之前就可能使Log溢满，引起1105错误（Log Full），而且执行这种大的事务所产生的独占锁（Exclusive Table Lock），会阻止其他用户在执行Update操作期间修改这个表，这就有可能引起死锁。为避免这些情况发生，我们可以把这个大的事务分成几个小的事务， 并执行“dump transaction”动作。
+上例中的情况就可以分成两个或多个小的事务：
+&lt;table width=&#34;400&#34; border=&#34;1&#34; cellspacing=&#34;0&#34; cellpadding=&#34;2&#34; align=&#34;center&#34;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&#34;#e6e6e6&#34;&gt;
+update tab_a set col_a=0 where col_b&amp;gt;x
+go
+dump transaction database_name with truncate_only
+go
+update tab_a set col_a=0 where col_b &amp;lt;=x
+go
+dump transaction database_name with truncate_only
+go
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+这样，一个大的事务就被分成两个较小的事务。
+按照上述方法可以根据需要任意拆分大的事务。若这个事务需要备份到介质上，则不用“with truncate_only”选项。若执行“dump transaction with truncate_only”命令，应该先执行“dump database”。以此类推，我们可以对表删除、表插入等大事务做相应的拆分。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>使用OpenSSL和Keytool在java和C&#43;&#43;间建立SSL链接</title>
+      <link>http://www.daniex.tk/blog/2011/using-openssl-keytool-build-sslconnection-between-c-java/</link>
+      <pubDate>Tue, 03 May 2011 10:34:12 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/using-openssl-keytool-build-sslconnection-between-c-java/</guid>
+      <description>
+
+&lt;p&gt;C++和java间进行SSL通信遇到了些问题，下面是解决方案。使用了Keytoo和OpenSSL两个工具。TARGETNAME改成要生成的文件名，PASSPHRASE就是密码。
+基础的OpenSSL操作可以参考前文：
+安装：&lt;a title=&#34;Windows下安装OpenSSL&#34; href=&#34;http://daniex.info/windows-install-openssl.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://daniex.info/windows-install-openssl.html&#34;&gt;http://daniex.info/windows-install-openssl.html&lt;/a&gt;&lt;/a&gt;
+生成证书：&lt;a title=&#34;用openssl命令制作生成证书和自签名&#34; href=&#34;http://daniex.info/generated-with-the-openssl-command-to-create-self-signed-certificates-and.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://daniex.info/generated-with-the-openssl-command-to-create-self-signed-certificates-and.html&#34;&gt;http://daniex.info/generated-with-the-openssl-command-to-create-self-signed-certificates-and.html&lt;/a&gt;&lt;/a&gt;
+代码： &lt;a title=&#34;openssl建立SSL连接例子程序&#34; href=&#34;http://daniex.info/examples-of-procedures-to-establish-ssl-connection-openssl.html&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://daniex.info/examples-of-procedures-to-establish-ssl-connection-openssl.html&#34;&gt;http://daniex.info/examples-of-procedures-to-establish-ssl-connection-openssl.html&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;生成私钥
+Keytool –certreq –alias client –sigalg SHA1withRSA –file TARGETNAME.csr  -keypass PASSPHRASE –storepass PASSPHRASE –keystore TARGETNAME.jks
+生成证书
+Openssl ca –in TARGETNAME.csr –out TARGETNAME.crt –cert demoCA/cacert.pem  -keyfile demoCA/private/cakey.pem -notext
+转换证书格式
+Openssl x509 –in TARGETNAME.crt –out TARGETNAME.der –outform DER
+转换根帧数格式
+Openssl x509 –in demoCA/cacert.pem –out demoCA/cacert.der –outform DER
+将根证书加入私钥
+Keytool –import –v –trustcacerts –alias ca_root –file demoCA/cacert.der –storepass PASSPHRASE –keystore TARGETNAME.jks
+将证书加入私钥
+Keytool –import –v –alias client –file TARGETNAME.der –storepass PASSPHRASE –keystore TARGETNAME.jks
+创建jks文件并加入根证书
+Keytool –import –alias ca_root –file demoCA/cacert.der –keystore TARGETNAMETrust.jks&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;更详细的可以参考下文，来源；&lt;a title=&#34;Essential Security Tools: OpenSSL and Keytool&#34; href=&#34;http://blog.csdn.net/platformlib/archive/2007/03/09/1525119.aspx&#34; target=&#34;_blank&#34;&gt;&lt;a href=&#34;http://blog.csdn.net/platformlib/archive/2007/03/09/1525119.aspx&#34;&gt;http://blog.csdn.net/platformlib/archive/2007/03/09/1525119.aspx&lt;/a&gt;&lt;/a&gt;
+&lt;h2&gt;1、OpenSSL实践&lt;/h2&gt;
+工作中需要配置使用SSL来双向认证并通信的FTP服务器，以OpenSSL和Java的keytool为例，来完成证书的制作：&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl genrsa -out ca.key 1024&lt;/p&gt;
+
+&lt;p&gt;创建CA私钥
+Loading &amp;lsquo;screen&amp;rsquo; into random state - done
+warning, not much extra random data, consider using the -rand option
+Generating RSA private key, 1024 bit long modulus
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.++++++
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;.++++++
+e is 65537 (0x10001)&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl req -new -days 3650 -x509 -key ca.key -out cacert.pem -config openssl.cnf&lt;/p&gt;
+
+&lt;p&gt;创建CA自签名证书(使用上一步创建的CA私钥来签名)
+Using configuration from openssl.cnf
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_0&#34;&gt;If you enter &amp;lsquo;.&amp;rsquo;, the field will be left blank.&lt;/h2&gt;
+
+&lt;p&gt;Country Name (2 letter code) [AU]:CN
+State or Province Name (full name) [Some-State]:BEIJING
+Locality Name (eg, city) []:BEIJING
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Chelseafc
+Organizational Unit Name (eg, section) []:FTPTest
+Common Name (eg, YOUR name) []:CHELSEA
+Email Address []:chelsea@chelseafc.com&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl genrsa -des3 -out server.key 1024&lt;/p&gt;
+
+&lt;p&gt;创建服务器私钥
+Loading &amp;lsquo;screen&amp;rsquo; into random state - done
+warning, not much extra random data, consider using the -rand option
+Generating RSA private key, 1024 bit long modulus
+&amp;hellip;&amp;hellip;&amp;hellip;&amp;hellip;..++++++
+.++++++
+e is 65537 (0x10001)
+Enter PEM pass phrase:
+Verifying password - Enter PEM pass phrase:&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl rsa -in server.key -out serverkey.pem&lt;/p&gt;
+
+&lt;p&gt;加密服务器私钥(保护私钥信息)
+read RSA key
+Enter PEM pass phrase:
+writing RSA key&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl req -new -days 3650 -key server.key -out server.csr-config openssl.cnf&lt;/p&gt;
+
+&lt;p&gt;创建申请服务器所需证书的请求
+Using configuration from openssl.cnf
+Enter PEM pass phrase:
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,&lt;/p&gt;
+
+&lt;h2 id=&#34;toc_1&#34;&gt;If you enter &amp;lsquo;.&amp;rsquo;, the field will be left blank.&lt;/h2&gt;
+
+&lt;p&gt;Country Name (2 letter code) [AU]:CN
+State or Province Name (full name) [Some-State]:BEIJING
+Locality Name (eg, city) [] :BEIJING
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Chelseafc
+Organizational Unit Name (eg, section) []: FTPTest
+Common Name (eg, YOUR name) []: CHELSEA
+Email Address []: chelsea@chelseafc.com&lt;/p&gt;
+
+&lt;p&gt;Please enter the following &amp;lsquo;extra&amp;rsquo; attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl ca -days 3650 -keyfile ca.key -cert cacert.pem -outdir . -in server.csr -out server.pem -config openssl.cnf&lt;/p&gt;
+
+&lt;p&gt;CA签署服务器证书(需要CA私钥和序列号文件demoCA/serial, demoCA/index.txt)
+Using configuration from openssl.cnf
+Loading &amp;lsquo;screen&amp;rsquo; into random state - done
+Check that the request matches the signature
+Signature ok
+The Subjects Distinguished Name is as follows
+countryName : PRINTABLE:&amp;lsquo;CN&amp;rsquo;
+stateOrProvinceName : PRINTABLE:&amp;lsquo;BEIJING&amp;rsquo;
+localityName : PRINTABLE:&amp;lsquo;BEIJING&amp;rsquo;
+organizationName : PRINTABLE:&amp;lsquo;Chelseafc&amp;rsquo;
+organizationalUnitName: PRINTABLE:&amp;lsquo;FTPTest&amp;rsquo;
+commonName : PRINTABLE:&amp;lsquo;CHELSEA&amp;rsquo;
+emailAddress : IA5STRING:&amp;lsquo;chelsea@chelseafc.com&amp;rsquo;
+Certificate is to be certified until Oct 26 03:01:33 2006 GMT (365 days)
+Sign the certificate? [y/n]: y&lt;/p&gt;
+
+&lt;p&gt;1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl x509 -in server.pem -out server.crt&lt;/p&gt;
+
+&lt;p&gt;转换格式&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl x509 -in demoCA/cacert.pem -out demoCA/cacert.crt&lt;/p&gt;
+
+&lt;p&gt;转换格式&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;keytool -genkey -keyalg RSA -alias ftpsconnector -keystore ftps.jks -storepass changeit -storetype jks&lt;/p&gt;
+
+&lt;p&gt;产生Java客户端私钥文件
+您的名字与姓氏是什么？
+[Unknown]： CHELSEA
+您的组织单位名称是什么？
+[Unknown]： FTPTest
+您的组织名称是什么？
+[Unknown]： Chelseafc
+您所在的城市或区域名称是什么？
+[Unknown]： BEIJING
+您所在的州或省份名称是什么？
+[Unknown]： BEIJING
+该单位的两字母国家代码是什么
+[Unknown]： CN
+CN=CHELSEA, OU=FTPTest, O=Chelseafc, L=BEIJING, ST=BEIJING, C=CN 正确吗？
+[否]： Y&lt;/p&gt;
+
+&lt;p&gt;输入&amp;lt;ftpsconnector&amp;gt;的主密码
+（如果和 keystore 密码相同，按回车）：&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;keytool -certreq -alias ftpsconnector -keyalg RSA -file ftpsconnector.csr -keystore ftps.jks&lt;/p&gt;
+
+&lt;p&gt;产生Java客户端证书请求
+输入keystore密码： changeit&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl ca -days 3650 -keyfile ca.key -cert cacert.pem -outdir . -in ftpsconnector.csr -out ftpsconnector.pem -config openssl.cnf&lt;/p&gt;
+
+&lt;p&gt;CA签署Java客户端证书
+Using configuration from openssl.cnf
+Loading &amp;lsquo;screen&amp;rsquo; into random state - done
+Check that the request matches the signature
+Signature ok
+The Subjects Distinguished Name is as follows
+countryName : PRINTABLE:&amp;lsquo;CN&amp;rsquo;
+stateOrProvinceName : PRINTABLE:&amp;lsquo;BEIJING&amp;rsquo;
+localityName : PRINTABLE:&amp;lsquo;BEIJING&amp;rsquo;
+organizationName : PRINTABLE:&amp;lsquo;Chelseafc&amp;rsquo;
+organizationalUnitName: PRINTABLE:&amp;lsquo;FTPTest&amp;rsquo;
+commonName : PRINTABLE:&amp;lsquo;CHELSEA&amp;rsquo;
+Certificate is to be certified until Oct 26 03:05:08 2006 GMT (365 days)
+Sign the certificate? [y/n]:y&lt;/p&gt;
+
+&lt;p&gt;1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;openssl x509 -in ftpsconnector.pem -out ftpsconnector.cer&lt;/p&gt;
+
+&lt;p&gt;转换格式&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;keytool -import -alias root -trustcacerts -file demoCA/cacert.crt -keystore ftps.jks&lt;/p&gt;
+
+&lt;p&gt;导入CA证书到jks文件并信任之(由此CA所签署的所有证书也因此在信任之列)&lt;/p&gt;
+
+&lt;p&gt;输入keystore密码： changeit
+Owner: EMAILADDRESS=chelsea@chelseafc.com, CN=CHELSEA, OU=FTPTest, O=Chelseafc, L=BEIJING, S
+T=BEIJING, C=CN
+发照者： EMAILADDRESS=chelsea@chelseafc.com, CN=CHELSEA, OU=FTPTest, O=Chelseafc, L=BEIJING,
+ST=BEIJING, C=CN
+序号： 0
+有效期间： Wed Oct 26 10:55:43 CST 2005 至： Sat Oct 24 10:55:43 CST 2015
+认证指纹：
+MD5： 85:21:11:10:26:4A:CD:01:55:B7:47:DF:0D:58:AA:A3
+SHA1： 91:74:88:03:B7:5C:E4:BD:27:1F:27:BF:10:23:0A:BA:2C:42:13:2B
+信任这个认证？ [否]： y
+认证已添加至keystore中&lt;/p&gt;
+
+&lt;p&gt;d:\openssl\mkcerts&amp;gt;keytool -import -alias ftpsconnector -trustcacerts -file ftpsconnector.cer -keystore ftps.jks&lt;/p&gt;
+
+&lt;p&gt;导入自己的证书到jks文件(至此,此jks文件包括了建立SSL连接所需所有信息)
+输入keystore密码： changeit
+认证回复已安装在 keystore中&lt;/p&gt;
+
+&lt;p&gt;其它OpenSSL命令举例&lt;/p&gt;
+
+&lt;p&gt;openssl pkcs12 -export -clcerts -in client.pem -inkey clientkey.pem -out client.p12&lt;/p&gt;
+
+&lt;p&gt;openssl pkcs8 -inform PEM -nocrypt -in abcwebnet-pkcs8.key -out abcwebnet.key&lt;/p&gt;
+
+&lt;p&gt;openssl pkcs12 -export -out abcwebnet.pfx -inkey abcwebnet.key -in abcwebnet-pem.crt&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip; &amp;hellip;
+&lt;h2&gt;2、keytool实践&lt;/h2&gt;
+keystore这个名字其实有点误导,应该是CertStore,可以同时包含两种信息:自己的keyEntry,和trusted cert entry.(自然包括自己的私钥公钥和信任的公钥了)(有时会分开,信任的证书存储在单独的文件中)&lt;/p&gt;
+
+&lt;p&gt;keystore可以有两类密码,一个是保护这个文件的(storepass),一种是保护文件里每一个key的(keypass)&lt;/p&gt;
+
+&lt;p&gt;可以为每个key指定alias,然后使用alias来引用或访问对应的key&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;p&gt;rem 创建客户端keystore&lt;/p&gt;
+
+&lt;p&gt;keytool -genkey -keyalg RSA -keystore client.jks -storetype jks -storepass client -alias client_rsa -keypass client_rsa -dname &amp;ldquo;CN=Client, OU=IBM, C=US&amp;rdquo; -keysize 1024 -validity 1460&lt;/p&gt;
+
+&lt;p&gt;rem 创建服务端keystore&lt;/p&gt;
+
+&lt;p&gt;keytool -genkey -keyalg RSA -keystore server.jks -storetype jks -storepass server -alias server_rsa -keypass server_rsa -dname &amp;ldquo;CN=Server, OU=IBM, C=US&amp;rdquo; -keysize 1024 -validity 1460&lt;/p&gt;
+
+&lt;p&gt;rem 从客户端keystore中导出通用格式的证书,以备导入到服务端keystore&lt;/p&gt;
+
+&lt;p&gt;keytool -export -keystore client.jks -storetype jks -storepass client -alias client_rsa -file client_rsa.cer&lt;/p&gt;
+
+&lt;p&gt;rem 从服务端keystore中导出通用格式的证书,以备导入到客户端keystore&lt;/p&gt;
+
+&lt;p&gt;keytool -export -keystore server.jks -storetype jks -storepass server -alias server_rsa -file server_rsa.cer&lt;/p&gt;
+
+&lt;p&gt;rem 导入客户端证书到服务端keystore(此动作的后果是使服务端信任客户端)&lt;/p&gt;
+
+&lt;p&gt;keytool -import -noprompt -keystore server.jks -storetype jks -storepass server -alias client_rsa -file client_rsa.cer&lt;/p&gt;
+
+&lt;p&gt;rem 导入服务端证书到客户端keystore(此动作的后果是使客户端信任服务端)&lt;/p&gt;
+
+&lt;p&gt;keytool -import -noprompt -keystore client.jks -storetype jks -storepass client -alias server_rsa -file server_rsa.cer&lt;/p&gt;
+
+&lt;p&gt;rem 列出客户端keystore包含的信息供查看&lt;/p&gt;
+
+&lt;p&gt;keytool -list -keystore client.jks -storepass client -v&lt;/p&gt;
+
+&lt;p&gt;rem 列出服务端keystore包含的信息供查看&lt;/p&gt;
+
+&lt;p&gt;keytool -list -keystore server.jks -storepass server -v&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>openssl建立SSL连接例子程序</title>
+      <link>http://www.daniex.tk/blog/2011/examples-of-procedures-to-establish-ssl-connection-openssl/</link>
+      <pubDate>Tue, 19 Apr 2011 11:15:46 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2011/examples-of-procedures-to-establish-ssl-connection-openssl/</guid>
+      <description>&lt;p&gt;下面是server 和client 的代码。用没跑过，但是用类似的代码跑了。流程是这样的。要注意的是openssl中ssl连接建立前用阻塞的socket，建立后可以设置非阻塞。openssl每个操作后最好检查下是否成功。
+&lt;pre class=&#34;brush:php&#34;&gt;
+/*********&lt;strong&gt;&lt;em&gt;server&lt;/em&gt;&lt;/strong&gt;*******************&lt;strong&gt;&lt;em&gt;/
+#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;winsock2.h&amp;gt;
+#include &amp;lt;openssl/ssl.h&amp;gt;
+#include &amp;lt;openssl/x509.h&amp;gt;
+#include &amp;lt;openssl/rand.h&amp;gt;
+#include &amp;lt;openssl/err.h&amp;gt;
+&amp;nbsp;
+#pragma comment (lib,&amp;ldquo;WS2_32.lib&amp;rdquo;)
+#pragma comment( lib, &amp;ldquo;libeay32.lib&amp;rdquo; )
+#pragma comment( lib, &amp;ldquo;ssleay32.lib&amp;rdquo; )
+&amp;nbsp;
+char buffer[10001] = {0};
+&amp;nbsp;
+int main()
+{
+SSL_library_init(); //初始化SSL库
+OpenSSL_add_all_algorithms(); //支持所有算法
+SSL_load_error_strings();  //提供将错误号解析为字符串的功能
+SSL *ssl = NULL;
+SSL_CTX *ssl_ctx = NULL;
+SSL_METHOD *ssl_method = NULL;
+X509 *client_cert = NULL;
+//设置客户端使用的SSL版本
+//ssl_method = SSLv3_server_method();
+ssl_method = SSLv23_server_method();
+//创建SSL上下文环境 每个进程只需维护一个SSL_CTX结构体
+ssl_ctx = SSL_CTX_new(ssl_method);
+&amp;nbsp;
+//验证对方
+SSL_CTX_set_verify(ssl_ctx,SSL_VERIFY_PEER,NULL);
+&amp;nbsp;
+//若验证,则放置CA证书
+SSL_CTX_load_verify_locations(ssl_ctx, &amp;ldquo;cacert.pem&amp;rdquo;, NULL);
+&amp;nbsp;
+//设置pass phrase
+SSL_CTX_set_default_passwd_cb_userdata(ssl_ctx, &amp;ldquo;pass phrase&amp;rdquo;);
+//读取证书文件
+SSL_CTX_use_certificate_file(ssl_ctx,&amp;rdquo;&lt;/em&gt;&lt;/strong&gt;&lt;strong&gt;Cert.pem&amp;rdquo;,SSL_FILETYPE_PEM);
+&amp;nbsp;
+//读取密钥文件
+SSL_CTX_use_PrivateKey_file(ssl_ctx,&amp;rdquo;&lt;/strong&gt;&lt;strong&gt;&lt;em&gt;Key.pem&amp;rdquo;,SSL_FILETYPE_PEM);
+&amp;nbsp;
+//验证密钥是否与证书一致
+SSL_CTX_check_private_key(ssl_ctx);
+&amp;nbsp;
+/*构建随机数生成机制,WIN32平台必需&lt;/em&gt;/
+srand( (unsigned)time( NULL ) );
+for( int i = 0;    i &amp;lt; 100;i++ )
+seed_int[i] = rand();
+RAND_seed(seed_int, sizeof(seed_int));
+//设置加密方式
+//SSL_CTX_set_cipher_list(ssl_ctx,&amp;ldquo;RC4-MD5&amp;rdquo;);
+//建立TCP服务器端、开始监听并接受客户端连接请求
+&amp;nbsp;
+// 初始化 Winsock.
+WSADATA wsaData;
+int iResult = WSAStartup( MAKEWORD(2,2), &amp;amp;wsaData );
+if ( iResult != NO_ERROR )
+{
+//失败
+return -1;
+}
+// 建立socket
+server = socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
+if ( server == INVALID_SOCKET )
+{
+//失败
+WSACleanup();
+return -2;
+}
+&amp;nbsp;
+// 绑定socket
+sockaddr_in service;
+service.sin_family = AF_INET;
+//service.sin_addr.s_addr = inet_addr(&amp;ldquo;127.0.0.1&amp;rdquo;);
+service.sin_addr.s_addr = INADDR_ANY;
+service.sin_port = htons( 8899 );
+&amp;nbsp;
+if ( bind( server, (SOCKADDR*) &amp;amp;service, sizeof(service) ) == SOCKET_ERROR )
+{
+//失败
+closesocket(server);
+return -3;
+}
+&amp;nbsp;
+// 监听 socket
+if ( listen( server, 10 ) == SOCKET_ERROR )
+{
+//失败
+return -4;
+}
+&amp;nbsp;
+do
+{
+sClient = accept(server,NULL,NULL);
+Sleep(100);
+}while(sClient == INVALID_SOCKET);
+&amp;nbsp;
+//创建当前连接的SSL结构体
+ssl = SSL_new(ssl_ctx);
+//将SSL绑定到套接字上
+SSL_set_fd(ssl, sClient);
+&amp;nbsp;
+//接受SSL链接
+SSL_accept(ssl);
+&amp;nbsp;
+//获取和释放客户端证书
+client_cert = SSL_get_peer_certificate(ssl);
+//打印所有加密算法的信息(可选)
+std::cout&amp;lt;&amp;lt;&amp;ldquo;SSL connection using&amp;rdquo;&amp;lt;&amp;lt;SSL_get_cipher(ssl)&amp;lt;&amp;lt;std::endl;
+&amp;nbsp;
+X509_free(client_cert);
+&amp;nbsp;
+//unsigned long cmd;
+//if (SOCKET_ERROR == ioctlsocket(sClient, FIONBIO, &amp;amp;cmd))
+//{
+//创建套接字时发生错误，非阻塞设置失败
+//ErrorProcess();
+//closesocket(sClient);
+//}
+&amp;nbsp;
+while(true)
+{
+SSL_read(ssl, buffer, 10000);
+memset(buffer,0,10000);
+SSL_write(ssl, &amp;ldquo;hello, world!&amp;rdquo;, sizeof(&amp;ldquo;hello, world!&amp;rdquo;));
+Sleep(1000);
+&amp;nbsp;
+}
+&amp;nbsp;
+//断开SSL链接
+SSL_shutdown(ssl);
+//释放当前SSL链接结构体
+SSL_free(ssl);
+//断开TCP链接
+closesocket(sClient);
+//释放SSL上下文
+SSL_CTX_free(ssl_ctx);
+&amp;nbsp;
+return 0;
+}
+&lt;/pre&gt;
+&lt;pre class=&#34;brush:php&#34;&gt;
+/&lt;/strong&gt;*********&lt;strong&gt;&lt;em&gt;client&lt;/em&gt;&lt;/strong&gt;***************&lt;strong&gt;&lt;em&gt;/
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string.h&amp;gt;
+#include &amp;lt;winsock2.h&amp;gt;
+#include &amp;lt;openssl/ssl.h&amp;gt;
+#include &amp;lt;openssl/x509.h&amp;gt;
+#include &amp;lt;openssl/rand.h&amp;gt;
+#include &amp;lt;openssl/err.h&amp;gt;
+#pragma comment (lib,&amp;ldquo;WS2_32.lib&amp;rdquo;)
+#pragma comment( lib, &amp;ldquo;libeay32.lib&amp;rdquo; )
+#pragma comment( lib, &amp;ldquo;ssleay32.lib&amp;rdquo; )
+&amp;nbsp;
+int main(int argc, _TCHAR&lt;/em&gt; argv[])
+{
+&amp;nbsp;
+SOCKET client;
+char buffer[256] = {0};
+int  seed_int[100]; /&lt;em&gt;存放随机序列&lt;/em&gt;/
+&amp;nbsp;
+SSL &lt;em&gt;ssl = NULL;
+SSL_CTX *ssl_ctx = NULL;
+SSL_METHOD *ssl_method = NULL;
+X509 *server_cert = NULL;
+&amp;nbsp;
+SSL_library_init();        //init libraries
+OpenSSL_add_all_algorithms(); //支持所有算法
+SSL_load_error_strings();  //提供将错误号解析为字符串的功能
+&amp;nbsp;
+&amp;nbsp;
+//设置客户端使用的SSL版本
+ssl_method = SSLv3_client_method();
+//创建SSL上下文环境 每个进程只需维护一个SSL_CTX结构体
+ssl_ctx = SSL_CTX_new(ssl_method);
+/*构建随机数生成机制,WIN32平台必需&lt;/em&gt;/
+srand( (unsigned)time( NULL ) );
+for( int i = 0;    i &amp;lt; 100;i++ )
+seed_int[i] = rand();
+RAND_seed(seed_int, sizeof(seed_int));
+&amp;nbsp;
+&amp;nbsp;
+/* Load the RSA CA certificate into the SSL_CTX structure &lt;em&gt;/
+/&lt;/em&gt; This will allow this client to verify the server&amp;rsquo;s   &lt;em&gt;/
+/&lt;/em&gt; certificate.                             &lt;em&gt;/
+SSL_CTX_load_verify_locations(ssl_ctx, &amp;ldquo;cacert.pem&amp;rdquo;, NULL);
+&amp;nbsp;
+/&lt;/em&gt; Set flag in context to require peer (server) certificate verification */
+SSL_CTX_set_verify(ssl_ctx,SSL_VERIFY_PEER,NULL);
+SSL_CTX_set_verify_depth(ssl_ctx,1);
+SSL_CTX_set_default_passwd_cb_userdata(ssl_ctx, &amp;ldquo;pass phrase&amp;rdquo;);
+//读取证书文件
+SSL_CTX_use_certificate_file(ssl_ctx,&amp;rdquo;&lt;/strong&gt;*&lt;strong&gt;&lt;em&gt;Cert.pem&amp;rdquo;,SSL_FILETYPE_PEM);
+//读取密钥文件
+SSL_CTX_use_PrivateKey_file(ssl_ctx,&amp;rdquo;&lt;/em&gt;&lt;/strong&gt;**&lt;em&gt;Key.pem&amp;rdquo;,SSL_FILETYPE_PEM);
+//验证密钥是否与证书一致
+SSL_CTX_check_private_key(ssl_ctx);
+&amp;nbsp;
+&amp;nbsp;
+//建立TCP链接
+// 初始化 Winsock.
+WSADATA wsaData;
+int iResult = WSAStartup( MAKEWORD(2,2), &amp;amp;wsaData );
+if ( iResult != NO_ERROR )
+{
+//AfxMessageBox(&amp;ldquo;Error at WSAStartup()!&amp;rdquo;);
+return;
+}
+&amp;nbsp;
+// 建立socket socket.
+client = socket( AF_INET, SOCK_STREAM, IPPROTO_TCP );
+if ( client == INVALID_SOCKET )
+{
+//AfxMessageBox(&amp;ldquo;Error at socket!&amp;rdquo;);
+WSACleanup();
+return;
+}
+&amp;nbsp;
+// 连接到服务器.
+sockaddr_in clientService;
+clientService.sin_family = AF_INET;
+clientService.sin_addr.s_addr = inet_addr( &amp;ldquo;127.0.0.1&amp;rdquo; );
+clientService.sin_port = htons( 8899 );
+if ( connect( client, (SOCKADDR&lt;/em&gt;) &amp;amp;clientService, sizeof(clientService) ) == SOCKET_ERROR)
+{
+//AfxMessageBox( &amp;ldquo;Failed to connect!&amp;rdquo; );
+WSACleanup();
+return;
+}
+&amp;nbsp;
+//unsigned long cmd;
+//if (SOCKET_ERROR == ioctlsocket(client, FIONBIO, &amp;amp;cmd))
+//{
+//  //AfxMessageBox( &amp;ldquo;创建套接字时发生错误，非阻塞设置失败：&amp;rdquo;);
+//  closesocket(client);
+//}
+//创建维护当前连接信息的SSL结构体
+ssl = SSL_new(ssl_ctx);
+//将SSL绑定到套接字上
+SSL_set_fd(ssl, client);
+//建立SSL链接
+SSL_connect(ssl);
+&amp;nbsp;
+//获取服务器端证书
+server_cert = SSL_get_peer_certificate(ssl);
+&amp;nbsp;
+//释放服务器端证书
+X509_free(server_cert);
+&amp;nbsp;
+unsigned long cmd;
+if (SOCKET_ERROR == ioctlsocket(client, FIONBIO, &amp;amp;cmd))
+{
+//AfxMessageBox( &amp;ldquo;创建套接字时发生错误，非阻塞设置失败：&amp;rdquo;);
+closesocket(client);
+}
+while(true)
+{
+SSL_write(ssl, &amp;ldquo;hello, world!&amp;rdquo;, sizeof(&amp;ldquo;hello, world!&amp;rdquo;)；
+SSL_read(ssl, buffer, 255);
+printf(&amp;ldquo;received: %s\n&amp;rdquo;,buffer);
+memset(buffer,0,255);
+&amp;nbsp;
+Sleep(1000);
+}
+//断开SSL链接
+SSL_shutdown(ssl);
+//释放当前SSL链接结构体
+SSL_free(ssl);
+closesocket(client);
+//释放上下文
+SSL_CTX_free(ssl_ctx);
+&amp;nbsp;
+return 0;
+}
+&amp;nbsp;
+&lt;/pre&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>谷歌地图多个标记（marker）和信息窗口（information window）显示</title>
+      <link>http://www.daniex.tk/blog/2010/marker-information-window/</link>
+      <pubDate>Wed, 16 Jun 2010 16:21:00 &#43;0000</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2010/marker-information-window/</guid>
+      <description>&lt;p&gt;当谷歌地图上有多个标记（marker）和信息窗口（information window）需要显示的时候，使用基本的增加监听click的事件响应的方法，信息窗口的显示会出现问题。即在任意标记上点击，需要显示信息窗口时，窗口会固定的显示在最后画上的标记上面。&lt;/p&gt;
+
+&lt;p&gt;添加click事件监听方法的代码：
+&lt;div id=&#34;_mcePaste&#34;&gt;GEvent.addListener(marker, &amp;ldquo;click&amp;rdquo;, function() {&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;marker.openInfoWindowHtml(&amp;rsquo;&amp;lt;b&amp;gt;info:&amp;lt;/b&amp;gt; &amp;lsquo;+ info);&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;});&lt;/div&gt;
+&lt;div id=&#34;_mcePaste&#34;&gt;map.addOverlay(marker);&lt;/div&gt;
+查阅网上资料后，发现一个解决方案，即使用&lt;span style=&#34;font-family: &#39;Andale Mono&#39;, &#39;Lucida Console&#39;, Monaco, fixed, monospace; line-height: 18px; font-size: 12px; white-space: pre;&#34;&gt;bindInfoWindowHtml方法。&lt;span style=&#34;font-family: Georgia, &#39;Times New Roman&#39;, &#39;Bitstream Charter&#39;, Times, serif; line-height: 19px; white-space: normal; font-size: 13px;&#34;&gt;以上的信息显示只需修改一小部分即可：&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;marker = new GMarker(point);&lt;/p&gt;
+
+&lt;p&gt;marker.bindInfoWindowHtml(&amp;rsquo;&amp;lt;b&amp;gt;info:&amp;lt;/b&amp;gt; &amp;lsquo;+info)&lt;/p&gt;
+
+&lt;p&gt;map.addOverlay(marker);&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;font-family: &#39;Andale Mono&#39;, &#39;Lucida Console&#39;, Monaco, fixed, monospace; line-height: 18px; font-size: 12px; white-space: pre;&#34;&gt;在两个网址有很详细的代码示例：&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;font-family: &#39;Andale Mono&#39;, &#39;Lucida Console&#39;, Monaco, fixed, monospace; line-height: 18px; font-size: 12px; white-space: pre;&#34;&gt;&lt;a href=&#34;http://www.cnblogs.com/yuzhongwusan/archive/2009/01/09/1372275.html&#34; target=&#34;_blank&#34;&gt;雨中无伞&lt;/a&gt; 和 &lt;a href=&#34;http://www.ibm.com/developerworks/cn/web/0910_chengfu_mashup/&#34; target=&#34;_blank&#34;&gt;IBM&lt;/a&gt;&lt;span style=&#34;font-family: verdana, nsimsun, sans-serif; line-height: 19px; white-space: normal;&#34;&gt;&lt;a href=&#34;http://www.ibm.com/developerworks/cn/web/0910_chengfu_mashup/&#34; target=&#34;_blank&#34;&gt;使用开放 API 和工具快速开发情景式 mashup 应用&lt;/a&gt;。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span style=&#34;font-family: verdana, nsimsun, sans-serif; font-size: small;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
