@@ -7,7 +7,44 @@
     <language>zh-cn</language>
     <author>Daniex</author>
     
-    <updated>Thu, 22 Jan 2015 14:25:20 CST</updated>
+    <updated>Tue, 27 Jan 2015 09:23:45 CST</updated>
+    
+    <item>
+      <title>github 部署静态网页</title>
+      <link>http://www.daniex.tk/blog/2015/github-page-hugo/</link>
+      <pubDate>Tue, 27 Jan 2015 09:23:45 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2015/github-page-hugo/</guid>
+      <description>
+
+&lt;p&gt;&lt;/br&gt;
+在找了很多免费空间，paas，laas之后，决定将这个hugo的网页部署在github上。又去申请了一个免费域名&lt;a href=&#34;http://www.daniex.tk&#34;&gt;daniex.tk&lt;/a&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://site.douban.com/196781/widget/notes/12161495/note/264946576/&#34;&gt;这里&lt;/a&gt;有个介绍怎么在github上用jeklly部署静态网站的文章可以参考。利用jeklly的话可以更加方便地在上面发表文章。否则就需要一次次的本地生成网页然后部署。&lt;/br&gt;&lt;/p&gt;
+
+&lt;p&gt;上文中提要的注意事项，我这里做个补充。&lt;/br&gt;
+hugo中使用tags和categories，部署到服务器会发现有找不到tag或category对应网址的问题。这个是由于中文编码和大小写的问题。&lt;/br&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;toc_0&#34;&gt;对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。&lt;/br&gt;&lt;/h4&gt;
+
+&lt;h4 id=&#34;toc_1&#34;&gt;对于英文大小写，一个时控制tag和category中没有大写英文字母，或者在hugotheme的相应部分做如下修改。&lt;/br&gt;&lt;/h4&gt;
+
+&lt;p&gt;原代码：&lt;/br&gt;
+&lt;textarea&gt;
+    {{ range .Params.tags }}
+      &lt;a class=&#34;label&#34; href=&#34;{{ $baseUrl }}/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    {{ end }}
+&lt;/textarea&gt;&lt;/br&gt;
+修改后：&lt;/br&gt;
+&lt;textarea&gt;
+    {{ range .Params.tags }}
+      {{ $tagUrl := lower .}}
+      &lt;a class=&#34;label&#34; href=&#34;{{ $baseUrl }}/tags/{{ $tagUrl | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    {{ end }}
+&lt;/textarea&gt;&lt;/br&gt;
+tags和categories类似&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>hello hugo</title>
@@ -15,7 +52,7 @@
       <pubDate>Thu, 22 Jan 2015 14:25:20 CST</pubDate>
       <author>Daniex</author>
       <guid>http://www.daniex.tk/blog/2015/my-first-static-web-post-by-hugo/</guid>
-      <description>&lt;p&gt;这时我在hugo上发布的第一post。但也不仅仅是hello world。&lt;/br&gt;
+      <description>&lt;p&gt;这是我在hugo上发布的第一个post。但也不仅仅是hello world。&lt;/br&gt;
 &lt;/br&gt;
 之前听IPN的podcast讲&lt;a href=&#34;https://ipn.li/kernelpanic/3/&#34;&gt;静态网页生成器&lt;/a&gt;,想到自己还有个懒得去搭理的blog，于是有有想法找时间再来折腾一下。结果一找就找了几个月。终于，花了一天时间简单过遍hugo的试用方法，解了大体的功能后，在京东云擎上搭了个试试。&lt;/br&gt;
 &lt;/br&gt;

@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://www.daniex.tk/</loc>
-    <lastmod>2015-01-22T14:25:20+08:00</lastmod>
+    <lastmod>2015-01-27T09:23:45+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.daniex.tk/blog/2015/github-page-hugo/</loc>
+    <lastmod>2015-01-27T09:23:45+08:00</lastmod>
   </url>
   
   <url>
@@ -13,12 +18,12 @@
   </url>
   
   <url>
-    <loc>http://www.daniex.tk/about/</loc>
+    <loc>http://www.daniex.tk/license/</loc>
     <lastmod>2015-01-21T14:37:43+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.daniex.tk/license/</loc>
+    <loc>http://www.daniex.tk/about/</loc>
     <lastmod>2015-01-21T14:37:43+08:00</lastmod>
   </url>
   

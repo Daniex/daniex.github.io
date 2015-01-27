@@ -7,7 +7,44 @@
     <language>zh-cn</language>
     <author>Daniex</author>
     
-    <updated>Thu, 22 Jan 2015 14:25:20 CST</updated>
+    <updated>Tue, 27 Jan 2015 09:23:45 CST</updated>
+    
+    <item>
+      <title>github 部署静态网页</title>
+      <link>http://www.daniex.tk/blog/2015/github-page-hugo/</link>
+      <pubDate>Tue, 27 Jan 2015 09:23:45 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/blog/2015/github-page-hugo/</guid>
+      <description>
+
+&lt;p&gt;&lt;/br&gt;
+在找了很多免费空间，paas，laas之后，决定将这个hugo的网页部署在github上。又去申请了一个免费域名&lt;a href=&#34;http://www.daniex.tk&#34;&gt;daniex.tk&lt;/a&gt;&lt;/br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://site.douban.com/196781/widget/notes/12161495/note/264946576/&#34;&gt;这里&lt;/a&gt;有个介绍怎么在github上用jeklly部署静态网站的文章可以参考。利用jeklly的话可以更加方便地在上面发表文章。否则就需要一次次的本地生成网页然后部署。&lt;/br&gt;&lt;/p&gt;
+
+&lt;p&gt;上文中提要的注意事项，我这里做个补充。&lt;/br&gt;
+hugo中使用tags和categories，部署到服务器会发现有找不到tag或category对应网址的问题。这个是由于中文编码和大小写的问题。&lt;/br&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;toc_0&#34;&gt;对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。&lt;/br&gt;&lt;/h4&gt;
+
+&lt;h4 id=&#34;toc_1&#34;&gt;对于英文大小写，一个时控制tag和category中没有大写英文字母，或者在hugotheme的相应部分做如下修改。&lt;/br&gt;&lt;/h4&gt;
+
+&lt;p&gt;原代码：&lt;/br&gt;
+&lt;textarea&gt;
+    {{ range .Params.tags }}
+      &lt;a class=&#34;label&#34; href=&#34;{{ $baseUrl }}/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    {{ end }}
+&lt;/textarea&gt;&lt;/br&gt;
+修改后：&lt;/br&gt;
+&lt;textarea&gt;
+    {{ range .Params.tags }}
+      {{ $tagUrl := lower .}}
+      &lt;a class=&#34;label&#34; href=&#34;{{ $baseUrl }}/tags/{{ $tagUrl | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    {{ end }}
+&lt;/textarea&gt;&lt;/br&gt;
+tags和categories类似&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>hello hugo</title>
@@ -15,7 +52,7 @@
       <pubDate>Thu, 22 Jan 2015 14:25:20 CST</pubDate>
       <author>Daniex</author>
       <guid>http://www.daniex.tk/blog/2015/my-first-static-web-post-by-hugo/</guid>
-      <description>&lt;p&gt;这时我在hugo上发布的第一post。但也不仅仅是hello world。&lt;/br&gt;
+      <description>&lt;p&gt;这是我在hugo上发布的第一个post。但也不仅仅是hello world。&lt;/br&gt;
 &lt;/br&gt;
 之前听IPN的podcast讲&lt;a href=&#34;https://ipn.li/kernelpanic/3/&#34;&gt;静态网页生成器&lt;/a&gt;,想到自己还有个懒得去搭理的blog，于是有有想法找时间再来折腾一下。结果一找就找了几个月。终于，花了一天时间简单过遍hugo的试用方法，解了大体的功能后，在京东云擎上搭了个试试。&lt;/br&gt;
 &lt;/br&gt;
@@ -1343,28 +1380,6 @@ B:                    真的，不骗你。&lt;img src=&#34;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>20120306流水帐</title>
-      <link>http://www.daniex.tk/blog/2012/20120306/</link>
-      <pubDate>Tue, 06 Mar 2012 05:38:15 &#43;0000</pubDate>
-      <author>Daniex</author>
-      <guid>http://www.daniex.tk/blog/2012/20120306/</guid>
-      <description>&lt;p&gt;笔记本主板上电源io相关的模块罢工，劳动改造中。用了5年多的老爷机头一次被大卸八块，真怕它那小心肝吃不消。虽然光驱早就瘫痪，USB接口也有点接触不良。年纪大了，没年轻时那么敏感了，这些都可以理解的。可如果大手术后恢复不过来，那就不好接受。&lt;/p&gt;
-
-&lt;p&gt;老家伙用着还是挺顺手的，简单折腾下vs，python也足够。如果不巧寿终正寝，刚好换一台去体验下期待了很久但看着不咋地的diable3。睡懒觉后还是不想起床的时候，就在床上重新折腾diable2，刷出了几套已经用不着的中低端绿装。斗地主、拖拉机、dota什么的太费神，刷装备多无脑，广东麻将只有碰杠自摸的玩法也够简单。上周日新年头一回麻将还小赢一把。&lt;/p&gt;
-
-&lt;p&gt;项目要结束了，有点闲。于是游戏，电影，活动。千禧年系列目前的四部看了1.3遍，想写下影评结果动手了100字后没有下文了，等看到2.0遍再说吧。计划走南山的二线关，绿道。就这两周要行动起来。&lt;/p&gt;
-
-&lt;p&gt;最近想写个python应用练练手，找点子ing。&lt;/p&gt;
-
-&lt;p&gt;东条开了个网上零食店，阿珂回老家了，还有我们一群人在外面飘着。wk村选举完了，十五届五次召开，叙利亚战火连绵。这地球转得太快，由着他转吧，敌动我不动，到底我什么时候动？怎么动？&lt;/p&gt;
-
-&lt;p&gt;HT春心荡漾了，wg寂寞苦闷了，大肠一副风雨不动安如山的架势，小武叔叔说是要远走他乡奔赴成都，phd天天23点回住处。各种困局，10年后又一变。&lt;/p&gt;
-
-&lt;p&gt;没电脑的日子发现家里高清电视很多节目，昨儿看了《老无所依》，又把《午夜巴塞罗那》翻出来看第二遍。翻了下书，发现《国富论》《博弈论》买了都还没翻，《中国佛教史》啃的特别辛苦，三本厚厚的《中国文学史》更是看得没耐心了。反而《古文观止》看得赏心悦目。。。&lt;/p&gt;
 </description>
     </item>
     
