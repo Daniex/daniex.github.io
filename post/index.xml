@@ -22,7 +22,7 @@
 
 &lt;p&gt;&lt;a href=&#34;http://site.douban.com/196781/widget/notes/12161495/note/264946576/&#34;&gt;这里&lt;/a&gt;有个介绍怎么在github上用jeklly部署静态网站的文章可以参考。利用jeklly的话可以更加方便地在上面发表文章。否则就需要一次次的本地生成网页然后部署。&lt;/br&gt;&lt;/p&gt;
 
-&lt;p&gt;上文中提要的注意事项，我这里做个补充。&lt;/br&gt;
+&lt;p&gt;jeklly那篇中提要的注意事项，我这里做个补充。&lt;/br&gt;
 hugo中使用tags和categories，部署到服务器会发现有找不到tag或category对应网址的问题。这个是由于中文编码和大小写的问题。&lt;/br&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;toc_0&#34;&gt;对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。&lt;/br&gt;&lt;/h4&gt;
