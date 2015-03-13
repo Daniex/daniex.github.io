@@ -65,15 +65,6 @@ hugo中使用tags和categories，部署到服务器会发现有找不到tag或ca
     </item>
     
     <item>
-      <title>license</title>
-      <link>http://www.daniex.tk/license/</link>
-      <pubDate>Wed, 21 Jan 2015 14:37:43 CST</pubDate>
-      <author>Daniex</author>
-      <guid>http://www.daniex.tk/license/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>about</title>
       <link>http://www.daniex.tk/about/</link>
       <pubDate>Wed, 21 Jan 2015 14:37:43 CST</pubDate>
@@ -85,6 +76,15 @@ Daniex&lt;/br&gt;
 &lt;a href=&#34;http://www.daniex.tk&#34;&gt;http://www.daniex.tk&lt;/a&gt;&lt;/br&gt;
 email: daniex.info@gmail.com&lt;/br&gt;&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>license</title>
+      <link>http://www.daniex.tk/license/</link>
+      <pubDate>Wed, 21 Jan 2015 14:37:43 CST</pubDate>
+      <author>Daniex</author>
+      <guid>http://www.daniex.tk/license/</guid>
+      <description></description>
     </item>
     
     <item>
