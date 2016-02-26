@@ -25,7 +25,7 @@
   <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
 
   <meta name="description" content="在找了很多免费空间，paas，laas之后，决定将这个hugo的网页部署在github上。又去申请了一个免费域名daniex.tk">
-  <meta name="keywords" content="hugo,hyde-X,static site generator,github page">
+  <meta name="keywords" content="Daniex,hugo,hyde-X,static site generator,github page">
   
 </head>
 <body>
@@ -40,7 +40,7 @@
     <ul class="sidebar-nav">
       <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
       <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
-      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/post/">文章列表</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/daniex/">文章列表</a></li>
       
     </ul>
 
@@ -52,7 +52,7 @@
       
     </ul>
     <div class="sidebar-licence">
-        <p>Copyright &copy; 2015 <a href="http://www.daniex.tk/license">License</a><br/>
+        <p>Copyright &copy; 2016 <a href="http://www.daniex.tk/license">License</a><br/>
        Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
 	</div>
   </div>
@@ -66,42 +66,41 @@
     
     <br/>
     
-    <a class="label" href="http://www.daniex.tk/categories/web">web</a><a class="label" href="http://www.daniex.tk/categories/it">it</a>
+    <a class="label" href="http://www.daniex.tk/categories/daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/web">web</a><a class="label" href="http://www.daniex.tk/categories/it">it</a>
     
     
     <br/>
     
      <a class="label" href="http://www.daniex.tk/tags/hugo">hugo</a> <a class="label" href="http://www.daniex.tk/tags/hyde-x">hyde-X</a> <a class="label" href="http://www.daniex.tk/tags/static-site-generator">static site generator</a> <a class="label" href="http://www.daniex.tk/tags/github">github</a>
     </span>
-    <p></br>
+    
+
+<p></br>
 在找了很多免费空间，paas，laas之后，决定将这个hugo的网页部署在github上。又去申请了一个免费域名<a href="http://www.daniex.tk">daniex.tk</a></br></p>
 
 <p><a href="http://site.douban.com/196781/widget/notes/12161495/note/264946576/">这里</a>有个介绍怎么在github上用jeklly部署静态网站的文章可以参考。利用jeklly的话可以更加方便地在上面发表文章。否则就需要一次次的本地生成网页然后部署。</br></p>
 
-<p>jeklly那篇中提要的注意事项，我这里做个补充。</br>
+<p>上文中提要的注意事项，我这里做个补充。</br>
 hugo中使用tags和categories，部署到服务器会发现有找不到tag或category对应网址的问题。这个是由于中文编码和大小写的问题。</br></p>
 
-<ul>
-<li>对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。</li>
-<li>对于英文大小写，一个是控制tag和category中没有大写英文字母，或者在hugotheme的相应部分做如下修改。</li>
-</ul>
+<h4 id="toc_0">对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。</br></h4>
 
-<p>原代码：</p>
+<h4 id="toc_1">对于英文大小写，一个时控制tag和category中没有大写英文字母，或者在hugotheme的相应部分做如下修改。</br></h4>
 
-<pre><code> {{ range .Params.tags }}
-   &lt;a class=&quot;label&quot; href=&quot;{{ $baseUrl }}/tags/{{ . | urlize }}&quot;&gt;{{ . }}&lt;/a&gt;
- {{ end }}
-</code></pre>
-
-<p>修改后：</p>
-
-<pre><code> {{ range .Params.tags }}
-   {{ $tagUrl := lower .}}
-   &lt;a class=&quot;label&quot; href=&quot;{{ $baseUrl }}/tags/{{ $tagUrl | urlize }}&quot;&gt;{{ . }}&lt;/a&gt;
- {{ end }}
-</code></pre>
-
-<p>tags和categories类似</p>
+<p>原代码：</br>
+<textarea>
+    {{ range .Params.tags }}
+      <a class="label" href="{{ $baseUrl }}/tags/{{ . | urlize }}">{{ . }}</a>
+    {{ end }}
+</textarea></br>
+修改后：</br>
+<textarea>
+    {{ range .Params.tags }}
+      {{ $tagUrl := lower .}}
+      <a class="label" href="{{ $baseUrl }}/tags/{{ $tagUrl | urlize }}">{{ . }}</a>
+    {{ end }}
+</textarea></br>
+tags和categories类似</p>
 
   </div>
   
@@ -112,7 +111,6 @@ hugo中使用tags和categories，部署到服务器会发现有找不到tag或ca
 
 <script src="http://www.daniex.tk/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-<script src="http://s11.cnzz.com/stat.php?id=1254528341&web_id=1254528341" language="JavaScript"></script>
 </body>
 </html>
 

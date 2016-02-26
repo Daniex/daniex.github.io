@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>docker centos6 中安装ＥＬＫ步骤和所有指令 &middot; Daniex</title>
+
+  
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/hyde-x.css">
+  <link rel="stylesheet" href="http://www.daniex.tk/css/highlight/sunburst.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Daniex &middot; Daniex" />
+
+  <meta name="description" content="docker centos6 中安装ＥＬＫ步骤和所有指令">
+  <meta name="keywords" content="Daniex,elk,elasticsearch,logstash,kibana,docker">
+  
+</head>
+<body>
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+      <h1>Daniex</h1>
+      <p class="lead">非淡泊无以明志 非宁静无以致远</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/">Home</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/about/">About</a></li>
+      <li class="sidebar-nav-item"><a href="http://www.daniex.tk/categories/daniex/">文章列表</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="https://github.com/Daniex">GitHub</a></li>
+      
+      <li class="sidebar-nav-item"><a href="https://plus.google.com/&#43;JinghongJiang">Google+</a></li>
+      
+      
+    </ul>
+    <div class="sidebar-licence">
+        <p>Copyright &copy; 2016 <a href="http://www.daniex.tk/license">License</a><br/>
+       Powered by <a href="http://hugo.spf13.com">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+	</div>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>docker centos6 中安装ＥＬＫ步骤和所有指令</h1>
+    <span class="post-date">Feb 26, 2016 &middot; 1 minute read
+    
+    <br/>
+    
+    <a class="label" href="http://www.daniex.tk/categories/daniex">Daniex</a><a class="label" href="http://www.daniex.tk/categories/web">web</a><a class="label" href="http://www.daniex.tk/categories/it">it</a>
+    
+    
+    <br/>
+    
+     <a class="label" href="http://www.daniex.tk/tags/elk">elk</a> <a class="label" href="http://www.daniex.tk/tags/elasticsearch">elasticsearch</a> <a class="label" href="http://www.daniex.tk/tags/logstash">logstash</a> <a class="label" href="http://www.daniex.tk/tags/kibana">kibana</a> <a class="label" href="http://www.daniex.tk/tags/docker">docker</a>
+    </span>
+    <p></br>
+docker centos6 中安装ＥＬＫ步骤和所有指令</p>
+
+<p>yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+java -version</p>
+
+<p>===========================================</p>
+
+<p>rpm &ndash;import <a href="https://packages.elastic.co/GPG-KEY-elasticsearch">https://packages.elastic.co/GPG-KEY-elasticsearch</a></p>
+
+<p>Add the following in your /etc/yum.repos.d/ directory in a file with a .repo suffix, for example elasticsearch.repo</p>
+
+<p>[elasticsearch-2.x]
+name=Elasticsearch repository for 2.x packages
+baseurl=<a href="http://packages.elastic.co/elasticsearch/2.x/centos">http://packages.elastic.co/elasticsearch/2.x/centos</a>
+gpgcheck=1
+gpgkey=<a href="http://packages.elastic.co/GPG-KEY-elasticsearch">http://packages.elastic.co/GPG-KEY-elasticsearch</a>
+enabled=1
+And your repository is ready for use. You can install it with:</p>
+
+<p>yum install elasticsearch</p>
+
+<p>=======================================</p>
+
+<p>rpm &ndash;import <a href="https://packages.elastic.co/GPG-KEY-elasticsearch">https://packages.elastic.co/GPG-KEY-elasticsearch</a></p>
+
+<p>Add the following in your /etc/yum.repos.d/ directory in a file with a .repo suffix, for example logstash.repo</p>
+
+<p>[logstash-2.1]
+name=Logstash repository for 2.1.x packages
+baseurl=<a href="http://packages.elastic.co/logstash/2.1/centos">http://packages.elastic.co/logstash/2.1/centos</a>
+gpgcheck=1
+gpgkey=<a href="http://packages.elastic.co/GPG-KEY-elasticsearch">http://packages.elastic.co/GPG-KEY-elasticsearch</a>
+enabled=1
+And your repository is ready for use. You can install it with:</p>
+
+<p>yum install logstash</p>
+
+<p>==========================================</p>
+
+<p>yum install wget -y
+yum install tar -y
+wget <a href="https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz">https://download.elastic.co/kibana/kibana/kibana-4.3.1-linux-x64.tar.gz</a>
+tar -zxvf kibana-4.3.1-linux-x64.tar.gz</p>
+
+<p>vi /etc/profile
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin</p>
+
+<p>/etc/init.d/elassticsearch start
+cd ~/kibana-4.3.1-linux-x64/bin
+./kibana</p>
+
+<p>./logstash -e &lsquo;input { stdin { } } output { elasticsearch {hosts =&gt; &ldquo;localhost:9200&rdquo;}  stdout {} }&rsquo;</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<script src="http://www.daniex.tk/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
+

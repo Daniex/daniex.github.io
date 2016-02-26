@@ -15,35 +15,34 @@
       <pubDate>Tue, 27 Jan 2015 09:23:45 CST</pubDate>
       <author>Daniex</author>
       <guid>http://www.daniex.tk/blog/2015/github-page-hugo/</guid>
-      <description>&lt;p&gt;&lt;/br&gt;
+      <description>
+
+&lt;p&gt;&lt;/br&gt;
 在找了很多免费空间，paas，laas之后，决定将这个hugo的网页部署在github上。又去申请了一个免费域名&lt;a href=&#34;http://www.daniex.tk&#34;&gt;daniex.tk&lt;/a&gt;&lt;/br&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://site.douban.com/196781/widget/notes/12161495/note/264946576/&#34;&gt;这里&lt;/a&gt;有个介绍怎么在github上用jeklly部署静态网站的文章可以参考。利用jeklly的话可以更加方便地在上面发表文章。否则就需要一次次的本地生成网页然后部署。&lt;/br&gt;&lt;/p&gt;
 
-&lt;p&gt;jeklly那篇中提要的注意事项，我这里做个补充。&lt;/br&gt;
+&lt;p&gt;上文中提要的注意事项，我这里做个补充。&lt;/br&gt;
 hugo中使用tags和categories，部署到服务器会发现有找不到tag或category对应网址的问题。这个是由于中文编码和大小写的问题。&lt;/br&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。&lt;/li&gt;
-&lt;li&gt;对于英文大小写，一个是控制tag和category中没有大写英文字母，或者在hugotheme的相应部分做如下修改。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4 id=&#34;toc_0&#34;&gt;对于中文编码，一个解决办法时直接在linux环境下编辑修改，或者参考上文在window下修改编辑和编码方式。&lt;/br&gt;&lt;/h4&gt;
 
-&lt;p&gt;原代码：&lt;/p&gt;
+&lt;h4 id=&#34;toc_1&#34;&gt;对于英文大小写，一个时控制tag和category中没有大写英文字母，或者在hugotheme的相应部分做如下修改。&lt;/br&gt;&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt; {{ range .Params.tags }}
-   &amp;lt;a class=&amp;quot;label&amp;quot; href=&amp;quot;{{ $baseUrl }}/tags/{{ . | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
- {{ end }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;修改后：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; {{ range .Params.tags }}
-   {{ $tagUrl := lower .}}
-   &amp;lt;a class=&amp;quot;label&amp;quot; href=&amp;quot;{{ $baseUrl }}/tags/{{ $tagUrl | urlize }}&amp;quot;&amp;gt;{{ . }}&amp;lt;/a&amp;gt;
- {{ end }}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;tags和categories类似&lt;/p&gt;
+&lt;p&gt;原代码：&lt;/br&gt;
+&lt;textarea&gt;
+    {{ range .Params.tags }}
+      &lt;a class=&#34;label&#34; href=&#34;{{ $baseUrl }}/tags/{{ . | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    {{ end }}
+&lt;/textarea&gt;&lt;/br&gt;
+修改后：&lt;/br&gt;
+&lt;textarea&gt;
+    {{ range .Params.tags }}
+      {{ $tagUrl := lower .}}
+      &lt;a class=&#34;label&#34; href=&#34;{{ $baseUrl }}/tags/{{ $tagUrl | urlize }}&#34;&gt;{{ . }}&lt;/a&gt;
+    {{ end }}
+&lt;/textarea&gt;&lt;/br&gt;
+tags和categories类似&lt;/p&gt;
 </description>
     </item>
     
